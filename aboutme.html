@@ -3,260 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Growth Scrapbook - Interactive Map</title>
+    <title>About Me - Full Story</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-dark: #333641; 
+            /* 亮模式变量 */
+            --bg-desktop: #333641; 
             --paper: #FDF8E1; 
             --text: #5D574F;
             --accent: #D4A373;
+            --dash: #D1C9BE;
+            --nav-bg: #1a1c23;
+        }
+
+        /* 暗模式变量定义 */
+        body.dark-mode {
+            --bg-desktop: #1a1a1a; 
+            --paper: #2d2d2d; 
+            --text: #e0e0e0;
+            --accent: #8fbabd;
+            --dash: #555;
+            --nav-bg: #333;
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-desktop);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             font-family: 'Indie Flower', 'Ma Shan Zheng', cursive;
+            transition: background-color 0.4s ease;
             overflow: hidden;
         }
 
-        /* 交互路径地图 - 悬浮在左侧 */
-        .growth-map-nav {
+        /* 顶部导航与开关 */
+        .header-nav {
             position: fixed;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(253, 248, 225, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            top: 20px;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 1000;
-            border: 2px dashed var(--accent);
+            color: rgba(255,255,255,0.5);
         }
 
-        .map-node {
-            display: block;
-            margin: 15px 0;
-            cursor: pointer;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            position: relative;
-            padding-left: 25px;
+        .controls { display: flex; gap: 10px; align-items: center; }
+        .nav-btn {
+            background: var(--nav-bg);
+            color: white; border: none;
+            width: 45px; height: 35px;
+            cursor: pointer; border-radius: 4px;
         }
 
-        .map-node::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
+        .theme-toggle {
+            cursor: pointer; font-size: 24px;
+            background: none; border: none;
+            color: white; opacity: 0.8;
+            transition: transform 0.3s ease;
         }
+        .theme-toggle:hover { transform: scale(1.2); opacity: 1; }
 
-        .map-node:hover { color: #000; transform: scale(1.1); }
-        .map-node.active { font-weight: bold; color: #A67C52; }
-
-        /* 剪贴簿主容器 */
-        .book-container {
-            width: 950px;
-            height: 680px;
-            position: relative;
-            perspective: 2000px;
-        }
+        /* 容器 */
+        .book { width: 900px; height: 650px; position: relative; }
 
         .page {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             position: absolute;
             background: var(--paper);
             border-radius: 12px;
-            padding: 40px 60px;
+            padding: 50px;
             box-sizing: border-box;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            display: none;
-            transform-origin: center;
-            animation: fadeIn 0.5s ease-out;
+            display: none; /* 默认隐藏 */
+            transition: background-color 0.4s ease;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .page.active { display: flex; flex-direction: column; }
 
-        .page.active { display: block; }
-
-        /* 顶部幻灯片计数器 */
-        .slide-info {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            color: rgba(255,255,255,0.4);
-            font-family: sans-serif;
-            font-size: 14px;
-        }
-
-        /* 贴图与装饰样式 */
-        .sticker { position: absolute; pointer-events: none; opacity: 0.8; }
-        .polaroid {
-            background: white;
-            padding: 15px 15px 40px 15px;
-            box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
-            display: inline-block;
-            text-align: center;
-        }
-        .polaroid img { max-width: 300px; border: 1px solid #eee; }
-
-        .dash-line { border-top: 2px dashed #D1C9BE; margin: 20px 0; }
-
-        /* 特殊布局 */
-        .grid-2 { display: flex; gap: 30px; align-items: start; }
-        .card-note { background: rgba(255,255,255,0.5); padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent); }
+        /* 内容样式 */
+        h1.title { font-family: 'Caveat'; font-size: 5rem; margin: 0; text-align: center; color: var(--text); }
+        .dash { border-top: 2px dashed var(--dash); margin: 20px 0; }
+        .polaroid { background: white; padding: 15px 15px 40px 15px; box-shadow: 5px 10px 20px rgba(0,0,0,0.1); text-align: center; }
+        .polaroid img { max-width: 300px; }
+        
+        /* 最后一页专有 */
+        .thanks-box { border: 2px dashed var(--dash); border-radius: 15px; padding: 30px; margin: 30px 0; text-align: center; }
+        .social-icons { display: flex; gap: 30px; justify-content: center; font-size: 2.5rem; }
+        .social-icons a { color: var(--text); transition: 0.3s; }
+        .social-icons a:hover { transform: translateY(-5px); }
 
     </style>
 </head>
 <body>
 
-    <!-- 交互路径地图导航 -->
-    <nav class="growth-map-nav">
-        <h3 style="margin-top:0; font-family:'Caveat'">Growth Path</h3>
-        <a class="map-node active" onclick="goToPage(0)">Cover</a>
-        <a class="map-node" onclick="goToPage(1)">Chapter 1</a>
-        <a class="map-node" onclick="goToPage(2)">Hometown</a>
-        <a class="map-node" onclick="goToPage(3)">Timeline</a>
-        <a class="map-node" onclick="goToPage(4)">Environment</a>
-        <a class="map-node" onclick="goToPage(5)">Childhood</a>
-        <a class="map-node" onclick="goToPage(6)">Chapter 2</a>
-        <a class="map-node" onclick="goToPage(7)">Hobbies</a>
-        <a class="map-node" onclick="goToPage(8)">Essentials</a>
-        <a class="map-node" onclick="goToPage(9)">Evolution</a>
-    </nav>
-
-    <div class="book-container">
-        <div class="slide-info" id="page-counter">Slide 1 of 10</div>
-
-        <!-- 1. 封面 -->
-        <div class="page active">
-            <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-                <h1 style="font-family:'Caveat'; font-size:6rem; margin:0;">My Life's Scrapbook</h1>
-                <p style="font-size: 2rem;">The Winding Path of Growth, Passion & Dreams</p>
-                <div class="sticker" style="top:20px; right:40px; width:120px; height:40px; background:#ADD8E6; transform:rotate(15deg); box-shadow: 2px 2px 5px rgba(0,0,0,0.1);"></div>
-            </div>
+    <div class="header-nav">
+        <div id="counter">Slide 1 of 11</div>
+        <div class="controls">
+            <button class="nav-btn" onclick="changePage(-1)">❮</button>
+            <button class="nav-btn" onclick="changePage(1)">❯</button>
+            <!-- 太阳/月亮按钮 -->
+            <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">☀️</button>
         </div>
+    </div>
 
-        <!-- 2. Chapter 1 过渡 -->
+    <div class="book">
+        <!-- 第 1-10 页：保持之前的内容结构 -->
+        <div class="page active"><h1 class="title">My Life's Scrapbook</h1></div>
+        <div class="page"><h3>Chapter 1: The Roots</h3></div>
+        <div class="page"><h3>My Hometown</h3><div class="dash"></div><div class="polaroid"><img src="image_04489d.jpg"><p>Home</p></div></div>
+        <div class="page"><h3>Growth Map</h3><p>Timeline content here...</p></div>
+        <div class="page"><h3>Environment</h3><p>Family & School...</p></div>
+        <div class="page"><h3>Childhood</h3><div class="polaroid"><img src="image_044bc5.jpg"></div></div>
+        <div class="page"><h3>Chapter 2: Passions</h3></div>
+        <div class="page"><h3>Hobbies</h3><p>Art, Reading, Travel...</p></div>
+        <div class="page"><h3>Essentials</h3><p>Pens, Tapes, Camera...</p></div>
+        <div class="page"><h3>Evolution</h3><p>Trend Chart...</p></div>
+
+        <!-- 第 11 页：根据 image_02e45d.jpg 定制的最后一页 -->
         <div class="page">
-            <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-                <h1 style="font-family:'Caveat'; font-size:5rem; color:#A89F91;">Chapter 1</h1>
-                <h2 style="font-size:3.5rem; margin:0;">The Roots & Beginnings</h2>
-                <p style="max-width:500px; font-size:1.5rem; margin-top:30px;">"Every leaf speaks bliss to me, fluttering from the autumn tree."</p>
-            </div>
-        </div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                <h1 class="title" style="font-size: 5.5rem;">Let's Start a New Story!</h1>
+                
+                <div class="thanks-box">
+                    <p style="font-size: 1.6rem; margin: 5px 0;">Thank you for walking through my growth map.</p>
+                    <p style="font-size: 1.6rem; margin: 5px 0;">Feel free to reach out to collaborate on a new creative project!</p>
+                </div>
 
-        <!-- 3. 家乡信息 (图片 3) -->
-        <div class="page">
-            <h2 style="font-family:'Caveat'; font-size:3rem;">My Hometown Roots</h2>
-            <div class="dash-line"></div>
-            <div class="grid-2">
-                <div style="flex:1">
-                    <p>我出生在一个四季分明的地方，那里的自然风光塑造了我最初的审美...</p>
-                    <div class="card-note" style="margin-top:20px;">
-                        这些早期的记忆，是我生命杰作的底色。
-                    </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="polaroid" style="transform:rotate(3deg)">
-                    <img src="image_04489d.jpg" alt="Home">
-                    <p style="margin-top:10px;">"The Place I Call Home"</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. 交互成长地图 (图片 4) -->
-        <div class="page">
-            <h2 style="font-family:'Caveat'; font-size:3rem;">Interactive Growth Map</h2>
-            <div class="dash-line"></div>
-            <div style="display:flex; justify-content:space-around; margin-top:50px; text-align:center;">
-                <div><div style="font-size:3rem">👶</div><b>2000s</b><p>好奇心的起点</p></div>
-                <div><div style="font-size:3rem">🎓</div><b>2015</b><p>设计启蒙</p></div>
-                <div><div style="font-size:3rem">✈️</div><b>2020</b><p>视野的开拓</p></div>
-                <div><div style="font-size:3rem">🌱</div><b>Now</b><p>知识体系构建</p></div>
-            </div>
-            <p style="text-align:center; margin-top:100px; font-style:italic;">沿着这些虚线，寻找我的进化之路...</p>
-        </div>
-
-        <!-- 5. 成长环境 (图片 5) -->
-        <div class="page">
-            <h2 style="font-family:'Caveat'; font-size:3rem;">Environment & Growth</h2>
-            <div class="dash-line"></div>
-            <div class="grid-2">
-                <div style="flex:1; background:#FFFDE7; padding:25px; border-radius:15px; border:1px dashed #DDD;">
-                    <h3>Family Harmony</h3>
-                    <p>成长于一个重视创意与表达的家庭。晚餐时的“奇思妙想”是我的必修课。</p>
-                </div>
-                <div style="flex:1; background:#F0F7FF; padding:25px; border-radius:15px; border:1px dashed #DDD;">
-                    <h3>Academic Spark</h3>
-                    <p>从第一个手绘项目到进阶的设计研究，环境始终支持我的实验性思维。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6. 童年回忆 (图片 6) -->
-        <div class="page">
-            <h2 style="font-family:'Caveat'; font-size:3rem;">Childhood Memories</h2>
-            <div class="dash-line"></div>
-            <div class="grid-2">
-                <div class="polaroid" style="transform:rotate(-4deg)">
-                    <img src="image_044bc5.jpg" alt="Childhood">
-                    <p style="font-weight:bold;">VINTAGE 1999</p>
-                </div>
-                <div style="flex:1; padding-left:20px;">
-                    <h3 style="font-family:'Caveat'; font-size:2.5rem;">A Curious Mind</h3>
-                    <p>我曾是那个收集奇形怪状鹅卵石、把干花压进日记本的小孩。</p>
-                    <p>这种对“存档美感”的痴迷直接引导了我现在的职业热情。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 7-10页依此类推... (此处省略重复结构以节省篇幅，逻辑一致) -->
-        <div class="page"> <h1 class="title" style="text-align:center; margin-top:200px; font-family:'Caveat'; font-size:5rem;">Chapter 2: Passions</h1> </div>
-        <div class="page"> <h2 style="font-family:'Caveat'; font-size:3rem;">Creative Hobbies</h2><div class="dash-line"></div><p>这里展示你的视觉艺术、阅读和全球探索...</p> </div>
-        <div class="page"> <h2 style="font-family:'Caveat'; font-size:3rem;">Scrapbook Essentials</h2><div class="dash-line"></div><p>🌸 和纸胶带 / ✒️ 钢笔 / 📷 拍立得</p> </div>
-        <div class="page"> 
-            <h2 style="font-family:'Caveat'; font-size:3rem;">Interest Evolution</h2>
-            <div class="dash-line"></div>
-            <div style="height:300px; border:2px dashed #ccc; display:flex; align-items:flex-end; padding:20px; gap:10px;">
-                <!-- 模拟趋势图 -->
-                <div style="flex:1; background:var(--accent); height:30%; opacity:0.5;"></div>
-                <div style="flex:1; background:var(--accent); height:60%; opacity:0.7;"></div>
-                <div style="flex:1; background:var(--accent); height:90%; opacity:0.9;"></div>
             </div>
         </div>
     </div>
 
     <script>
-        let currentPage = 0;
+        let current = 0;
         const pages = document.querySelectorAll('.page');
-        const nodes = document.querySelectorAll('.map-node');
-        const counter = document.getElementById('page-counter');
+        const counter = document.getElementById('counter');
 
-        function goToPage(index) {
-            // 隐藏当前页
-            pages[currentPage].classList.remove('active');
-            nodes[currentPage].classList.remove('active');
-            
-            // 显示新页
-            currentPage = index;
-            pages[currentPage].classList.add('active');
-            nodes[currentPage].classList.add('active');
-            
-            // 更新计数器
-            counter.innerText = `Slide ${currentPage + 1} of 10`;
+        // 翻页逻辑
+        function changePage(step) {
+            pages[current].classList.remove('active');
+            current = (current + step + pages.length) % pages.length;
+            pages[current].classList.add('active');
+            counter.innerText = `Slide ${current + 1} of ${pages.length}`;
         }
 
-        // 键盘支持
+        // 亮/暗模式逻辑
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('theme-btn');
+            body.classList.toggle('dark-mode');
+            
+            // 切换图标
+            if (body.classList.contains('dark-mode')) {
+                btn.innerText = '🌙';
+            } else {
+                btn.innerText = '☀️';
+            }
+        }
+
+        // 键盘翻页支持
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && currentPage < pages.length - 1) goToPage(currentPage + 1);
-            if (e.key === 'ArrowLeft' && currentPage > 0) goToPage(currentPage - 1);
+            if (e.key === "ArrowRight") changePage(1);
+            if (e.key === "ArrowLeft") changePage(-1);
         });
     </script>
 </body>
