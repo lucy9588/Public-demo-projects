@@ -3,197 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - My Life's Scrapbook</title>
-    <!-- 引入类似图片的 Google 字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <title>My Life's Scrapbook - Flipbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper-bg: #FDF8E1;
-            --text-color: #5D574F;
-            --accent-color: #D4A373;
-            --dash-color: #C2BBB2;
+            --bg-dark: #333641; /* 图片背景深色 */
+            --paper-color: #FDF8E1; /* 图片纸张米色 */
+            --text-gray: #5D574F;
         }
 
         body {
-            background-color: #4A4E69; /* 深灰色背景，模拟桌面 */
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(#444 1px, transparent 1px);
+            background-size: 20px 20px;
             margin: 0;
-            padding: 40px 20px;
-            font-family: 'Indie Flower', 'Ma Shan Zheng', cursive;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* 剪贴簿主容器 */
-        .scrapbook-page {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: var(--paper-bg);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            min-height: 100vh;
-        }
-
-        /* 装饰用的小胶带 */
-        .washi-tape {
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            width: 100px;
-            height: 30px;
-            background: rgba(173, 216, 230, 0.5);
-            transform: rotate(15deg);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 2px dashed var(--dash-color);
-            padding-bottom: 30px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-family: 'Caveat', cursive;
-            font-size: 4rem;
-            margin: 0;
-            color: #4A4A4A;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.8;
-        }
-
-        /* 内容区块布局 */
-        .section {
             display: flex;
-            gap: 40px;
-            margin-bottom: 50px;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Indie Flower', cursive;
         }
 
-        .text-box {
-            flex: 1;
+        /* 顶部导航条 */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.5);
+            z-index: 100;
         }
 
-        /* 拍立得照片风格 */
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: #1a1c23;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        /* 剪贴簿容器 */
+        .book-container {
+            width: 80vw;
+            max-width: 1000px;
+            height: 60vh;
+            position: relative;
+            perspective: 1500px;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--paper-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 40px;
+            box-sizing: border-box;
+            display: none; /* 初始隐藏 */
+            transform-origin: left center;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page.active {
+            display: block;
+            z-index: 2;
+        }
+
+        /* 页面内容样式 - 严格参考图片 */
+        .page-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: 4.5rem;
+            margin: 0;
+            color: var(--text-gray);
+        }
+
+        .page-subtitle {
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        .content-split {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        /* 装饰元素 */
+        .dash-line {
+            width: 100%;
+            border-top: 2px dashed #D1C9BE;
+            margin: 20px 0;
+        }
+
         .photo-frame {
             background: white;
-            padding: 15px 15px 40px 15px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            border: 1px solid #eee;
-            transition: transform 0.3s;
-        }
-
-        .photo-frame:hover {
-            transform: rotate(0deg) scale(1.05);
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: rotate(2deg);
         }
 
         .photo-frame img {
-            width: 300px;
-            height: auto;
+            max-width: 350px;
             display: block;
-        }
-
-        .photo-caption {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            color: #888;
-        }
-
-        /* 兴趣清单 */
-        .essentials {
-            list-style: none;
-            padding: 0;
-        }
-
-        .essentials li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .essentials li::before {
-            content: '🌸'; /* 或者使用图片中类似的图标 */
-            margin-right: 15px;
-        }
-
-        /* 按钮返回首页 */
-        .back-btn {
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            background: var(--text-color);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .section { flex-direction: column; }
-            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="scrapbook-page">
-        <div class="washi-tape"></div>
-
-        <header>
-            <h1>My Life's Scrapbook</h1>
-            <p class="subtitle">The Winding Path of Growth, Passion & Dreams</p>
-        </header>
-
-        <!-- 第一部分：家乡与起源 -->
-        <div class="section">
-            <div class="text-box">
-                <h2 style="font-family: 'Caveat'; font-size: 2.5rem;">My Hometown Roots</h2>
-                <p>
-                    我出生在一个四季如画的地方。早期的成长环境被自然的宁静和紧密社区的温暖所塑造。
-                </p>
-                <p>
-                    这些早期的记忆，是我生命杰作初稿上的线条。
-                </p>
-            </div>
-            <div class="photo-frame">
-                <!-- 这里替换成你的家乡照片地址 -->
-                <img src="https://via.placeholder.com/300x200?text=My+Home" alt="The Place I Call Home">
-                <div class="photo-caption">"The Place I Call Home"</div>
-            </div>
+    <div class="top-nav">
+        <div id="slide-counter">Slide 1 of 4</div>
+        <div class="controls">
+            <button class="nav-btn" onclick="prevPage()">❮</button>
+            <button class="nav-btn" onclick="nextPage()">❯</button>
         </div>
-
-        <!-- 第二部分：兴趣爱好 -->
-        <div class="section" style="flex-direction: row-reverse;">
-            <div class="text-box">
-                <h2 style="font-family: 'Caveat'; font-size: 2.5rem;">Scrapbook Essentials</h2>
-                <ul class="essentials">
-                    <li><strong>和纸胶带:</strong> 用彩色的边框框住我的思绪。</li>
-                    <li><strong>钢笔:</strong> 享受墨水与纸张接触时的律动。</li>
-                    <li><strong>拍立得:</strong> 捕捉那些纯粹、未经过滤的快乐瞬间。</li>
-                    <li><strong>自然的发现:</strong> 将压花和干叶带进我的日记。</li>
-                </ul>
-            </div>
-            <div class="photo-frame" style="transform: rotate(3deg);">
-                <img src="https://via.placeholder.com/300x200?text=Hobbies" alt="Creative Hobbies">
-                <div class="photo-caption">"Creative Flow"</div>
-            </div>
-        </div>
-
-        <center>
-            <a href="index.html" class="back-btn">回到主页 ←</a>
-        </center>
+        <div style="cursor:pointer">☀️</div>
     </div>
 
+    <div class="book-container">
+        <!-- 第 1 页：封面 (Slide 1) -->
+        <div class="page active" id="p1">
+            <div class="page-content">
+                <h1 class="page-title">My Life's Scrapbook</h1>
+                <p class="page-subtitle">The Winding Path of Growth, Passion & Dreams</p>
+                <!-- 右上角小胶带 -->
+                <div style="position:absolute; top:20px; right:20px; width:80px; height:25px; background:lightblue; opacity:0.5; transform:rotate(10deg);"></div>
+            </div>
+        </div>
+
+        <!-- 第 2 页：Chapter 1 (Slide 2) -->
+        <div class="page" id="p2">
+            <div class="page-content">
+                <h1 class="page-title">Chapter 1</h1>
+                <h2 style="font-size: 2.5rem; color:#A89F91;">The Roots & Beginnings</h2>
+                <p style="max-width: 600px; font-size: 1.4rem; color: #777;">
+                    "Every leaf speaks bliss to me, fluttering from the autumn tree." — Exploring where it all began.
+                </p>
+            </div>
+        </div>
+
+        <!-- 第 3 页：Hometown (Slide 3) -->
+        <div class="page" id="p3">
+            <div style="font-family: 'Caveat'; font-size: 2.5rem; margin-bottom:10px;">My Hometown Roots</div>
+            <div class="dash-line"></div>
+            <div class="content-split">
+                <div style="flex:1; font-size: 1.2rem;">
+                    <p>I was born in a place where the seasons painted the landscape in vibrant watercolors...</p>
+                    <p>These early memories are the sketches upon which my life's masterpiece is built.</p>
+                </div>
+                <div class="photo-frame">
+                    <img src="https://via.placeholder.com/350x250/E0E0E0/888?text=Hometown+Art" alt="Home">
+                    <p style="text-align:center; margin-top:10px;">"The Place I Call Home"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第 4 页：Growth Map (Slide 4) -->
+        <div class="page" id="p4">
+             <div style="font-family: 'Caveat'; font-size: 2.5rem;">Interactive Growth Map</div>
+             <div class="dash-line"></div>
+             <div style="display:flex; justify-content: space-around; margin-top: 50px; text-align: center;">
+                 <div><div style="font-size:2rem">👶</div><strong>2000s</strong><p>Early steps</p></div>
+                 <div><div style="font-size:2rem">🎓</div><strong>2015</strong><p>Discovery</p></div>
+                 <div><div style="font-size:2rem">✈️</div><strong>2020</strong><p>Broadening</p></div>
+                 <div><div style="font-size:2rem">🌱</div><strong>Now</strong><p>Building</p></div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 4; // 你可以根据需要增加到 14 页
+
+        function updateDisplay() {
+            // 更新计数器
+            document.getElementById('slide-counter').innerText = `Slide ${currentPage} of ${totalPages}`;
+            
+            // 切换页面显示
+            document.querySelectorAll('.page').forEach((p, idx) => {
+                p.classList.remove('active');
+                if (idx + 1 === currentPage) {
+                    p.classList.add('active');
+                }
+            });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateDisplay();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updateDisplay();
+            }
+        }
+
+        // 键盘左右键翻页支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+    </script>
 </body>
 </html>
