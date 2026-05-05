@@ -1,103 +1,89 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucy's Portfolio | 设计与项目展示</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .bento-card { @apply bg-white p-6 rounded-3xl border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1; }
-    </style>
+	<title>个人主页</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name='description' content='翠花，翠花个人导航页，个人主页。'>
+	<meta name='keywords' content='翠花,翠花主页'>
+	<meta name='robots' content='index,follow'>
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>/* 强制覆盖可能的冲突样式 */
+			[class^="fa-"], [class*=" fa-"]::before {
+				font-family: "Font Awesome 5 Brands", "Font Awesome 5 Pro", "Font Awesome 5 Free", "Font Awesome 6 Brands", "Font Awesome 6 Pro", "Font Awesome 6 Free", sans-serif !important;
+				font-weight: 900 !important;
+				}</style>
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 </head>
-<body class="text-gray-900">
 
-    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
-        <h1 class="text-2xl font-bold tracking-tighter">LUCY.DESIGN</h1>
-        <div class="space-x-6 text-sm font-medium text-gray-500">
-            <a href="#projects" class="hover:text-black transition">项目</a>
-            <a href="#knowledge" class="hover:text-black transition">知识库</a>
-            <a href="https://github.com/lucy9588" class="hover:text-black transition">GitHub</a>
-        </div>
-    </nav>
+<body class="is-preload">
+	<div id="wrapper">
+		<div id="bg"></div>
+		<div id="overlay"></div>
+		<div id="main">
 
-    <main class="max-w-6xl mx-auto px-6 pb-24">
-        <!-- Bento Grid Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4">
-            
-            <!-- Profile Section -->
-            <div class="md:col-span-2 md:row-span-2 bento-card flex flex-col justify-between bg-gradient-to-br from-indigo-50 to-white">
-                <div>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs font-semibold">Designer & Developer</span>
-                    <h2 class="text-4xl font-bold mt-6 leading-tight">你好，我是 Lucy。<br><span class="text-gray-400">构建美感与逻辑的桥梁。</span></h2>
-                </div>
-                <p class="text-gray-600 mt-4 leading-relaxed">这是我的个人展示空间，包含了我对设计的思考、沉淀的知识体系以及开发过的各种项目。</p>
-            </div>
+			<!-- Header -->
+			<header id="header">
+				<h1>翠花</h1>
+				<p>&nbsp;&bull;&nbsp; 热爱可抵漫长岁月 &nbsp;&bull;&nbsp;</p>
+				<nav>
+					<ul>
+						<li><a href="http://www.nange.cn/" target="_blank" class="icon fa-solid fa-blog" title="每天都是最好的自己。"><span
+									class="label">翠花</span></a></li>
+						<li><a href="http://api.nange.cn/" target="_blank" rel="noopener" class="icon fa-solid fa-location-dot"
+								title="GeoIP 查询"><span class="label"> IP 信息查询</span></a></li>
+						<li><a href="http://server.nange.cn/" target="_blank" rel="noopener" class="icon fa-regular fa-server"
+								title="服务器探针"><span class="label">服务器探针</span></a></li>
+						<li><a href="http://status.nange.cn/" target="_blank" rel="noopener" class="icon fa-brands fa-sellsy"
+								title="服务状态"><span class="label">服务状态</span></a></li>
+						<li><a href="https://donate.stripe.com/28obMffW78Pogb6145" target="_blank" rel="noopener" class="icon fa-brands fa-stripe-s"
+								title="捐赠支持"><span class="label">捐赠支持</span></a></li>
+						<li><a href="http://www.instagram.com/itskip" target="_blank" rel="nofollow noopener"
+								class="icon fa-brands fa-instagram" title="关注我的 Instagram"><span
+									class="label">Instagram</span></a></li>
+						<li><a href="http://t.me/CloudEvent" target="_blank" rel="nofollow noopener"
+								class="icon fa-brands fa-telegram" title="收藏夹"><span
+									class="label">Telegram</span></a></li>
+						<li><a href="http://github.com/xOS" target="_blank" rel="nofollow noopener"
+								class="icon fa-brands fa-github-alt" title="Fork me on Github"><span
+									class="label">Github</span></a></li>
+						<li><a href="http://twitter.com/OneTip" target="_blank" rel="nofollow noopener"
+								class="icon fa-brands fa-x-twitter" title="Twitter 关注我"><span
+									class="label">Twitter</span></a></li>
+						<li><a href="https://ifdian.net/a/herby" target="_blank" rel="nofollow noopener" class="icon fa fa-hand-holding-heart" title="爱发电赞助"><span class="label">爱发电赞助</span></a></li>
+						<li><a href="mailto:home#nange.cn" target="_blank" rel="nofollow noopener" class="icon fa-solid fa-envelope"
+								title="给我发邮件"><span class="label">Email</span></a></li>
+					</ul>
+				</nav>
+			</header>
 
-            <!-- Knowledge Base -->
-            <div id="knowledge" class="md:col-span-2 bento-card group">
-                <div class="flex justify-between items-start">
-                    <div class="p-3 bg-green-50 text-green-600 rounded-2xl group-hover:bg-green-600 group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-book-open text-xl"></i>
-                    </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-300"></i>
-                </div>
-                <h3 class="text-xl font-bold mt-4">知识库</h3>
-                <p class="text-gray-500 text-sm mt-2">沉淀设计规范、前端技术文档与产品笔记。</p>
-            </div>
+			<!-- Footer -->
+			<footer id="footer">
+				<span class="copyright">&copy; 2026 <a href="http://www.nange.cn/" target="_blank">楠格</a>丨<a
+						href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">京ICP备1000000号-1</a></span>
+			</footer>
 
-            <!-- Design Capabilities -->
-            <div class="md:col-span-1 bento-card bg-black text-white">
-                <h3 class="text-lg font-semibold">设计能力</h3>
-                <ul class="mt-4 space-y-2 text-gray-400 text-sm">
-                    <li><i class="fa-solid fa-check mr-2 text-indigo-400"></i>UI/UX Design</li>
-                    <li><i class="fa-solid fa-check mr-2 text-indigo-400"></i>Motion Design</li>
-                    <li><i class="fa-solid fa-check mr-2 text-indigo-400"></i>Visual System</li>
-                </ul>
-            </div>
-
-            <!-- Stats/Social -->
-            <div class="md:col-span-1 bento-card flex items-center justify-center">
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-indigo-600">10+</div>
-                    <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Projects</div>
-                </div>
-            </div>
-
-            <!-- Projects Section -->
-            <div id="projects" class="md:col-span-4 mt-8 flex items-center justify-between">
-                <h2 class="text-2xl font-bold">精选项目</h2>
-            </div>
-
-            <div class="md:col-span-2 bento-card p-0 overflow-hidden group">
-                <div class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
-                    <!-- 这里可以替换成你的项目封面图 -->
-                    <span class="text-gray-400 italic group-hover:scale-110 transition-transform">Project Preview Image</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold">Public-demo-projects</h3>
-                    <p class="text-gray-500 text-sm mt-2">此仓库是我的公开演示合集，涵盖了从原型到实现的完整流程。</p>
-                </div>
-            </div>
-
-            <div class="md:col-span-2 bento-card p-0 overflow-hidden group">
-                <div class="h-48 bg-slate-800 flex items-center justify-center">
-                    <span class="text-gray-500 italic group-hover:scale-110 transition-transform">Next Great Project</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold">更多项目正在路上...</h3>
-                    <p class="text-gray-500 text-sm mt-2">期待与你共同创造有趣的产品。</p>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer class="text-center py-12 border-t border-gray-100 text-gray-400 text-sm">
-        &copy; 2026 Lucy. Built with Tailwind CSS on GitHub Pages.
-    </footer>
-
+		</div>
+	</div>
+	<script>
+		window.onload = function () { document.body.classList.remove('is-preload'); }
+		window.ontouchmove = function () { return false; }
+		window.onorientationchange = function () { document.body.scrollTop = 0; }
+	</script>
+	<script disable-devtool-auto src='http://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js'
+		disable-menu='false'></script>
 </body>
+
 </html>
+
+
+
