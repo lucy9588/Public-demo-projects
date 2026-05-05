@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<!-- saved from url=(0132)blob:https://3ogd4qpdkvyzqtv6zy0p69mzrfg92rtpiw9ewi4kv4kb9wrz6r-h906969431.scf.usercontent.goog/83d45523-80ba-412d-b800-181066211642 -->
+<html lang="en" class="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(){'use strict';var h=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function l(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var n=l(this);
+function p(a,b){if(b)a:{var d=n;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&h(d,a,{configurable:!0,writable:!0,value:b})}}function r(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function t(a){return r(a())}
+p("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});p("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function u(a,b){var d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);var c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var v=(()=>{var a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){var b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let x=null;function y(a={}){return x?x:a.l?x=a.l:x=w(window.getComputedStyle(document.documentElement))}function z(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function A(a,b={}){var d;if(!(d=b.width)){d=z(a,"border-left-width");var c=z(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=z(a,"border-top-width"),c=z(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function B(a){return new Promise((b,d)=>{var c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function C(a){return t(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function D(a,b,d){return t(function*(){var c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return C(c)})}
+var E=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||E(a,b)};function F(a,b){return y(b).map(d=>{var c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function G(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=v();try{b.className=`${b.className} ${f}`}catch(k){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=F(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function H(a){return a.search(/^(data:)/)!==-1}function I(a,b,d){return t(function*(){var c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);var e=yield c.blob();return new Promise((f,g)=>{var k=new FileReader;k.onerror=g;k.onloadend=()=>{try{f(d({o:c,result:k.result}))}catch(m){g(m)}};k.readAsDataURL(e)})})}const J={};function K(a,b,d){var c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function L(a,b,d){return t(function*(){var c=K(a,b,d.C);if(J[c]!=null)return J[c];d.u&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());try{let f=yield I(a,d.i,({o:g,result:k})=>{b||(b=g.headers.get("Content-Type")||"");return k.split(/,/)[1]});var e=`data:${b};base64,${f}`}catch(f){e=d.B||""}return J[c]=e})};const M={P:"application/font-woff",R:"application/font-woff",N:"application/font-truetype",v:"application/vnd.ms-fontobject",H:"image/png",F:"image/jpeg",D:"image/jpeg",A:"image/gif",M:"image/tiff",L:"image/svg+xml",O:"image/webp"};function N(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function O(a){return t(function*(){var b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):B(b)})}function aa(a,b){return t(function*(){if(a.currentSrc){var d=document.createElement("canvas");let c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return B(d)}d=a.poster;d=yield L(d,M[N(d).toLowerCase()]||"",b);return B(d)})}
+function ba(a,b){return t(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield P(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ca(a,b){return t(function*(){return E(a,HTMLCanvasElement)?O(a):E(a,HTMLVideoElement)?aa(a,b):E(a,HTMLIFrameElement)?ba(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function da(a,b,d){return t(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;var c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(E(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||E(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>P(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function ea(a,b,d){var c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):y(d).forEach(f=>{var g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);E(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function fa(a,b){E(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function ha(a,b){return t(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){let g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield P(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function P(a,b,d){return t(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ca(c,b)).then(c=>da(a,c,b)).then(c=>{E(c,Element)&&(ea(a,c,b),G(a,c,":before",b),G(a,c,":after",b),E(a,HTMLTextAreaElement)&&(c.textContent=a.value),E(a,HTMLInputElement)&&c.setAttribute("value",a.value),fa(a,c));return c}).then(c=>ha(c,b)):null})};const Q=/url\((['"]?)([^'"]+?)\1\)/g,ia=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,ja=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function ka(a){var b=[];a.replace(Q,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!H(d))}
+function la(a,b,d,c){return t(function*(){try{let e=d?(new URL(b,d||void 0)).toString():b,f;f=yield L(e,M[N(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function ma(a,{I:b}){return b?a.replace(ja,d=>{for(;;){let [c,,e]=ia.exec(d)||[];if(!e)return"";if(e===b)return`src: ${c};`}}):a}
+function R(a,b,d){return t(function*(){if(a.search(Q)===-1)return a;var c=ma(a,d);return ka(c).reduce((e,f)=>e.then(g=>la(g,f,b,d)),Promise.resolve(c))})};function S(a,b,d){return t(function*(){var c,e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield R(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function na(a,b){return t(function*(){(yield S("background",a,b))||(yield S("background-image",a,b));(yield S("mask",a,b))||(yield S("-webkit-mask",a,b))||(yield S("mask-image",a,b))||(yield S("-webkit-mask-image",a,b))})}
+function oa(a,b){return t(function*(){var d=E(a,HTMLImageElement);if(d&&!H(a.src)||E(a,SVGImageElement)&&!H(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield L(c,M[N(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.m?(...k)=>{try{f(b.m(...k))}catch(m){g(m)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function pa(a,b){return t(function*(){var d=w(a.childNodes).map(c=>T(c,b));yield Promise.all(d).then(()=>a)})}function T(a,b){return t(function*(){E(a,Element)&&(yield na(a,b),yield oa(a,b),yield pa(a,b))})};const U={};function V(a){return t(function*(){var b=U[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return U[a]=b})}function W(a,b){return t(function*(){var d=a.cssText,c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>t(function*(){var g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return I(g,b.i,({result:k})=>{d=d.replace(f,`url(${k})`);return[f,k]})}));return Promise.all(e).then(()=>d)})}
+function X(a){if(a==null)return[];var b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function qa(a,b){return t(function*(){var d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let k=g+1;f=V(f.href).then(m=>W(m,b)).then(m=>X(m).forEach(q=>{try{e.insertRule(q,q.startsWith("@import")?k+=1:e.cssRules.length)}catch(Da){}})).catch(()=>{});c.push(f)}})}catch(f){let g=a.find(k=>k.href==null)||document.styleSheets[0];e.href!=null&&c.push(V(e.href).then(k=>W(k,b)).then(k=>X(k).forEach(m=>{g.insertRule(m,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function ra(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(Q)!==-1)}function sa(a,b){return t(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=w(a.ownerDocument.styleSheets);d=yield qa(d,b);return ra(d)})}
+function ta(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}var d=new Set;b(a);return d}function ua(a,b){return t(function*(){var d=yield sa(a,b),c=ta(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>R(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function va(a,b){return t(function*(){var d=b.j!=null?b.j:b.K?null:yield ua(a,b);if(d){let c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function wa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield P(a,b,!0);yield va(e,b);yield T(e,b);u(e,b);return yield D(e,d,c)})}
+function xa(a,b={}){return t(function*(){var {width:d,height:c}=A(a,b),e=yield wa(a,b);e=yield B(e);var f=document.createElement("canvas"),g=f.getContext("2d"),k=b.G||window.devicePixelRatio||1,m=b.h||d,q=b.g||c;f.width=m*k;f.height=q*k;!b.J&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384));
+f.style.width=`${m}`;f.style.height=`${q}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function ya(a,b={}){return t(function*(){return(yield xa(a,b)).toDataURL()})};const za=["gemini.google.com","corp.google.com","proxy.googlers.com"];function Y(){return document.body.querySelectorAll('[class*="animate"]').length>0}function Z(a){return t(function*(){try{return yield ya(a,{h:a.offsetWidth,g:a.offsetHeight})}catch(d){var b=a.offsetHeight;let c=document.createElement("canvas");c.width=a.offsetWidth;c.height=b;return c.toDataURL("image/png")}})}
+function Aa(){return t(function*(){var a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ba(a){return t(function*(){var b=document.body;if(Y()){var d=yield Aa();b=d;document.body.appendChild(d)}d=yield Z(b);Y()&&document.body.removeChild(b);window.parent.postMessage({type:"SEND_SCREENSHOT",image:d,topOffset:document.documentElement.scrollTop},a.origin)})}function Ca(a){return t(function*(){var b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}
+window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ba(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ca(a)))}}));
+})();</script><script>(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script>
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.i=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.g=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.h="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script>((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image-preview","imageTransformModelName":"gemini-3-pro-image-preview-11-2025","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002","gemini-2.5-flash-image-preview","gemini-2.5-flash-image"]})</script><script>(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script>(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Life Scrapbook - Personal Growth Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;family=Caveat:wght@400;700&amp;family=Arimo:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CORE SETUP - SCRAPBOOK AESTHETIC */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4efdf; /* Aged paper color */
+  background-image: url('https://www.transparenttextures.com/patterns/felt.png'); /* Subtle paper texture */
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  place-items: center;
+}
+
+.slide-container {
+  align-items: center;
+  background-color: #fffaf0; /* Off-white page color */
+  border-radius: 15px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.05), inset 0 0 100px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Patrick Hand', cursive;
+  height: 720px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+  border: 1px solid #dcd3bd;
+}
+
+/* 1.1 DECORATIVE ELEMENTS (STICKERS/TAPE) */
+
+.slide-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.washi-tape {
+  position: absolute;
+  background: rgba(173, 216, 230, 0.6);
+  height: 30px;
+  width: 120px;
+  transform: rotate(-5deg);
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  border-left: 2px dashed rgba(0,0,0,0.1);
+  border-right: 2px dashed rgba(0,0,0,0.1);
+}
+
+/* 2. TYPOGRAPHY */
+
+.slide-container h1,
+.slide-container h2,
+.slide-container h3 {
+  color: #5d5448;
+  font-family: 'Caveat', cursive;
+  margin: 0;
+}
+
+.slide-container h1 {
+  font-size: 110px;
+  line-height: 1;
+}
+
+.slide-container .slide-title {
+  font-size: 55px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
+  border-bottom: 2px dashed #dcd3bd;
+  padding-bottom: 10px;
+}
+
+.slide-container p,
+.slide-container li {
+  color: #6b6256;
+  font-size: 26px;
+  line-height: 1.4;
+}
+
+/* 3. LAYOUTS */
+
+.content-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+}
+
+.title-layout {
+  text-align: center;
+  background: url('http://googleusercontent.com/image_collection/image_retrieval/2715706103154285285') no-repeat center;
+  background-size: contain;
+  padding: 100px;
+}
+
+/* TWO COLUMN - POLAROID STYLE */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+}
+
+.polaroid {
+  background: white;
+  padding: 15px 15px 60px 15px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  transform: rotate(2deg);
+  border: 1px solid #eee;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+/* TIMELINE - GROWTH MAP PATH */
+.timeline-layout {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: url('http://googleusercontent.com/image_collection/image_retrieval/4931168916940406885') center no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.timeline-item {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 200px;
+}
+
+.timeline-dot {
+  width: 40px;
+  height: 40px;
+  background: #fdf6e3;
+  border: 4px solid #bdae93;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0px #bdae93;
+}
+
+.timeline-item h3 {
+  font-size: 32px;
+  color: #8c7b65;
+}
+
+/* TILED IMAGES - SCRAPBOOK COLLAGE */
+.tiled-content {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tile {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e8e1d1;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.tile:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.tile-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* HIGHLIGHT NUMBERS - HAND DRAWN */
+.highlight-numbers-layout {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.number-circle {
+  width: 250px;
+  height: 250px;
+  border: 5px solid #dcd3bd;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fffefb;
+}
+
+.number {
+  font-size: 100px;
+  color: #bdae93;
+  font-family: 'Caveat', cursive;
+  line-height: 1;
+}
+
+/* BULLET LIST WITH STICKERS */
+.bullet-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bullet-list li {
+  margin-bottom: 25px;
+  position: relative;
+  padding-left: 60px;
+}
+
+.bullet-list i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 35px;
+  color: #ff9a9e; /* Pink sticker color */
+}
+
+/* CHART - WATERCOLOR TREND */
+.area-chart-container {
+  width: 100%;
+  height: 400px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 20px;
+  padding: 20px;
+  border: 2px dashed #dcd3bd;
+}
+
+.watercolor-path {
+  fill: rgba(173, 216, 230, 0.4);
+  stroke: #87ceeb;
+  stroke-width: 5;
+  stroke-dasharray: 10;
+}
+
+/* Q&A / CONTACT */
+.qa-layout {
+  background: url('http://googleusercontent.com/image_collection/image_retrieval/7055063242256167273') center no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+    </style>
+<style>
+  :where(.slide-attributions) {
+    padding: 60px;
+  }
+  .attribution-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .attribution-list__item {
+    align-items: center;
+    border-bottom: 1px solid #757575;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: 90px 1fr;
+    padding: 15px 0;
+    margin: 0 !important;
+  }
+  .attribution-list__item::before {
+    display: none;
+  }
+  .attribution-list__item::after {
+    display: none;
+  }
+  .attribution-list__item:last-child {
+    border-bottom: none;
+  }
+  .attribution-list__item .attribution__thumbnail {
+    height: 50px;
+    width: 90px;
+  }
+  .attribution__thumbnail .attribution__thumbnail__image {
+    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+  .attribution__details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .attribution__details .attribution__raw-url {
+    color: inherit;
+    font-size: 13px;
+    margin: 0;
+    word-break: break-all;
+  }
+  .attribution__details .attribution__title {
+    color: inherit;
+    font-size: 16px;
+    margin: 0;
+  }
+  .attribution__details .attribution__title > .attribution__link {
+    color: #4f46e5;
+    text-decoration: none;
+  }
+</style><style>
+  /* The container that fills available space. It's the positioning context. */
+  #slideshow-holder {
+      position: relative;
+      flex-grow: 1; /* Replaces flex-grow Tailwind class for clarity */
+      width: 100%;
+      padding: 1rem; /* Replaces p-4 Tailwind class */
+  }
+
+  /* The element that is scaled and centered. */
+  #slideshow-wrapper {
+      width: 1280px;
+      height: 720px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+      transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
+      transition: transform 0.3s ease-in-out;
+      /* Visual styles moved here from the holder */
+      border-radius: 0.5rem;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      overflow: hidden;
+  }
+
+  /* Update slide container styles */
+  .slide-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+  /* Make the active slide visible */
+  .slide-container.active {
+      opacity: 1;
+      pointer-events: auto;
+  }
+</style><script src="https://cdn.tailwindcss.com/3.4.17"></script><script>
+  tailwind.config = {
+    darkMode: 'class',
+    corePlugins: {
+      preflight: false,
+    },
+  }
+</script><style>*, ::before, ::after {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position:  ;--tw-gradient-via-position:  ;--tw-gradient-to-position:  ;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  ;--tw-contain-size:  ;--tw-contain-layout:  ;--tw-contain-paint:  ;--tw-contain-style:  
+}::backdrop {--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x:  ;--tw-pan-y:  ;--tw-pinch-zoom:  ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position:  ;--tw-gradient-via-position:  ;--tw-gradient-to-position:  ;--tw-ordinal:  ;--tw-slashed-zero:  ;--tw-numeric-figure:  ;--tw-numeric-spacing:  ;--tw-numeric-fraction:  ;--tw-ring-inset:  ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / 0.5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur:  ;--tw-brightness:  ;--tw-contrast:  ;--tw-grayscale:  ;--tw-hue-rotate:  ;--tw-invert:  ;--tw-saturate:  ;--tw-sepia:  ;--tw-drop-shadow:  ;--tw-backdrop-blur:  ;--tw-backdrop-brightness:  ;--tw-backdrop-contrast:  ;--tw-backdrop-grayscale:  ;--tw-backdrop-hue-rotate:  ;--tw-backdrop-invert:  ;--tw-backdrop-opacity:  ;--tw-backdrop-saturate:  ;--tw-backdrop-sepia:  ;--tw-contain-size:  ;--tw-contain-layout:  ;--tw-contain-paint:  ;--tw-contain-style:  
+}.absolute {position: absolute
+}.relative {position: relative
+}.left-4 {left: 1rem
+}.right-4 {right: 1rem
+}.top-1\/2 {top: 50%
+}.top-4 {top: 1rem
+}.z-20 {z-index: 20
+}.flex {display: flex
+}.hidden {display: none
+}.h-screen {height: 100vh
+}.h-5 {height: 1.25rem
+}.h-6 {height: 1.5rem
+}.w-5 {width: 1.25rem
+}.w-6 {width: 1.5rem
+}.w-full {width: 100%
+}.flex-shrink-0 {flex-shrink: 0
+}.-translate-y-1\/2 {--tw-translate-y: -50%;transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}.cursor-pointer {cursor: pointer
+}.flex-col {flex-direction: column
+}.items-center {align-items: center
+}.justify-center {justify-content: center
+}.space-x-2 > :not([hidden]) ~ :not([hidden]) {--tw-space-x-reverse: 0;margin-right: calc(0.5rem * var(--tw-space-x-reverse));margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))
+}.rounded-full {border-radius: 9999px
+}.rounded-md {border-radius: 0.375rem
+}.border-none {border-style: none
+}.bg-gray-100 {--tw-bg-opacity: 1;background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1))
+}.bg-white {--tw-bg-opacity: 1;background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+}.bg-white\/50 {background-color: rgb(255 255 255 / 0.5)
+}.p-2 {padding: 0.5rem
+}.p-4 {padding: 1rem
+}.font-sans {font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+}.text-sm {font-size: 0.875rem;line-height: 1.25rem
+}.font-medium {font-weight: 500
+}.leading-\[0\] {line-height: 0
+}.text-gray-600 {--tw-text-opacity: 1;color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+}.text-gray-700 {--tw-text-opacity: 1;color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+}.shadow-md {--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}.backdrop-blur-sm {--tw-backdrop-blur: blur(4px);-webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+}.transition-colors {transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 150ms
+}.transition-all {transition-property: all;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 150ms
+}.duration-300 {transition-duration: 300ms
+}.hover\:bg-gray-100:hover {--tw-bg-opacity: 1;background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1))
+}.hover\:text-black:hover {--tw-text-opacity: 1;color: rgb(0 0 0 / var(--tw-text-opacity, 1))
+}.disabled\:cursor-not-allowed:disabled {cursor: not-allowed
+}.disabled\:opacity-50:disabled {opacity: 0.5
+}.dark\:bg-gray-900:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1))
+}.dark\:bg-gray-800:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1))
+}.dark\:bg-gray-800\/50:is(.dark *) {background-color: rgb(31 41 55 / 0.5)
+}.dark\:text-gray-300:is(.dark *) {--tw-text-opacity: 1;color: rgb(209 213 219 / var(--tw-text-opacity, 1))
+}.dark\:text-gray-400:is(.dark *) {--tw-text-opacity: 1;color: rgb(156 163 175 / var(--tw-text-opacity, 1))
+}.dark\:hover\:bg-gray-700:hover:is(.dark *) {--tw-bg-opacity: 1;background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1))
+}.dark\:hover\:text-white:hover:is(.dark *) {--tw-text-opacity: 1;color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+}</style></head>
+<body class="bg-gray-100 dark:bg-gray-900 flex flex-col h-screen transition-colors duration-300">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="theme-toggle" class="absolute top-4 right-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-2 rounded-full shadow-md text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300 z-20 border-none leading-[0] cursor-pointer">
+    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <svg id="theme-toggle-light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 -960 960 960"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"></path></svg>
+</button>
+
+<div id="nav-controls" class="relative flex-shrink-0 w-full flex justify-center items-center p-4">
+    <span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 dark:text-gray-400 font-sans">Slide 1 of 14</span>
+    <div class="flex items-center space-x-2">
+        <button id="prev-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer" disabled="">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="next-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+</div>
+
+<div id="slideshow-holder"><div id="slideshow-wrapper" style="--scale-factor: 0.7578125;"><div class="slide-container active" id="slide1">
+    <div class="washi-tape"></div>
+    <div class="title-layout">
+        <h1>My Life's<br>Scrapbook</h1>
+        <p style="font-size: 36px; margin-top: 20px;">The Winding Path of Growth, Passion &amp; Dreams</p>
+    </div>
+</div><div class="slide-container" id="slide2" style="background-color: #fdf6e3;">
+    <div class="section-title-layout">
+        <h2 style="font-size: 90px; color: #bdae93;">Chapter 1</h2>
+        <h3 style="font-size: 50px; color: #8c7b65;">The Roots &amp; Beginnings</h3>
+        <p style="max-width: 600px; margin: 30px auto; font-size: 28px;">"Every leaf speaks bliss to me, fluttering from the autumn tree." — Exploring where it all began.</p>
+    </div>
+</div><div class="slide-container" id="slide3">
+    <h2 class="slide-title">My Hometown Roots</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <p>I was born in a place where the seasons painted the landscape in vibrant watercolors. My early growth environment was shaped by the tranquility of nature and the warmth of a close-knit community.</p>
+                <p>These early memories are the sketches upon which my life's masterpiece is built.</p>
+            </div>
+            <div class="polaroid">
+                <img alt="Scenic watercolor of hometown" src="https://i.ytimg.com/vi/LOIjMfMFy4Y/maxresdefault.jpg">
+                <p style="text-align: center; margin-top: 15px; font-size: 22px;">"The Place I Call Home"</p>
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide4">
+    <h2 class="slide-title">Interactive Growth Map</h2>
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-item">
+                <div class="timeline-dot"><i class="fa-solid fa-baby"></i></div>
+                <h3>2000s</h3>
+                <p>Early steps and curiosity in a small town.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>2015</h3>
+                <p>Discovery of design and visual storytelling.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"><i class="fa-solid fa-plane-arrival"></i></div>
+                <h3>2020</h3>
+                <p>Broadening horizons through travel and university.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"><i class="fa-solid fa-seedling"></i></div>
+                <h3>Now</h3>
+                <p>Building a creative knowledge base and projects.</p>
+            </div>
+        </div>
+        <p style="margin-top: 40px; font-style: italic;">Follow the dotted path of my evolution...</p>
+    </div>
+</div><div class="slide-container" id="slide5">
+    <h2 class="slide-title">Environment &amp; Growth</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div style="background: #fdf6e3; padding: 40px; border-radius: 15px; transform: rotate(-1deg);">
+                <h3>Family Harmony</h3>
+                <p>Growing up in a household that valued creativity and storytelling. Every dinner was a session of "what if?" and "how does it work?".</p>
+                <img style="width: 100%; height: 180px; object-fit: cover; margin-top: 15px; border-radius: 10px;" src="https://media.istockphoto.com/id/1870722745/vector/joyful-feast-a-family-celebration-family-holidays-family-with-children.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=pe-44EPjszM6qv1MEGtVtxzzXg1f1AuL4nFC-4_bTak=">
+            </div>
+            <div style="background: #eef7f9; padding: 40px; border-radius: 15px; transform: rotate(1deg);">
+                <h3>Academic Spark</h3>
+                <p>From the first hand-drawn school project to advanced design studies, the environment was always supportive of experimental thinking.</p>
+                <img style="width: 100%; height: 180px; object-fit: cover; margin-top: 15px; border-radius: 10px;" src="https://kolajinstitute.org/wp-content/uploads/2025/08/RKK-BOOKS.jpg">
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide6">
+    <h2 class="slide-title">Childhood Memories</h2>
+    <div class="content-area">
+        <div class="two-column" style="align-items: center;">
+            <div style="position: relative;">
+                <div class="polaroid" style="width: 450px; transform: rotate(-3deg);">
+                    <img alt="Vintage childhood photo" src="https://www.carolinacancoolers.com/cdn/shop/products/MainProductImage_f8d08e5c-0975-4999-b660-90b64092946b.png?v=1677191126&amp;width=1445">
+                </div>
+                <img style="position: absolute; bottom: -20px; right: -20px; width: 150px; z-index: 20;" src="https://i.etsystatic.com/17675358/r/il/8a85ea/3377223146/il_570xN.3377223146_q2rz.jpg">
+            </div>
+            <div>
+                <h3>A Curious Mind</h3>
+                <p>I was the child who collected interesting pebbles and pressed flowers into journals. This innate desire to "archive" beauty led directly to my passion for scrapbooking and knowledge management today.</p>
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide7" style="background-color: #eef7f9;">
+    <div class="section-title-layout">
+        <h2 style="font-size: 90px; color: #a2c4c9;">Chapter 2</h2>
+        <h3 style="font-size: 50px; color: #6b8e94;">Passions &amp; Creative Flow</h3>
+        <p style="max-width: 600px; margin: 30px auto; font-size: 28px;">"The soul should always stand ajar, ready to welcome the creative experience."</p>
+    </div>
+</div><div class="slide-container" id="slide8">
+    <h2 class="slide-title">Creative Hobbies</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <img class="tile-image" src="https://www.lemon8-app.com/seo/image?item_id=7354036205320880645&amp;index=1&amp;sign=318a67679851c8624be53bfaf4f0d329">
+                <h3>Visual Arts</h3>
+                <p>Watercolor sketching and digital collage.</p>
+            </div>
+            <div class="tile" style="margin-top: 30px;">
+                <img class="tile-image" src="https://placehold.co/600x400/png">
+                <h3>Curated Reading</h3>
+                <p>Building a personal library of design ethics.</p>
+            </div>
+            <div class="tile">
+                <img class="tile-image" src="https://i.etsystatic.com/50956610/r/il/484278/5981561955/il_fullxfull.5981561955_27xv.jpg">
+                <h3>Global Exploration</h3>
+                <p>Collecting stories from different cultures.</p>
+            </div>
+        </div>
+    </div>
+</div><div class="slide-container" id="slide9">
+    <h2 class="slide-title">Scrapbook Essentials</h2>
+    <div class="content-area">
+        <div class="bullet-list">
+            <ul>
+                <li><i class="fa-solid fa-note-sticky"></i> <strong>Washi Tape:</strong> The colorful borders that frame my thoughts and keep ideas together.</li>
+                <li><i class="fa-solid fa-pen-nib"></i> <strong>Fountain Pens:</strong> For the tactile joy of seeing ink meet paper in a fluid dance.</li>
+                <li><i class="fa-solid fa-camera-retro"></i> <strong>Instax Mini:</strong> Capturing raw, unedited moments of pure joy and discovery.</li>
+                <li><i class="fa-solid fa-leaf"></i> <strong>Nature Finds:</strong> Pressed leaves and flowers that bring the outside world into my journal.</li>
+            </ul>
+        </div>
+        <img style="width: 400px; margin-top: 20px; opacity: 0.8;" src="https://static.vecteezy.com/system/resources/previews/071/606/769/non_2x/cute-colourful-sticky-notes-with-washi-tape-heart-and-star-shapes-pastel-memo-pads-ideal-for-digital-planning-scrapbooking-journaling-and-school-themed-design-vector.jpg">
+    </div>
+</div><div class="slide-container" id="slide10">
+    <h2 class="slide-title">Interest Evolution over the Years</h2>
+    <div class="content-area">
+        <div class="area-chart-container">
+            <svg viewBox="0 0 1000 350" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                <path class="watercolor-path" d="M0,300 C150,280 250,150 400,180 C550,210 750,50 1000,80 L1000,350 L0,350 Z"></path>
+                <text x="100" y="330" font-family="Caveat" font-size="25">Childhood Curiosity</text>
+                <text x="450" y="330" font-family="Caveat" font-size="25">Design Exploration</text>
+                <text x="800" y="330" font-family="Caveat" font-size="25">Mastery &amp; Projects</text>
+            </svg>
+        </div>
+        <p style="margin-top: 20px; font-style: italic;">A watercolor-inspired trend of how my creative drive has grown.</p>
+    </div>
+</div><div class="slide-container" id="slide11" style="background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(&#39;https://media.istockphoto.com/id/2212940888/vector/cozy-morning-workspace-flat-lay-with-coffee-laptop-and-newspaper.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=kmE5v45NavSpnD2O0ImAUOULtoGR8jze8cmtrgkQuDs=&#39;) center/cover no-repeat;">
+    <div class="content-area" style="text-align: center; max-width: 800px;">
+        <h2 style="font-size: 70px; margin-bottom: 30px;">The Current Chapter</h2>
+        <p style="font-size: 32px; line-height: 1.6;">Today, I am focusing on merging my design capabilities with a robust knowledge base. This GitHub repository is my digital scrapbook—a place where ideas are taped down, refined, and shared with the world.</p>
+        <p style="font-size: 28px; margin-top: 40px; font-weight: bold;">"The best way to predict the future is to design it."</p>
+    </div>
+</div><div class="slide-container" id="slide12">
+    <div class="qa-layout">
+        <h1 style="color: #5d5448; text-shadow: 2px 2px 4px rgba(255,255,255,0.8);">Let's Start a New Story!</h1>
+        <p style="background: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px; border: 2px dashed #bdae93; margin-top: 30px;">
+            Thank you for walking through my growth map.<br>
+            Feel free to reach out to collaborate on a new creative project!
+        </p>
+        <div style="margin-top: 40px; display: flex; gap: 30px;">
+            <i class="fa-brands fa-github" style="font-size: 50px; color: #5d5448;"></i>
+            <i class="fa-solid fa-envelope" style="font-size: 50px; color: #5d5448;"></i>
+            <i class="fa-brands fa-instagram" style="font-size: 50px; color: #5d5448;"></i>
+        </div>
+    </div>
+</div><div class="slide-container slide-attributions" id="slide-attributions-1"><h2 class="slide-title">Image Sources</h2><div class="content-area"><ul class="attribution-list"><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQF0qcloD9CVzB2rosyQA1Kw1cdjQ1CN8B0Iz0Gdnt3Q1Sd2vZpDGQ2sRNJ-Wny" alt="Thumbnail for www.youtube.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://i.ytimg.com/vi/LOIjMfMFy4Y/maxresdefault.jpg</p><p class="attribution__title">Source: <a href="https://www.youtube.com/watch?v=LOIjMfMFy4Y" target="_blank" class="attribution__link">www.youtube.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTYpfefJyXHgC1N5KF2g6iTEnnV9add-dK4JgQ9YNAWVy8XMWh2DX0bo6EW23DO" alt="Thumbnail for www.istockphoto.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://media.istockphoto.com/id/1870722745/vector/joyful-feast-a-family-celebration-family-holidays-family-with-children.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=pe-44EPjszM6qv1MEGtVtxzzXg1f1AuL4nFC-4_bTak=</p><p class="attribution__title">Source: <a href="https://www.istockphoto.com/illustrations/cozy-family-dinner" target="_blank" class="attribution__link">www.istockphoto.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXVeqgmmBOUb8QrdojRW0VamMKW6N_J8yz6HyrKzwq_zZqsEedMNLt0RUXXgM8" alt="Thumbnail for kolajinstitute.org"></div><div class="attribution__details"><p class="attribution__raw-url">https://kolajinstitute.org/wp-content/uploads/2025/08/RKK-BOOKS.jpg</p><p class="attribution__title">Source: <a href="https://kolajinstitute.org/collagebooks-2025/" target="_blank" class="attribution__link">kolajinstitute.org</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSXX58dzAqLFBGvkzoRz8mEA4GWerSRpoHTIED1MC5cOT0EbVd_MbB_FN_XpFWo" alt="Thumbnail for www.carolinacancoolers.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://www.carolinacancoolers.com/cdn/shop/products/MainProductImage_f8d08e5c-0975-4999-b660-90b64092946b.png?v=1677191126&amp;width=1445</p><p class="attribution__title">Source: <a href="https://www.carolinacancoolers.com/products/copy-of-bachelorette-face-sticker" target="_blank" class="attribution__link">www.carolinacancoolers.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSekk-Dq9M10AkdTSMSsgy-ahrlTyHU4VObrblFdGJySH0Lt6Kjwzf-GR03EfCZ" alt="Thumbnail for www.etsy.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://i.etsystatic.com/17675358/r/il/8a85ea/3377223146/il_570xN.3377223146_q2rz.jpg</p><p class="attribution__title">Source: <a href="https://www.etsy.com/listing/621394542/cartoon-set-of-school-things-clipart" target="_blank" class="attribution__link">www.etsy.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT3RLkAr_mmCLK2mLQOlTqX5hdlhdQWUn518s4iGMj3Vkgiva6i6p35OBx3A7wN" alt="Thumbnail for www.lemon8-app.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://www.lemon8-app.com/seo/image?item_id=7354036205320880645&amp;index=1&amp;sign=318a67679851c8624be53bfaf4f0d329</p><p class="attribution__title">Source: <a href="https://www.lemon8-app.com/@eyricka_lynn/7354036205320880645?region=us" target="_blank" class="attribution__link">www.lemon8-app.com</a></p></div></li></ul></div></div><div class="slide-container slide-attributions" id="slide-attributions-2"><h2 class="slide-title">Image Sources</h2><div class="content-area"><ul class="attribution-list"><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSafpjG9pORzevYDnaeVRbPlz4fcczpcrlTuB_lG2zeCY_B6MOd-Y48QhK70V-" alt="Thumbnail for www.etsy.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://i.etsystatic.com/50956610/r/il/484278/5981561955/il_fullxfull.5981561955_27xv.jpg</p><p class="attribution__title">Source: <a href="https://www.etsy.com/ie/listing/1685721296/world-map-push-pin-personalized-travel" target="_blank" class="attribution__link">www.etsy.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTMBQKsRjcO8B6HS43bjvxa5hLpRX3e-VYx5PNuDYl-mq4U9UhqQZQ0FJybEbZN" alt="Thumbnail for www.vecteezy.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://static.vecteezy.com/system/resources/previews/071/606/769/non_2x/cute-colourful-sticky-notes-with-washi-tape-heart-and-star-shapes-pastel-memo-pads-ideal-for-digital-planning-scrapbooking-journaling-and-school-themed-design-vector.jpg</p><p class="attribution__title">Source: <a href="https://www.vecteezy.com/vector-art/71606769-cute-colourful-sticky-notes-with-washi-tape-heart-and-star-shapes-pastel-memo-pads-ideal-for-digital-planning-scrapbooking-journaling-and-school-themed-design" target="_blank" class="attribution__link">www.vecteezy.com</a></p></div></li><li class="attribution-list__item"><div class="attribution__thumbnail"><img class="attribution__thumbnail__image" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRtsCRsjUmkKTp7lynX9pqvc_xHRsZMtWCg0zvC5xVnKiU3IN6YKEQpiihWe0ps" alt="Thumbnail for www.istockphoto.com"></div><div class="attribution__details"><p class="attribution__raw-url">https://media.istockphoto.com/id/2212940888/vector/cozy-morning-workspace-flat-lay-with-coffee-laptop-and-newspaper.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=kmE5v45NavSpnD2O0ImAUOULtoGR8jze8cmtrgkQuDs=</p><p class="attribution__title">Source: <a href="https://www.istockphoto.com/illustrations/morning-coffee-laptop" target="_blank" class="attribution__link">www.istockphoto.com</a></p></div></li></ul></div></div></div></div><script>
+/**
+ * Fetches an image blob using a method that attempts to bypass CORS issues
+ * by adding 'alr=yes' to the URL and following redirects.
+ */
+async function fetchFifeImageBlobUsingAlr(urlString) {
+  if (urlString.startsWith('blob:') || urlString.startsWith('data:')) {
+      throw new Error('Input URL is already a blob or data URL.');
+  }
+  let url = new URL(urlString, window.location.href);
+  url.searchParams.set('alr', 'yes');
+  for (let i = 0; i < 5; i++) {
+      const response = await fetch(url.toString(), { credentials: 'include' });
+      if (!response.ok) throw new Error(`Fetch received not OK response: ${response.status}`);
+      if (!response.headers.get('content-type')?.startsWith('text/plain')) {
+          const blob = await response.blob();
+          if (blob.size > 0 && blob.type.startsWith('image/')) return blob;
+          // This will now correctly throw an error for non-image types like fonts.
+          else throw new Error('Fetched blob is not a valid image.');
+      }
+      url = new URL(await response.text());
+  }
+  throw new Error('Exceeded maximum number of redirects.');
+}
+
+async function updateImageSourcesUsingAlr() {
+  // Get all img elements on the page.
+  const allImages = Array.from(document.querySelectorAll('img'));
+
+  // Use Promise.all to handle all updates concurrently for better performance.
+  await Promise.all(allImages.map(async (img) => {
+    // Only proceed if the img tag has a valid 'src' attribute with a
+    // googleusercontent URL.
+    if (img.src && img.src.includes('googleusercontent')) {
+      try {
+        const blob = await fetchFifeImageBlobUsingAlr(img.src);
+        // Create a new URL from the Blob and set it as the image's source.
+        img.src = URL.createObjectURL(blob);
+      } catch (error) {
+        // Do nothing.
+      }
+    }
+  }));
+}
+
+async function updateBackgroundImagesUsingAlr() {
+  // Find all elements with a googleusercontent background image.
+  const elementsToProcess = document.querySelectorAll('[style*="googleusercontent"]');
+  const urlRegex = /url\((['"]?)(https?:\/\/.*?googleusercontent.*?)\1\)/;
+
+  if (elementsToProcess.length > 0) {
+
+      const promises = Array.from(elementsToProcess).map(element => {
+          return new Promise(async (resolve) => {
+              const style = element.style.backgroundImage;
+              const match = style.match(urlRegex);
+
+              if (match && match[2]) {
+                  const originalUrl = match[2];
+                  try {
+                      const blob = await fetchFifeImageBlobUsingAlr(originalUrl);
+                      const blobUrl = URL.createObjectURL(blob);
+
+                      // Directly update the element's style property.
+                      const newBackgroundImage = style.replace(originalUrl, blobUrl);
+                      element.style.backgroundImage = newBackgroundImage;
+                  } catch (error) {
+                      // Do nothing.
+                  }
+              }
+              resolve();
+          });
+      });
+
+      // Wait for all images to be processed.
+      await Promise.all(promises);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    await Promise.all([
+      updateImageSourcesUsingAlr(),
+      updateBackgroundImagesUsingAlr()
+    ]);
+    initializeSlideshowUI();
+});
+
+// --- SLIDESHOW LOGIC ---
+function initializeSlideshowUI() {
+    const slides = document.querySelectorAll('.slide-container');
+    const prevButton = document.getElementById('prev-slide');
+    const nextButton = document.getElementById('next-slide');
+    const slideCounter = document.getElementById('slide-counter');
+    let currentSlide = 0;
+
+    function updateUI() {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+        prevButton.disabled = currentSlide === 0;
+        nextButton.disabled = currentSlide === slides.length - 1;
+        slideCounter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+    }
+
+    function showNextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            updateUI();
+        }
+    }
+
+    function showPrevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateUI();
+        }
+    }
+
+    nextButton.addEventListener('click', showNextSlide);
+    prevButton.addEventListener('click', showPrevSlide);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') showNextSlide();
+        else if (e.key === 'ArrowLeft') showPrevSlide();
+    });
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const htmlEl = document.documentElement;
+
+    function setTheme(isDark) {
+        htmlEl.classList.toggle('dark', isDark);
+        darkIcon.classList.toggle('hidden', isDark);
+        lightIcon.classList.toggle('hidden', !isDark);
+        localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+    }
+    const isDarkMode = localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setTheme(isDarkMode);
+    themeToggleBtn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
+
+    function updateScale() {
+        const baseWidth = 1280;
+        const baseHeight = 720;
+        const slideshowWrapper = document.getElementById('slideshow-wrapper');
+        const slideshowHolder = document.getElementById('slideshow-holder');
+
+        // The available space is the dimensions of the holder div.
+        const availableWidth = slideshowHolder.clientWidth;
+        const availableHeight = slideshowHolder.clientHeight;
+
+        // Calculate the scale ratio based on both width and height
+        const scaleX = availableWidth / baseWidth;
+        const scaleY = availableHeight / baseHeight;
+
+        // Use the smaller of the two ratios to ensure it fits
+        const finalScale = Math.min(scaleX, scaleY);
+
+        slideshowWrapper.style.setProperty('--scale-factor', finalScale);
+    }
+
+    updateUI();
+    updateScale();
+    window.addEventListener('resize', updateScale);
+}
+</script></body></html>
