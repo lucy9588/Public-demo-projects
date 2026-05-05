@@ -3,233 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Life's Scrapbook - Flipbook</title>
+    <title>About Me - Full Scrapbook</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #333641; /* 图片背景深色 */
-            --paper-color: #FDF8E1; /* 图片纸张米色 */
-            --text-gray: #5D574F;
+            --bg-dark: #333641; 
+            --paper: #FDF8E1; 
+            --text: #5D574F;
+            --dash: #D1C9BE;
         }
 
         body {
             background-color: var(--bg-dark);
-            background-image: radial-gradient(#444 1px, transparent 1px);
-            background-size: 20px 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
             font-family: 'Indie Flower', cursive;
+            color: var(--text);
         }
 
-        /* 顶部导航条 */
-        .top-nav {
+        /* 顶部导航：Slide X of 10 */
+        .header-nav {
             position: fixed;
             top: 20px;
             width: 90%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
             z-index: 100;
+            font-size: 14px;
         }
 
-        .controls {
-            display: flex;
-            gap: 10px;
-        }
-
+        .btn-group { display: flex; gap: 8px; }
         .nav-btn {
             background: #1a1c23;
             color: white;
             border: none;
-            padding: 10px 15px;
+            width: 40px;
+            height: 35px;
             cursor: pointer;
             border-radius: 4px;
-            font-size: 18px;
         }
 
         /* 剪贴簿容器 */
-        .book-container {
-            width: 80vw;
-            max-width: 1000px;
-            height: 60vh;
+        .book {
+            width: 900px;
+            height: 650px;
             position: relative;
-            perspective: 1500px;
         }
 
         .page {
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
-            background-color: var(--paper-color);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            padding: 40px;
+            background: var(--paper);
+            border-radius: 10px;
+            padding: 50px;
             box-sizing: border-box;
-            display: none; /* 初始隐藏 */
-            transform-origin: left center;
-            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            display: none; /* 默认隐藏 */
         }
 
-        .page.active {
-            display: block;
-            z-index: 2;
-        }
+        .page.active { display: block; }
 
-        /* 页面内容样式 - 严格参考图片 */
-        .page-content {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* 内容通用样式 */
+        h1.title { font-family: 'Caveat'; font-size: 5rem; margin: 0; text-align: center; }
+        h2.section-title { font-family: 'Caveat'; font-size: 2.8rem; margin: 0; }
+        .dash { border-top: 2px dashed var(--dash); margin: 20px 0; }
+        .content-row { display: flex; gap: 30px; align-items: flex-start; }
+        
+        /* 拍立得样式 */
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
             text-align: center;
         }
+        .polaroid img { width: 350px; height: auto; }
 
-        .page-title {
-            font-family: 'Caveat', cursive;
-            font-size: 4.5rem;
-            margin: 0;
-            color: var(--text-gray);
-        }
+        /* 时间轴样式 */
+        .timeline { display: flex; justify-content: space-around; margin-top: 60px; text-align: center; }
+        .tl-item b { font-size: 1.5rem; display: block; margin: 10px 0; }
 
-        .page-subtitle {
-            font-size: 1.8rem;
-            margin-top: 20px;
-        }
-
-        .content-split {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            text-align: left;
-            width: 100%;
-        }
-
-        /* 装饰元素 */
-        .dash-line {
-            width: 100%;
-            border-top: 2px dashed #D1C9BE;
-            margin: 20px 0;
-        }
-
-        .photo-frame {
-            background: white;
-            padding: 10px 10px 30px 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: rotate(2deg);
-        }
-
-        .photo-frame img {
-            max-width: 350px;
-            display: block;
+        /* 图表容器 (Slide 10) */
+        .chart-box {
+            border: 2px dashed var(--dash);
+            border-radius: 10px;
+            height: 250px;
+            margin-top: 30px;
+            position: relative;
+            background: rgba(255,255,255,0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <div id="slide-counter">Slide 1 of 4</div>
-        <div class="controls">
-            <button class="nav-btn" onclick="prevPage()">❮</button>
-            <button class="nav-btn" onclick="nextPage()">❯</button>
+    <div class="header-nav">
+        <div id="counter">Slide 1 of 10</div>
+        <div class="btn-group">
+            <button class="nav-btn" onclick="changePage(-1)">❮</button>
+            <button class="nav-btn" onclick="changePage(1)">❯</button>
         </div>
-        <div style="cursor:pointer">☀️</div>
+        <div>☀️</div>
     </div>
 
-    <div class="book-container">
-        <!-- 第 1 页：封面 (Slide 1) -->
-        <div class="page active" id="p1">
-            <div class="page-content">
-                <h1 class="page-title">My Life's Scrapbook</h1>
-                <p class="page-subtitle">The Winding Path of Growth, Passion & Dreams</p>
-                <!-- 右上角小胶带 -->
-                <div style="position:absolute; top:20px; right:20px; width:80px; height:25px; background:lightblue; opacity:0.5; transform:rotate(10deg);"></div>
+    <div class="book">
+        <!-- 1. 封面 (image_0447fc.jpg) -->
+        <div class="page active">
+            <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                <h1 class="title">My Life's Scrapbook</h1>
+                <p style="font-size: 2rem;">The Winding Path of Growth, Passion & Dreams</p>
+                <div style="position:absolute; top:30px; right:30px; width:100px; height:30px; background:rgba(173,216,230,0.5); transform:rotate(15deg);"></div>
             </div>
         </div>
 
-        <!-- 第 2 页：Chapter 1 (Slide 2) -->
-        <div class="page" id="p2">
-            <div class="page-content">
-                <h1 class="page-title">Chapter 1</h1>
-                <h2 style="font-size: 2.5rem; color:#A89F91;">The Roots & Beginnings</h2>
-                <p style="max-width: 600px; font-size: 1.4rem; color: #777;">
-                    "Every leaf speaks bliss to me, fluttering from the autumn tree." — Exploring where it all began.
-                </p>
+        <!-- 2. Chapter 1 (image_04483c.jpg) -->
+        <div class="page">
+            <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                <h1 class="title" style="font-size: 4rem; color: #D1C9BE;">Chapter 1</h1>
+                <h2 style="font-size: 3rem;">The Roots & Beginnings</h2>
+                <p style="max-width: 500px; font-size: 1.5rem;">"Every leaf speaks bliss to me, fluttering from the autumn tree." — Exploring where it all began.</p>
             </div>
         </div>
 
-        <!-- 第 3 页：Hometown (Slide 3) -->
-        <div class="page" id="p3">
-            <div style="font-family: 'Caveat'; font-size: 2.5rem; margin-bottom:10px;">My Hometown Roots</div>
-            <div class="dash-line"></div>
-            <div class="content-split">
-                <div style="flex:1; font-size: 1.2rem;">
+        <!-- 3. Hometown (image_04489d.jpg) -->
+        <div class="page">
+            <h2 class="section-title">My Hometown Roots</h2>
+            <div class="dash"></div>
+            <div class="content-row">
+                <div style="flex:1; font-size: 1.3rem;">
                     <p>I was born in a place where the seasons painted the landscape in vibrant watercolors...</p>
                     <p>These early memories are the sketches upon which my life's masterpiece is built.</p>
                 </div>
-                <div class="photo-frame">
-                    <img src="https://via.placeholder.com/350x250/E0E0E0/888?text=Hometown+Art" alt="Home">
-                    <p style="text-align:center; margin-top:10px;">"The Place I Call Home"</p>
+                <div class="polaroid" style="transform: rotate(2deg);">
+                    <img src="image_04489d.jpg" alt="Hometown"> <!-- 此处引用图片名 -->
+                    <p>"The Place I Call Home"</p>
                 </div>
             </div>
         </div>
 
-        <!-- 第 4 页：Growth Map (Slide 4) -->
-        <div class="page" id="p4">
-             <div style="font-family: 'Caveat'; font-size: 2.5rem;">Interactive Growth Map</div>
-             <div class="dash-line"></div>
-             <div style="display:flex; justify-content: space-around; margin-top: 50px; text-align: center;">
-                 <div><div style="font-size:2rem">👶</div><strong>2000s</strong><p>Early steps</p></div>
-                 <div><div style="font-size:2rem">🎓</div><strong>2015</strong><p>Discovery</p></div>
-                 <div><div style="font-size:2rem">✈️</div><strong>2020</strong><p>Broadening</p></div>
-                 <div><div style="font-size:2rem">🌱</div><strong>Now</strong><p>Building</p></div>
-             </div>
+        <!-- 4. Growth Map (image_0448d6.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Interactive Growth Map</h2>
+            <div class="dash"></div>
+            <div class="timeline">
+                <div class="tl-item"><span>👶</span><b>2000s</b><p>Early steps and<br>curiosity</p></div>
+                <div class="tl-item"><span>🎓</span><b>2015</b><p>Discovery of<br>design</p></div>
+                <div class="tl-item"><span>✈️</span><b>2020</b><p>Broadening<br>horizons</p></div>
+                <div class="tl-item"><span>🌱</span><b>Now</b><p>Building a<br>creative base</p></div>
+            </div>
+            <p style="text-align:center; margin-top:80px; font-style:italic;">Follow the dotted path of my evolution...</p>
+        </div>
+
+        <!-- 5. Environment (image_0448fb.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Environment & Growth</h2>
+            <div class="dash"></div>
+            <div class="content-row">
+                <div style="flex:1; background:#FFFDE7; padding:20px; border-radius:10px;">
+                    <b>Family Harmony</b>
+                    <p>Growing up in a household that valued creativity and storytelling...</p>
+                </div>
+                <div style="flex:1; background:#F0F7FF; padding:20px; border-radius:10px;">
+                    <b>Academic Spark</b>
+                    <p>From the first hand-drawn school project to advanced design studies...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Childhood (image_044bc5.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Childhood Memories</h2>
+            <div class="dash"></div>
+            <div class="content-row">
+                <div class="polaroid" style="transform: rotate(-3deg);">
+                    <img src="image_044bc5.jpg" alt="Childhood">
+                    <p style="font-weight:bold; color:black;">VINTAGE 1999</p>
+                </div>
+                <div style="flex:1; padding-top:40px;">
+                    <b>A Curious Mind</b>
+                    <p>I was the child who collected interesting pebbles and pressed flowers into journals.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Chapter 2 (image_044c00.jpg) -->
+        <div class="page" style="background:#F4F9F9;">
+            <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                <h1 class="title" style="color:lightblue">Chapter 2</h1>
+                <h2 style="color:#8FBABD">Passions & Creative Flow</h2>
+                <p>"The soul should always stand ajar, ready to welcome the creative experience."</p>
+            </div>
+        </div>
+
+        <!-- 8. Hobbies (image_044c3d.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Creative Hobbies</h2>
+            <div class="dash"></div>
+            <div style="display:flex; gap:15px; text-align:center;">
+                <div style="flex:1; border:1px solid #eee; padding:10px; background:white;">Visual Arts</div>
+                <div style="flex:1; border:1px solid #eee; padding:10px; background:white;">Curated Reading</div>
+                <div style="flex:1; border:1px solid #eee; padding:10px; background:white;">Global Exploration</div>
+            </div>
+        </div>
+
+        <!-- 9. Essentials (image_044c7b.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Scrapbook Essentials</h2>
+            <div class="dash"></div>
+            <ul style="list-style:none; padding:0; font-size:1.2rem; line-height:2.5;">
+                <li>🌸 Washi Tape: The colorful borders...</li>
+                <li>✒️ Fountain Pens: For the tactile joy...</li>
+                <li>📷 Instax Mini: Capturing raw moments...</li>
+                <li>🍃 Nature Finds: Pressed leaves and flowers...</li>
+            </ul>
+        </div>
+
+        <!-- 10. Evolution Chart (image_044cdc.jpg) -->
+        <div class="page">
+            <h2 class="section-title">Interest Evolution over the Years</h2>
+            <div class="dash"></div>
+            <div class="chart-box">
+                <!-- 这里可以用 SVG 模拟图片中的波动曲线 -->
+                <svg width="100%" height="100%" viewBox="0 0 800 200">
+                    <path d="M0,150 Q150,50 300,120 T600,80 T800,100" fill="none" stroke="lightblue" stroke-width="5" stroke-dasharray="10"/>
+                </svg>
+                <div style="display:flex; justify-content:space-around; padding:10px;">
+                    <span>Childhood Curiosity</span>
+                    <span>Design Exploration</span>
+                    <span>Mastery & Projects</span>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:20px;">A watercolor-inspired trend of how my creative drive has grown.</p>
         </div>
     </div>
 
     <script>
-        let currentPage = 1;
-        const totalPages = 4; // 你可以根据需要增加到 14 页
+        let current = 0;
+        const pages = document.querySelectorAll('.page');
+        const counter = document.getElementById('counter');
 
-        function updateDisplay() {
-            // 更新计数器
-            document.getElementById('slide-counter').innerText = `Slide ${currentPage} of ${totalPages}`;
-            
-            // 切换页面显示
-            document.querySelectorAll('.page').forEach((p, idx) => {
-                p.classList.remove('active');
-                if (idx + 1 === currentPage) {
-                    p.classList.add('active');
-                }
-            });
+        function changePage(step) {
+            pages[current].classList.remove('active');
+            current += step;
+
+            if (current >= pages.length) current = 0;
+            if (current < 0) current = pages.length - 1;
+
+            pages[current].classList.add('active');
+            counter.innerText = `Slide ${current + 1} of ${pages.length}`;
         }
 
-        function nextPage() {
-            if (currentPage < totalPages) {
-                currentPage++;
-                updateDisplay();
-            }
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                updateDisplay();
-            }
-        }
-
-        // 键盘左右键翻页支持
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextPage();
-            if (e.key === 'ArrowLeft') prevPage();
+            if (e.key === "ArrowRight") changePage(1);
+            if (e.key === "ArrowLeft") changePage(-1);
         });
     </script>
 </body>
