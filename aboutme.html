@@ -21,45 +21,37 @@
     font-family: 'Inter', sans-serif;
     }
 
-    /* ✅ 背景图 + 轻微渐变（保证可见） */
+    /* ✅ 整页背景（唯一图层） */
     body {
-    background: 
-        linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.8)),
-        url('assets/css/images/bg_aboutme2.jpg');
-
+    background: url('assets/css/images/bg_aboutme2.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     min-height: 100vh;
+    color: var(--text);
     }
 
-    /* ✅ 关键：让背景露出来 */
-    .container {
+    /* ✅ 页面整体留白（替代 container） */
+    .page {
     max-width: 900px;
-    margin: 80px auto;   /* 上下+左右留白 */
-
-    padding: 50px;
-
-    background: rgba(255,255,255,0.65); /* 更透明 */
-    backdrop-filter: blur(12px);
-
-    border-radius: 20px;
+    margin: 80px auto;
+    padding: 0 20px;
     }
 
     /* HERO */
     .hero {
-    padding: 60px 0 40px;
     text-align: center;
+    margin-bottom: 60px;
     }
 
     .hero h1 {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 600;
     }
 
     .hero p {
-    margin-top: 10px;
+    margin-top: 12px;
     color: var(--subtext);
     }
 
@@ -73,19 +65,23 @@
 
     /* SECTION */
     section {
-    margin: 40px 0;
+    margin-bottom: 50px;
     }
 
     h2 {
     margin-bottom: 15px;
     }
 
-    /* CARD */
+    /* ✅ 卡片改为“轻玻璃感”，而不是大容器 */
     .card {
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(8px);
+
     border-radius: 12px;
     padding: 18px;
-    border: 1px solid rgba(255,255,255,0.4);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
     transition: 0.3s;
     }
 
@@ -140,7 +136,7 @@
 
     <body>
 
-    <div class="container">
+    <div class="page">
 
     <div class="hero fade">
     <img src="assets/css/images/hero.jpg" class="avatar">
@@ -194,13 +190,13 @@
         <p>Email: your@email.com</p>
         <p>GitHub: github.com/yourname</p>
     </div>
-</section>
+    </section>
 
-</div>
+    </div>
 
-<script>
-const faders = document.querySelectorAll('.fade');
-const observer = new IntersectionObserver(entries => {
+    <script>
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('show');
     });
