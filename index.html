@@ -1,80 +1,544 @@
-<!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>个人主页</title>
-	<meta charset="utf-8" />
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name='description' content='翠花，翠花个人导航页，个人主页。'>
-	<meta name='keywords' content='翠花,翠花主页'>
-	<meta name='robots' content='index,follow'>
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<style>/* 强制覆盖可能的冲突样式 */
-			[class^="fa-"], [class*=" fa-"]::before {
-				font-family: "Font Awesome 5 Brands", "Font Awesome 5 Pro", "Font Awesome 5 Free", "Font Awesome 6 Brands", "Font Awesome 6 Pro", "Font Awesome 6 Free", sans-serif !important;
-				font-weight: 900 !important;
-				}</style>
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-</head>
+<meta charset="UTF-8">
+<title>About Me</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body class="is-preload">
-	<div id="wrapper">
-		<div id="bg"></div>
-		<div id="overlay"></div>
-		<div id="main">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-			<!-- Header -->
-			<header id="header">
-				<h1>Hui Luo</h1>
-				<p>&nbsp;&bull;&nbsp; Welcome to my personal page. &nbsp;&bull;&nbsp;</p>
-				<nav>
-					<ul>
-						<li><a href="aboutme.html" target="_blank" class="icon fa-solid fa-blog" title="About me"><span
-									class="label">About me</span></a></li>
-						<li><a href="http://api.nange.cn/" target="_blank" rel="noopener" class="icon fa-solid fa-location-dot"
-								title="GeoIP 查询"><span class="label"> IP 信息查询</span></a></li>
-						<li><a href="http://server.nange.cn/" target="_blank" rel="noopener" class="icon fa-regular fa-server"
-								title="服务器探针"><span class="label">服务器探针</span></a></li>
-						<li><a href="http://status.nange.cn/" target="_blank" rel="noopener" class="icon fa-brands fa-sellsy"
-								title="服务状态"><span class="label">服务状态</span></a></li>
-						<li><a href="http://t.me/CloudEvent" target="_blank" rel="nofollow noopener"
-								class="icon fa-brands fa-telegram" title="收藏夹"><span
-									class="label">Telegram</span></a></li>
-						<li><a href="http://github.com/lucy9588" target="_blank" rel="nofollow noopener"
-								class="icon fa-brands fa-github-alt" title="Fork me on Github"><span
-									class="label">Github</span></a></li>
-						<li><a href="mailto:13555981107@163.com" target="_blank" rel="nofollow noopener" class="icon fa-solid fa-envelope"
-								title="Send me an email"><span class="label">Email</span></a></li>
-					</ul>
-				</nav>
-			</header>
+<style>
+:root {
+	--text: #2d2d2d;
+	--subtext: #5f6368;
+	--muted: #7a7f87;
+	--primary: #7c8db5;
+	--tag-bg: rgba(124, 141, 181, 0.18);
+	--tag-text: #41516f;
+	--card-bg: rgba(255, 255, 255, 0.32);
+	--card-border: rgba(255, 255, 255, 0.42);
+	}
 
-			<!-- Footer -->
-			<footer id="footer">
-				<span class="copyright">&copy; 2026 <a href="http://www.nange.cn/" target="_blank">楠格</a>丨<a
-						href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">京ICP备1000000号-1</a></span>
-			</footer>
+	* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
+	}
+
+	html {
+	scroll-behavior: smooth;
+	}
+
+	body {
+	min-height: 100vh;
+	color: var(--text);
+	overflow-x: hidden;
+
+	background: url('assets/css/images/bg_aboutme.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	}
+
+	/* Background breathing layer */
+	body::before {
+	content: "";
+	position: fixed;
+	inset: -30%;
+	z-index: 0;
+	pointer-events: none;
+
+	background:
+		radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.55), transparent 32%),
+		radial-gradient(circle at 80% 70%, rgba(124, 141, 181, 0.18), transparent 36%),
+		radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.26), transparent 34%);
+
+	animation: backgroundDrift 22s ease-in-out infinite;
+	}
+
+	@keyframes backgroundDrift {
+	0% {
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+	50% {
+		transform: translate3d(-2%, -2%, 0) scale(1.04);
+	}
+	100% {
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+	}
+
+	/* Mouse spotlight */
+	.cursor-light {
+	position: fixed;
+	width: 420px;
+	height: 420px;
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 1;
+
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 0.42),
+		rgba(255, 255, 255, 0.12) 35%,
+		transparent 68%
+	);
+
+	transform: translate(-50%, -50%);
+	mix-blend-mode: soft-light;
+	transition: opacity 0.25s ease;
+	}
+
+	/* Main page */
+	.page {
+	position: relative;
+	z-index: 2;
+
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 72px 28px 96px;
+	}
+
+	/* HERO */
+	.hero {
+	position: relative;
+	text-align: center;
+	padding: 16px 0 56px;
+	}
+
+	.hero::before {
+	content: "";
+	position: absolute;
+	width: 360px;
+	height: 360px;
+	left: 50%;
+	top: -110px;
+	transform: translateX(-50%);
+	z-index: -1;
+
+	background:
+		radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(124, 141, 181, 0.18) 42%, transparent 72%);
+
+	filter: blur(10px);
+	}
+
+	.avatar {
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 22px;
+
+	border: 3px solid rgba(255, 255, 255, 0.75);
+	box-shadow:
+		0 12px 30px rgba(0, 0, 0, 0.12),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+	}
+
+	.hero h1 {
+	font-size: clamp(34px, 5vw, 48px);
+	line-height: 1.05;
+	font-weight: 700;
+	letter-spacing: -0.04em;
+	}
+
+	.hero p {
+	margin-top: 14px;
+	color: var(--subtext);
+	font-size: 16px;
+	font-weight: 500;
+	}
+
+	/* SECTION */
+	section {
+	margin-bottom: 58px;
+	}
+
+	.section-title {
+	margin-bottom: 18px;
+	font-size: 24px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	}
+
+	/* About */
+	.about-card {
+	max-width: 780px;
+	font-size: 16px;
+	line-height: 1.75;
+	color: #30343a;
+	}
+
+	/* Glass card */
+	.card {
+	position: relative;
+	overflow: hidden;
+
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.22));
+
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+
+	border: 1px solid var(--card-border);
+	border-radius: 18px;
+	padding: 22px;
+
+	box-shadow:
+		0 18px 45px rgba(45, 45, 45, 0.08),
+		inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+	transition:
+		transform 0.32s ease,
+		box-shadow 0.32s ease,
+		background 0.32s ease;
+	}
+
+	.card::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+
+	background:
+		linear-gradient(
+		120deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.28) 45%,
+		transparent 72%
+		);
+
+	opacity: 0;
+	transform: translateX(-45%);
+	transition: opacity 0.35s ease, transform 0.55s ease;
+	}
+
+	.card:hover {
+	transform: translateY(-6px);
+	box-shadow:
+		0 28px 60px rgba(45, 45, 45, 0.13),
+		inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	}
+
+	.card:hover::after {
+	opacity: 1;
+	transform: translateX(45%);
+	}
+
+	/* Experience */
+	.experience-list {
+	display: grid;
+	gap: 44px;
+	}
+
+	.experience-item {
+	display: grid;
+	grid-template-columns: 180px minmax(0, 1fr);
+	gap: 34px;
+	align-items: start;
+	}
+
+	.exp-date {
+	padding-top: 4px;
+	color: var(--muted);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	}
+
+	.exp-role {
+	font-size: 19px;
+	line-height: 1.3;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	}
+
+	.exp-role a {
+	color: inherit;
+	text-decoration: none;
+	}
+
+	.exp-role a:hover {
+	color: var(--primary);
+	}
+
+	.exp-company {
+	color: var(--primary);
+	}
+
+	.exp-desc {
+	margin-top: 12px;
+	max-width: 660px;
+	color: var(--subtext);
+	font-size: 15px;
+	line-height: 1.65;
+	}
+
+	.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 18px;
+	}
+
+	.tag {
+	padding: 7px 13px;
+	border-radius: 999px;
+	background: var(--tag-bg);
+	color: var(--tag-text);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1;
+	border: 1px solid rgba(124, 141, 181, 0.16);
+	}
+
+	/* Resume link */
+	.resume-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+
+	margin-top: 6px;
+	color: #2f343b;
+	text-decoration: none;
+	font-size: 17px;
+	font-weight: 700;
+
+	transition: transform 0.25s ease, color 0.25s ease;
+	}
+
+	.resume-link:hover {
+	color: var(--primary);
+	transform: translateX(4px);
+	}
+
+	/* Animation */
+	.fade {
+	opacity: 0;
+	transform: translateY(22px);
+	transition: opacity 0.8s ease, transform 0.8s ease;
+	}
+
+	.fade.show {
+	opacity: 1;
+	transform: translateY(0);
+	}
+
+	/* Responsive */
+	@media (max-width: 760px) {
+	.page {
+		padding: 52px 20px 72px;
+	}
+
+	.hero {
+		padding-bottom: 44px;
+	}
+
+	section {
+		margin-bottom: 46px;
+	}
+
+	.experience-item {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+
+	.exp-date {
+		font-size: 12px;
+	}
+
+	.card {
+		padding: 18px;
+	}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+	body::before {
+		animation: none;
+	}
+
+	.card,
+	.card::after,
+	.fade,
+	.resume-link {
+		transition: none;
+	}
+	}
+	</style>
+	</head>
+
+	<body>
+
+	<div class="cursor-light" id="cursorLight"></div>
+
+	<main class="page">
+
+	<header class="hero fade">
+		<img src="assets/css/images/hero.jpg" class="avatar" alt="Hui Luo profile photo">
+		<h1>Hi, I'm Hui</h1>
+		<p>Platform Engineering · Infrastructure Automation · DevOps</p>
+	</header>
+
+	<section class="fade" id="about">
+		<h2 class="section-title">About</h2>
+		<div class="card about-card">
+		Platform Engineering professional with hands-on experience in middleware, mainframe, and enterprise infrastructure automation. Currently expanding expertise in Linux, cloud, Kubernetes, and modern DevOps practices, with a focus on building reliable automation products and self-service capabilities that reduce manual effort, improve platform resilience, and create measurable business value.
+		</div>
+	</section>
+
+	<section class="fade" id="experience">
+		<h2 class="section-title">Experience</h2>
+
+		<div class="experience-list">
+
+		<article class="experience-item">
+			<div class="exp-date">Feb 2024 — Present</div>
+			<div class="card">
+			<h3 class="exp-role">
+				Infrastructure Automation · <span class="exp-company">HSBC</span>
+			</h3>
+			<p class="exp-desc">
+				Own automation and reliability improvement for enterprise middleware products, delivering self-service provisioning, diagnostic log collection, vulnerability remediation, and server lifecycle workflows that reduce manual operations, shorten CVE exposure, and improve platform resilience.
+			</p>
+			<div class="tags">
+				<span class="tag">Ansible</span>
+				<span class="tag">Python</span>
+				<span class="tag">Shell/Bash</span>
+				<span class="tag">Jenkins</span>
+				<span class="tag">Docker</span>
+				<span class="tag">Vault</span>
+				<span class="tag">Splunk</span>
+				<span class="tag">REST APIs</span>
+			</div>
+			</div>
+		</article>
+
+		<article class="experience-item">
+			<div class="exp-date">Aug 2021 — Feb 2024</div>
+			<div class="card">
+			<h3 class="exp-role">
+				System Automation Specialist · <span class="exp-company">HSBC</span>
+			</h3>
+			<p class="exp-desc">
+				Managed and enhanced enterprise automation platforms for IBM i and IBM Z, building mainframe automation workflows for IPL, disaster recovery, event handling, batch procedures, monitoring, and operational reliability improvements across global environments.
+			</p>
+			<div class="tags">
+				<span class="tag">Automation Point</span>
+				<span class="tag">OPS/MVS</span>
+				<span class="tag">IBM Z</span>
+				<span class="tag">IBM i</span>
+				<span class="tag">CICS</span>
+				<span class="tag">MQ</span>
+				<span class="tag">DB2</span>
+				<span class="tag">JES2</span>
+			</div>
+			</div>
+		</article>
+
+		<article class="experience-item">
+			<div class="exp-date">Aug 2018 — Aug 2021</div>
+			<div class="card">
+			<h3 class="exp-role">
+				Infrastructure Operations · <span class="exp-company">HSBC</span>
+			</h3>
+			<p class="exp-desc">
+				Supported production operations across IBM i and IBM Z platforms, covering workload migration, batch scheduling, monitoring, incident handling, SLA reporting, runbook standardization, and global handover improvements for stable enterprise service delivery.
+			</p>
+			<div class="tags">
+				<span class="tag">Control-M</span>
+				<span class="tag">CA7</span>
+				<span class="tag">TWS</span>
+				<span class="tag">BES Console</span>
+				<span class="tag">CA Service Desk</span>
+				<span class="tag">SLA</span>
+				<span class="tag">MTTR</span>
+			</div>
+			</div>
+		</article>
+
+		<article class="experience-item">
+			<div class="exp-date">Mar 2016 — Aug 2018</div>
+			<div class="card">
+			<h3 class="exp-role">
+				System Operations Analyst · <span class="exp-company">IBM</span>
+			</h3>
+			<p class="exp-desc">
+				Monitored production alerts and batch workloads across mainframe and AS400 environments, supporting IPL procedures, job scheduling, JCL validation, first-level troubleshooting, escalation coordination, and production stability.
+			</p>
+			<div class="tags">
+				<span class="tag">Mainframe</span>
+				<span class="tag">AS400</span>
+				<span class="tag">Control-M</span>
+				<span class="tag">CA7</span>
+				<span class="tag">TWS</span>
+				<span class="tag">ISPF</span>
+				<span class="tag">JCL</span>
+			</div>
+			</div>
+		</article>
+
+		<article class="experience-item">
+			<div class="exp-date">Jun 2015 — Mar 2016</div>
+			<div class="card">
+			<h3 class="exp-role">
+				Associate Software Engineering · <span class="exp-company">Accenture</span>
+			</h3>
+			<p class="exp-desc">
+				Participated in the full waterfall software development lifecycle for an insurance policy inputting system, covering requirements, technical design, coding, testing, deployment, maintenance, defect resolution, and back-end banking system integration.
+			</p>
+			<div class="tags">
+				<span class="tag">Informix-4GL</span>
+				<span class="tag">SQL</span>
+				<span class="tag">SDLC</span>
+				<span class="tag">System Testing</span>
+				<span class="tag">Deployment</span>
+				<span class="tag">Code Review</span>
+			</div>
+			</div>
+		</article>
 
 		</div>
-	</div>
+
+		<a class="resume-link" href="assets/css/files/resume.pdf" target="_blank" rel="noopener noreferrer">
+		View Full Résumé ↗
+		</a>
+	</section>
+
+	</main>
+
 	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
-	</script>
-	<script disable-devtool-auto src='http://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js'
-		disable-menu='false'></script>
+	const light = document.getElementById('cursorLight');
+
+	document.addEventListener('mousemove', (event) => {
+	light.style.left = event.clientX + 'px';
+	light.style.top = event.clientY + 'px';
+	});
+
+	document.addEventListener('mouseleave', () => {
+	light.style.opacity = '0';
+	});
+
+	document.addEventListener('mouseenter', () => {
+	light.style.opacity = '1';
+	});
+
+	const faders = document.querySelectorAll('.fade');
+
+	const observer = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+		entry.target.classList.add('show');
+		}
+	});
+	}, {
+	threshold: 0.16
+});
+
+faders.forEach((element) => observer.observe(element));
+</script>
+
 </body>
-
 </html>
-
-
-
