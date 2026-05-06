@@ -21,37 +21,86 @@
     font-family: 'Inter', sans-serif;
     }
 
-    /* ✅ 整页背景（唯一图层） */
     body {
-    background: url('assets/css/images/bg_aboutme2.jpg');
+    background: url('assets/css/images/bg_aboutme.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
     min-height: 100vh;
+    overflow-x: hidden;
     color: var(--text);
     }
 
-    /* ✅ 页面整体留白（替代 container） */
+    /* 🌫 背景动态层 */
+    body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent 60%);
+
+    animation: floatBg 20s ease-in-out infinite;
+    z-index: 0;
+    }
+
+    @keyframes floatBg {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-3%, -3%); }
+    100% { transform: translate(0,0); }
+    }
+
+    /* 🖱 鼠标光效 */
+    .cursor-light {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 60%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    }
+
+    /* 页面结构 */
     .page {
+    position: relative;
+    z-index: 2;
+
     max-width: 900px;
     margin: 80px auto;
     padding: 0 20px;
     }
 
-    /* HERO */
+    /* 🌟 HERO 光晕 */
     .hero {
     text-align: center;
     margin-bottom: 60px;
+    position: relative;
+    }
+
+    .hero::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124,141,181,0.25), transparent 70%);
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
     }
 
     .hero h1 {
     font-size: 42px;
-    font-weight: 600;
     }
 
     .hero p {
-    margin-top: 12px;
+    margin-top: 10px;
     color: var(--subtext);
     }
 
@@ -60,7 +109,7 @@
     height: 100px;
     border-radius: 50%;
     margin-bottom: 20px;
-    border: 3px solid rgba(255,255,255,0.7);
+    border: 3px solid rgba(255,255,255,0.6);
     }
 
     /* SECTION */
@@ -72,22 +121,27 @@
     margin-bottom: 15px;
     }
 
-    /* ✅ 卡片改为“轻玻璃感”，而不是大容器 */
+    /* 💎 卡片升级 */
     .card {
-    background: rgba(255,255,255,0.35);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.4),
+        rgba(255,255,255,0.2)
+    );
 
-    border-radius: 12px;
+    backdrop-filter: blur(10px);
+
+    border-radius: 14px;
     padding: 18px;
 
     border: 1px solid rgba(255,255,255,0.3);
 
-    transition: 0.3s;
+    transition: all 0.35s ease;
     }
 
     .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
     }
 
     /* GRID */
@@ -104,11 +158,7 @@
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
-    .skill {
-    color: var(--subtext);
-    }
-
-    /* EXPERIENCE */
+    /* 文本 */
     .company {
     color: var(--primary);
     font-size: 14px;
@@ -136,6 +186,8 @@
 
     <body>
 
+    <div class="cursor-light" id="cursorLight"></div>
+
     <div class="page">
 
     <div class="hero fade">
@@ -154,12 +206,12 @@
     <section class="fade">
     <h2>Skills</h2>
     <div class="grid grid-3">
-        <div class="card skill">SQL</div>
-        <div class="card skill">Python</div>
-        <div class="card skill">Data Visualization</div>
-        <div class="card skill">A/B Testing</div>
-        <div class="card skill">Product Analytics</div>
-        <div class="card skill">Dashboarding</div>
+        <div class="card">SQL</div>
+        <div class="card">Python</div>
+        <div class="card">Data Visualization</div>
+        <div class="card">A/B Testing</div>
+        <div class="card">Product Analytics</div>
+        <div class="card">Dashboarding</div>
     </div>
     </section>
 
@@ -168,14 +220,14 @@
     <div class="grid grid-2">
 
         <div class="card">
-        <div><strong>Senior Data Analyst</strong></div>
+        <strong>Senior Data Analyst</strong>
         <div class="company">Company A</div>
         <div class="date">2022 - Present</div>
         <p>Improved conversion by 25% through data initiatives.</p>
         </div>
 
         <div class="card">
-        <div><strong>Data Analyst</strong></div>
+        <strong>Data Analyst</strong>
         <div class="company">Company B</div>
         <div class="date">2018 - 2022</div>
         <p>Built dashboards and supported decision-making.</p>
@@ -195,6 +247,14 @@
     </div>
 
     <script>
+    /* 鼠标光效 */
+    const light = document.getElementById('cursorLight');
+    document.addEventListener('mousemove', e => {
+    light.style.left = e.clientX + 'px';
+    light.style.top = e.clientY + 'px';
+    });
+
+    /* 滚动动画 */
     const faders = document.querySelectorAll('.fade');
     const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
