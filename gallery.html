@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Life Gallery</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<style>
+		:root {
+			--text: #26282c;
+			--subtext: #626973;
+			--muted: #7b818b;
+			--primary: #6f7f9f;
+			--glass: rgba(255, 255, 255, 0.28);
+			--glass-strong: rgba(255, 255, 255, 0.42);
+			--border: rgba(255, 255, 255, 0.38);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			min-height: 100vh;
+			overflow-x: hidden;
+			color: var(--text);
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+			font-size: 14px;
+			line-height: 1.65;
+
+			background-image: url('assets/css/images/bg_aboutme.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: -25%;
+			z-index: 0;
+			pointer-events: none;
+
+			background:
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.58), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.22), transparent 30%),
+				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.18), transparent 38%);
+
+			animation: backgroundFloat 24s ease-in-out infinite;
+		}
+
+		body::after {
+			content: "";
+			position: fixed;
+			inset: 0;
+			z-index: 0;
+			pointer-events: none;
+
+			background:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.08) 0%,
+					rgba(255, 255, 255, 0.02) 46%,
+					rgba(255, 255, 255, 0.16) 100%
+				);
+		}
+
+		@keyframes backgroundFloat {
+			0% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+
+			50% {
+				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
+			}
+
+			100% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		.cursor-light {
+			position: fixed;
+			width: 420px;
+			height: 420px;
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 1;
+
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.36),
+					rgba(255, 255, 255, 0.12) 36%,
+					transparent 68%
+				);
+
+			transform: translate(-50%, -50%);
+			mix-blend-mode: soft-light;
+			transition: opacity 0.25s ease;
+		}
+
+		.page {
+			position: relative;
+			z-index: 2;
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 64px 34px 96px;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 76px;
+		}
+
+		.nav-title {
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.48),
+				0 10px 22px rgba(34, 38, 45, 0.12);
+		}
+
+		.back-link {
+			color: #2f343b;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: -0.01em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.5),
+				0 12px 28px rgba(34, 38, 45, 0.14);
+
+			transition:
+				color 0.25s ease,
+				transform 0.25s ease;
+		}
+
+		.back-link:hover {
+			color: var(--primary);
+			transform: translateX(-4px);
+		}
+
+		.hero {
+			position: relative;
+			max-width: 720px;
+			margin-bottom: 56px;
+		}
+
+		.hero::before {
+			content: "";
+			position: absolute;
+			width: 360px;
+			height: 360px;
+			top: -150px;
+			left: -130px;
+			z-index: -1;
+
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.82),
+					rgba(124, 141, 181, 0.16) 42%,
+					transparent 72%
+				);
+
+			filter: blur(12px);
+		}
+
+		.hero h1 {
+			font-size: clamp(36px, 6vw, 68px);
+			line-height: 0.98;
+			font-weight: 700;
+			letter-spacing: -0.065em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.52),
+				0 18px 46px rgba(40, 43, 48, 0.18);
+		}
+
+		.hero p {
+			max-width: 560px;
+			margin-top: 18px;
+			color: var(--subtext);
+			font-size: 15px;
+			font-weight: 500;
+			line-height: 1.72;
+			letter-spacing: -0.01em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 12px 30px rgba(34, 38, 45, 0.12);
+		}
+
+		.gallery {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			gap: 18px;
+		}
+
+		.gallery-item {
+			position: relative;
+			overflow: hidden;
+			min-height: 240px;
+			border-radius: 24px;
+			cursor: pointer;
+
+			background: var(--glass);
+			border: 1px solid var(--border);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+
+			box-shadow:
+				0 18px 45px rgba(45, 45, 45, 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+			transition:
+				transform 0.35s ease,
+				box-shadow 0.35s ease,
+				border-color 0.35s ease;
+		}
+
+		.gallery-item:nth-child(1) {
+			grid-column: span 3;
+			min-height: 420px;
+		}
+
+		.gallery-item:nth-child(2) {
+			grid-column: span 3;
+			min-height: 420px;
+		}
+
+		.gallery-item:nth-child(3),
+		.gallery-item:nth-child(4),
+		.gallery-item:nth-child(5) {
+			grid-column: span 2;
+		}
+
+		.gallery-item:nth-child(6) {
+			grid-column: span 3;
+			min-height: 360px;
+		}
+
+		.gallery-item:nth-child(7) {
+			grid-column: span 3;
+			min-height: 360px;
+		}
+
+		.gallery-item:nth-child(8),
+		.gallery-item:nth-child(9) {
+			grid-column: span 3;
+			min-height: 340px;
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+
+			filter: saturate(0.92) contrast(0.96) brightness(1.02);
+			transform: scale(1.01);
+
+			transition:
+				transform 0.65s ease,
+				filter 0.65s ease;
+		}
+
+		.gallery-item::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			pointer-events: none;
+
+			background:
+				linear-gradient(
+					180deg,
+					transparent 46%,
+					rgba(0, 0, 0, 0.22) 100%
+				);
+
+			opacity: 0;
+			transition: opacity 0.35s ease;
+		}
+
+		.gallery-item::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -80%;
+			width: 55%;
+			height: 100%;
+			z-index: 2;
+			pointer-events: none;
+
+			background:
+				linear-gradient(
+					120deg,
+					transparent 0%,
+					rgba(255, 255, 255, 0.34) 45%,
+					transparent 72%
+				);
+
+			opacity: 0;
+			transform: skewX(-14deg);
+			transition:
+				left 0.7s ease,
+				opacity 0.35s ease;
+		}
+
+		.gallery-item:hover {
+			transform: translateY(-8px);
+			border-color: rgba(255, 255, 255, 0.58);
+			box-shadow:
+				0 30px 70px rgba(45, 45, 45, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.7);
+		}
+
+		.gallery-item:hover img {
+			transform: scale(1.07);
+			filter: saturate(1.02) contrast(1) brightness(1.04);
+		}
+
+		.gallery-item:hover::before {
+			opacity: 1;
+		}
+
+		.gallery-item:hover::after {
+			left: 125%;
+			opacity: 1;
+		}
+
+		.caption {
+			position: absolute;
+			left: 20px;
+			right: 20px;
+			bottom: 18px;
+			z-index: 3;
+
+			color: rgba(255, 255, 255, 0.94);
+			font-size: 13px;
+			font-weight: 650;
+			letter-spacing: -0.01em;
+
+			opacity: 0;
+			transform: translateY(8px);
+			text-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+
+			transition:
+				opacity 0.3s ease,
+				transform 0.3s ease;
+		}
+
+		.gallery-item:hover .caption {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.lightbox {
+			position: fixed;
+			inset: 0;
+			z-index: 10;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 32px;
+
+			background: rgba(245, 245, 247, 0.72);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
+		}
+
+		.lightbox.active {
+			display: flex;
+		}
+
+		.lightbox img {
+			max-width: min(100%, 1100px);
+			max-height: 86vh;
+			border-radius: 26px;
+			object-fit: contain;
+
+			box-shadow:
+				0 34px 90px rgba(34, 38, 45, 0.24),
+				0 0 0 1px rgba(255, 255, 255, 0.5);
+		}
+
+		.lightbox-close {
+			position: absolute;
+			top: 26px;
+			right: 28px;
+
+			width: 42px;
+			height: 42px;
+			border: 0;
+			border-radius: 50%;
+			cursor: pointer;
+
+			color: #2f343b;
+			background: rgba(255, 255, 255, 0.52);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+
+			font-size: 22px;
+			line-height: 42px;
+
+			box-shadow:
+				0 14px 34px rgba(34, 38, 45, 0.12),
+				inset 0 1px 0 rgba(255, 255, 255, 0.64);
+
+			transition:
+				transform 0.25s ease,
+				background 0.25s ease;
+		}
+
+		.lightbox-close:hover {
+			transform: rotate(90deg) scale(1.05);
+			background: rgba(255, 255, 255, 0.72);
+		}
+
+		.fade {
+			opacity: 0;
+			transform: translateY(22px);
+			transition:
+				opacity 0.8s ease,
+				transform 0.8s ease;
+		}
+
+		.fade.show {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		@media (max-width: 900px) {
+			.gallery {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.gallery-item,
+			.gallery-item:nth-child(1),
+			.gallery-item:nth-child(2),
+			.gallery-item:nth-child(3),
+			.gallery-item:nth-child(4),
+			.gallery-item:nth-child(5),
+			.gallery-item:nth-child(6),
+			.gallery-item:nth-child(7),
+			.gallery-item:nth-child(8),
+			.gallery-item:nth-child(9) {
+				grid-column: span 1;
+				min-height: 300px;
+			}
+		}
+
+		@media (max-width: 620px) {
+			body {
+				background-attachment: scroll;
+			}
+
+			.page {
+				padding: 42px 18px 72px;
+			}
+
+			.nav {
+				margin-bottom: 56px;
+			}
+
+			.hero {
+				margin-bottom: 42px;
+			}
+
+			.gallery {
+				grid-template-columns: 1fr;
+				gap: 16px;
+			}
+
+			.gallery-item,
+			.gallery-item:nth-child(1),
+			.gallery-item:nth-child(2),
+			.gallery-item:nth-child(3),
+			.gallery-item:nth-child(4),
+			.gallery-item:nth-child(5),
+			.gallery-item:nth-child(6),
+			.gallery-item:nth-child(7),
+			.gallery-item:nth-child(8),
+			.gallery-item:nth-child(9) {
+				min-height: 360px;
+			}
+
+			.lightbox {
+				padding: 18px;
+			}
+
+			.lightbox img {
+				border-radius: 20px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			body::before {
+				animation: none;
+			}
+
+			.cursor-light {
+				display: none;
+			}
+
+			.fade,
+			.gallery-item,
+			.gallery-item img,
+			.gallery-item::before,
+			.gallery-item::after,
+			.caption,
+			.back-link,
+			.lightbox-close {
+				transition: none;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="cursor-light" id="cursorLight"></div>
+
+	<main class="page">
+
+		<nav class="nav fade">
+			<div class="nav-title">Life Gallery</div>
+			<a class="back-link" href="aboutme.html">← Back to About</a>
+		</nav>
+
+		<header class="hero fade">
+			<h1>Moments outside work</h1>
+			<p>
+				A small collection of life, travel, city walks, quiet weekends, and everyday inspiration.
+			</p>
+		</header>
+
+		<section class="gallery fade" aria-label="Life photo gallery">
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-01.jpg" alt="Gallery photo 1">
+				<figcaption class="caption">Weekend light</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-02.jpg" alt="Gallery photo 2">
+				<figcaption class="caption">City moments</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-03.jpg" alt="Gallery photo 3">
+				<figcaption class="caption">Travel notes</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-04.jpg" alt="Gallery photo 4">
+				<figcaption class="caption">Soft afternoon</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-05.jpg" alt="Gallery photo 5">
+				<figcaption class="caption">Daily inspiration</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-06.jpg" alt="Gallery photo 6">
+				<figcaption class="caption">A quiet walk</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-07.jpg" alt="Gallery photo 7">
+				<figcaption class="caption">Little memories</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-08.jpg" alt="Gallery photo 8">
+				<figcaption class="caption">Life in detail</figcaption>
+			</figure>
+
+			<figure class="gallery-item">
+				<img src="assets/css/images/gallery/life-09.jpg" alt="Gallery photo 9">
+				<figcaption class="caption">Captured calm</figcaption>
+			</figure>
+
+		</section>
+
+	</main>
+
+	<div class="lightbox" id="lightbox" aria-hidden="true">
+		<button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">×</button>
+		<img src="" alt="Expanded gallery preview" id="lightboxImage">
+	</div>
+
+	<script>
+		const light = document.getElementById('cursorLight');
+
+		document.addEventListener('mousemove', (event) => {
+			light.style.left = event.clientX + 'px';
+			light.style.top = event.clientY + 'px';
+		});
+
+		document.addEventListener('mouseleave', () => {
+			light.style.opacity = '0';
+		});
+
+		document.addEventListener('mouseenter', () => {
+			light.style.opacity = '1';
+		});
+
+		const faders = document.querySelectorAll('.fade');
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				}
+			});
+		}, {
+			threshold: 0.16
+		});
+
+		faders.forEach((element) => observer.observe(element));
+
+		const galleryItems = document.querySelectorAll('.gallery-item img');
+		const lightbox = document.getElementById('lightbox');
+		const lightboxImage = document.getElementById('lightboxImage');
+		const lightboxClose = document.getElementById('lightboxClose');
+
+		galleryItems.forEach((image) => {
+			image.addEventListener('click', () => {
+				lightboxImage.src = image.src;
+				lightboxImage.alt = image.alt;
+				lightbox.classList.add('active');
+				lightbox.setAttribute('aria-hidden', 'false');
+			});
+		});
+
+		const closeLightbox = () => {
+			lightbox.classList.remove('active');
+			lightbox.setAttribute('aria-hidden', 'true');
+			lightboxImage.src = '';
+		};
+
+		lightboxClose.addEventListener('click', closeLightbox);
+
+		lightbox.addEventListener('click', (event) => {
+			if (event.target === lightbox) {
+				closeLightbox();
+			}
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+				closeLightbox();
+			}
+		});
+	</script>
+
+</body>
+</html>

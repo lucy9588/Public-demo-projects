@@ -112,9 +112,9 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			max-width: 880px;
+			max-width: 1040px;
 			margin: 0 auto;
-			padding: 64px 28px 92px;
+			padding: 64px 34px 92px;
 		}
 
 		.hero {
@@ -142,6 +142,19 @@
 
 			filter: blur(12px);
 			transform: translateX(-50%);
+		}
+
+		.avatar-link {
+			display: inline-block;
+			border-radius: 50%;
+			transition:
+				transform 0.28s ease,
+				filter 0.28s ease;
+		}
+
+		.avatar-link:hover {
+			transform: translateY(-4px) scale(1.04);
+			filter: brightness(1.04);
 		}
 
 		.avatar {
@@ -194,7 +207,7 @@
 
 		.mirror-text {
 			position: relative;
-			max-width: 760px;
+			max-width: 920px;
 			color: #2f3339;
 			font-size: 14px;
 			font-weight: 500;
@@ -269,8 +282,8 @@
 
 		.experience-item {
 			display: grid;
-			grid-template-columns: 160px minmax(0, 1fr);
-			gap: 34px;
+			grid-template-columns: 170px minmax(0, 1fr);
+			gap: 40px;
 			align-items: start;
 		}
 
@@ -342,7 +355,7 @@
 
 		.exp-desc {
 			margin-top: 10px;
-			max-width: 650px;
+			max-width: 780px;
 			color: var(--subtext);
 			font-size: 13.5px;
 			line-height: 1.68;
@@ -535,13 +548,14 @@
 	<main class="page">
 
 		<header class="hero fade">
-			<img src="assets/css/images/hero.jpg" class="avatar" alt="Hui Luo profile photo">
+			<a class="avatar-link" href="gallery.html" aria-label="View Hui Luo's life gallery">
+				<img src="assets/css/images/hero.jpg" class="avatar" alt="Hui Luo profile photo">
+			</a>
 			<h1>Hui Luo</h1>
 			<p>Platform Engineering · Infrastructure Automation · DevOps</p>
 		</header>
 
 		<section class="fade" id="about">
-			<h2 class="section-title">About</h2>
 			<p class="mirror-text">
 				Platform Engineering professional with hands-on experience in middleware, mainframe, and enterprise infrastructure automation. Currently expanding expertise in Linux, cloud, Kubernetes, and modern DevOps practices, with a focus on building reliable automation products and self-service capabilities that reduce manual effort, improve platform resilience, and create measurable business value.
 			</p>
