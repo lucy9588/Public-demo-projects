@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary: #635bff;
-    --bg: #0a0a0a;
-    --card: #111;
-    --text: #eaeaea;
-    --subtext: #aaa;
+    :root {
+    --bg: #f5f5f7;
+    --card: rgba(255,255,255,0.6);
+    --text: #2d2d2d;
+    --subtext: #6b6b6b;
+    --primary: #7c8db5;   /* 莫兰迪蓝灰 */
     }
 
 * {
@@ -25,7 +25,14 @@
     }
 
     body {
-    background: radial-gradient(circle at 30% 30%, #6366f1, #020617 70%);
+    background: 
+        linear-gradient(rgba(245,245,247,0.85), rgba(245,245,247,0.95)),
+        url('assets/css/images/bg_aboutme.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: var(--text);
     }
 
 .container {
@@ -63,18 +70,31 @@
 
     /* CARD */
     .card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     border-radius: 14px;
     padding: 20px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
     transition: all 0.3s ease;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     }
 
     .card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: #6366f1;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+
+    border: 3px solid rgba(255,255,255,0.6);
     }
 
 /* GRID */
@@ -133,10 +153,11 @@
 <div class="container">
 
 <!-- HERO -->
-<div class="hero fade">
+    <div class="hero fade">
+    <img src="assets/css/images/hero.jpg" class="avatar">
     <h1>Hi, I'm Hui</h1>
-    <p>Product-minded Data Analyst with 10 years of experience turning data into decisions</p>
-</div>
+    <p>Product-minded Data Analyst...</p>
+    </div>
 
 <!-- ABOUT -->
 <section class="fade">
