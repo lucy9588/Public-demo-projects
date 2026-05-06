@@ -13,9 +13,9 @@
 			--subtext: #626973;
 			--muted: #7b818b;
 			--primary: #6f7f9f;
-			--glass: rgba(255, 255, 255, 0.28);
-			--glass-strong: rgba(255, 255, 255, 0.42);
-			--border: rgba(255, 255, 255, 0.38);
+			--glass: rgba(255, 255, 255, 0.26);
+			--glass-strong: rgba(255, 255, 255, 0.52);
+			--border: rgba(255, 255, 255, 0.42);
 		}
 
 		* {
@@ -140,11 +140,9 @@
 			font-size: 13px;
 			font-weight: 700;
 			letter-spacing: -0.01em;
-
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.5),
 				0 12px 28px rgba(34, 38, 45, 0.14);
-
 			transition:
 				color 0.25s ease,
 				transform 0.25s ease;
@@ -206,18 +204,21 @@
 				0 12px 30px rgba(34, 38, 45, 0.12);
 		}
 
+		/* Masonry gallery: 不再使用规整 grid */
 		.gallery {
-			display: grid;
-			grid-template-columns: repeat(6, 1fr);
-			gap: 18px;
+			column-count: 3;
+			column-gap: 22px;
 		}
 
 		.gallery-item {
 			position: relative;
+			display: inline-block;
+			width: 100%;
+			margin: 0 0 22px;
 			overflow: hidden;
-			min-height: 240px;
 			border-radius: 24px;
 			cursor: pointer;
+			break-inside: avoid;
 
 			background: var(--glass);
 			border: 1px solid var(--border);
@@ -234,46 +235,12 @@
 				border-color 0.35s ease;
 		}
 
-		.gallery-item:nth-child(1) {
-			grid-column: span 3;
-			min-height: 420px;
-		}
-
-		.gallery-item:nth-child(2) {
-			grid-column: span 3;
-			min-height: 420px;
-		}
-
-		.gallery-item:nth-child(3),
-		.gallery-item:nth-child(4),
-		.gallery-item:nth-child(5) {
-			grid-column: span 2;
-		}
-
-		.gallery-item:nth-child(6) {
-			grid-column: span 3;
-			min-height: 360px;
-		}
-
-		.gallery-item:nth-child(7) {
-			grid-column: span 3;
-			min-height: 360px;
-		}
-
-		.gallery-item:nth-child(8),
-		.gallery-item:nth-child(9) {
-			grid-column: span 3;
-			min-height: 340px;
-		}
-
 		.gallery-item img {
 			width: 100%;
-			height: 100%;
+			height: auto;
 			display: block;
-			object-fit: cover;
 
-			filter: saturate(0.92) contrast(0.96) brightness(1.02);
-			transform: scale(1.01);
+			filter: saturate(0.94) contrast(0.97) brightness(1.02);
 
 			transition:
 				transform 0.65s ease,
@@ -290,8 +257,8 @@
 			background:
 				linear-gradient(
 					180deg,
-					transparent 46%,
-					rgba(0, 0, 0, 0.22) 100%
+					transparent 48%,
+					rgba(0, 0, 0, 0.28) 100%
 				);
 
 			opacity: 0;
@@ -325,14 +292,14 @@
 
 		.gallery-item:hover {
 			transform: translateY(-8px);
-			border-color: rgba(255, 255, 255, 0.58);
+			border-color: rgba(255, 255, 255, 0.62);
 			box-shadow:
 				0 30px 70px rgba(45, 45, 45, 0.16),
 				inset 0 1px 0 rgba(255, 255, 255, 0.7);
 		}
 
 		.gallery-item:hover img {
-			transform: scale(1.07);
+			transform: scale(1.035);
 			filter: saturate(1.02) contrast(1) brightness(1.04);
 		}
 
@@ -347,19 +314,19 @@
 
 		.caption {
 			position: absolute;
-			left: 20px;
-			right: 20px;
-			bottom: 18px;
+			left: 18px;
+			right: 18px;
+			bottom: 16px;
 			z-index: 3;
 
-			color: rgba(255, 255, 255, 0.94);
+			color: rgba(255, 255, 255, 0.95);
 			font-size: 13px;
 			font-weight: 650;
 			letter-spacing: -0.01em;
 
 			opacity: 0;
 			transform: translateY(8px);
-			text-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+			text-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 
 			transition:
 				opacity 0.3s ease,
@@ -378,26 +345,73 @@
 			display: none;
 			align-items: center;
 			justify-content: center;
-			padding: 32px;
+			padding: 34px;
 
 			background: rgba(245, 245, 247, 0.72);
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
 		}
 
 		.lightbox.active {
 			display: flex;
 		}
 
+		.lightbox-content {
+			width: min(100%, 1180px);
+			max-height: 92vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 18px;
+		}
+
 		.lightbox img {
-			max-width: min(100%, 1100px);
-			max-height: 86vh;
+			max-width: 100%;
+			max-height: 76vh;
 			border-radius: 26px;
 			object-fit: contain;
 
 			box-shadow:
 				0 34px 90px rgba(34, 38, 45, 0.24),
 				0 0 0 1px rgba(255, 255, 255, 0.5);
+		}
+
+		.lightbox-info {
+			width: min(100%, 860px);
+			padding: 18px 22px;
+			border-radius: 20px;
+
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.52),
+					rgba(255, 255, 255, 0.24)
+				);
+
+			border: 1px solid rgba(255, 255, 255, 0.44);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+
+			box-shadow:
+				0 18px 48px rgba(34, 38, 45, 0.12),
+				inset 0 1px 0 rgba(255, 255, 255, 0.64);
+		}
+
+		.lightbox-location {
+			color: var(--primary);
+			font-size: 12px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			margin-bottom: 6px;
+		}
+
+		.lightbox-description {
+			color: #2f343b;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 1.65;
+			letter-spacing: -0.01em;
 		}
 
 		.lightbox-close {
@@ -412,7 +426,7 @@
 			cursor: pointer;
 
 			color: #2f343b;
-			background: rgba(255, 255, 255, 0.52);
+			background: rgba(255, 255, 255, 0.56);
 			backdrop-filter: blur(12px);
 			-webkit-backdrop-filter: blur(12px);
 
@@ -430,7 +444,7 @@
 
 		.lightbox-close:hover {
 			transform: rotate(90deg) scale(1.05);
-			background: rgba(255, 255, 255, 0.72);
+			background: rgba(255, 255, 255, 0.76);
 		}
 
 		.fade {
@@ -446,23 +460,14 @@
 			transform: translateY(0);
 		}
 
-		@media (max-width: 900px) {
+		@media (max-width: 980px) {
 			.gallery {
-				grid-template-columns: repeat(2, 1fr);
+				column-count: 2;
+				column-gap: 18px;
 			}
 
-			.gallery-item,
-			.gallery-item:nth-child(1),
-			.gallery-item:nth-child(2),
-			.gallery-item:nth-child(3),
-			.gallery-item:nth-child(4),
-			.gallery-item:nth-child(5),
-			.gallery-item:nth-child(6),
-			.gallery-item:nth-child(7),
-			.gallery-item:nth-child(8),
-			.gallery-item:nth-child(9) {
-				grid-column: span 1;
-				min-height: 300px;
+			.gallery-item {
+				margin-bottom: 18px;
 			}
 		}
 
@@ -484,21 +489,7 @@
 			}
 
 			.gallery {
-				grid-template-columns: 1fr;
-				gap: 16px;
-			}
-
-			.gallery-item,
-			.gallery-item:nth-child(1),
-			.gallery-item:nth-child(2),
-			.gallery-item:nth-child(3),
-			.gallery-item:nth-child(4),
-			.gallery-item:nth-child(5),
-			.gallery-item:nth-child(6),
-			.gallery-item:nth-child(7),
-			.gallery-item:nth-child(8),
-			.gallery-item:nth-child(9) {
-				min-height: 360px;
+				column-count: 1;
 			}
 
 			.lightbox {
@@ -506,7 +497,12 @@
 			}
 
 			.lightbox img {
+				max-height: 66vh;
 				border-radius: 20px;
+			}
+
+			.lightbox-info {
+				padding: 16px 18px;
 			}
 		}
 
@@ -553,48 +549,84 @@
 
 		<section class="gallery fade" aria-label="Life photo gallery">
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-01.jpg" alt="Gallery photo 1">
+			<figure
+				class="gallery-item"
+				data-location="Guangzhou, China"
+				data-description="A quiet moment captured during everyday life — soft light, slow rhythm, and a small pause outside work."
+			>
+				<img src="./assets/css/images/gallery/life-01.jpg" alt="Gallery photo 1">
 				<figcaption class="caption">Weekend light</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-02.jpg" alt="Gallery photo 2">
+			<figure
+				class="gallery-item"
+				data-location="City Walk"
+				data-description="A city walk memory, collected between ordinary routines and small discoveries."
+			>
+				<img src="./assets/css/images/gallery/life-02.jpg" alt="Gallery photo 2">
 				<figcaption class="caption">City moments</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-03.jpg" alt="Gallery photo 3">
+			<figure
+				class="gallery-item"
+				data-location="Travel Notes"
+				data-description="A travel snapshot that records the atmosphere of the place, not just the scene itself."
+			>
+				<img src="./assets/css/images/gallery/life-03.jpg" alt="Gallery photo 3">
 				<figcaption class="caption">Travel notes</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-04.jpg" alt="Gallery photo 4">
+			<figure
+				class="gallery-item"
+				data-location="Afternoon"
+				data-description="Soft afternoon light and a calm visual detail from daily life."
+			>
+				<img src="./assets/css/images/gallery/life-04.jpg" alt="Gallery photo 4">
 				<figcaption class="caption">Soft afternoon</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-05.jpg" alt="Gallery photo 5">
+			<figure
+				class="gallery-item"
+				data-location="Everyday Inspiration"
+				data-description="Small details that bring inspiration outside technical work and routine tasks."
+			>
+				<img src="./assets/css/images/gallery/life-05.jpg" alt="Gallery photo 5">
 				<figcaption class="caption">Daily inspiration</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-06.jpg" alt="Gallery photo 6">
+			<figure
+				class="gallery-item"
+				data-location="Quiet Walk"
+				data-description="A quiet walk, a change of pace, and a moment to reset."
+			>
+				<img src="./assets/css/images/gallery/life-06.jpg" alt="Gallery photo 6">
 				<figcaption class="caption">A quiet walk</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-07.jpg" alt="Gallery photo 7">
+			<figure
+				class="gallery-item"
+				data-location="Little Memories"
+				data-description="A small memory preserved through image, texture, and light."
+			>
+				<img src="./assets/css/images/gallery/life-07.jpg" alt="Gallery photo 7">
 				<figcaption class="caption">Little memories</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-08.jpg" alt="Gallery photo 8">
+			<figure
+				class="gallery-item"
+				data-location="Life in Detail"
+				data-description="A detail-oriented frame that reflects how I notice structure, balance, and atmosphere."
+			>
+				<img src="./assets/css/images/gallery/life-08.jpg" alt="Gallery photo 8">
 				<figcaption class="caption">Life in detail</figcaption>
 			</figure>
 
-			<figure class="gallery-item">
-				<img src="assets/css/images/gallery/life-09.jpg" alt="Gallery photo 9">
+			<figure
+				class="gallery-item"
+				data-location="Captured Calm"
+				data-description="A calm visual note from life outside work."
+			>
+				<img src="./assets/css/images/gallery/life-09.jpg" alt="Gallery photo 9">
 				<figcaption class="caption">Captured calm</figcaption>
 			</figure>
 
@@ -604,7 +636,15 @@
 
 	<div class="lightbox" id="lightbox" aria-hidden="true">
 		<button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">×</button>
-		<img src="" alt="Expanded gallery preview" id="lightboxImage">
+
+		<div class="lightbox-content">
+			<img src="" alt="Expanded gallery preview" id="lightboxImage">
+
+			<div class="lightbox-info">
+				<div class="lightbox-location" id="lightboxLocation"></div>
+				<div class="lightbox-description" id="lightboxDescription"></div>
+			</div>
+		</div>
 	</div>
 
 	<script>
@@ -637,17 +677,26 @@
 
 		faders.forEach((element) => observer.observe(element));
 
-		const galleryItems = document.querySelectorAll('.gallery-item img');
+		const galleryItems = document.querySelectorAll('.gallery-item');
 		const lightbox = document.getElementById('lightbox');
 		const lightboxImage = document.getElementById('lightboxImage');
+		const lightboxLocation = document.getElementById('lightboxLocation');
+		const lightboxDescription = document.getElementById('lightboxDescription');
 		const lightboxClose = document.getElementById('lightboxClose');
 
-		galleryItems.forEach((image) => {
-			image.addEventListener('click', () => {
+		galleryItems.forEach((item) => {
+			const image = item.querySelector('img');
+
+			item.addEventListener('click', () => {
 				lightboxImage.src = image.src;
 				lightboxImage.alt = image.alt;
+
+				lightboxLocation.textContent = item.dataset.location || 'Location';
+				lightboxDescription.textContent = item.dataset.description || 'A captured moment from life outside work.';
+
 				lightbox.classList.add('active');
 				lightbox.setAttribute('aria-hidden', 'false');
+				document.body.style.overflow = 'hidden';
 			});
 		});
 
@@ -655,6 +704,7 @@
 			lightbox.classList.remove('active');
 			lightbox.setAttribute('aria-hidden', 'true');
 			lightboxImage.src = '';
+			document.body.style.overflow = '';
 		};
 
 		lightboxClose.addEventListener('click', closeLightbox);
