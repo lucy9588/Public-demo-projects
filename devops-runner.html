@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DevOps Runner</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<style>
+		:root {
+			--text: #26282c;
+			--subtext: #626973;
+			--muted: #7b818b;
+			--primary: #6f7f9f;
+			--primary-dark: #53627d;
+			--glass: rgba(255, 255, 255, 0.34);
+			--glass-strong: rgba(255, 255, 255, 0.58);
+			--border: rgba(255, 255, 255, 0.44);
+			--shadow: rgba(34, 38, 45, 0.12);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			min-height: 100vh;
+			overflow-x: hidden;
+			color: var(--text);
+			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+			background-image: url('assets/css/images/bg_aboutme.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: -25%;
+			z-index: 0;
+			pointer-events: none;
+
+			background:
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.58), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.22), transparent 30%),
+				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.18), transparent 38%);
+
+			animation: backgroundFloat 24s ease-in-out infinite;
+		}
+
+		body::after {
+			content: "";
+			position: fixed;
+			inset: 0;
+			z-index: 0;
+			pointer-events: none;
+
+			background:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.10) 0%,
+					rgba(255, 255, 255, 0.02) 46%,
+					rgba(255, 255, 255, 0.18) 100%
+				);
+		}
+
+		@keyframes backgroundFloat {
+			0% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+
+			50% {
+				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
+			}
+
+			100% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		.cursor-light {
+			position: fixed;
+			width: 420px;
+			height: 420px;
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 1;
+
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.38),
+					rgba(255, 255, 255, 0.12) 36%,
+					transparent 68%
+				);
+
+			transform: translate(-50%, -50%);
+			mix-blend-mode: soft-light;
+			transition: opacity 0.25s ease;
+		}
+
+		.page {
+			position: relative;
+			z-index: 2;
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 58px 28px 88px;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 56px;
+		}
+
+		.nav-title {
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 900;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.48),
+				0 10px 22px rgba(34, 38, 45, 0.12);
+		}
+
+		.back-link {
+			color: #2f343b;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 800;
+			letter-spacing: -0.01em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.5),
+				0 12px 28px rgba(34, 38, 45, 0.14);
+
+			transition:
+				color 0.25s ease,
+				transform 0.25s ease;
+		}
+
+		.back-link:hover {
+			color: var(--primary);
+			transform: translateX(-4px);
+		}
+
+		.hero {
+			max-width: 760px;
+			margin-bottom: 34px;
+			position: relative;
+		}
+
+		.hero::before {
+			content: "";
+			position: absolute;
+			width: 380px;
+			height: 380px;
+			top: -160px;
+			left: -140px;
+			z-index: -1;
+
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.84),
+					rgba(124, 141, 181, 0.18) 44%,
+					transparent 74%
+				);
+
+			filter: blur(12px);
+		}
+
+		.hero h1 {
+			font-size: clamp(42px, 7vw, 76px);
+			line-height: 0.96;
+			font-weight: 900;
+			letter-spacing: -0.07em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.52),
+				0 18px 46px rgba(40, 43, 48, 0.18);
+		}
+
+		.hero p {
+			max-width: 560px;
+			margin-top: 18px;
+			color: var(--subtext);
+			font-size: 15px;
+			font-weight: 700;
+			line-height: 1.72;
+			letter-spacing: -0.01em;
+
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 12px 30px rgba(34, 38, 45, 0.12);
+		}
+
+		.game-shell {
+			position: relative;
+			overflow: hidden;
+			border-radius: 30px;
+
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.54),
+					rgba(255, 255, 255, 0.22)
+				);
+
+			border: 1px solid var(--border);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
+
+			box-shadow:
+				0 34px 90px rgba(34, 38, 45, 0.14),
+				inset 0 1px 0 rgba(255, 255, 255, 0.66);
+		}
+
+		.game-shell::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+
+			background:
+				linear-gradient(
+					120deg,
+					transparent 0%,
+					rgba(255, 255, 255, 0.28) 42%,
+					transparent 72%
+				);
+
+			opacity: 0.48;
+			transform: translateX(-28%);
+		}
+
+		.game-topbar {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 18px;
+			padding: 22px 24px 16px;
+		}
+
+		.rules {
+			color: var(--subtext);
+			font-size: 13px;
+			font-weight: 800;
+			line-height: 1.45;
+		}
+
+		.scoreboard {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			gap: 10px;
+		}
+
+		.score-pill {
+			min-width: 112px;
+			padding: 9px 13px;
+			border-radius: 999px;
+
+			color: #344052;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.46),
+					rgba(255, 255, 255, 0.20)
+				);
+
+			border: 1px solid rgba(255, 255, 255, 0.46);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+
+			font-size: 12px;
+			font-weight: 900;
+			text-align: center;
+
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.58),
+				0 12px 28px rgba(34, 38, 45, 0.08);
+		}
+
+		.canvas-wrap {
+			position: relative;
+			z-index: 2;
+			padding: 0 24px 24px;
+		}
+
+		canvas {
+			width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 24px;
+
+			background:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.46) 0%,
+					rgba(255, 255, 255, 0.20) 100%
+				);
+
+			border: 1px solid rgba(255, 255, 255, 0.46);
+
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.58),
+				0 18px 42px rgba(34, 38, 45, 0.08);
+
+			touch-action: manipulation;
+		}
+
+		.overlay {
+			position: absolute;
+			inset: 0;
+			z-index: 3;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 28px;
+			pointer-events: none;
+		}
+
+		.overlay-card {
+			width: min(100%, 420px);
+			padding: 26px;
+			border-radius: 26px;
+			text-align: center;
+
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.66),
+					rgba(255, 255, 255, 0.30)
+				);
+
+			border: 1px solid rgba(255, 255, 255, 0.56);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+
+			box-shadow:
+				0 28px 70px rgba(34, 38, 45, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+			pointer-events: auto;
+		}
+
+		.overlay-card h2 {
+			font-size: 28px;
+			line-height: 1.05;
+			font-weight: 900;
+			letter-spacing: -0.055em;
+			margin-bottom: 10px;
+		}
+
+		.overlay-card p {
+			color: var(--subtext);
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 1.6;
+			margin-bottom: 18px;
+		}
+
+		.button-row {
+			display: flex;
+			justify-content: center;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.game-btn {
+			border: 0;
+			cursor: pointer;
+			padding: 11px 18px;
+			border-radius: 999px;
+
+			color: #ffffff;
+			background:
+				linear-gradient(
+					135deg,
+					var(--primary),
+					var(--primary-dark)
+				);
+
+			font-size: 13px;
+			font-weight: 900;
+			letter-spacing: -0.01em;
+
+			box-shadow:
+				0 14px 32px rgba(83, 98, 125, 0.26),
+				inset 0 1px 0 rgba(255, 255, 255, 0.24);
+
+			transition:
+				transform 0.22s ease,
+				box-shadow 0.22s ease,
+				filter 0.22s ease;
+		}
+
+		.game-btn:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.04);
+			box-shadow:
+				0 18px 40px rgba(83, 98, 125, 0.32),
+				inset 0 1px 0 rgba(255, 255, 255, 0.28);
+		}
+
+		.secondary-btn {
+			color: #334052;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.62),
+					rgba(255, 255, 255, 0.26)
+				);
+
+			border: 1px solid rgba(255, 255, 255, 0.52);
+		}
+
+		.tips {
+			margin-top: 18px;
+			color: var(--muted);
+			font-size: 12.5px;
+			font-weight: 800;
+			text-align: center;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.fade {
+			opacity: 0;
+			transform: translateY(22px);
+			transition:
+				opacity 0.8s ease,
+				transform 0.8s ease;
+		}
+
+		.fade.show {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		@media (max-width: 760px) {
+			body {
+				background-attachment: scroll;
+			}
+
+			.page {
+				padding: 42px 18px 72px;
+			}
+
+			.nav {
+				margin-bottom: 48px;
+			}
+
+			.game-topbar {
+				align-items: flex-start;
+				flex-direction: column;
+				padding: 18px 18px 12px;
+			}
+
+			.scoreboard {
+				width: 100%;
+				justify-content: flex-start;
+			}
+
+			.canvas-wrap {
+				padding: 0 14px 14px;
+			}
+
+			.overlay-card {
+				padding: 22px;
+			}
+
+			.overlay-card h2 {
+				font-size: 24px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			body::before {
+				animation: none;
+			}
+
+			.cursor-light {
+				display: none;
+			}
+
+			.fade,
+			.back-link,
+			.game-btn {
+				transition: none;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="cursor-light" id="cursorLight"></div>
+
+	<main class="page">
+
+		<nav class="nav fade">
+			<div class="nav-title">Mini Game</div>
+			<a class="back-link" href="index.html">← Back to Home</a>
+		</nav>
+
+		<header class="hero fade">
+			<h1>DevOps Runner</h1>
+			<p>Jump over alerts. Keep the platform running.</p>
+		</header>
+
+		<section class="game-shell fade" aria-label="DevOps Runner game">
+			<div class="game-topbar">
+				<div class="rules">
+					Press Space or tap to jump.<br>
+					Avoid incidents and keep your uptime score growing.
+				</div>
+
+				<div class="scoreboard">
+					<div class="score-pill">Score: <span id="score">0</span></div>
+					<div class="score-pill">Best: <span id="bestScore">0</span></div>
+				</div>
+			</div>
+
+			<div class="canvas-wrap">
+				<canvas id="gameCanvas" width="960" height="420"></canvas>
+
+				<div class="overlay" id="startOverlay">
+					<div class="overlay-card">
+						<h2>Ready to run?</h2>
+						<p>Help the cat jump over desks and cat trees while keeping the platform stable.</p>
+						<div class="button-row">
+							<button class="game-btn" id="startButton">Start Game</button>
+						</div>
+						<div class="tips">Space / Tap / Click to jump</div>
+					</div>
+				</div>
+
+				<div class="overlay hidden" id="gameOverOverlay">
+					<div class="overlay-card">
+						<h2>Incident detected</h2>
+						<p>Your uptime run ended. Restart and keep the platform running longer.</p>
+						<div class="button-row">
+							<button class="game-btn" id="restartButton">Restart</button>
+							<button class="game-btn secondary-btn" id="resetBestButton">Reset Best</button>
+						</div>
+						<div class="tips">Press Space to restart</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<script>
+		const light = document.getElementById('cursorLight');
+
+		document.addEventListener('mousemove', (event) => {
+			light.style.left = event.clientX + 'px';
+			light.style.top = event.clientY + 'px';
+		});
+
+		document.addEventListener('mouseleave', () => {
+			light.style.opacity = '0';
+		});
+
+		document.addEventListener('mouseenter', () => {
+			light.style.opacity = '1';
+		});
+
+		const faders = document.querySelectorAll('.fade');
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				}
+			});
+		}, {
+			threshold: 0.16
+		});
+
+		faders.forEach((element) => observer.observe(element));
+
+		const canvas = document.getElementById('gameCanvas');
+		const ctx = canvas.getContext('2d');
+
+		const scoreEl = document.getElementById('score');
+		const bestScoreEl = document.getElementById('bestScore');
+		const startOverlay = document.getElementById('startOverlay');
+		const gameOverOverlay = document.getElementById('gameOverOverlay');
+		const startButton = document.getElementById('startButton');
+		const restartButton = document.getElementById('restartButton');
+		const resetBestButton = document.getElementById('resetBestButton');
+
+		const storageKey = 'devopsRunnerBestScore';
+		let bestScore = Number(localStorage.getItem(storageKey)) || 0;
+		bestScoreEl.textContent = bestScore;
+
+		const game = {
+			state: 'ready',
+			width: canvas.width,
+			height: canvas.height,
+			groundY: 322,
+			speed: 5.3,
+			baseSpeed: 5.3,
+			gravity: 0.78,
+			jumpForce: -15.4,
+			score: 0,
+			frame: 0,
+			nextObstacleIn: 90,
+			obstacles: [],
+			clouds: [],
+			particles: []
+		};
+
+		const cat = {
+			x: 116,
+			y: game.groundY - 58,
+			width: 62,
+			height: 58,
+			vy: 0,
+			jumping: false,
+			squash: 1
+		};
+
+		function random(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function resetGame() {
+			game.state = 'running';
+			game.speed = game.baseSpeed;
+			game.score = 0;
+			game.frame = 0;
+			game.nextObstacleIn = 70;
+			game.obstacles = [];
+			game.clouds = [];
+			game.particles = [];
+
+			cat.y = game.groundY - cat.height;
+			cat.vy = 0;
+			cat.jumping = false;
+			cat.squash = 1;
+
+			for (let i = 0; i < 5; i++) {
+				game.clouds.push({
+					x: random(0, game.width),
+					y: random(52, 150),
+					size: random(22, 48),
+					speed: random(0.25, 0.65),
+					alpha: random(0.16, 0.32)
+				});
+			}
+
+			scoreEl.textContent = 0;
+			startOverlay.classList.add('hidden');
+			gameOverOverlay.classList.add('hidden');
+		}
+
+		function jump() {
+			if (game.state === 'ready') {
+				resetGame();
+				return;
+			}
+
+			if (game.state === 'over') {
+				resetGame();
+				return;
+			}
+
+			if (!cat.jumping) {
+				cat.vy = game.jumpForce;
+				cat.jumping = true;
+				cat.squash = 0.92;
+
+				for (let i = 0; i < 8; i++) {
+					game.particles.push({
+						x: cat.x + 20 + random(-8, 8),
+						y: game.groundY - 8,
+						vx: random(-1.4, 1.2),
+						vy: random(-2.6, -0.8),
+						life: random(18, 30),
+						size: random(2, 4)
+					});
+				}
+			}
+		}
+
+		function createObstacle() {
+			const type = Math.random() > 0.5 ? 'desk' : 'catTree';
+
+			if (type === 'desk') {
+				game.obstacles.push({
+					type,
+					x: game.width + 30,
+					y: game.groundY - 54,
+					width: 82,
+					height: 54,
+					label: 'Ticket'
+				});
+			} else {
+				game.obstacles.push({
+					type,
+					x: game.width + 30,
+					y: game.groundY - 94,
+					width: 58,
+					height: 94,
+					label: 'Alert'
+				});
+			}
+		}
+
+		function update() {
+			if (game.state !== 'running') return;
+
+			game.frame++;
+			game.score += 1;
+			game.speed = game.baseSpeed + Math.min(4.2, game.score / 900);
+
+			scoreEl.textContent = Math.floor(game.score / 5);
+
+			cat.vy += game.gravity;
+			cat.y += cat.vy;
+			cat.squash += (1 - cat.squash) * 0.16;
+
+			if (cat.y >= game.groundY - cat.height) {
+				cat.y = game.groundY - cat.height;
+				cat.vy = 0;
+				cat.jumping = false;
+			}
+
+			game.nextObstacleIn--;
+
+			if (game.nextObstacleIn <= 0) {
+				createObstacle();
+				game.nextObstacleIn = random(82, 138) - Math.min(36, game.score / 80);
+			}
+
+			game.obstacles.forEach((obstacle) => {
+				obstacle.x -= game.speed;
+			});
+
+			game.obstacles = game.obstacles.filter((obstacle) => obstacle.x + obstacle.width > -60);
+
+			game.clouds.forEach((cloud) => {
+				cloud.x -= cloud.speed;
+
+				if (cloud.x < -80) {
+					cloud.x = game.width + random(40, 180);
+					cloud.y = random(52, 150);
+					cloud.size = random(22, 48);
+				}
+			});
+
+			game.particles.forEach((particle) => {
+				particle.x += particle.vx;
+				particle.y += particle.vy;
+				particle.vy += 0.08;
+				particle.life--;
+			});
+
+			game.particles = game.particles.filter((particle) => particle.life > 0);
+
+			checkCollision();
+		}
+
+		function checkCollision() {
+			const catBox = {
+				x: cat.x + 10,
+				y: cat.y + 8,
+				width: cat.width - 20,
+				height: cat.height - 12
+			};
+
+			for (const obstacle of game.obstacles) {
+				const obsBox = {
+					x: obstacle.x + 8,
+					y: obstacle.y + 6,
+					width: obstacle.width - 16,
+					height: obstacle.height - 8
+				};
+
+				const hit =
+					catBox.x < obsBox.x + obsBox.width &&
+					catBox.x + catBox.width > obsBox.x &&
+					catBox.y < obsBox.y + obsBox.height &&
+					catBox.y + catBox.height > obsBox.y;
+
+				if (hit) {
+					endGame();
+					break;
+				}
+			}
+		}
+
+		function endGame() {
+			game.state = 'over';
+
+			const finalScore = Math.floor(game.score / 5);
+
+			if (finalScore > bestScore) {
+				bestScore = finalScore;
+				localStorage.setItem(storageKey, bestScore);
+				bestScoreEl.textContent = bestScore;
+			}
+
+			gameOverOverlay.classList.remove('hidden');
+		}
+
+		function drawRoundedRect(x, y, width, height, radius, fillStyle) {
+			ctx.beginPath();
+			ctx.moveTo(x + radius, y);
+			ctx.lineTo(x + width - radius, y);
+			ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+			ctx.lineTo(x + width, y + height - radius);
+			ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+			ctx.lineTo(x + radius, y + height);
+			ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+			ctx.lineTo(x, y + radius);
+			ctx.quadraticCurveTo(x, y, x + radius, y);
+			ctx.closePath();
+			ctx.fillStyle = fillStyle;
+			ctx.fill();
+		}
+
+		function drawBackground() {
+			ctx.clearRect(0, 0, game.width, game.height);
+
+			const sky = ctx.createLinearGradient(0, 0, 0, game.height);
+			sky.addColorStop(0, 'rgba(255, 255, 255, 0.34)');
+			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.30)');
+			sky.addColorStop(1, 'rgba(255, 255, 255, 0.44)');
+			ctx.fillStyle = sky;
+			ctx.fillRect(0, 0, game.width, game.height);
+
+			game.clouds.forEach((cloud) => {
+				ctx.save();
+				ctx.globalAlpha = cloud.alpha;
+				ctx.fillStyle = '#ffffff';
+				ctx.beginPath();
+				ctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
+				ctx.arc(cloud.x + cloud.size * 0.75, cloud.y + 5, cloud.size * 0.75, 0, Math.PI * 2);
+				ctx.arc(cloud.x - cloud.size * 0.72, cloud.y + 8, cloud.size * 0.68, 0, Math.PI * 2);
+				ctx.fill();
+				ctx.restore();
+			});
+
+			ctx.save();
+			ctx.strokeStyle = 'rgba(111, 127, 159, 0.28)';
+			ctx.lineWidth = 3;
+			ctx.beginPath();
+			ctx.moveTo(42, game.groundY + 2);
+			ctx.lineTo(game.width - 42, game.groundY + 2);
+			ctx.stroke();
+
+			ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+			ctx.lineWidth = 1;
+			ctx.beginPath();
+			ctx.moveTo(42, game.groundY + 6);
+			ctx.lineTo(game.width - 42, game.groundY + 6);
+			ctx.stroke();
+			ctx.restore();
+		}
+
+		function drawCat() {
+			const runBounce = game.state === 'running' && !cat.jumping ? Math.sin(game.frame * 0.24) * 2 : 0;
+			const x = cat.x;
+			const y = cat.y + runBounce;
+
+			ctx.save();
+			ctx.translate(x + cat.width / 2, y + cat.height / 2);
+			ctx.scale(1, cat.squash);
+			ctx.translate(-(x + cat.width / 2), -(y + cat.height / 2));
+
+			ctx.fillStyle = 'rgba(45, 48, 54, 0.16)';
+			ctx.beginPath();
+			ctx.ellipse(x + 34, game.groundY + 8, 34, 8, 0, 0, Math.PI * 2);
+			ctx.fill();
+
+			ctx.fillStyle = '#d9b08c';
+			ctx.beginPath();
+			ctx.ellipse(x + 31, y + 35, 28, 20, 0, 0, Math.PI * 2);
+			ctx.fill();
+
+			ctx.fillStyle = '#e7c19d';
+			ctx.beginPath();
+			ctx.arc(x + 42, y + 19, 19, 0, Math.PI * 2);
+			ctx.fill();
+
+			ctx.fillStyle = '#e7c19d';
+			ctx.beginPath();
+			ctx.moveTo(x + 28, y + 8);
+			ctx.lineTo(x + 35, y - 7);
+			ctx.lineTo(x + 42, y + 10);
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.moveTo(x + 45, y + 8);
+			ctx.lineTo(x + 54, y - 6);
+			ctx.lineTo(x + 58, y + 12);
+			ctx.fill();
+
+			ctx.fillStyle = '#8f6f5b';
+			ctx.beginPath();
+			ctx.arc(x + 36, y + 18, 2.3, 0, Math.PI * 2);
+			ctx.arc(x + 49, y + 18, 2.3, 0, Math.PI * 2);
+			ctx.fill();
+
+			ctx.strokeStyle = '#8f6f5b';
+			ctx.lineWidth = 2;
+			ctx.beginPath();
+			ctx.arc(x + 43, y + 24, 5, 0.12, Math.PI - 0.12);
+			ctx.stroke();
+
+			ctx.strokeStyle = '#d9b08c';
+			ctx.lineWidth = 8;
+			ctx.lineCap = 'round';
+			ctx.beginPath();
+			ctx.moveTo(x + 8, y + 34);
+			ctx.quadraticCurveTo(x - 18, y + 16, x + 4, y + 8);
+			ctx.stroke();
+
+			ctx.strokeStyle = '#8f6f5b';
+			ctx.lineWidth = 3;
+			ctx.beginPath();
+			ctx.moveTo(x + 21, y + 17);
+			ctx.lineTo(x + 16, y + 14);
+			ctx.moveTo(x + 28, y + 13);
+			ctx.lineTo(x + 24, y + 8);
+			ctx.stroke();
+
+			ctx.fillStyle = '#c99976';
+			ctx.fillRect(x + 20, y + 50, 7, 13);
+			ctx.fillRect(x + 43, y + 50, 7, 13);
+
+			ctx.restore();
+		}
+
+		function drawDesk(obstacle) {
+			const x = obstacle.x;
+			const y = obstacle.y;
+
+			drawRoundedRect(x, y, obstacle.width, 18, 8, '#b9a999');
+
+			ctx.fillStyle = '#8d7f72';
+			ctx.fillRect(x + 12, y + 18, 8, obstacle.height - 18);
+			ctx.fillRect(x + obstacle.width - 20, y + 18, 8, obstacle.height - 18);
+
+			ctx.fillStyle = 'rgba(255, 255, 255, 0.42)';
+			ctx.fillRect(x + 10, y + 5, obstacle.width - 20, 3);
+
+			ctx.fillStyle = '#6f7f9f';
+			ctx.font = '900 11px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 23, y - 8);
+
+			ctx.strokeStyle = 'rgba(83, 98, 125, 0.36)';
+			ctx.lineWidth = 2;
+			ctx.strokeRect(x + 22, y + 25, 26, 18);
+		}
+
+		function drawCatTree(obstacle) {
+			const x = obstacle.x;
+			const y = obstacle.y;
+
+			ctx.fillStyle = '#9d8b7d';
+			ctx.fillRect(x + 25, y + 22, 10, obstacle.height - 22);
+
+			drawRoundedRect(x + 6, y + 18, 46, 16, 8, '#b9a999');
+			drawRoundedRect(x - 2, y + 48, 58, 16, 8, '#c7b8aa');
+			drawRoundedRect(x + 10, y + 78, 44, 16, 8, '#b9a999');
+
+			ctx.fillStyle = 'rgba(255, 255, 255, 0.38)';
+			ctx.fillRect(x + 11, y + 23, 34, 3);
+			ctx.fillRect(x + 7, y + 53, 44, 3);
+			ctx.fillRect(x + 15, y + 83, 32, 3);
+
+			ctx.fillStyle = '#6f7f9f';
+			ctx.font = '900 11px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 8, y - 8);
+		}
+
+		function drawObstacles() {
+			game.obstacles.forEach((obstacle) => {
+				if (obstacle.type === 'desk') {
+					drawDesk(obstacle);
+				} else {
+					drawCatTree(obstacle);
+				}
+			});
+		}
+
+		function drawParticles() {
+			game.particles.forEach((particle) => {
+				ctx.save();
+				ctx.globalAlpha = Math.max(0, particle.life / 30);
+				ctx.fillStyle = 'rgba(111, 127, 159, 0.45)';
+				ctx.beginPath();
+				ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+				ctx.fill();
+				ctx.restore();
+			});
+		}
+
+		function drawStatusText() {
+			if (game.state !== 'running') return;
+
+			ctx.save();
+			ctx.fillStyle = 'rgba(69, 81, 102, 0.72)';
+			ctx.font = '900 13px Nunito Sans';
+			ctx.fillText('Uptime growing...', 42, 48);
+			ctx.restore();
+		}
+
+		function render() {
+			drawBackground();
+			drawParticles();
+			drawObstacles();
+			drawCat();
+			drawStatusText();
+		}
+
+		function loop() {
+			update();
+			render();
+			requestAnimationFrame(loop);
+		}
+
+		startButton.addEventListener('click', resetGame);
+		restartButton.addEventListener('click', resetGame);
+
+		resetBestButton.addEventListener('click', () => {
+			bestScore = 0;
+			localStorage.setItem(storageKey, bestScore);
+			bestScoreEl.textContent = bestScore;
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.code === 'Space' || event.code === 'ArrowUp') {
+				event.preventDefault();
+				jump();
+			}
+		});
+
+		canvas.addEventListener('pointerdown', () => {
+			jump();
+		});
+
+		canvas.addEventListener('touchstart', (event) => {
+			event.preventDefault();
+			jump();
+		}, {
+			passive: false
+		});
+
+		startOverlay.addEventListener('click', (event) => {
+			if (event.target === startOverlay) {
+				jump();
+			}
+		});
+
+		render();
+		loop();
+	</script>
+
+</body>
+</html>
