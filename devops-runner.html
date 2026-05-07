@@ -790,13 +790,13 @@
 			cat.jumping = false;
 			cat.squash = 1;
 
-			for (let i = 0; i < 7; i++) {
+			for (let i = 0; i < 4; i++) {
 				game.clouds.push({
 					x: random(0, game.width),
-					y: random(48, 190),
-					size: random(52, 92),
-					speed: random(0.18, 0.48),
-					alpha: random(0.34, 0.62)
+					y: random(56, 180),
+					size: random(36, 68),
+					speed: random(0.18, 0.42),
+					alpha: random(0.22, 0.40)
 				});
 			}
 
@@ -907,11 +907,11 @@
 			game.clouds.forEach((cloud) => {
 				cloud.x -= cloud.speed;
 
-				if (cloud.x < -120) {
+				if (cloud.x < -90) {
 					cloud.x = game.width + random(40, 180);
-					cloud.y = random(48, 190);
-					cloud.size = random(52, 92);
-					cloud.alpha = random(0.34, 0.62);
+					cloud.y = random(56, 180);
+					cloud.size = random(36, 68);
+					cloud.alpha = random(0.22, 0.40);
 				}
 			});
 
@@ -1009,8 +1009,8 @@
 				ctx.fillStyle = '#ffffff';
 				ctx.beginPath();
 				ctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
-				ctx.arc(cloud.x + cloud.size * 0.78, cloud.y + 6, cloud.size * 0.74, 0, Math.PI * 2);
-				ctx.arc(cloud.x - cloud.size * 0.76, cloud.y + 10, cloud.size * 0.70, 0, Math.PI * 2);
+				ctx.arc(cloud.x + cloud.size * 0.72, cloud.y + 5, cloud.size * 0.66, 0, Math.PI * 2);
+				ctx.arc(cloud.x - cloud.size * 0.70, cloud.y + 8, cloud.size * 0.62, 0, Math.PI * 2);
 				ctx.fill();
 				ctx.restore();
 			});
