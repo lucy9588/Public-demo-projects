@@ -11,10 +11,12 @@
 		:root {
 			--text: #26282c;
 			--subtext: #626973;
-			--muted: #7b818b;
+			--muted: #8a9099;
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
-			--danger: #b67777;
+			--line: rgba(111, 127, 159, 0.24);
+			--line-soft: rgba(111, 127, 159, 0.12);
+			--ground-detail: rgba(94, 103, 116, 0.52);
 		}
 
 		* {
@@ -275,202 +277,57 @@
 			top: 0;
 			left: 0;
 			right: 0;
-			z-index: 4;
+			z-index: 5;
 			display: flex;
-			align-items: flex-start;
 			justify-content: center;
-			padding-top: 10px;
+			align-items: flex-start;
+			padding-top: 26px;
 			pointer-events: none;
 		}
 
-		.overlay-card {
-			position: relative;
-			width: min(100%, 300px);
-			padding: 12px 14px 10px;
+		.overlay-minimal {
 			text-align: center;
 			pointer-events: auto;
-			overflow: hidden;
-			border-radius: 20px;
-			backdrop-filter: blur(16px);
-			-webkit-backdrop-filter: blur(16px);
-			box-shadow:
-				0 12px 26px rgba(34, 38, 45, 0.10),
-				inset 0 1px 0 rgba(255, 255, 255, 0.55);
 		}
 
-		.overlay-card::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			border-radius: inherit;
-			pointer-events: none;
-		}
-
-		.overlay-card::after {
-			content: "";
-			position: absolute;
-			width: 110px;
-			height: 110px;
-			border-radius: 50%;
-			filter: blur(18px);
-			opacity: 0.34;
-			pointer-events: none;
-		}
-
-		.overlay-card--start {
-			background:
-				linear-gradient(
-					145deg,
-					rgba(255, 252, 248, 0.96) 0%,
-					rgba(248, 244, 239, 0.92) 52%,
-					rgba(242, 239, 235, 0.88) 100%
-				);
-			border: 1px solid rgba(255, 255, 255, 0.75);
-		}
-
-		.overlay-card--start::before {
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.60),
-					transparent 45%
-				);
-		}
-
-		.overlay-card--start::after {
-			top: -30px;
-			right: -16px;
-			background: rgba(124, 141, 181, 0.18);
-		}
-
-		.overlay-card--danger {
-			background:
-				linear-gradient(
-					145deg,
-					rgba(255, 247, 246, 0.96) 0%,
-					rgba(248, 236, 235, 0.93) 52%,
-					rgba(244, 230, 229, 0.90) 100%
-				);
-			border: 1px solid rgba(198, 140, 140, 0.38);
-			box-shadow:
-				0 14px 32px rgba(120, 80, 80, 0.12),
-				inset 0 1px 0 rgba(255, 255, 255, 0.70);
-			animation: incidentPop 0.4s ease, incidentShake 0.45s ease;
-		}
-
-		.overlay-card--danger::before {
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.48),
-					transparent 48%
-				);
-		}
-
-		.overlay-card--danger::after {
-			bottom: -30px;
-			left: -14px;
-			background: rgba(198, 140, 140, 0.16);
-		}
-
-		@keyframes incidentPop {
-			0% {
-				opacity: 0;
-				transform: scale(0.95) translateY(6px);
-			}
-
-			100% {
-				opacity: 1;
-				transform: scale(1) translateY(0);
-			}
-		}
-
-		@keyframes incidentShake {
-			0% { transform: translateX(0); }
-			20% { transform: translateX(-4px); }
-			40% { transform: translateX(4px); }
-			60% { transform: translateX(-2px); }
-			80% { transform: translateX(1px); }
-			100% { transform: translateX(0); }
-		}
-
-		.overlay-badge {
-			position: relative;
-			z-index: 1;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 7px;
-			padding: 4px 9px;
-			border-radius: 999px;
-			font-size: 8.5px;
+		.overlay-title {
+			font-size: clamp(24px, 3vw, 34px);
 			font-weight: 900;
-			letter-spacing: 0.14em;
+			letter-spacing: 0.22em;
 			text-transform: uppercase;
-			color: #5b6884;
-			background: rgba(124, 141, 181, 0.12);
-			border: 1px solid rgba(124, 141, 181, 0.18);
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.55),
-				0 6px 16px rgba(34, 38, 45, 0.05);
+			color: #515660;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.68),
+				0 8px 22px rgba(34, 38, 45, 0.10);
 		}
 
-		.overlay-badge--danger {
-			color: #8b5555;
-			background: rgba(198, 140, 140, 0.12);
-			border: 1px solid rgba(198, 140, 140, 0.20);
-		}
-
-		.overlay-card h2 {
-			position: relative;
-			z-index: 1;
-			font-size: 17px;
-			line-height: 1.05;
-			font-weight: 900;
-			letter-spacing: -0.04em;
-			margin-bottom: 5px;
-		}
-
-		.overlay-card--start h2 {
-			color: #2f3440;
-		}
-
-		.overlay-card--danger h2 {
-			color: #7b4747;
-		}
-
-		.overlay-card p {
-			position: relative;
-			z-index: 1;
-			max-width: 240px;
-			margin: 0 auto 8px;
-			font-size: 11.5px;
-			line-height: 1.42;
-			font-weight: 700;
-			color: #626973;
-		}
-
-		.button-row {
-			position: relative;
-			z-index: 1;
+		.overlay-actions {
 			display: flex;
 			justify-content: center;
-			gap: 8px;
+			align-items: center;
+			gap: 10px;
+			margin-top: 14px;
 			flex-wrap: wrap;
 		}
 
-		.game-btn {
+		.game-btn,
+		.game-link-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 			border: 0;
 			cursor: pointer;
-			padding: 7px 12px;
+			padding: 8px 16px;
 			border-radius: 999px;
-			font-size: 11px;
+			font-size: 12px;
 			font-weight: 900;
 			letter-spacing: -0.01em;
+			text-decoration: none;
 			transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease, background 0.22s ease;
 		}
 
-		.game-btn--primary {
+		.game-btn--primary,
+		.game-link-btn--primary {
 			color: #ffffff;
 			background: linear-gradient(135deg, #7c8db5, #66779b);
 			box-shadow:
@@ -478,36 +335,26 @@
 				inset 0 1px 0 rgba(255, 255, 255, 0.22);
 		}
 
-		.game-btn--primary:hover {
+		.game-btn--primary:hover,
+		.game-link-btn--primary:hover {
 			transform: translateY(-2px);
 			filter: brightness(1.03);
 		}
 
-		.game-btn--danger {
-			color: #ffffff;
-			background: linear-gradient(135deg, #c68c8c, #b67777);
+		.game-btn--ghost,
+		.game-link-btn--ghost {
+			color: #53627d;
+			background: rgba(255, 255, 255, 0.72);
+			border: 1px solid rgba(255, 255, 255, 0.72);
 			box-shadow:
-				0 8px 18px rgba(182, 119, 119, 0.22),
-				inset 0 1px 0 rgba(255, 255, 255, 0.18);
+				0 6px 14px rgba(34, 38, 45, 0.05),
+				inset 0 1px 0 rgba(255, 255, 255, 0.62);
 		}
 
-		.game-btn--danger:hover {
+		.game-btn--ghost:hover,
+		.game-link-btn--ghost:hover {
 			transform: translateY(-2px);
-			filter: brightness(1.03);
-		}
-
-		.game-btn--ghost {
-			color: #5d6774;
-			background: rgba(255, 255, 255, 0.70);
-			border: 1px solid rgba(255, 255, 255, 0.68);
-			box-shadow:
-				0 6px 12px rgba(34, 38, 45, 0.05),
-				inset 0 1px 0 rgba(255, 255, 255, 0.65);
-		}
-
-		.game-btn--ghost:hover {
-			transform: translateY(-2px);
-			background: rgba(255, 255, 255, 0.82);
+			background: rgba(255, 255, 255, 0.84);
 		}
 
 		.start-btn {
@@ -532,15 +379,6 @@
 					0 8px 18px rgba(102, 119, 155, 0.25),
 					0 0 0 0 rgba(124, 141, 181, 0);
 			}
-		}
-
-		.tips {
-			position: relative;
-			z-index: 1;
-			margin-top: 7px;
-			font-size: 9.5px;
-			font-weight: 800;
-			color: #808791;
 		}
 
 		.hidden {
@@ -610,45 +448,29 @@
 			}
 
 			.overlay {
-				padding-top: 8px;
+				padding-top: 18px;
 			}
 
-			.overlay-card {
-				width: min(100%, 250px);
-				padding: 10px 11px 9px;
-				border-radius: 18px;
+			.overlay-title {
+				font-size: 22px;
+				letter-spacing: 0.16em;
 			}
 
-			.overlay-badge {
-				margin-bottom: 6px;
-				padding: 4px 8px;
-				font-size: 8px;
+			.overlay-actions {
+				gap: 8px;
+				margin-top: 12px;
 			}
 
-			.overlay-card h2 {
-				font-size: 15.5px;
-			}
-
-			.overlay-card p {
-				font-size: 10.5px;
-				line-height: 1.36;
-				margin-bottom: 7px;
-			}
-
-			.game-btn {
-				padding: 6px 10px;
-				font-size: 10.5px;
-			}
-
-			.tips {
-				font-size: 9px;
+			.game-btn,
+			.game-link-btn {
+				padding: 7px 12px;
+				font-size: 11px;
 			}
 		}
 
 		@media (prefers-reduced-motion: reduce) {
 			body::before,
-			.start-btn,
-			.overlay-card--danger {
+			.start-btn {
 				animation: none;
 			}
 
@@ -658,7 +480,8 @@
 
 			.fade,
 			.back-link,
-			.game-btn {
+			.game-btn,
+			.game-link-btn {
 				transition: none;
 			}
 		}
@@ -696,27 +519,21 @@
 				<canvas id="gameCanvas" width="960" height="320"></canvas>
 
 				<div class="overlay" id="startOverlay">
-					<div class="overlay-card overlay-card--start">
-						<div class="overlay-badge">READY</div>
-						<h2>Ready to run?</h2>
-						<p>Jump over desks and cat trees while keeping the platform stable.</p>
-						<div class="button-row">
+					<div class="overlay-minimal">
+						<div class="overlay-title">Ready</div>
+						<div class="overlay-actions">
 							<button class="game-btn game-btn--primary start-btn" id="startButton">Start</button>
 						</div>
-						<div class="tips">Space / Tap / Click · Double jump enabled</div>
 					</div>
 				</div>
 
 				<div class="overlay hidden" id="gameOverOverlay">
-					<div class="overlay-card overlay-card--danger">
-						<div class="overlay-badge overlay-badge--danger">INCIDENT</div>
-						<h2>Incident detected</h2>
-						<p>Your uptime run ended. Restart and keep the platform running.</p>
-						<div class="button-row">
-							<button class="game-btn game-btn--danger" id="restartButton">Restart</button>
-							<button class="game-btn game-btn--ghost" id="resetBestButton">Reset Best</button>
+					<div class="overlay-minimal">
+						<div class="overlay-title">Game Over</div>
+						<div class="overlay-actions">
+							<button class="game-btn game-btn--primary" id="retryButton">Retry</button>
+							<a class="game-link-btn game-link-btn--ghost" href="index.html" id="exitButton">Exit</a>
 						</div>
-						<div class="tips">Press Space or tap anywhere to restart</div>
 					</div>
 				</div>
 			</div>
@@ -761,8 +578,7 @@
 		const startOverlay = document.getElementById('startOverlay');
 		const gameOverOverlay = document.getElementById('gameOverOverlay');
 		const startButton = document.getElementById('startButton');
-		const restartButton = document.getElementById('restartButton');
-		const resetBestButton = document.getElementById('resetBestButton');
+		const retryButton = document.getElementById('retryButton');
 
 		const storageKey = 'devopsRunnerBestScore';
 		let bestScore = Number(localStorage.getItem(storageKey)) || 0;
@@ -773,8 +589,8 @@
 			width: canvas.width,
 			height: canvas.height,
 			groundY: 245,
-			speed: 4.4,
-			baseSpeed: 4.4,
+			speed: 4.5,
+			baseSpeed: 4.5,
 			gravity: 0.62,
 			jumpForce: -12.8,
 			score: 0,
@@ -783,7 +599,8 @@
 			obstacles: [],
 			clouds: [],
 			particles: [],
-			speedLines: []
+			speedLines: [],
+			groundDecor: []
 		};
 
 		const cat = {
@@ -802,16 +619,54 @@
 			return Math.random() * (max - min) + min;
 		}
 
+		function createGroundDecor(x) {
+			const roll = Math.random();
+
+			if (roll < 0.38) {
+				return {
+					type: 'grass',
+					x,
+					size: random(5, 10)
+				};
+			}
+
+			if (roll < 0.72) {
+				return {
+					type: 'pebble',
+					x,
+					width: random(4, 10)
+				};
+			}
+
+			return {
+				type: 'dots',
+				x,
+				count: Math.floor(random(2, 5)),
+				gap: random(3, 6)
+			};
+		}
+
+		function seedGroundDecor() {
+			game.groundDecor = [];
+			let x = random(8, 34);
+
+			while (x < game.width + 80) {
+				game.groundDecor.push(createGroundDecor(x));
+				x += random(18, 44);
+			}
+		}
+
 		function resetGame() {
 			game.state = 'running';
 			game.speed = game.baseSpeed;
 			game.score = 0;
 			game.frame = 0;
-			game.nextObstacleIn = 78;
+			game.nextObstacleIn = 80;
 			game.obstacles = [];
 			game.clouds = [];
 			game.particles = [];
 			game.speedLines = [];
+			game.groundDecor = [];
 
 			cat.y = game.groundY - cat.height;
 			cat.vy = 0;
@@ -829,21 +684,23 @@
 				});
 			}
 
+			seedGroundDecor();
+
 			scoreEl.textContent = 0;
 			startOverlay.classList.add('hidden');
 			gameOverOverlay.classList.add('hidden');
 		}
 
-		function jump() {
-			if (game.state === 'ready') {
-				resetGame();
-				return;
-			}
+		function startGame() {
+			resetGame();
+		}
 
-			if (game.state === 'over') {
-				resetGame();
-				return;
-			}
+		function retryGame() {
+			resetGame();
+		}
+
+		function jump() {
+			if (game.state !== 'running') return;
 
 			if (cat.jumpCount < cat.maxJumps) {
 				if (cat.jumpCount === 0) {
@@ -896,10 +753,30 @@
 		function createSpeedLine() {
 			game.speedLines.push({
 				x: game.width + random(0, 80),
-				y: random(50, game.groundY - 35),
-				length: random(28, 70),
-				alpha: random(0.08, 0.18),
+				y: random(44, game.groundY - 30),
+				length: random(22, 58),
+				alpha: random(0.05, 0.12),
 				speed: random(8, 14)
+			});
+		}
+
+		function recycleGroundDecor() {
+			let farthestX = 0;
+
+			game.groundDecor.forEach((item) => {
+				if (item.x > farthestX) {
+					farthestX = item.x;
+				}
+			});
+
+			game.groundDecor.forEach((item) => {
+				item.x -= game.speed;
+
+				if (item.x < -30) {
+					const newItem = createGroundDecor(farthestX + random(22, 52));
+					Object.assign(item, newItem);
+					farthestX = item.x;
+				}
 			});
 		}
 
@@ -912,7 +789,7 @@
 
 			scoreEl.textContent = Math.floor(game.score / 5);
 
-			if (game.frame % 8 === 0) {
+			if (game.frame % 10 === 0) {
 				createSpeedLine();
 			}
 
@@ -925,6 +802,17 @@
 				cat.vy = 0;
 				cat.jumping = false;
 				cat.jumpCount = 0;
+
+				if (game.frame % 9 === 0) {
+					game.particles.push({
+						x: cat.x + 16 + random(-2, 4),
+						y: game.groundY + 2,
+						vx: random(-0.8, 0.4),
+						vy: random(-0.8, -0.2),
+						life: random(8, 14),
+						size: random(1, 2.4)
+					});
+				}
 			}
 
 			game.nextObstacleIn--;
@@ -951,18 +839,20 @@
 				}
 			});
 
+			recycleGroundDecor();
+
 			game.particles.forEach((particle) => {
 				particle.x += particle.vx;
 				particle.y += particle.vy;
-				particle.vy += 0.08;
+				particle.vy += 0.05;
 				particle.life--;
 			});
 
 			game.particles = game.particles.filter((particle) => particle.life > 0);
 
 			game.speedLines.forEach((line) => {
-				line.x -= line.speed + game.speed * 0.7;
-				line.alpha *= 0.985;
+				line.x -= line.speed + game.speed * 0.65;
+				line.alpha *= 0.986;
 			});
 
 			game.speedLines = game.speedLines.filter((line) => line.x + line.length > 0 && line.alpha > 0.02);
@@ -1054,7 +944,7 @@
 			drawSpeedLines();
 
 			ctx.save();
-			ctx.strokeStyle = 'rgba(111, 127, 159, 0.26)';
+			ctx.strokeStyle = varColor('--line');
 			ctx.lineWidth = 3;
 			ctx.beginPath();
 			ctx.moveTo(36, game.groundY + 2);
@@ -1068,6 +958,12 @@
 			ctx.lineTo(game.width - 36, game.groundY + 6);
 			ctx.stroke();
 			ctx.restore();
+
+			drawGroundDecor();
+		}
+
+		function varColor(name) {
+			return getComputedStyle(document.documentElement).getPropertyValue(name);
 		}
 
 		function drawSpeedLines() {
@@ -1075,7 +971,7 @@
 				ctx.save();
 				ctx.globalAlpha = line.alpha;
 				ctx.strokeStyle = 'rgba(111, 127, 159, 0.42)';
-				ctx.lineWidth = 1.5;
+				ctx.lineWidth = 1.2;
 				ctx.beginPath();
 				ctx.moveTo(line.x, line.y);
 				ctx.lineTo(line.x + line.length, line.y);
@@ -1084,10 +980,58 @@
 			});
 		}
 
+		function drawGroundDecor() {
+			game.groundDecor.forEach((item) => {
+				if (item.type === 'grass') {
+					const baseY = game.groundY + 2;
+
+					ctx.save();
+					ctx.strokeStyle = 'rgba(94, 103, 116, 0.45)';
+					ctx.lineWidth = 1.2;
+					ctx.lineCap = 'round';
+
+					ctx.beginPath();
+					ctx.moveTo(item.x, baseY);
+					ctx.lineTo(item.x - 1.6, baseY - item.size);
+					ctx.moveTo(item.x + 2.6, baseY);
+					ctx.lineTo(item.x + 2.2, baseY - item.size * 0.75);
+					ctx.moveTo(item.x + 5.2, baseY);
+					ctx.lineTo(item.x + 6.5, baseY - item.size * 0.86);
+					ctx.stroke();
+
+					ctx.restore();
+				}
+
+				if (item.type === 'pebble') {
+					ctx.save();
+					ctx.fillStyle = 'rgba(94, 103, 116, 0.42)';
+					ctx.fillRect(item.x, game.groundY + 7, item.width, 1.4);
+					ctx.restore();
+				}
+
+				if (item.type === 'dots') {
+					ctx.save();
+					ctx.fillStyle = 'rgba(94, 103, 116, 0.36)';
+
+					for (let i = 0; i < item.count; i++) {
+						ctx.fillRect(item.x + i * item.gap, game.groundY + 8, 1.5, 1.5);
+					}
+
+					ctx.restore();
+				}
+			});
+		}
+
 		function drawCat() {
-			const runBounce = game.state === 'running' && !cat.jumping ? Math.sin(game.frame * 0.24) * 2 : 0;
+			const isRunningOnGround = game.state === 'running' && !cat.jumping;
+			const runPhase = isRunningOnGround ? Math.sin(game.frame * 0.42) : 0;
+			const runBounce = isRunningOnGround ? Math.sin(game.frame * 0.28) * 1.6 : 0;
+
 			const x = cat.x;
 			const y = cat.y + runBounce;
+
+			const legA = isRunningOnGround ? Math.sin(game.frame * 0.42) * 5 : 0;
+			const legB = isRunningOnGround ? Math.sin(game.frame * 0.42 + Math.PI) * 5 : 0;
 
 			ctx.save();
 			ctx.translate(x + cat.width / 2, y + cat.height / 2);
@@ -1098,6 +1042,21 @@
 			ctx.beginPath();
 			ctx.ellipse(x + 28, game.groundY + 7, 28, 7, 0, 0, Math.PI * 2);
 			ctx.fill();
+
+			ctx.strokeStyle = '#c99976';
+			ctx.lineWidth = 4.6;
+			ctx.lineCap = 'round';
+
+			ctx.beginPath();
+			ctx.moveTo(x + 19, y + 42);
+			ctx.lineTo(x + 18, y + 54 + legA * 0.32);
+			ctx.moveTo(x + 26, y + 42);
+			ctx.lineTo(x + 25, y + 54 + legB * 0.32);
+			ctx.moveTo(x + 37, y + 42);
+			ctx.lineTo(x + 38, y + 54 - legA * 0.32);
+			ctx.moveTo(x + 44, y + 42);
+			ctx.lineTo(x + 45, y + 54 - legB * 0.32);
+			ctx.stroke();
 
 			ctx.fillStyle = '#d9b08c';
 			ctx.beginPath();
@@ -1138,7 +1097,7 @@
 			ctx.lineCap = 'round';
 			ctx.beginPath();
 			ctx.moveTo(x + 8, y + 30);
-			ctx.quadraticCurveTo(x - 14, y + 14, x + 4, y + 8);
+			ctx.quadraticCurveTo(x - 14, y + 14 + runPhase * 0.8, x + 4, y + 8 + runPhase * 0.45);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#8f6f5b';
@@ -1149,10 +1108,6 @@
 			ctx.moveTo(x + 24, y + 11);
 			ctx.lineTo(x + 20, y + 6);
 			ctx.stroke();
-
-			ctx.fillStyle = '#c99976';
-			ctx.fillRect(x + 18, y + 44, 6, 11);
-			ctx.fillRect(x + 37, y + 44, 6, 11);
 
 			ctx.restore();
 		}
@@ -1246,18 +1201,23 @@
 			requestAnimationFrame(loop);
 		}
 
-		startButton.addEventListener('click', resetGame);
-		restartButton.addEventListener('click', resetGame);
-
-		resetBestButton.addEventListener('click', () => {
-			bestScore = 0;
-			localStorage.setItem(storageKey, bestScore);
-			bestScoreEl.textContent = bestScore;
-		});
+		startButton.addEventListener('click', startGame);
+		retryButton.addEventListener('click', retryGame);
 
 		document.addEventListener('keydown', (event) => {
 			if (event.code === 'Space' || event.code === 'ArrowUp') {
 				event.preventDefault();
+
+				if (game.state === 'ready') {
+					startGame();
+					return;
+				}
+
+				if (game.state === 'over') {
+					retryGame();
+					return;
+				}
+
 				jump();
 			}
 		});
@@ -1270,23 +1230,12 @@
 				return;
 			}
 
-			jump();
-		});
-
-		document.addEventListener('touchstart', (event) => {
-			const touchedButton = event.target.closest('button');
-			const touchedLink = event.target.closest('a');
-
-			if (touchedButton || touchedLink) {
-				return;
+			if (game.state === 'running') {
+				jump();
 			}
-
-			event.preventDefault();
-			jump();
-		}, {
-			passive: false
 		});
 
+		seedGroundDecor();
 		render();
 		loop();
 	</script>
