@@ -1252,22 +1252,30 @@
 			}
 		});
 
-		canvas.addEventListener('pointerdown', () => {
-			jump();
-		});
+        document.addEventListener('pointerdown', (event) => {
+            const clickedButton = event.target.closest('button');
+            const clickedLink = event.target.closest('a');
 
-		canvas.addEventListener('touchstart', (event) => {
-			event.preventDefault();
-			jump();
-		}, {
-			passive: false
-		});
+            if (clickedButton || clickedLink) {
+                return;
+            }
 
-		startOverlay.addEventListener('click', (event) => {
-			if (event.target === startOverlay) {
-				jump();
-			}
-		});
+            jump();
+        });
+
+        document.addEventListener('touchstart', (event) => {
+            const touchedButton = event.target.closest('button');
+            const touchedLink = event.target.closest('a');
+
+            if (touchedButton || touchedLink) {
+                return;
+            }
+
+            event.preventDefault();
+            jump();
+        }, {
+            passive: false
+        });
 
 		render();
 		loop();
