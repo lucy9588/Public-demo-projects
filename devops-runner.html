@@ -14,10 +14,9 @@
 			--muted: #7b818b;
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
-			--glass: rgba(255, 255, 255, 0.34);
-			--glass-strong: rgba(255, 255, 255, 0.58);
-			--border: rgba(255, 255, 255, 0.44);
-			--shadow: rgba(34, 38, 45, 0.12);
+			--line: rgba(255, 255, 255, 0.56);
+			--line-soft: rgba(255, 255, 255, 0.32);
+			--shadow: rgba(34, 38, 45, 0.10);
 		}
 
 		* {
@@ -50,9 +49,9 @@
 			pointer-events: none;
 
 			background:
-				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.58), transparent 24%),
-				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.22), transparent 30%),
-				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.18), transparent 38%);
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.42), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.14), transparent 30%),
+				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.10), transparent 38%);
 
 			animation: backgroundFloat 24s ease-in-out infinite;
 		}
@@ -67,9 +66,9 @@
 			background:
 				linear-gradient(
 					180deg,
-					rgba(255, 255, 255, 0.10) 0%,
-					rgba(255, 255, 255, 0.02) 46%,
-					rgba(255, 255, 255, 0.18) 100%
+					rgba(255, 255, 255, 0.05) 0%,
+					rgba(255, 255, 255, 0.01) 46%,
+					rgba(255, 255, 255, 0.08) 100%
 				);
 		}
 
@@ -77,11 +76,9 @@
 			0% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
-
 			50% {
 				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
 			}
-
 			100% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
@@ -98,8 +95,8 @@
 			background:
 				radial-gradient(
 					circle,
-					rgba(255, 255, 255, 0.38),
-					rgba(255, 255, 255, 0.12) 36%,
+					rgba(255, 255, 255, 0.32),
+					rgba(255, 255, 255, 0.08) 36%,
 					transparent 68%
 				);
 
@@ -111,16 +108,16 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			max-width: 1120px;
+			max-width: 1380px;
 			margin: 0 auto;
-			padding: 58px 28px 88px;
+			padding: 52px 24px 84px;
 		}
 
 		.nav {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin-bottom: 56px;
+			margin-bottom: 42px;
 		}
 
 		.nav-title {
@@ -130,8 +127,8 @@
 			letter-spacing: 0.08em;
 			text-transform: uppercase;
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.48),
-				0 10px 22px rgba(34, 38, 45, 0.12);
+				0 1px 0 rgba(255, 255, 255, 0.40),
+				0 10px 22px rgba(34, 38, 45, 0.10);
 		}
 
 		.back-link {
@@ -140,11 +137,9 @@
 			font-size: 13px;
 			font-weight: 800;
 			letter-spacing: -0.01em;
-
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.5),
-				0 12px 28px rgba(34, 38, 45, 0.14);
-
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 12px 28px rgba(34, 38, 45, 0.10);
 			transition:
 				color 0.25s ease,
 				transform 0.25s ease;
@@ -156,25 +151,25 @@
 		}
 
 		.hero {
-			max-width: 760px;
-			margin-bottom: 34px;
+			max-width: 920px;
+			margin-bottom: 30px;
 			position: relative;
 		}
 
 		.hero::before {
 			content: "";
 			position: absolute;
-			width: 380px;
-			height: 380px;
-			top: -160px;
-			left: -140px;
+			width: 420px;
+			height: 420px;
+			top: -170px;
+			left: -150px;
 			z-index: -1;
 
 			background:
 				radial-gradient(
 					circle,
-					rgba(255, 255, 255, 0.84),
-					rgba(124, 141, 181, 0.18) 44%,
+					rgba(255, 255, 255, 0.54),
+					rgba(124, 141, 181, 0.10) 44%,
 					transparent 74%
 				);
 
@@ -182,49 +177,41 @@
 		}
 
 		.hero h1 {
-			font-size: clamp(42px, 7vw, 76px);
-			line-height: 0.96;
+			font-size: clamp(46px, 7vw, 84px);
+			line-height: 0.95;
 			font-weight: 900;
-			letter-spacing: -0.07em;
-
+			letter-spacing: -0.075em;
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.52),
-				0 18px 46px rgba(40, 43, 48, 0.18);
+				0 1px 0 rgba(255, 255, 255, 0.50),
+				0 18px 46px rgba(40, 43, 48, 0.14);
 		}
 
 		.hero p {
-			max-width: 560px;
-			margin-top: 18px;
+			max-width: 620px;
+			margin-top: 16px;
 			color: var(--subtext);
-			font-size: 15px;
+			font-size: 16px;
 			font-weight: 700;
 			line-height: 1.72;
 			letter-spacing: -0.01em;
-
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.42),
-				0 12px 30px rgba(34, 38, 45, 0.12);
+				0 1px 0 rgba(255, 255, 255, 0.36),
+				0 12px 30px rgba(34, 38, 45, 0.10);
 		}
 
 		.game-shell {
 			position: relative;
 			overflow: hidden;
-			border-radius: 30px;
+			border-radius: 34px;
 
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.54),
-					rgba(255, 255, 255, 0.22)
-				);
-
-			border: 1px solid var(--border);
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
+			background: transparent;
+			border: 1px solid var(--line);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
 
 			box-shadow:
-				0 34px 90px rgba(34, 38, 45, 0.14),
-				inset 0 1px 0 rgba(255, 255, 255, 0.66);
+				0 22px 60px rgba(34, 38, 45, 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.24);
 		}
 
 		.game-shell::before {
@@ -232,16 +219,14 @@
 			position: absolute;
 			inset: 0;
 			pointer-events: none;
-
 			background:
 				linear-gradient(
 					120deg,
 					transparent 0%,
-					rgba(255, 255, 255, 0.28) 42%,
+					rgba(255, 255, 255, 0.12) 42%,
 					transparent 72%
 				);
-
-			opacity: 0.48;
+			opacity: 0.42;
 			transform: translateX(-28%);
 		}
 
@@ -250,75 +235,67 @@
 			z-index: 2;
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
-			gap: 18px;
-			padding: 22px 24px 16px;
+			align-items: flex-start;
+			gap: 24px;
+			padding: 24px 28px 18px;
 		}
 
 		.rules {
+			max-width: 520px;
 			color: var(--subtext);
-			font-size: 13px;
+			font-size: 14px;
 			font-weight: 800;
-			line-height: 1.45;
+			line-height: 1.5;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.34),
+				0 8px 20px rgba(34, 38, 45, 0.08);
 		}
 
 		.scoreboard {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: flex-end;
-			gap: 10px;
+			gap: 12px;
 		}
 
 		.score-pill {
-			min-width: 112px;
-			padding: 9px 13px;
+			min-width: 128px;
+			padding: 10px 14px;
 			border-radius: 999px;
 
 			color: #344052;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.46),
-					rgba(255, 255, 255, 0.20)
-				);
+			background: transparent;
+			border: 1px solid var(--line);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
 
-			border: 1px solid rgba(255, 255, 255, 0.46);
-			backdrop-filter: blur(12px);
-			-webkit-backdrop-filter: blur(12px);
-
-			font-size: 12px;
+			font-size: 12.5px;
 			font-weight: 900;
 			text-align: center;
 
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.58),
-				0 12px 28px rgba(34, 38, 45, 0.08);
+				inset 0 1px 0 rgba(255, 255, 255, 0.18),
+				0 8px 24px rgba(34, 38, 45, 0.06);
 		}
 
 		.canvas-wrap {
 			position: relative;
 			z-index: 2;
-			padding: 0 24px 24px;
+			padding: 0 20px 20px;
 		}
 
 		canvas {
 			width: 100%;
 			height: auto;
 			display: block;
-			border-radius: 24px;
+			border-radius: 28px;
 
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255, 255, 255, 0.46) 0%,
-					rgba(255, 255, 255, 0.20) 100%
-				);
-
-			border: 1px solid rgba(255, 255, 255, 0.46);
+			background: transparent;
+			border: 1px solid var(--line-soft);
 
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.58),
-				0 18px 42px rgba(34, 38, 45, 0.08);
+				inset 0 1px 0 rgba(255, 255, 255, 0.18),
+				0 10px 30px rgba(34, 38, 45, 0.04);
 
 			touch-action: manipulation;
 		}
@@ -335,43 +312,43 @@
 		}
 
 		.overlay-card {
-			width: min(100%, 420px);
-			padding: 26px;
-			border-radius: 26px;
+			width: min(100%, 520px);
+			padding: 32px 30px;
+			border-radius: 30px;
 			text-align: center;
 
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.66),
-					rgba(255, 255, 255, 0.30)
-				);
-
-			border: 1px solid rgba(255, 255, 255, 0.56);
-			backdrop-filter: blur(16px);
-			-webkit-backdrop-filter: blur(16px);
+			background: transparent;
+			border: 1px solid var(--line);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
 
 			box-shadow:
-				0 28px 70px rgba(34, 38, 45, 0.16),
-				inset 0 1px 0 rgba(255, 255, 255, 0.7);
+				0 18px 50px rgba(34, 38, 45, 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.20);
 
 			pointer-events: auto;
 		}
 
 		.overlay-card h2 {
-			font-size: 28px;
-			line-height: 1.05;
+			font-size: 32px;
+			line-height: 1.03;
 			font-weight: 900;
 			letter-spacing: -0.055em;
-			margin-bottom: 10px;
+			margin-bottom: 12px;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 10px 24px rgba(34, 38, 45, 0.08);
 		}
 
 		.overlay-card p {
 			color: var(--subtext);
-			font-size: 14px;
+			font-size: 15px;
 			font-weight: 700;
-			line-height: 1.6;
-			margin-bottom: 18px;
+			line-height: 1.65;
+			margin-bottom: 20px;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.26),
+				0 8px 20px rgba(34, 38, 45, 0.06);
 		}
 
 		.button-row {
@@ -382,51 +359,36 @@
 		}
 
 		.game-btn {
-			border: 0;
+			border: 1px solid var(--line);
 			cursor: pointer;
 			padding: 11px 18px;
 			border-radius: 999px;
 
-			color: #ffffff;
-			background:
-				linear-gradient(
-					135deg,
-					var(--primary),
-					var(--primary-dark)
-				);
+			color: #334052;
+			background: transparent;
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
 
 			font-size: 13px;
 			font-weight: 900;
 			letter-spacing: -0.01em;
 
 			box-shadow:
-				0 14px 32px rgba(83, 98, 125, 0.26),
-				inset 0 1px 0 rgba(255, 255, 255, 0.24);
+				0 10px 24px rgba(34, 38, 45, 0.05),
+				inset 0 1px 0 rgba(255, 255, 255, 0.14);
 
 			transition:
 				transform 0.22s ease,
 				box-shadow 0.22s ease,
-				filter 0.22s ease;
+				border-color 0.22s ease;
 		}
 
 		.game-btn:hover {
 			transform: translateY(-2px);
-			filter: brightness(1.04);
+			border-color: rgba(255, 255, 255, 0.74);
 			box-shadow:
-				0 18px 40px rgba(83, 98, 125, 0.32),
-				inset 0 1px 0 rgba(255, 255, 255, 0.28);
-		}
-
-		.secondary-btn {
-			color: #334052;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.62),
-					rgba(255, 255, 255, 0.26)
-				);
-
-			border: 1px solid rgba(255, 255, 255, 0.52);
+				0 14px 30px rgba(34, 38, 45, 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.20);
 		}
 
 		.tips {
@@ -454,23 +416,15 @@
 			transform: translateY(0);
 		}
 
-		@media (max-width: 760px) {
-			body {
-				background-attachment: scroll;
-			}
-
+		@media (max-width: 900px) {
 			.page {
-				padding: 42px 18px 72px;
-			}
-
-			.nav {
-				margin-bottom: 48px;
+				padding: 42px 16px 72px;
 			}
 
 			.game-topbar {
-				align-items: flex-start;
 				flex-direction: column;
-				padding: 18px 18px 12px;
+				align-items: flex-start;
+				padding: 20px 18px 14px;
 			}
 
 			.scoreboard {
@@ -479,15 +433,34 @@
 			}
 
 			.canvas-wrap {
-				padding: 0 14px 14px;
+				padding: 0 12px 12px;
 			}
 
 			.overlay-card {
-				padding: 22px;
+				width: min(100%, 460px);
+				padding: 26px 22px;
+			}
+		}
+
+		@media (max-width: 640px) {
+			body {
+				background-attachment: scroll;
+			}
+
+			.hero h1 {
+				font-size: clamp(40px, 11vw, 58px);
+			}
+
+			.hero p {
+				font-size: 14px;
 			}
 
 			.overlay-card h2 {
-				font-size: 24px;
+				font-size: 26px;
+			}
+
+			.overlay-card p {
+				font-size: 14px;
 			}
 		}
 
@@ -539,7 +512,7 @@
 			</div>
 
 			<div class="canvas-wrap">
-				<canvas id="gameCanvas" width="960" height="420"></canvas>
+				<canvas id="gameCanvas" width="1240" height="560"></canvas>
 
 				<div class="overlay" id="startOverlay">
 					<div class="overlay-card">
@@ -558,7 +531,7 @@
 						<p>Your uptime run ended. Restart and keep the platform running longer.</p>
 						<div class="button-row">
 							<button class="game-btn" id="restartButton">Restart</button>
-							<button class="game-btn secondary-btn" id="resetBestButton">Reset Best</button>
+							<button class="game-btn" id="resetBestButton">Reset Best</button>
 						</div>
 						<div class="tips">Press Space to restart</div>
 					</div>
@@ -617,11 +590,11 @@
 			state: 'ready',
 			width: canvas.width,
 			height: canvas.height,
-			groundY: 322,
-			speed: 5.3,
-			baseSpeed: 5.3,
-			gravity: 0.78,
-			jumpForce: -15.4,
+			groundY: 430,
+			speed: 6,
+			baseSpeed: 6,
+			gravity: 0.82,
+			jumpForce: -17.4,
 			score: 0,
 			frame: 0,
 			nextObstacleIn: 90,
@@ -631,10 +604,10 @@
 		};
 
 		const cat = {
-			x: 116,
-			y: game.groundY - 58,
-			width: 62,
-			height: 58,
+			x: 150,
+			y: game.groundY - 70,
+			width: 72,
+			height: 70,
 			vy: 0,
 			jumping: false,
 			squash: 1
@@ -649,7 +622,7 @@
 			game.speed = game.baseSpeed;
 			game.score = 0;
 			game.frame = 0;
-			game.nextObstacleIn = 70;
+			game.nextObstacleIn = 76;
 			game.obstacles = [];
 			game.clouds = [];
 			game.particles = [];
@@ -662,10 +635,10 @@
 			for (let i = 0; i < 5; i++) {
 				game.clouds.push({
 					x: random(0, game.width),
-					y: random(52, 150),
-					size: random(22, 48),
+					y: random(60, 180),
+					size: random(28, 56),
 					speed: random(0.25, 0.65),
-					alpha: random(0.16, 0.32)
+					alpha: random(0.10, 0.22)
 				});
 			}
 
@@ -710,18 +683,18 @@
 				game.obstacles.push({
 					type,
 					x: game.width + 30,
-					y: game.groundY - 54,
-					width: 82,
-					height: 54,
+					y: game.groundY - 62,
+					width: 92,
+					height: 62,
 					label: 'Ticket'
 				});
 			} else {
 				game.obstacles.push({
 					type,
 					x: game.width + 30,
-					y: game.groundY - 94,
-					width: 58,
-					height: 94,
+					y: game.groundY - 108,
+					width: 68,
+					height: 108,
 					label: 'Alert'
 				});
 			}
@@ -750,7 +723,7 @@
 
 			if (game.nextObstacleIn <= 0) {
 				createObstacle();
-				game.nextObstacleIn = random(82, 138) - Math.min(36, game.score / 80);
+				game.nextObstacleIn = random(88, 144) - Math.min(36, game.score / 80);
 			}
 
 			game.obstacles.forEach((obstacle) => {
@@ -764,8 +737,8 @@
 
 				if (cloud.x < -80) {
 					cloud.x = game.width + random(40, 180);
-					cloud.y = random(52, 150);
-					cloud.size = random(22, 48);
+					cloud.y = random(60, 180);
+					cloud.size = random(28, 56);
 				}
 			});
 
@@ -844,9 +817,9 @@
 			ctx.clearRect(0, 0, game.width, game.height);
 
 			const sky = ctx.createLinearGradient(0, 0, 0, game.height);
-			sky.addColorStop(0, 'rgba(255, 255, 255, 0.34)');
-			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.30)');
-			sky.addColorStop(1, 'rgba(255, 255, 255, 0.44)');
+			sky.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.04)');
+			sky.addColorStop(1, 'rgba(255, 255, 255, 0.08)');
 			ctx.fillStyle = sky;
 			ctx.fillRect(0, 0, game.width, game.height);
 
@@ -863,18 +836,18 @@
 			});
 
 			ctx.save();
-			ctx.strokeStyle = 'rgba(111, 127, 159, 0.28)';
-			ctx.lineWidth = 3;
+			ctx.strokeStyle = 'rgba(111, 127, 159, 0.26)';
+			ctx.lineWidth = 4;
 			ctx.beginPath();
-			ctx.moveTo(42, game.groundY + 2);
-			ctx.lineTo(game.width - 42, game.groundY + 2);
+			ctx.moveTo(48, game.groundY + 2);
+			ctx.lineTo(game.width - 48, game.groundY + 2);
 			ctx.stroke();
 
-			ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+			ctx.strokeStyle = 'rgba(255, 255, 255, 0.56)';
 			ctx.lineWidth = 1;
 			ctx.beginPath();
-			ctx.moveTo(42, game.groundY + 6);
-			ctx.lineTo(game.width - 42, game.groundY + 6);
+			ctx.moveTo(48, game.groundY + 7);
+			ctx.lineTo(game.width - 48, game.groundY + 7);
 			ctx.stroke();
 			ctx.restore();
 		}
@@ -889,66 +862,65 @@
 			ctx.scale(1, cat.squash);
 			ctx.translate(-(x + cat.width / 2), -(y + cat.height / 2));
 
-			ctx.fillStyle = 'rgba(45, 48, 54, 0.16)';
+			ctx.fillStyle = 'rgba(45, 48, 54, 0.10)';
 			ctx.beginPath();
-			ctx.ellipse(x + 34, game.groundY + 8, 34, 8, 0, 0, Math.PI * 2);
+			ctx.ellipse(x + 36, game.groundY + 10, 36, 9, 0, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.fillStyle = '#d9b08c';
 			ctx.beginPath();
-			ctx.ellipse(x + 31, y + 35, 28, 20, 0, 0, Math.PI * 2);
+			ctx.ellipse(x + 34, y + 41, 31, 22, 0, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.fillStyle = '#e7c19d';
 			ctx.beginPath();
-			ctx.arc(x + 42, y + 19, 19, 0, Math.PI * 2);
-			ctx.fill();
-
-			ctx.fillStyle = '#e7c19d';
-			ctx.beginPath();
-			ctx.moveTo(x + 28, y + 8);
-			ctx.lineTo(x + 35, y - 7);
-			ctx.lineTo(x + 42, y + 10);
+			ctx.arc(x + 46, y + 22, 21, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.beginPath();
-			ctx.moveTo(x + 45, y + 8);
-			ctx.lineTo(x + 54, y - 6);
-			ctx.lineTo(x + 58, y + 12);
+			ctx.moveTo(x + 31, y + 12);
+			ctx.lineTo(x + 39, y - 6);
+			ctx.lineTo(x + 46, y + 13);
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.moveTo(x + 49, y + 11);
+			ctx.lineTo(x + 59, y - 5);
+			ctx.lineTo(x + 63, y + 14);
 			ctx.fill();
 
 			ctx.fillStyle = '#8f6f5b';
 			ctx.beginPath();
-			ctx.arc(x + 36, y + 18, 2.3, 0, Math.PI * 2);
-			ctx.arc(x + 49, y + 18, 2.3, 0, Math.PI * 2);
+			ctx.arc(x + 39, y + 22, 2.5, 0, Math.PI * 2);
+			ctx.arc(x + 53, y + 22, 2.5, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.strokeStyle = '#8f6f5b';
 			ctx.lineWidth = 2;
 			ctx.beginPath();
-			ctx.arc(x + 43, y + 24, 5, 0.12, Math.PI - 0.12);
+			ctx.arc(x + 47, y + 28, 5.5, 0.12, Math.PI - 0.12);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#d9b08c';
 			ctx.lineWidth = 8;
 			ctx.lineCap = 'round';
 			ctx.beginPath();
-			ctx.moveTo(x + 8, y + 34);
-			ctx.quadraticCurveTo(x - 18, y + 16, x + 4, y + 8);
+			ctx.moveTo(x + 10, y + 39);
+			ctx.quadraticCurveTo(x - 20, y + 18, x + 5, y + 10);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#8f6f5b';
 			ctx.lineWidth = 3;
 			ctx.beginPath();
-			ctx.moveTo(x + 21, y + 17);
-			ctx.lineTo(x + 16, y + 14);
-			ctx.moveTo(x + 28, y + 13);
-			ctx.lineTo(x + 24, y + 8);
+			ctx.moveTo(x + 22, y + 20);
+			ctx.lineTo(x + 16, y + 16);
+			ctx.moveTo(x + 29, y + 15);
+			ctx.lineTo(x + 24, y + 9);
 			ctx.stroke();
 
 			ctx.fillStyle = '#c99976';
-			ctx.fillRect(x + 20, y + 50, 7, 13);
-			ctx.fillRect(x + 43, y + 50, 7, 13);
+			ctx.fillRect(x + 22, y + 58, 8, 14);
+			ctx.fillRect(x + 47, y + 58, 8, 14);
 
 			ctx.restore();
 		}
@@ -957,22 +929,22 @@
 			const x = obstacle.x;
 			const y = obstacle.y;
 
-			drawRoundedRect(x, y, obstacle.width, 18, 8, '#b9a999');
+			drawRoundedRect(x, y, obstacle.width, 20, 8, '#b9a999');
 
 			ctx.fillStyle = '#8d7f72';
-			ctx.fillRect(x + 12, y + 18, 8, obstacle.height - 18);
-			ctx.fillRect(x + obstacle.width - 20, y + 18, 8, obstacle.height - 18);
+			ctx.fillRect(x + 14, y + 20, 8, obstacle.height - 20);
+			ctx.fillRect(x + obstacle.width - 22, y + 20, 8, obstacle.height - 20);
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.42)';
-			ctx.fillRect(x + 10, y + 5, obstacle.width - 20, 3);
+			ctx.fillStyle = 'rgba(255, 255, 255, 0.36)';
+			ctx.fillRect(x + 10, y + 6, obstacle.width - 20, 3);
 
 			ctx.fillStyle = '#6f7f9f';
-			ctx.font = '900 11px Nunito Sans';
-			ctx.fillText(obstacle.label, x + 23, y - 8);
+			ctx.font = '900 12px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 26, y - 10);
 
-			ctx.strokeStyle = 'rgba(83, 98, 125, 0.36)';
+			ctx.strokeStyle = 'rgba(83, 98, 125, 0.30)';
 			ctx.lineWidth = 2;
-			ctx.strokeRect(x + 22, y + 25, 26, 18);
+			ctx.strokeRect(x + 24, y + 27, 28, 19);
 		}
 
 		function drawCatTree(obstacle) {
@@ -980,20 +952,20 @@
 			const y = obstacle.y;
 
 			ctx.fillStyle = '#9d8b7d';
-			ctx.fillRect(x + 25, y + 22, 10, obstacle.height - 22);
+			ctx.fillRect(x + 29, y + 22, 10, obstacle.height - 22);
 
-			drawRoundedRect(x + 6, y + 18, 46, 16, 8, '#b9a999');
-			drawRoundedRect(x - 2, y + 48, 58, 16, 8, '#c7b8aa');
-			drawRoundedRect(x + 10, y + 78, 44, 16, 8, '#b9a999');
+			drawRoundedRect(x + 8, y + 18, 52, 17, 8, '#b9a999');
+			drawRoundedRect(x, y + 54, 68, 17, 8, '#c7b8aa');
+			drawRoundedRect(x + 12, y + 90, 50, 17, 8, '#b9a999');
 
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.38)';
-			ctx.fillRect(x + 11, y + 23, 34, 3);
-			ctx.fillRect(x + 7, y + 53, 44, 3);
-			ctx.fillRect(x + 15, y + 83, 32, 3);
+			ctx.fillStyle = 'rgba(255, 255, 255, 0.36)';
+			ctx.fillRect(x + 13, y + 23, 38, 3);
+			ctx.fillRect(x + 9, y + 59, 50, 3);
+			ctx.fillRect(x + 18, y + 95, 34, 3);
 
 			ctx.fillStyle = '#6f7f9f';
-			ctx.font = '900 11px Nunito Sans';
-			ctx.fillText(obstacle.label, x + 8, y - 8);
+			ctx.font = '900 12px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 10, y - 10);
 		}
 
 		function drawObstacles() {
@@ -1010,7 +982,7 @@
 			game.particles.forEach((particle) => {
 				ctx.save();
 				ctx.globalAlpha = Math.max(0, particle.life / 30);
-				ctx.fillStyle = 'rgba(111, 127, 159, 0.45)';
+				ctx.fillStyle = 'rgba(111, 127, 159, 0.34)';
 				ctx.beginPath();
 				ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
 				ctx.fill();
@@ -1022,9 +994,9 @@
 			if (game.state !== 'running') return;
 
 			ctx.save();
-			ctx.fillStyle = 'rgba(69, 81, 102, 0.72)';
-			ctx.font = '900 13px Nunito Sans';
-			ctx.fillText('Uptime growing...', 42, 48);
+			ctx.fillStyle = 'rgba(69, 81, 102, 0.60)';
+			ctx.font = '900 14px Nunito Sans';
+			ctx.fillText('Uptime growing...', 52, 56);
 			ctx.restore();
 		}
 
