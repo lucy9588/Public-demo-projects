@@ -1,2 +1,2 @@
-# home.nange.cn
-个人主页，导航页展示。
+# Hey
+Welcome to my personal page
