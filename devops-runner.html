@@ -683,7 +683,7 @@
 			<div class="game-topbar">
 				<div class="rules">
 					Press Space or tap to jump.<br>
-					Avoid incidents and keep your uptime score growing.
+					Second tap in the air for a higher jump.
 				</div>
 
 				<div class="scoreboard">
@@ -703,7 +703,7 @@
 						<div class="button-row">
 							<button class="game-btn game-btn--primary start-btn" id="startButton">Start</button>
 						</div>
-						<div class="tips">Space / Tap / Click</div>
+						<div class="tips">Space / Tap / Click · Double jump enabled</div>
 					</div>
 				</div>
 
@@ -716,7 +716,7 @@
 							<button class="game-btn game-btn--danger" id="restartButton">Restart</button>
 							<button class="game-btn game-btn--ghost" id="resetBestButton">Reset Best</button>
 						</div>
-						<div class="tips">Press Space to restart</div>
+						<div class="tips">Press Space or tap anywhere to restart</div>
 					</div>
 				</div>
 			</div>
@@ -793,7 +793,9 @@
 			height: 54,
 			vy: 0,
 			jumping: false,
-			squash: 1
+			squash: 1,
+			jumpCount: 0,
+			maxJumps: 2
 		};
 
 		function random(min, max) {
@@ -815,6 +817,7 @@
 			cat.vy = 0;
 			cat.jumping = false;
 			cat.squash = 1;
+			cat.jumpCount = 0;
 
 			for (let i = 0; i < 4; i++) {
 				game.clouds.push({
@@ -842,15 +845,21 @@
 				return;
 			}
 
-			if (!cat.jumping) {
-				cat.vy = game.jumpForce;
+			if (cat.jumpCount < cat.maxJumps) {
+				if (cat.jumpCount === 0) {
+					cat.vy = game.jumpForce;
+				} else {
+					cat.vy = game.jumpForce * 0.86;
+				}
+
 				cat.jumping = true;
+				cat.jumpCount++;
 				cat.squash = 0.92;
 
 				for (let i = 0; i < 8; i++) {
 					game.particles.push({
 						x: cat.x + 18 + random(-6, 6),
-						y: game.groundY - 5,
+						y: cat.y + cat.height - 4,
 						vx: random(-1.4, 1.0),
 						vy: random(-2.2, -0.7),
 						life: random(16, 26),
@@ -915,6 +924,7 @@
 				cat.y = game.groundY - cat.height;
 				cat.vy = 0;
 				cat.jumping = false;
+				cat.jumpCount = 0;
 			}
 
 			game.nextObstacleIn--;
@@ -1252,30 +1262,30 @@
 			}
 		});
 
-        document.addEventListener('pointerdown', (event) => {
-            const clickedButton = event.target.closest('button');
-            const clickedLink = event.target.closest('a');
+		document.addEventListener('pointerdown', (event) => {
+			const clickedButton = event.target.closest('button');
+			const clickedLink = event.target.closest('a');
 
-            if (clickedButton || clickedLink) {
-                return;
-            }
+			if (clickedButton || clickedLink) {
+				return;
+			}
 
-            jump();
-        });
+			jump();
+		});
 
-        document.addEventListener('touchstart', (event) => {
-            const touchedButton = event.target.closest('button');
-            const touchedLink = event.target.closest('a');
+		document.addEventListener('touchstart', (event) => {
+			const touchedButton = event.target.closest('button');
+			const touchedLink = event.target.closest('a');
 
-            if (touchedButton || touchedLink) {
-                return;
-            }
+			if (touchedButton || touchedLink) {
+				return;
+			}
 
-            event.preventDefault();
-            jump();
-        }, {
-            passive: false
-        });
+			event.preventDefault();
+			jump();
+		}, {
+			passive: false
+		});
 
 		render();
 		loop();
