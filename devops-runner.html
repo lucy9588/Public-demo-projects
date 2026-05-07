@@ -14,7 +14,7 @@
 			--muted: #7b818b;
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
-			--danger: #b86b6b;
+			--danger: #b67777;
 			--line: rgba(255, 255, 255, 0.58);
 			--line-soft: rgba(255, 255, 255, 0.34);
 			--shadow: rgba(34, 38, 45, 0.12);
@@ -350,81 +350,200 @@
 		}
 
 		.overlay-card {
-			width: min(100%, 520px);
-			padding: 32px 30px;
-			border-radius: 30px;
+			position: relative;
+			width: min(100%, 540px);
+			padding: 34px 34px 28px;
 			text-align: center;
+			pointer-events: auto;
+			overflow: hidden;
 
-			background: transparent;
-			border: 1px solid var(--line);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
+			border-radius: 34px 34px 42px 42px / 28px 28px 46px 46px;
+
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
 
 			box-shadow:
-				0 18px 50px rgba(34, 38, 45, 0.08),
-				inset 0 1px 0 rgba(255, 255, 255, 0.20);
-
-			pointer-events: auto;
+				0 24px 60px rgba(34, 38, 45, 0.14),
+				inset 0 1px 0 rgba(255, 255, 255, 0.65);
 		}
 
-		.overlay-card h2 {
-			font-size: 32px;
-			line-height: 1.03;
-			font-weight: 900;
-			letter-spacing: -0.055em;
-			margin-bottom: 12px;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.42),
-				0 10px 24px rgba(34, 38, 45, 0.08);
+		.overlay-card::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			border-radius: inherit;
 		}
 
-		.overlay-card p {
-			color: var(--subtext);
-			font-size: 15px;
-			font-weight: 700;
-			line-height: 1.65;
-			margin-bottom: 20px;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.26),
-				0 8px 20px rgba(34, 38, 45, 0.06);
+		.overlay-card::after {
+			content: "";
+			position: absolute;
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			filter: blur(20px);
+			opacity: 0.55;
+			pointer-events: none;
 		}
 
-		.overlay-card.game-over-card {
-			border-color: rgba(184, 107, 107, 0.46);
-			animation: incidentShake 0.48s ease;
+		.overlay-card--start {
+			background:
+				linear-gradient(
+					145deg,
+					rgba(255, 252, 248, 0.96) 0%,
+					rgba(248, 244, 239, 0.92) 52%,
+					rgba(242, 239, 235, 0.88) 100%
+				);
+			border: 1px solid rgba(255, 255, 255, 0.75);
 		}
 
-		.overlay-card.game-over-card h2 {
-			color: #6f3e3e;
+		.overlay-card--start::before {
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.66),
+					transparent 45%
+				);
+		}
+
+		.overlay-card--start::after {
+			top: -40px;
+			right: -30px;
+			background: rgba(124, 141, 181, 0.20);
+		}
+
+		.overlay-card--danger {
+			background:
+				linear-gradient(
+					145deg,
+					rgba(255, 247, 246, 0.96) 0%,
+					rgba(248, 236, 235, 0.93) 52%,
+					rgba(244, 230, 229, 0.90) 100%
+				);
+			border: 1px solid rgba(198, 140, 140, 0.40);
+
+			box-shadow:
+				0 26px 66px rgba(120, 80, 80, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.70);
+
+			animation: incidentPop 0.45s ease, incidentShake 0.48s ease;
+		}
+
+		.overlay-card--danger::before {
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.52),
+					transparent 48%
+				);
+		}
+
+		.overlay-card--danger::after {
+			bottom: -40px;
+			left: -20px;
+			background: rgba(198, 140, 140, 0.18);
+		}
+
+		@keyframes incidentPop {
+			0% {
+				opacity: 0;
+				transform: scale(0.94) translateY(10px);
+			}
+
+			100% {
+				opacity: 1;
+				transform: scale(1) translateY(0);
+			}
 		}
 
 		@keyframes incidentShake {
 			0% {
-				transform: translateX(0) rotate(0deg);
+				transform: translateX(0);
 			}
 
-			18% {
-				transform: translateX(-7px) rotate(-0.6deg);
+			20% {
+				transform: translateX(-6px);
 			}
 
-			36% {
-				transform: translateX(7px) rotate(0.6deg);
+			40% {
+				transform: translateX(6px);
 			}
 
-			54% {
-				transform: translateX(-5px) rotate(-0.35deg);
+			60% {
+				transform: translateX(-4px);
 			}
 
-			72% {
-				transform: translateX(4px) rotate(0.25deg);
+			80% {
+				transform: translateX(3px);
 			}
 
 			100% {
-				transform: translateX(0) rotate(0deg);
+				transform: translateX(0);
 			}
 		}
 
+		.overlay-badge {
+			position: relative;
+			z-index: 1;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 14px;
+			padding: 7px 14px;
+			border-radius: 999px;
+
+			font-size: 11px;
+			font-weight: 900;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+
+			color: #5b6884;
+			background: rgba(124, 141, 181, 0.12);
+			border: 1px solid rgba(124, 141, 181, 0.18);
+
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.55),
+				0 6px 16px rgba(34, 38, 45, 0.06);
+		}
+
+		.overlay-badge--danger {
+			color: #8b5555;
+			background: rgba(198, 140, 140, 0.12);
+			border: 1px solid rgba(198, 140, 140, 0.20);
+		}
+
+		.overlay-card h2 {
+			position: relative;
+			z-index: 1;
+			font-size: 38px;
+			line-height: 1.02;
+			font-weight: 900;
+			letter-spacing: -0.055em;
+			margin-bottom: 12px;
+		}
+
+		.overlay-card--start h2 {
+			color: #2f3440;
+		}
+
+		.overlay-card--danger h2 {
+			color: #7b4747;
+		}
+
+		.overlay-card p {
+			position: relative;
+			z-index: 1;
+			max-width: 420px;
+			margin: 0 auto 22px;
+			font-size: 15px;
+			line-height: 1.68;
+			font-weight: 700;
+			color: #626973;
+		}
+
 		.button-row {
+			position: relative;
+			z-index: 1;
 			display: flex;
 			justify-content: center;
 			gap: 12px;
@@ -432,68 +551,112 @@
 		}
 
 		.game-btn {
-			border: 1px solid var(--line);
+			border: 0;
 			cursor: pointer;
-			padding: 11px 18px;
+			padding: 12px 18px;
 			border-radius: 999px;
-
-			color: #334052;
-			background: transparent;
-			backdrop-filter: blur(6px);
-			-webkit-backdrop-filter: blur(6px);
 
 			font-size: 13px;
 			font-weight: 900;
 			letter-spacing: -0.01em;
 
-			box-shadow:
-				0 10px 24px rgba(34, 38, 45, 0.05),
-				inset 0 1px 0 rgba(255, 255, 255, 0.14);
-
 			transition:
 				transform 0.22s ease,
 				box-shadow 0.22s ease,
-				border-color 0.22s ease;
+				filter 0.22s ease,
+				background 0.22s ease;
 		}
 
-		.game-btn:hover {
-			transform: translateY(-2px);
-			border-color: rgba(255, 255, 255, 0.74);
+		.game-btn--primary {
+			color: #ffffff;
+			background:
+				linear-gradient(
+					135deg,
+					#7c8db5,
+					#66779b
+				);
+
 			box-shadow:
-				0 14px 30px rgba(34, 38, 45, 0.08),
-				inset 0 1px 0 rgba(255, 255, 255, 0.20);
+				0 12px 24px rgba(102, 119, 155, 0.28),
+				inset 0 1px 0 rgba(255, 255, 255, 0.24);
+		}
+
+		.game-btn--primary:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.03);
+			box-shadow:
+				0 16px 30px rgba(102, 119, 155, 0.34),
+				inset 0 1px 0 rgba(255, 255, 255, 0.28);
+		}
+
+		.game-btn--danger {
+			color: #ffffff;
+			background:
+				linear-gradient(
+					135deg,
+					#c68c8c,
+					#b67777
+				);
+
+			box-shadow:
+				0 12px 24px rgba(182, 119, 119, 0.24),
+				inset 0 1px 0 rgba(255, 255, 255, 0.18);
+		}
+
+		.game-btn--danger:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.03);
+			box-shadow:
+				0 16px 30px rgba(182, 119, 119, 0.32),
+				inset 0 1px 0 rgba(255, 255, 255, 0.22);
+		}
+
+		.game-btn--ghost {
+			color: #5d6774;
+			background: rgba(255, 255, 255, 0.58);
+			border: 1px solid rgba(255, 255, 255, 0.68);
+
+			box-shadow:
+				0 10px 18px rgba(34, 38, 45, 0.06),
+				inset 0 1px 0 rgba(255, 255, 255, 0.65);
+		}
+
+		.game-btn--ghost:hover {
+			transform: translateY(-2px);
+			background: rgba(255, 255, 255, 0.76);
 		}
 
 		.start-btn {
-			animation: pulseButton 1.6s ease-in-out infinite;
+			animation: pulseButton 1.8s ease-in-out infinite;
 		}
 
 		@keyframes pulseButton {
 			0% {
 				box-shadow:
-					0 10px 24px rgba(34, 38, 45, 0.05),
-					0 0 0 0 rgba(111, 127, 159, 0.30);
+					0 12px 24px rgba(102, 119, 155, 0.28),
+					0 0 0 0 rgba(124, 141, 181, 0.25);
 			}
 
 			70% {
 				box-shadow:
-					0 14px 30px rgba(34, 38, 45, 0.08),
-					0 0 0 12px rgba(111, 127, 159, 0);
+					0 16px 30px rgba(102, 119, 155, 0.34),
+					0 0 0 14px rgba(124, 141, 181, 0);
 			}
 
 			100% {
 				box-shadow:
-					0 10px 24px rgba(34, 38, 45, 0.05),
-					0 0 0 0 rgba(111, 127, 159, 0);
+					0 12px 24px rgba(102, 119, 155, 0.28),
+					0 0 0 0 rgba(124, 141, 181, 0);
 			}
 		}
 
 		.tips {
+			position: relative;
+			z-index: 1;
 			margin-top: 18px;
-			color: var(--muted);
 			font-size: 12.5px;
 			font-weight: 800;
-			text-align: center;
+			color: #808791;
 		}
 
 		.hidden {
@@ -535,7 +698,11 @@
 
 			.overlay-card {
 				width: min(100%, 460px);
-				padding: 26px 22px;
+				padding: 28px 24px 24px;
+			}
+
+			.overlay-card h2 {
+				font-size: 30px;
 			}
 		}
 
@@ -563,7 +730,8 @@
 
 		@media (prefers-reduced-motion: reduce) {
 			body::before,
-			.start-btn {
+			.start-btn,
+			.overlay-card--danger {
 				animation: none;
 			}
 
@@ -613,24 +781,30 @@
 				<canvas id="gameCanvas" width="1240" height="560"></canvas>
 
 				<div class="overlay" id="startOverlay">
-					<div class="overlay-card">
+					<div class="overlay-card overlay-card--start">
+						<div class="overlay-badge">READY</div>
 						<h2>Ready to run?</h2>
 						<p>Help the cat jump over desks and cat trees while keeping the platform stable.</p>
+
 						<div class="button-row">
-							<button class="game-btn start-btn" id="startButton">Start Game</button>
+							<button class="game-btn game-btn--primary start-btn" id="startButton">Start Game</button>
 						</div>
+
 						<div class="tips">Space / Tap / Click to jump</div>
 					</div>
 				</div>
 
 				<div class="overlay hidden" id="gameOverOverlay">
-					<div class="overlay-card game-over-card">
+					<div class="overlay-card overlay-card--danger">
+						<div class="overlay-badge overlay-badge--danger">INCIDENT</div>
 						<h2>Incident detected</h2>
 						<p>Your uptime run ended. Restart and keep the platform running longer.</p>
+
 						<div class="button-row">
-							<button class="game-btn" id="restartButton">Restart</button>
-							<button class="game-btn" id="resetBestButton">Reset Best</button>
+							<button class="game-btn game-btn--danger" id="restartButton">Restart</button>
+							<button class="game-btn game-btn--ghost" id="resetBestButton">Reset Best</button>
 						</div>
+
 						<div class="tips">Press Space to restart</div>
 					</div>
 				</div>
