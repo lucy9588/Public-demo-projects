@@ -14,9 +14,10 @@
 			--muted: #7b818b;
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
-			--line: rgba(255, 255, 255, 0.56);
-			--line-soft: rgba(255, 255, 255, 0.32);
-			--shadow: rgba(34, 38, 45, 0.10);
+			--danger: #b86b6b;
+			--line: rgba(255, 255, 255, 0.58);
+			--line-soft: rgba(255, 255, 255, 0.34);
+			--shadow: rgba(34, 38, 45, 0.12);
 		}
 
 		* {
@@ -76,9 +77,11 @@
 			0% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
+
 			50% {
 				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
 			}
+
 			100% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
@@ -230,6 +233,35 @@
 			transform: translateX(-28%);
 		}
 
+		.game-shell::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			opacity: 0;
+
+			background:
+				radial-gradient(circle at 50% 50%, rgba(184, 107, 107, 0.22), transparent 46%),
+				linear-gradient(180deg, rgba(184, 107, 107, 0.10), transparent);
+
+			transition: opacity 0.24s ease;
+		}
+
+		.game-shell.hit-flash::after {
+			opacity: 1;
+			animation: flashOut 0.55s ease forwards;
+		}
+
+		@keyframes flashOut {
+			0% {
+				opacity: 0.75;
+			}
+
+			100% {
+				opacity: 0;
+			}
+		}
+
 		.game-topbar {
 			position: relative;
 			z-index: 2;
@@ -276,6 +308,12 @@
 			box-shadow:
 				inset 0 1px 0 rgba(255, 255, 255, 0.18),
 				0 8px 24px rgba(34, 38, 45, 0.06);
+		}
+
+		.score-pill span {
+			display: inline-block;
+			min-width: 26px;
+			color: var(--primary-dark);
 		}
 
 		.canvas-wrap {
@@ -351,6 +389,41 @@
 				0 8px 20px rgba(34, 38, 45, 0.06);
 		}
 
+		.overlay-card.game-over-card {
+			border-color: rgba(184, 107, 107, 0.46);
+			animation: incidentShake 0.48s ease;
+		}
+
+		.overlay-card.game-over-card h2 {
+			color: #6f3e3e;
+		}
+
+		@keyframes incidentShake {
+			0% {
+				transform: translateX(0) rotate(0deg);
+			}
+
+			18% {
+				transform: translateX(-7px) rotate(-0.6deg);
+			}
+
+			36% {
+				transform: translateX(7px) rotate(0.6deg);
+			}
+
+			54% {
+				transform: translateX(-5px) rotate(-0.35deg);
+			}
+
+			72% {
+				transform: translateX(4px) rotate(0.25deg);
+			}
+
+			100% {
+				transform: translateX(0) rotate(0deg);
+			}
+		}
+
 		.button-row {
 			display: flex;
 			justify-content: center;
@@ -389,6 +462,30 @@
 			box-shadow:
 				0 14px 30px rgba(34, 38, 45, 0.08),
 				inset 0 1px 0 rgba(255, 255, 255, 0.20);
+		}
+
+		.start-btn {
+			animation: pulseButton 1.6s ease-in-out infinite;
+		}
+
+		@keyframes pulseButton {
+			0% {
+				box-shadow:
+					0 10px 24px rgba(34, 38, 45, 0.05),
+					0 0 0 0 rgba(111, 127, 159, 0.30);
+			}
+
+			70% {
+				box-shadow:
+					0 14px 30px rgba(34, 38, 45, 0.08),
+					0 0 0 12px rgba(111, 127, 159, 0);
+			}
+
+			100% {
+				box-shadow:
+					0 10px 24px rgba(34, 38, 45, 0.05),
+					0 0 0 0 rgba(111, 127, 159, 0);
+			}
 		}
 
 		.tips {
@@ -465,7 +562,8 @@
 		}
 
 		@media (prefers-reduced-motion: reduce) {
-			body::before {
+			body::before,
+			.start-btn {
 				animation: none;
 			}
 
@@ -498,7 +596,7 @@
 			<p>Jump over alerts. Keep the platform running.</p>
 		</header>
 
-		<section class="game-shell fade" aria-label="DevOps Runner game">
+		<section class="game-shell fade" id="gameShell" aria-label="DevOps Runner game">
 			<div class="game-topbar">
 				<div class="rules">
 					Press Space or tap to jump.<br>
@@ -519,14 +617,14 @@
 						<h2>Ready to run?</h2>
 						<p>Help the cat jump over desks and cat trees while keeping the platform stable.</p>
 						<div class="button-row">
-							<button class="game-btn" id="startButton">Start Game</button>
+							<button class="game-btn start-btn" id="startButton">Start Game</button>
 						</div>
 						<div class="tips">Space / Tap / Click to jump</div>
 					</div>
 				</div>
 
 				<div class="overlay hidden" id="gameOverOverlay">
-					<div class="overlay-card">
+					<div class="overlay-card game-over-card">
 						<h2>Incident detected</h2>
 						<p>Your uptime run ended. Restart and keep the platform running longer.</p>
 						<div class="button-row">
@@ -576,6 +674,7 @@
 
 		const scoreEl = document.getElementById('score');
 		const bestScoreEl = document.getElementById('bestScore');
+		const gameShell = document.getElementById('gameShell');
 		const startOverlay = document.getElementById('startOverlay');
 		const gameOverOverlay = document.getElementById('gameOverOverlay');
 		const startButton = document.getElementById('startButton');
@@ -600,7 +699,8 @@
 			nextObstacleIn: 90,
 			obstacles: [],
 			clouds: [],
-			particles: []
+			particles: [],
+			speedLines: []
 		};
 
 		const cat = {
@@ -626,6 +726,7 @@
 			game.obstacles = [];
 			game.clouds = [];
 			game.particles = [];
+			game.speedLines = [];
 
 			cat.y = game.groundY - cat.height;
 			cat.vy = 0;
@@ -645,6 +746,7 @@
 			scoreEl.textContent = 0;
 			startOverlay.classList.add('hidden');
 			gameOverOverlay.classList.add('hidden');
+			gameShell.classList.remove('hit-flash');
 		}
 
 		function jump() {
@@ -663,13 +765,13 @@
 				cat.jumping = true;
 				cat.squash = 0.92;
 
-				for (let i = 0; i < 8; i++) {
+				for (let i = 0; i < 10; i++) {
 					game.particles.push({
 						x: cat.x + 20 + random(-8, 8),
 						y: game.groundY - 8,
-						vx: random(-1.4, 1.2),
-						vy: random(-2.6, -0.8),
-						life: random(18, 30),
+						vx: random(-1.8, 1.2),
+						vy: random(-2.8, -0.8),
+						life: random(18, 32),
 						size: random(2, 4)
 					});
 				}
@@ -700,14 +802,28 @@
 			}
 		}
 
+		function createSpeedLine() {
+			game.speedLines.push({
+				x: game.width + random(0, 120),
+				y: random(70, game.groundY - 50),
+				length: random(36, 98),
+				alpha: random(0.10, 0.22),
+				speed: random(10, 18)
+			});
+		}
+
 		function update() {
 			if (game.state !== 'running') return;
 
 			game.frame++;
 			game.score += 1;
-			game.speed = game.baseSpeed + Math.min(4.2, game.score / 900);
+			game.speed = game.baseSpeed + Math.min(4.6, game.score / 850);
 
 			scoreEl.textContent = Math.floor(game.score / 5);
+
+			if (game.frame % 7 === 0) {
+				createSpeedLine();
+			}
 
 			cat.vy += game.gravity;
 			cat.y += cat.vy;
@@ -723,7 +839,7 @@
 
 			if (game.nextObstacleIn <= 0) {
 				createObstacle();
-				game.nextObstacleIn = random(88, 144) - Math.min(36, game.score / 80);
+				game.nextObstacleIn = random(88, 144) - Math.min(38, game.score / 78);
 			}
 
 			game.obstacles.forEach((obstacle) => {
@@ -750,6 +866,13 @@
 			});
 
 			game.particles = game.particles.filter((particle) => particle.life > 0);
+
+			game.speedLines.forEach((line) => {
+				line.x -= line.speed + game.speed * 0.7;
+				line.alpha *= 0.985;
+			});
+
+			game.speedLines = game.speedLines.filter((line) => line.x + line.length > 0 && line.alpha > 0.02);
 
 			checkCollision();
 		}
@@ -794,6 +917,10 @@
 				bestScoreEl.textContent = bestScore;
 			}
 
+			gameShell.classList.remove('hit-flash');
+			void gameShell.offsetWidth;
+			gameShell.classList.add('hit-flash');
+
 			gameOverOverlay.classList.remove('hidden');
 		}
 
@@ -835,6 +962,8 @@
 				ctx.restore();
 			});
 
+			drawSpeedLines();
+
 			ctx.save();
 			ctx.strokeStyle = 'rgba(111, 127, 159, 0.26)';
 			ctx.lineWidth = 4;
@@ -850,6 +979,20 @@
 			ctx.lineTo(game.width - 48, game.groundY + 7);
 			ctx.stroke();
 			ctx.restore();
+		}
+
+		function drawSpeedLines() {
+			game.speedLines.forEach((line) => {
+				ctx.save();
+				ctx.globalAlpha = line.alpha;
+				ctx.strokeStyle = 'rgba(111, 127, 159, 0.52)';
+				ctx.lineWidth = 2;
+				ctx.beginPath();
+				ctx.moveTo(line.x, line.y);
+				ctx.lineTo(line.x + line.length, line.y);
+				ctx.stroke();
+				ctx.restore();
+			});
 		}
 
 		function drawCat() {
