@@ -15,9 +15,8 @@
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
 			--danger: #b67777;
-			--line: rgba(255, 255, 255, 0.58);
-			--line-soft: rgba(255, 255, 255, 0.34);
-			--shadow: rgba(34, 38, 45, 0.12);
+			--line: rgba(255, 255, 255, 0.56);
+			--line-soft: rgba(255, 255, 255, 0.26);
 		}
 
 		* {
@@ -35,7 +34,6 @@
 			overflow-x: hidden;
 			color: var(--text);
 			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
 			background-image: url('assets/css/images/bg_aboutme.jpg');
 			background-size: cover;
 			background-position: center;
@@ -48,12 +46,10 @@
 			inset: -25%;
 			z-index: 0;
 			pointer-events: none;
-
 			background:
 				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.42), transparent 24%),
 				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.14), transparent 30%),
 				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.10), transparent 38%);
-
 			animation: backgroundFloat 24s ease-in-out infinite;
 		}
 
@@ -63,7 +59,6 @@
 			inset: 0;
 			z-index: 0;
 			pointer-events: none;
-
 			background:
 				linear-gradient(
 					180deg,
@@ -77,11 +72,9 @@
 			0% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
-
 			50% {
 				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
 			}
-
 			100% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
@@ -94,7 +87,6 @@
 			border-radius: 50%;
 			pointer-events: none;
 			z-index: 1;
-
 			background:
 				radial-gradient(
 					circle,
@@ -102,7 +94,6 @@
 					rgba(255, 255, 255, 0.08) 36%,
 					transparent 68%
 				);
-
 			transform: translate(-50%, -50%);
 			mix-blend-mode: soft-light;
 			transition: opacity 0.25s ease;
@@ -111,16 +102,16 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			max-width: 1380px;
+			max-width: 1280px;
 			margin: 0 auto;
-			padding: 52px 24px 84px;
+			padding: 52px 24px 70px;
 		}
 
 		.nav {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin-bottom: 42px;
+			margin-bottom: 34px;
 		}
 
 		.nav-title {
@@ -143,9 +134,7 @@
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.42),
 				0 12px 28px rgba(34, 38, 45, 0.10);
-			transition:
-				color 0.25s ease,
-				transform 0.25s ease;
+			transition: color 0.25s ease, transform 0.25s ease;
 		}
 
 		.back-link:hover {
@@ -154,8 +143,8 @@
 		}
 
 		.hero {
-			max-width: 920px;
-			margin-bottom: 30px;
+			max-width: 860px;
+			margin-bottom: 18px;
 			position: relative;
 		}
 
@@ -167,7 +156,6 @@
 			top: -170px;
 			left: -150px;
 			z-index: -1;
-
 			background:
 				radial-gradient(
 					circle,
@@ -175,12 +163,11 @@
 					rgba(124, 141, 181, 0.10) 44%,
 					transparent 74%
 				);
-
 			filter: blur(12px);
 		}
 
 		.hero h1 {
-			font-size: clamp(46px, 7vw, 84px);
+			font-size: clamp(46px, 7vw, 82px);
 			line-height: 0.95;
 			font-weight: 900;
 			letter-spacing: -0.075em;
@@ -191,7 +178,7 @@
 
 		.hero p {
 			max-width: 620px;
-			margin-top: 16px;
+			margin-top: 14px;
 			color: var(--subtext);
 			font-size: 16px;
 			font-weight: 700;
@@ -204,62 +191,12 @@
 
 		.game-shell {
 			position: relative;
-			overflow: hidden;
-			border-radius: 34px;
-
 			background: transparent;
-			border: 1px solid var(--line);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-
-			box-shadow:
-				0 22px 60px rgba(34, 38, 45, 0.08),
-				inset 0 1px 0 rgba(255, 255, 255, 0.24);
-		}
-
-		.game-shell::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			pointer-events: none;
-			background:
-				linear-gradient(
-					120deg,
-					transparent 0%,
-					rgba(255, 255, 255, 0.12) 42%,
-					transparent 72%
-				);
-			opacity: 0.42;
-			transform: translateX(-28%);
-		}
-
-		.game-shell::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			pointer-events: none;
-			opacity: 0;
-
-			background:
-				radial-gradient(circle at 50% 50%, rgba(184, 107, 107, 0.22), transparent 46%),
-				linear-gradient(180deg, rgba(184, 107, 107, 0.10), transparent);
-
-			transition: opacity 0.24s ease;
-		}
-
-		.game-shell.hit-flash::after {
-			opacity: 1;
-			animation: flashOut 0.55s ease forwards;
-		}
-
-		@keyframes flashOut {
-			0% {
-				opacity: 0.75;
-			}
-
-			100% {
-				opacity: 0;
-			}
+			border: none;
+			box-shadow: none;
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+			overflow: visible;
 		}
 
 		.game-topbar {
@@ -269,7 +206,8 @@
 			justify-content: space-between;
 			align-items: flex-start;
 			gap: 24px;
-			padding: 24px 28px 18px;
+			padding: 12px 0 12px;
+			margin-bottom: 6px;
 		}
 
 		.rules {
@@ -291,50 +229,42 @@
 		}
 
 		.score-pill {
-			min-width: 128px;
-			padding: 10px 14px;
+			min-width: 112px;
+			padding: 9px 14px;
 			border-radius: 999px;
-
 			color: #344052;
-			background: transparent;
-			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.12);
+			border: 1px solid rgba(255, 255, 255, 0.65);
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
-
 			font-size: 12.5px;
 			font-weight: 900;
 			text-align: center;
-
 			box-shadow:
 				inset 0 1px 0 rgba(255, 255, 255, 0.18),
-				0 8px 24px rgba(34, 38, 45, 0.06);
+				0 8px 24px rgba(34, 38, 45, 0.04);
 		}
 
 		.score-pill span {
 			display: inline-block;
-			min-width: 26px;
+			min-width: 24px;
 			color: var(--primary-dark);
 		}
 
 		.canvas-wrap {
 			position: relative;
 			z-index: 2;
-			padding: 0 20px 20px;
+			padding: 0;
 		}
 
 		canvas {
 			width: 100%;
 			height: auto;
 			display: block;
-			border-radius: 28px;
-
+			border-radius: 0;
 			background: transparent;
-			border: 1px solid var(--line-soft);
-
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.18),
-				0 10px 30px rgba(34, 38, 45, 0.04);
-
+			border: none;
+			box-shadow: none;
 			touch-action: manipulation;
 		}
 
@@ -345,26 +275,23 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding: 28px;
+			padding: 10px;
 			pointer-events: none;
 		}
 
 		.overlay-card {
 			position: relative;
-			width: min(100%, 540px);
-			padding: 34px 34px 28px;
+			width: min(100%, 360px);
+			padding: 22px 22px 18px;
 			text-align: center;
 			pointer-events: auto;
 			overflow: hidden;
-
-			border-radius: 34px 34px 42px 42px / 28px 28px 46px 46px;
-
+			border-radius: 28px 28px 34px 34px / 24px 24px 36px 36px;
 			backdrop-filter: blur(18px);
 			-webkit-backdrop-filter: blur(18px);
-
 			box-shadow:
-				0 24px 60px rgba(34, 38, 45, 0.14),
-				inset 0 1px 0 rgba(255, 255, 255, 0.65);
+				0 18px 42px rgba(34, 38, 45, 0.12),
+				inset 0 1px 0 rgba(255, 255, 255, 0.60);
 		}
 
 		.overlay-card::before {
@@ -378,11 +305,11 @@
 		.overlay-card::after {
 			content: "";
 			position: absolute;
-			width: 180px;
-			height: 180px;
+			width: 120px;
+			height: 120px;
 			border-radius: 50%;
-			filter: blur(20px);
-			opacity: 0.55;
+			filter: blur(18px);
+			opacity: 0.45;
 			pointer-events: none;
 		}
 
@@ -401,15 +328,15 @@
 			background:
 				linear-gradient(
 					135deg,
-					rgba(255, 255, 255, 0.66),
+					rgba(255, 255, 255, 0.60),
 					transparent 45%
 				);
 		}
 
 		.overlay-card--start::after {
-			top: -40px;
-			right: -30px;
-			background: rgba(124, 141, 181, 0.20);
+			top: -26px;
+			right: -16px;
+			background: rgba(124, 141, 181, 0.18);
 		}
 
 		.overlay-card--danger {
@@ -420,36 +347,33 @@
 					rgba(248, 236, 235, 0.93) 52%,
 					rgba(244, 230, 229, 0.90) 100%
 				);
-			border: 1px solid rgba(198, 140, 140, 0.40);
-
+			border: 1px solid rgba(198, 140, 140, 0.38);
 			box-shadow:
-				0 26px 66px rgba(120, 80, 80, 0.16),
+				0 20px 46px rgba(120, 80, 80, 0.14),
 				inset 0 1px 0 rgba(255, 255, 255, 0.70);
-
-			animation: incidentPop 0.45s ease, incidentShake 0.48s ease;
+			animation: incidentPop 0.4s ease, incidentShake 0.45s ease;
 		}
 
 		.overlay-card--danger::before {
 			background:
 				linear-gradient(
 					135deg,
-					rgba(255, 255, 255, 0.52),
+					rgba(255, 255, 255, 0.48),
 					transparent 48%
 				);
 		}
 
 		.overlay-card--danger::after {
-			bottom: -40px;
-			left: -20px;
-			background: rgba(198, 140, 140, 0.18);
+			bottom: -28px;
+			left: -14px;
+			background: rgba(198, 140, 140, 0.16);
 		}
 
 		@keyframes incidentPop {
 			0% {
 				opacity: 0;
-				transform: scale(0.94) translateY(10px);
+				transform: scale(0.95) translateY(10px);
 			}
-
 			100% {
 				opacity: 1;
 				transform: scale(1) translateY(0);
@@ -457,29 +381,12 @@
 		}
 
 		@keyframes incidentShake {
-			0% {
-				transform: translateX(0);
-			}
-
-			20% {
-				transform: translateX(-6px);
-			}
-
-			40% {
-				transform: translateX(6px);
-			}
-
-			60% {
-				transform: translateX(-4px);
-			}
-
-			80% {
-				transform: translateX(3px);
-			}
-
-			100% {
-				transform: translateX(0);
-			}
+			0% { transform: translateX(0); }
+			20% { transform: translateX(-5px); }
+			40% { transform: translateX(5px); }
+			60% { transform: translateX(-3px); }
+			80% { transform: translateX(2px); }
+			100% { transform: translateX(0); }
 		}
 
 		.overlay-badge {
@@ -488,22 +395,19 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 14px;
-			padding: 7px 14px;
+			margin-bottom: 10px;
+			padding: 6px 12px;
 			border-radius: 999px;
-
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: 900;
 			letter-spacing: 0.12em;
 			text-transform: uppercase;
-
 			color: #5b6884;
 			background: rgba(124, 141, 181, 0.12);
 			border: 1px solid rgba(124, 141, 181, 0.18);
-
 			box-shadow:
 				inset 0 1px 0 rgba(255, 255, 255, 0.55),
-				0 6px 16px rgba(34, 38, 45, 0.06);
+				0 6px 16px rgba(34, 38, 45, 0.05);
 		}
 
 		.overlay-badge--danger {
@@ -515,11 +419,11 @@
 		.overlay-card h2 {
 			position: relative;
 			z-index: 1;
-			font-size: 38px;
-			line-height: 1.02;
+			font-size: 24px;
+			line-height: 1.05;
 			font-weight: 900;
-			letter-spacing: -0.055em;
-			margin-bottom: 12px;
+			letter-spacing: -0.05em;
+			margin-bottom: 10px;
 		}
 
 		.overlay-card--start h2 {
@@ -533,10 +437,10 @@
 		.overlay-card p {
 			position: relative;
 			z-index: 1;
-			max-width: 420px;
-			margin: 0 auto 22px;
-			font-size: 15px;
-			line-height: 1.68;
+			max-width: 280px;
+			margin: 0 auto 16px;
+			font-size: 14px;
+			line-height: 1.55;
 			font-weight: 700;
 			color: #626973;
 		}
@@ -546,78 +450,53 @@
 			z-index: 1;
 			display: flex;
 			justify-content: center;
-			gap: 12px;
+			gap: 10px;
 			flex-wrap: wrap;
 		}
 
 		.game-btn {
 			border: 0;
 			cursor: pointer;
-			padding: 12px 18px;
+			padding: 10px 16px;
 			border-radius: 999px;
-
 			font-size: 13px;
 			font-weight: 900;
 			letter-spacing: -0.01em;
-
-			transition:
-				transform 0.22s ease,
-				box-shadow 0.22s ease,
-				filter 0.22s ease,
-				background 0.22s ease;
+			transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease, background 0.22s ease;
 		}
 
 		.game-btn--primary {
 			color: #ffffff;
-			background:
-				linear-gradient(
-					135deg,
-					#7c8db5,
-					#66779b
-				);
-
+			background: linear-gradient(135deg, #7c8db5, #66779b);
 			box-shadow:
-				0 12px 24px rgba(102, 119, 155, 0.28),
-				inset 0 1px 0 rgba(255, 255, 255, 0.24);
+				0 10px 20px rgba(102, 119, 155, 0.25),
+				inset 0 1px 0 rgba(255, 255, 255, 0.22);
 		}
 
 		.game-btn--primary:hover {
 			transform: translateY(-2px);
 			filter: brightness(1.03);
-			box-shadow:
-				0 16px 30px rgba(102, 119, 155, 0.34),
-				inset 0 1px 0 rgba(255, 255, 255, 0.28);
 		}
 
 		.game-btn--danger {
 			color: #ffffff;
-			background:
-				linear-gradient(
-					135deg,
-					#c68c8c,
-					#b67777
-				);
-
+			background: linear-gradient(135deg, #c68c8c, #b67777);
 			box-shadow:
-				0 12px 24px rgba(182, 119, 119, 0.24),
+				0 10px 20px rgba(182, 119, 119, 0.22),
 				inset 0 1px 0 rgba(255, 255, 255, 0.18);
 		}
 
 		.game-btn--danger:hover {
 			transform: translateY(-2px);
 			filter: brightness(1.03);
-			box-shadow:
-				0 16px 30px rgba(182, 119, 119, 0.32),
-				inset 0 1px 0 rgba(255, 255, 255, 0.22);
 		}
 
 		.game-btn--ghost {
 			color: #5d6774;
-			background: rgba(255, 255, 255, 0.58);
+			background: rgba(255, 255, 255, 0.62);
 			border: 1px solid rgba(255, 255, 255, 0.68);
-
 			box-shadow:
-				0 10px 18px rgba(34, 38, 45, 0.06),
+				0 8px 14px rgba(34, 38, 45, 0.05),
 				inset 0 1px 0 rgba(255, 255, 255, 0.65);
 		}
 
@@ -633,19 +512,17 @@
 		@keyframes pulseButton {
 			0% {
 				box-shadow:
-					0 12px 24px rgba(102, 119, 155, 0.28),
-					0 0 0 0 rgba(124, 141, 181, 0.25);
+					0 10px 20px rgba(102, 119, 155, 0.25),
+					0 0 0 0 rgba(124, 141, 181, 0.22);
 			}
-
 			70% {
 				box-shadow:
-					0 16px 30px rgba(102, 119, 155, 0.34),
-					0 0 0 14px rgba(124, 141, 181, 0);
+					0 14px 24px rgba(102, 119, 155, 0.30),
+					0 0 0 10px rgba(124, 141, 181, 0);
 			}
-
 			100% {
 				box-shadow:
-					0 12px 24px rgba(102, 119, 155, 0.28),
+					0 10px 20px rgba(102, 119, 155, 0.25),
 					0 0 0 0 rgba(124, 141, 181, 0);
 			}
 		}
@@ -653,8 +530,8 @@
 		.tips {
 			position: relative;
 			z-index: 1;
-			margin-top: 18px;
-			font-size: 12.5px;
+			margin-top: 14px;
+			font-size: 11.5px;
 			font-weight: 800;
 			color: #808791;
 		}
@@ -666,9 +543,7 @@
 		.fade {
 			opacity: 0;
 			transform: translateY(22px);
-			transition:
-				opacity 0.8s ease,
-				transform 0.8s ease;
+			transition: opacity 0.8s ease, transform 0.8s ease;
 		}
 
 		.fade.show {
@@ -678,31 +553,18 @@
 
 		@media (max-width: 900px) {
 			.page {
-				padding: 42px 16px 72px;
+				padding: 40px 16px 56px;
 			}
 
 			.game-topbar {
 				flex-direction: column;
 				align-items: flex-start;
-				padding: 20px 18px 14px;
+				gap: 14px;
 			}
 
 			.scoreboard {
 				width: 100%;
 				justify-content: flex-start;
-			}
-
-			.canvas-wrap {
-				padding: 0 12px 12px;
-			}
-
-			.overlay-card {
-				width: min(100%, 460px);
-				padding: 28px 24px 24px;
-			}
-
-			.overlay-card h2 {
-				font-size: 30px;
 			}
 		}
 
@@ -712,19 +574,59 @@
 			}
 
 			.hero h1 {
-				font-size: clamp(40px, 11vw, 58px);
+				font-size: clamp(34px, 11vw, 56px);
 			}
 
 			.hero p {
 				font-size: 14px;
 			}
 
+			.rules {
+				font-size: 13px;
+			}
+
+			.score-pill {
+				min-width: 96px;
+				padding: 8px 12px;
+				font-size: 12px;
+			}
+
+			.overlay {
+				padding: 8px;
+			}
+
+			.overlay-card {
+				width: min(100%, 300px);
+				padding: 18px 16px 14px;
+				border-radius: 24px 24px 28px 28px / 20px 20px 30px 30px;
+			}
+
+			.overlay-badge {
+				margin-bottom: 8px;
+				padding: 5px 10px;
+				font-size: 9px;
+			}
+
 			.overlay-card h2 {
-				font-size: 26px;
+				font-size: 20px;
+				margin-bottom: 8px;
 			}
 
 			.overlay-card p {
-				font-size: 14px;
+				max-width: 230px;
+				font-size: 13px;
+				line-height: 1.45;
+				margin-bottom: 14px;
+			}
+
+			.game-btn {
+				padding: 9px 14px;
+				font-size: 12px;
+			}
+
+			.tips {
+				font-size: 10.5px;
+				margin-top: 12px;
 			}
 		}
 
@@ -749,11 +651,9 @@
 </head>
 
 <body>
-
 	<div class="cursor-light" id="cursorLight"></div>
 
 	<main class="page">
-
 		<nav class="nav fade">
 			<div class="nav-title">Mini Game</div>
 			<a class="back-link" href="index.html">← Back to Home</a>
@@ -764,7 +664,7 @@
 			<p>Jump over alerts. Keep the platform running.</p>
 		</header>
 
-		<section class="game-shell fade" id="gameShell" aria-label="DevOps Runner game">
+		<section class="game-shell fade" aria-label="DevOps Runner game">
 			<div class="game-topbar">
 				<div class="rules">
 					Press Space or tap to jump.<br>
@@ -785,11 +685,9 @@
 						<div class="overlay-badge">READY</div>
 						<h2>Ready to run?</h2>
 						<p>Help the cat jump over desks and cat trees while keeping the platform stable.</p>
-
 						<div class="button-row">
 							<button class="game-btn game-btn--primary start-btn" id="startButton">Start Game</button>
 						</div>
-
 						<div class="tips">Space / Tap / Click to jump</div>
 					</div>
 				</div>
@@ -799,18 +697,15 @@
 						<div class="overlay-badge overlay-badge--danger">INCIDENT</div>
 						<h2>Incident detected</h2>
 						<p>Your uptime run ended. Restart and keep the platform running longer.</p>
-
 						<div class="button-row">
 							<button class="game-btn game-btn--danger" id="restartButton">Restart</button>
 							<button class="game-btn game-btn--ghost" id="resetBestButton">Reset Best</button>
 						</div>
-
 						<div class="tips">Press Space to restart</div>
 					</div>
 				</div>
 			</div>
 		</section>
-
 	</main>
 
 	<script>
@@ -848,7 +743,6 @@
 
 		const scoreEl = document.getElementById('score');
 		const bestScoreEl = document.getElementById('bestScore');
-		const gameShell = document.getElementById('gameShell');
 		const startOverlay = document.getElementById('startOverlay');
 		const gameOverOverlay = document.getElementById('gameOverOverlay');
 		const startButton = document.getElementById('startButton');
@@ -920,7 +814,6 @@
 			scoreEl.textContent = 0;
 			startOverlay.classList.add('hidden');
 			gameOverOverlay.classList.add('hidden');
-			gameShell.classList.remove('hit-flash');
 		}
 
 		function jump() {
@@ -1091,10 +984,6 @@
 				bestScoreEl.textContent = bestScore;
 			}
 
-			gameShell.classList.remove('hit-flash');
-			void gameShell.offsetWidth;
-			gameShell.classList.add('hit-flash');
-
 			gameOverOverlay.classList.remove('hidden');
 		}
 
@@ -1118,9 +1007,9 @@
 			ctx.clearRect(0, 0, game.width, game.height);
 
 			const sky = ctx.createLinearGradient(0, 0, 0, game.height);
-			sky.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
-			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.04)');
-			sky.addColorStop(1, 'rgba(255, 255, 255, 0.08)');
+			sky.addColorStop(0, 'rgba(255, 255, 255, 0.03)');
+			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.02)');
+			sky.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
 			ctx.fillStyle = sky;
 			ctx.fillRect(0, 0, game.width, game.height);
 
@@ -1159,7 +1048,7 @@
 			game.speedLines.forEach((line) => {
 				ctx.save();
 				ctx.globalAlpha = line.alpha;
-				ctx.strokeStyle = 'rgba(111, 127, 159, 0.52)';
+				ctx.strokeStyle = 'rgba(111, 127, 159, 0.42)';
 				ctx.lineWidth = 2;
 				ctx.beginPath();
 				ctx.moveTo(line.x, line.y);
@@ -1311,7 +1200,7 @@
 			if (game.state !== 'running') return;
 
 			ctx.save();
-			ctx.fillStyle = 'rgba(69, 81, 102, 0.60)';
+			ctx.fillStyle = 'rgba(69, 81, 102, 0.56)';
 			ctx.font = '900 14px Nunito Sans';
 			ctx.fillText('Uptime growing...', 52, 56);
 			ctx.restore();
@@ -1367,6 +1256,5 @@
 		render();
 		loop();
 	</script>
-
 </body>
 </html>
