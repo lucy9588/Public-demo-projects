@@ -5,7 +5,7 @@
 	<title>DevOps Runner</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
 
 	<style>
 		:root {
@@ -15,8 +15,6 @@
 			--primary: #6f7f9f;
 			--primary-dark: #53627d;
 			--line: rgba(111, 127, 159, 0.24);
-			--line-soft: rgba(111, 127, 159, 0.12);
-			--ground-detail: rgba(94, 103, 116, 0.52);
 		}
 
 		* {
@@ -274,39 +272,38 @@
 
 		.overlay {
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
+			inset: 0;
 			z-index: 5;
 			display: flex;
+			align-items: center;
 			justify-content: center;
-			align-items: flex-start;
-			padding-top: 26px;
 			pointer-events: none;
 		}
 
 		.overlay-minimal {
 			text-align: center;
 			pointer-events: auto;
+			transform: translateY(-8px);
 		}
 
 		.overlay-title {
-			font-size: clamp(24px, 3vw, 34px);
-			font-weight: 900;
-			letter-spacing: 0.22em;
+			font-family: 'Press Start 2P', monospace;
+			font-size: clamp(18px, 2.4vw, 28px);
+			line-height: 1.4;
+			letter-spacing: 0.18em;
 			text-transform: uppercase;
-			color: #515660;
+			color: #5d6068;
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.68),
-				0 8px 22px rgba(34, 38, 45, 0.10);
+				0 1px 0 rgba(255, 255, 255, 0.7),
+				0 8px 22px rgba(34, 38, 45, 0.08);
 		}
 
 		.overlay-actions {
 			display: flex;
-			justify-content: center;
 			align-items: center;
-			gap: 10px;
-			margin-top: 14px;
+			justify-content: center;
+			gap: 14px;
+			margin-top: 20px;
 			flex-wrap: wrap;
 		}
 
@@ -317,11 +314,6 @@
 			justify-content: center;
 			border: 0;
 			cursor: pointer;
-			padding: 8px 16px;
-			border-radius: 999px;
-			font-size: 12px;
-			font-weight: 900;
-			letter-spacing: -0.01em;
 			text-decoration: none;
 			transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease, background 0.22s ease;
 		}
@@ -331,34 +323,55 @@
 			color: #ffffff;
 			background: linear-gradient(135deg, #7c8db5, #66779b);
 			box-shadow:
-				0 8px 18px rgba(102, 119, 155, 0.25),
+				0 8px 18px rgba(102, 119, 155, 0.22),
 				inset 0 1px 0 rgba(255, 255, 255, 0.22);
 		}
 
-		.game-btn--primary:hover,
-		.game-link-btn--primary:hover {
-			transform: translateY(-2px);
-			filter: brightness(1.03);
-		}
-
-		.game-btn--ghost,
 		.game-link-btn--ghost {
+			padding: 10px 16px;
+			border-radius: 999px;
 			color: #53627d;
-			background: rgba(255, 255, 255, 0.72);
+			background: rgba(255, 255, 255, 0.76);
 			border: 1px solid rgba(255, 255, 255, 0.72);
 			box-shadow:
 				0 6px 14px rgba(34, 38, 45, 0.05),
 				inset 0 1px 0 rgba(255, 255, 255, 0.62);
+			font-size: 12px;
+			font-weight: 900;
 		}
 
-		.game-btn--ghost:hover,
 		.game-link-btn--ghost:hover {
 			transform: translateY(-2px);
-			background: rgba(255, 255, 255, 0.84);
+			background: rgba(255, 255, 255, 0.86);
 		}
 
 		.start-btn {
+			padding: 10px 18px;
+			border-radius: 999px;
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: -0.01em;
 			animation: pulseButton 1.8s ease-in-out infinite;
+		}
+
+		.retry-circle {
+			width: 56px;
+			height: 56px;
+			border-radius: 50%;
+			position: relative;
+			font-size: 24px;
+			font-weight: 900;
+			line-height: 1;
+		}
+
+		.retry-circle:hover,
+		.start-btn:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.03);
+		}
+
+		.retry-circle span {
+			transform: translateY(-1px);
 		}
 
 		@keyframes pulseButton {
@@ -447,24 +460,26 @@
 				font-size: 11.5px;
 			}
 
-			.overlay {
-				padding-top: 18px;
-			}
-
 			.overlay-title {
-				font-size: 22px;
-				letter-spacing: 0.16em;
+				font-size: 16px;
+				letter-spacing: 0.14em;
 			}
 
 			.overlay-actions {
-				gap: 8px;
-				margin-top: 12px;
+				gap: 10px;
+				margin-top: 16px;
 			}
 
-			.game-btn,
-			.game-link-btn {
-				padding: 7px 12px;
+			.retry-circle {
+				width: 50px;
+				height: 50px;
+				font-size: 21px;
+			}
+
+			.start-btn,
+			.game-link-btn--ghost {
 				font-size: 11px;
+				padding: 8px 14px;
 			}
 		}
 
@@ -531,7 +546,9 @@
 					<div class="overlay-minimal">
 						<div class="overlay-title">Game Over</div>
 						<div class="overlay-actions">
-							<button class="game-btn game-btn--primary" id="retryButton">Retry</button>
+							<button class="game-btn game-btn--primary retry-circle" id="retryButton" aria-label="Retry">
+								<span>↻</span>
+							</button>
 							<a class="game-link-btn game-link-btn--ghost" href="index.html" id="exitButton">Exit</a>
 						</div>
 					</div>
@@ -589,13 +606,13 @@
 			width: canvas.width,
 			height: canvas.height,
 			groundY: 245,
-			speed: 4.5,
-			baseSpeed: 4.5,
-			gravity: 0.62,
-			jumpForce: -12.8,
+			speed: 4.2,
+			baseSpeed: 4.2,
+			gravity: 0.60,
+			jumpForce: -12.6,
 			score: 0,
 			frame: 0,
-			nextObstacleIn: 88,
+			nextObstacleIn: 118,
 			obstacles: [],
 			clouds: [],
 			particles: [],
@@ -622,7 +639,7 @@
 		function createGroundDecor(x) {
 			const roll = Math.random();
 
-			if (roll < 0.38) {
+			if (roll < 0.20) {
 				return {
 					type: 'grass',
 					x,
@@ -630,25 +647,34 @@
 				};
 			}
 
-			if (roll < 0.72) {
+			if (roll < 0.38) {
 				return {
-					type: 'pebble',
+					type: 'hump',
 					x,
-					width: random(4, 10)
+					width: random(12, 20),
+					height: random(2, 5)
+				};
+			}
+
+			if (roll < 0.70) {
+				return {
+					type: 'dots',
+					x,
+					count: Math.floor(random(2, 5)),
+					gap: random(3, 6)
 				};
 			}
 
 			return {
-				type: 'dots',
+				type: 'pebble',
 				x,
-				count: Math.floor(random(2, 5)),
-				gap: random(3, 6)
+				width: random(4, 10)
 			};
 		}
 
 		function seedGroundDecor() {
 			game.groundDecor = [];
-			let x = random(8, 34);
+			let x = random(8, 28);
 
 			while (x < game.width + 80) {
 				game.groundDecor.push(createGroundDecor(x));
@@ -661,7 +687,7 @@
 			game.speed = game.baseSpeed;
 			game.score = 0;
 			game.frame = 0;
-			game.nextObstacleIn = 80;
+			game.nextObstacleIn = 118;
 			game.obstacles = [];
 			game.clouds = [];
 			game.particles = [];
@@ -679,8 +705,8 @@
 					x: random(0, game.width),
 					y: random(38, 116),
 					size: random(22, 42),
-					speed: random(0.12, 0.30),
-					alpha: random(0.24, 0.40)
+					speed: random(0.12, 0.26),
+					alpha: random(0.22, 0.36)
 				});
 			}
 
@@ -706,7 +732,7 @@
 				if (cat.jumpCount === 0) {
 					cat.vy = game.jumpForce;
 				} else {
-					cat.vy = game.jumpForce * 0.86;
+					cat.vy = game.jumpForce * 0.84;
 				}
 
 				cat.jumping = true;
@@ -717,17 +743,18 @@
 					game.particles.push({
 						x: cat.x + 18 + random(-6, 6),
 						y: cat.y + cat.height - 4,
-						vx: random(-1.4, 1.0),
-						vy: random(-2.2, -0.7),
-						life: random(16, 26),
-						size: random(1.5, 3)
+						vx: random(-1.3, 0.9),
+						vy: random(-2.0, -0.6),
+						life: random(16, 24),
+						size: random(1.4, 2.8)
 					});
 				}
 			}
 		}
 
 		function createObstacle() {
-			const type = Math.random() > 0.5 ? 'desk' : 'catTree';
+			const typeRoll = Math.random();
+			const type = typeRoll > 0.52 ? 'desk' : 'catTree';
 
 			if (type === 'desk') {
 				game.obstacles.push({
@@ -750,13 +777,30 @@
 			}
 		}
 
+		function computeNextGap() {
+			const speedFactor = Math.min(28, game.score / 24);
+			let minGap = 108 - speedFactor;
+			let maxGap = 182 - speedFactor * 0.8;
+
+			minGap = Math.max(78, minGap);
+			maxGap = Math.max(126, maxGap);
+
+			let gap = random(minGap, maxGap);
+
+			if (game.score > 180 && Math.random() < 0.18) {
+				gap *= 0.78;
+			}
+
+			return gap;
+		}
+
 		function createSpeedLine() {
 			game.speedLines.push({
 				x: game.width + random(0, 80),
-				y: random(44, game.groundY - 30),
-				length: random(22, 58),
-				alpha: random(0.05, 0.12),
-				speed: random(8, 14)
+				y: random(48, game.groundY - 34),
+				length: random(20, 54),
+				alpha: random(0.04, 0.10),
+				speed: random(7, 12)
 			});
 		}
 
@@ -772,8 +816,8 @@
 			game.groundDecor.forEach((item) => {
 				item.x -= game.speed;
 
-				if (item.x < -30) {
-					const newItem = createGroundDecor(farthestX + random(22, 52));
+				if (item.x < -36) {
+					const newItem = createGroundDecor(farthestX + random(20, 48));
 					Object.assign(item, newItem);
 					farthestX = item.x;
 				}
@@ -785,11 +829,11 @@
 
 			game.frame++;
 			game.score += 1;
-			game.speed = game.baseSpeed + Math.min(3.2, game.score / 900);
+			game.speed = game.baseSpeed + Math.min(2.6, game.score / 980);
 
 			scoreEl.textContent = Math.floor(game.score / 5);
 
-			if (game.frame % 10 === 0) {
+			if (game.frame % 12 === 0) {
 				createSpeedLine();
 			}
 
@@ -803,14 +847,14 @@
 				cat.jumping = false;
 				cat.jumpCount = 0;
 
-				if (game.frame % 9 === 0) {
+				if (game.frame % 7 === 0) {
 					game.particles.push({
-						x: cat.x + 16 + random(-2, 4),
-						y: game.groundY + 2,
-						vx: random(-0.8, 0.4),
-						vy: random(-0.8, -0.2),
-						life: random(8, 14),
-						size: random(1, 2.4)
+						x: cat.x + 16 + random(-2, 5),
+						y: game.groundY + 3,
+						vx: random(-0.8, 0.35),
+						vy: random(-0.6, -0.1),
+						life: random(8, 12),
+						size: random(1, 2.2)
 					});
 				}
 			}
@@ -819,23 +863,23 @@
 
 			if (game.nextObstacleIn <= 0) {
 				createObstacle();
-				game.nextObstacleIn = random(86, 142) - Math.min(34, game.score / 80);
+				game.nextObstacleIn = computeNextGap();
 			}
 
 			game.obstacles.forEach((obstacle) => {
 				obstacle.x -= game.speed;
 			});
 
-			game.obstacles = game.obstacles.filter((obstacle) => obstacle.x + obstacle.width > -60);
+			game.obstacles = game.obstacles.filter((obstacle) => obstacle.x + obstacle.width > -70);
 
 			game.clouds.forEach((cloud) => {
 				cloud.x -= cloud.speed;
 
-				if (cloud.x < -80) {
+				if (cloud.x < -90) {
 					cloud.x = game.width + random(40, 160);
 					cloud.y = random(38, 116);
 					cloud.size = random(22, 42);
-					cloud.alpha = random(0.24, 0.40);
+					cloud.alpha = random(0.22, 0.36);
 				}
 			});
 
@@ -851,8 +895,8 @@
 			game.particles = game.particles.filter((particle) => particle.life > 0);
 
 			game.speedLines.forEach((line) => {
-				line.x -= line.speed + game.speed * 0.65;
-				line.alpha *= 0.986;
+				line.x -= line.speed + game.speed * 0.6;
+				line.alpha *= 0.987;
 			});
 
 			game.speedLines = game.speedLines.filter((line) => line.x + line.length > 0 && line.alpha > 0.02);
@@ -944,7 +988,7 @@
 			drawSpeedLines();
 
 			ctx.save();
-			ctx.strokeStyle = varColor('--line');
+			ctx.strokeStyle = 'rgba(111, 127, 159, 0.26)';
 			ctx.lineWidth = 3;
 			ctx.beginPath();
 			ctx.moveTo(36, game.groundY + 2);
@@ -957,21 +1001,27 @@
 			ctx.moveTo(36, game.groundY + 6);
 			ctx.lineTo(game.width - 36, game.groundY + 6);
 			ctx.stroke();
+
+			ctx.setLineDash([3, 13]);
+			ctx.lineDashOffset = -game.frame * (game.speed * 0.9);
+			ctx.strokeStyle = 'rgba(95, 102, 113, 0.42)';
+			ctx.lineWidth = 1.2;
+			ctx.beginPath();
+			ctx.moveTo(36, game.groundY + 10);
+			ctx.lineTo(game.width - 36, game.groundY + 10);
+			ctx.stroke();
+			ctx.setLineDash([]);
 			ctx.restore();
 
 			drawGroundDecor();
-		}
-
-		function varColor(name) {
-			return getComputedStyle(document.documentElement).getPropertyValue(name);
 		}
 
 		function drawSpeedLines() {
 			game.speedLines.forEach((line) => {
 				ctx.save();
 				ctx.globalAlpha = line.alpha;
-				ctx.strokeStyle = 'rgba(111, 127, 159, 0.42)';
-				ctx.lineWidth = 1.2;
+				ctx.strokeStyle = 'rgba(111, 127, 159, 0.38)';
+				ctx.lineWidth = 1.1;
 				ctx.beginPath();
 				ctx.moveTo(line.x, line.y);
 				ctx.lineTo(line.x + line.length, line.y);
@@ -986,32 +1036,48 @@
 					const baseY = game.groundY + 2;
 
 					ctx.save();
-					ctx.strokeStyle = 'rgba(94, 103, 116, 0.45)';
+					ctx.strokeStyle = 'rgba(94, 103, 116, 0.46)';
 					ctx.lineWidth = 1.2;
 					ctx.lineCap = 'round';
 
 					ctx.beginPath();
 					ctx.moveTo(item.x, baseY);
-					ctx.lineTo(item.x - 1.6, baseY - item.size);
-					ctx.moveTo(item.x + 2.6, baseY);
-					ctx.lineTo(item.x + 2.2, baseY - item.size * 0.75);
+					ctx.lineTo(item.x - 1.5, baseY - item.size);
+					ctx.moveTo(item.x + 2.4, baseY);
+					ctx.lineTo(item.x + 2.2, baseY - item.size * 0.72);
 					ctx.moveTo(item.x + 5.2, baseY);
-					ctx.lineTo(item.x + 6.5, baseY - item.size * 0.86);
+					ctx.lineTo(item.x + 6.4, baseY - item.size * 0.86);
 					ctx.stroke();
 
+					ctx.restore();
+				}
+
+				if (item.type === 'hump') {
+					ctx.save();
+					ctx.strokeStyle = 'rgba(95, 102, 113, 0.48)';
+					ctx.lineWidth = 1.4;
+					ctx.beginPath();
+					ctx.moveTo(item.x, game.groundY + 2);
+					ctx.quadraticCurveTo(
+						item.x + item.width * 0.5,
+						game.groundY + 2 - item.height,
+						item.x + item.width,
+						game.groundY + 2
+					);
+					ctx.stroke();
 					ctx.restore();
 				}
 
 				if (item.type === 'pebble') {
 					ctx.save();
 					ctx.fillStyle = 'rgba(94, 103, 116, 0.42)';
-					ctx.fillRect(item.x, game.groundY + 7, item.width, 1.4);
+					ctx.fillRect(item.x, game.groundY + 8, item.width, 1.4);
 					ctx.restore();
 				}
 
 				if (item.type === 'dots') {
 					ctx.save();
-					ctx.fillStyle = 'rgba(94, 103, 116, 0.36)';
+					ctx.fillStyle = 'rgba(94, 103, 116, 0.34)';
 
 					for (let i = 0; i < item.count; i++) {
 						ctx.fillRect(item.x + i * item.gap, game.groundY + 8, 1.5, 1.5);
@@ -1023,15 +1089,16 @@
 		}
 
 		function drawCat() {
-			const isRunningOnGround = game.state === 'running' && !cat.jumping;
-			const runPhase = isRunningOnGround ? Math.sin(game.frame * 0.42) : 0;
-			const runBounce = isRunningOnGround ? Math.sin(game.frame * 0.28) * 1.6 : 0;
+			const runningOnGround = game.state === 'running' && !cat.jumping;
+			const runCycle = runningOnGround ? game.frame * 0.44 : 0;
+			const runBounce = runningOnGround ? Math.sin(game.frame * 0.28) * 1.6 : 0;
 
 			const x = cat.x;
 			const y = cat.y + runBounce;
 
-			const legA = isRunningOnGround ? Math.sin(game.frame * 0.42) * 5 : 0;
-			const legB = isRunningOnGround ? Math.sin(game.frame * 0.42 + Math.PI) * 5 : 0;
+			const frontStep = runningOnGround ? Math.sin(runCycle) * 5.2 : 0;
+			const backStep = runningOnGround ? Math.sin(runCycle + Math.PI) * 5.2 : 0;
+			const tailSwing = runningOnGround ? Math.sin(runCycle * 0.8) * 3.5 : 0;
 
 			ctx.save();
 			ctx.translate(x + cat.width / 2, y + cat.height / 2);
@@ -1044,18 +1111,21 @@
 			ctx.fill();
 
 			ctx.strokeStyle = '#c99976';
-			ctx.lineWidth = 4.6;
+			ctx.lineWidth = 4.4;
 			ctx.lineCap = 'round';
 
 			ctx.beginPath();
-			ctx.moveTo(x + 19, y + 42);
-			ctx.lineTo(x + 18, y + 54 + legA * 0.32);
+			ctx.moveTo(x + 18, y + 42);
+			ctx.lineTo(x + 18 + backStep * 0.34, y + 54 - Math.abs(backStep) * 0.16);
+
 			ctx.moveTo(x + 26, y + 42);
-			ctx.lineTo(x + 25, y + 54 + legB * 0.32);
+			ctx.lineTo(x + 26 - backStep * 0.28, y + 54 - Math.abs(backStep) * 0.12);
+
 			ctx.moveTo(x + 37, y + 42);
-			ctx.lineTo(x + 38, y + 54 - legA * 0.32);
-			ctx.moveTo(x + 44, y + 42);
-			ctx.lineTo(x + 45, y + 54 - legB * 0.32);
+			ctx.lineTo(x + 37 + frontStep * 0.34, y + 54 - Math.abs(frontStep) * 0.16);
+
+			ctx.moveTo(x + 45, y + 42);
+			ctx.lineTo(x + 45 - frontStep * 0.28, y + 54 - Math.abs(frontStep) * 0.12);
 			ctx.stroke();
 
 			ctx.fillStyle = '#d9b08c';
@@ -1097,7 +1167,12 @@
 			ctx.lineCap = 'round';
 			ctx.beginPath();
 			ctx.moveTo(x + 8, y + 30);
-			ctx.quadraticCurveTo(x - 14, y + 14 + runPhase * 0.8, x + 4, y + 8 + runPhase * 0.45);
+			ctx.quadraticCurveTo(
+				x - 14,
+				y + 14 + tailSwing,
+				x + 4,
+				y + 8 + tailSwing * 0.45
+			);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#8f6f5b';
@@ -1233,6 +1308,22 @@
 			if (game.state === 'running') {
 				jump();
 			}
+		});
+
+		document.addEventListener('touchstart', (event) => {
+			const touchedButton = event.target.closest('button');
+			const touchedLink = event.target.closest('a');
+
+			if (touchedButton || touchedLink) {
+				return;
+			}
+
+			if (game.state === 'running') {
+				event.preventDefault();
+				jump();
+			}
+		}, {
+			passive: false
 		});
 
 		seedGroundDecor();
