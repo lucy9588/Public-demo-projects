@@ -36,6 +36,7 @@
 			background-size: cover;
 			background-position: center;
 			background-attachment: fixed;
+            touch-action: manipulation;
 		}
 
 		body::before {
@@ -1297,34 +1298,18 @@
 			}
 		});
 
-		document.addEventListener('pointerdown', (event) => {
-			const clickedButton = event.target.closest('button');
-			const clickedLink = event.target.closest('a');
+	document.addEventListener('pointerdown', (event) => {
+            const clickedButton = event.target.closest('button');
+            const clickedLink = event.target.closest('a');
 
-			if (clickedButton || clickedLink) {
-				return;
-			}
+            if (clickedButton || clickedLink) {
+                return;
+            }
 
-			if (game.state === 'running') {
-				jump();
-			}
-		});
-
-		document.addEventListener('touchstart', (event) => {
-			const touchedButton = event.target.closest('button');
-			const touchedLink = event.target.closest('a');
-
-			if (touchedButton || touchedLink) {
-				return;
-			}
-
-			if (game.state === 'running') {
-				event.preventDefault();
-				jump();
-			}
-		}, {
-			passive: false
-		});
+            if (game.state === 'running') {
+                jump();
+            }
+        });
 
 		seedGroundDecor();
 		render();
