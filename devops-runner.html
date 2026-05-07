@@ -70,9 +70,11 @@
 			0% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
+
 			50% {
 				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
 			}
+
 			100% {
 				transform: translate3d(0, 0, 0) scale(1);
 			}
@@ -100,9 +102,9 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			max-width: 1280px;
+			max-width: 1040px;
 			margin: 0 auto;
-			padding: 52px 24px 70px;
+			padding: 46px 24px 70px;
 		}
 
 		.nav {
@@ -114,7 +116,7 @@
 
 		.nav-title {
 			color: var(--muted);
-			font-size: 13px;
+			font-size: 12.5px;
 			font-weight: 900;
 			letter-spacing: 0.08em;
 			text-transform: uppercase;
@@ -126,7 +128,7 @@
 		.back-link {
 			color: #2f343b;
 			text-decoration: none;
-			font-size: 13px;
+			font-size: 12.5px;
 			font-weight: 800;
 			letter-spacing: -0.01em;
 			text-shadow:
@@ -141,18 +143,18 @@
 		}
 
 		.hero {
-			max-width: 860px;
-			margin-bottom: 18px;
+			max-width: 760px;
+			margin-bottom: 16px;
 			position: relative;
 		}
 
 		.hero::before {
 			content: "";
 			position: absolute;
-			width: 420px;
-			height: 420px;
-			top: -170px;
-			left: -150px;
+			width: 340px;
+			height: 340px;
+			top: -150px;
+			left: -120px;
 			z-index: -1;
 			background:
 				radial-gradient(
@@ -165,22 +167,22 @@
 		}
 
 		.hero h1 {
-			font-size: clamp(46px, 7vw, 82px);
-			line-height: 0.95;
+			font-size: clamp(38px, 5.8vw, 58px);
+			line-height: 0.98;
 			font-weight: 900;
-			letter-spacing: -0.075em;
+			letter-spacing: -0.065em;
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.50),
-				0 18px 46px rgba(40, 43, 48, 0.14);
+				0 14px 36px rgba(40, 43, 48, 0.12);
 		}
 
 		.hero p {
-			max-width: 620px;
-			margin-top: 14px;
+			max-width: 520px;
+			margin-top: 12px;
 			color: var(--subtext);
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 700;
-			line-height: 1.72;
+			line-height: 1.6;
 			letter-spacing: -0.01em;
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.36),
@@ -202,14 +204,16 @@
 			justify-content: space-between;
 			align-items: flex-start;
 			gap: 24px;
-			padding: 12px 0 12px;
-			margin-bottom: 6px;
+			width: 100%;
+			max-width: 960px;
+			margin: 0 auto 6px;
+			padding: 10px 0 10px;
 		}
 
 		.rules {
 			max-width: 520px;
 			color: var(--subtext);
-			font-size: 14px;
+			font-size: 13px;
 			font-weight: 800;
 			line-height: 1.5;
 			text-shadow:
@@ -221,19 +225,19 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: flex-end;
-			gap: 12px;
+			gap: 10px;
 		}
 
 		.score-pill {
-			min-width: 112px;
-			padding: 9px 14px;
+			min-width: 104px;
+			padding: 8px 13px;
 			border-radius: 999px;
 			color: #344052;
 			background: rgba(255, 255, 255, 0.12);
 			border: 1px solid rgba(255, 255, 255, 0.65);
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
-			font-size: 12.5px;
+			font-size: 12px;
 			font-weight: 900;
 			text-align: center;
 			box-shadow:
@@ -243,13 +247,16 @@
 
 		.score-pill span {
 			display: inline-block;
-			min-width: 24px;
+			min-width: 22px;
 			color: var(--primary-dark);
 		}
 
 		.canvas-wrap {
 			position: relative;
 			z-index: 2;
+			width: 100%;
+			max-width: 960px;
+			margin: 0 auto;
 			padding: 0;
 		}
 
@@ -257,14 +264,12 @@
 			width: 100%;
 			height: auto;
 			display: block;
-			border-radius: 0;
 			background: transparent;
 			border: none;
 			box-shadow: none;
 			touch-action: manipulation;
 		}
 
-		/* HUD overlay */
 		.overlay {
 			position: absolute;
 			top: 0;
@@ -274,22 +279,22 @@
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
-			padding-top: 12px;
+			padding-top: 10px;
 			pointer-events: none;
 		}
 
 		.overlay-card {
 			position: relative;
-			width: min(100%, 320px);
-			padding: 14px 16px 12px;
+			width: min(100%, 300px);
+			padding: 12px 14px 10px;
 			text-align: center;
 			pointer-events: auto;
 			overflow: hidden;
-			border-radius: 22px;
+			border-radius: 20px;
 			backdrop-filter: blur(16px);
 			-webkit-backdrop-filter: blur(16px);
 			box-shadow:
-				0 14px 30px rgba(34, 38, 45, 0.10),
+				0 12px 26px rgba(34, 38, 45, 0.10),
 				inset 0 1px 0 rgba(255, 255, 255, 0.55);
 		}
 
@@ -304,11 +309,11 @@
 		.overlay-card::after {
 			content: "";
 			position: absolute;
-			width: 120px;
-			height: 120px;
+			width: 110px;
+			height: 110px;
 			border-radius: 50%;
-			filter: blur(20px);
-			opacity: 0.38;
+			filter: blur(18px);
+			opacity: 0.34;
 			pointer-events: none;
 		}
 
@@ -333,8 +338,8 @@
 		}
 
 		.overlay-card--start::after {
-			top: -32px;
-			right: -18px;
+			top: -30px;
+			right: -16px;
 			background: rgba(124, 141, 181, 0.18);
 		}
 
@@ -348,7 +353,7 @@
 				);
 			border: 1px solid rgba(198, 140, 140, 0.38);
 			box-shadow:
-				0 16px 36px rgba(120, 80, 80, 0.12),
+				0 14px 32px rgba(120, 80, 80, 0.12),
 				inset 0 1px 0 rgba(255, 255, 255, 0.70);
 			animation: incidentPop 0.4s ease, incidentShake 0.45s ease;
 		}
@@ -363,8 +368,8 @@
 		}
 
 		.overlay-card--danger::after {
-			bottom: -34px;
-			left: -16px;
+			bottom: -30px;
+			left: -14px;
 			background: rgba(198, 140, 140, 0.16);
 		}
 
@@ -373,6 +378,7 @@
 				opacity: 0;
 				transform: scale(0.95) translateY(6px);
 			}
+
 			100% {
 				opacity: 1;
 				transform: scale(1) translateY(0);
@@ -394,10 +400,10 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 8px;
-			padding: 5px 10px;
+			margin-bottom: 7px;
+			padding: 4px 9px;
 			border-radius: 999px;
-			font-size: 9px;
+			font-size: 8.5px;
 			font-weight: 900;
 			letter-spacing: 0.14em;
 			text-transform: uppercase;
@@ -418,11 +424,11 @@
 		.overlay-card h2 {
 			position: relative;
 			z-index: 1;
-			font-size: 19px;
+			font-size: 17px;
 			line-height: 1.05;
 			font-weight: 900;
 			letter-spacing: -0.04em;
-			margin-bottom: 6px;
+			margin-bottom: 5px;
 		}
 
 		.overlay-card--start h2 {
@@ -436,10 +442,10 @@
 		.overlay-card p {
 			position: relative;
 			z-index: 1;
-			max-width: 250px;
-			margin: 0 auto 10px;
-			font-size: 12px;
-			line-height: 1.45;
+			max-width: 240px;
+			margin: 0 auto 8px;
+			font-size: 11.5px;
+			line-height: 1.42;
 			font-weight: 700;
 			color: #626973;
 		}
@@ -456,9 +462,9 @@
 		.game-btn {
 			border: 0;
 			cursor: pointer;
-			padding: 8px 13px;
+			padding: 7px 12px;
 			border-radius: 999px;
-			font-size: 11.5px;
+			font-size: 11px;
 			font-weight: 900;
 			letter-spacing: -0.01em;
 			transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease, background 0.22s ease;
@@ -514,11 +520,13 @@
 					0 8px 18px rgba(102, 119, 155, 0.25),
 					0 0 0 0 rgba(124, 141, 181, 0.22);
 			}
+
 			70% {
 				box-shadow:
 					0 12px 22px rgba(102, 119, 155, 0.30),
 					0 0 0 8px rgba(124, 141, 181, 0);
 			}
+
 			100% {
 				box-shadow:
 					0 8px 18px rgba(102, 119, 155, 0.25),
@@ -529,8 +537,8 @@
 		.tips {
 			position: relative;
 			z-index: 1;
-			margin-top: 8px;
-			font-size: 10px;
+			margin-top: 7px;
+			font-size: 9.5px;
 			font-weight: 800;
 			color: #808791;
 		}
@@ -550,72 +558,90 @@
 			transform: translateY(0);
 		}
 
-		@media (max-width: 900px) {
+		@media (max-width: 640px) {
+			body {
+				background-attachment: scroll;
+			}
+
 			.page {
-				padding: 40px 16px 56px;
+				padding: 38px 16px 52px;
+			}
+
+			.nav {
+				margin-bottom: 30px;
+			}
+
+			.hero {
+				margin-bottom: 12px;
+			}
+
+			.hero h1 {
+				font-size: clamp(34px, 11vw, 48px);
+			}
+
+			.hero p {
+				font-size: 13.5px;
 			}
 
 			.game-topbar {
 				flex-direction: column;
 				align-items: flex-start;
-				gap: 14px;
+				gap: 12px;
+				max-width: 100%;
+			}
+
+			.canvas-wrap {
+				max-width: 100%;
+			}
+
+			.rules {
+				font-size: 12.5px;
 			}
 
 			.scoreboard {
 				width: 100%;
 				justify-content: flex-start;
 			}
-		}
-
-		@media (max-width: 640px) {
-			body {
-				background-attachment: scroll;
-			}
-
-			.hero h1 {
-				font-size: clamp(34px, 11vw, 56px);
-			}
-
-			.hero p {
-				font-size: 14px;
-			}
-
-			.rules {
-				font-size: 13px;
-			}
 
 			.score-pill {
-				min-width: 96px;
-				padding: 8px 12px;
-				font-size: 12px;
+				min-width: 92px;
+				padding: 7px 11px;
+				font-size: 11.5px;
 			}
 
 			.overlay {
-				padding-top: 10px;
+				padding-top: 8px;
 			}
 
 			.overlay-card {
-				width: min(100%, 270px);
-				padding: 12px 12px 10px;
-				border-radius: 20px;
+				width: min(100%, 250px);
+				padding: 10px 11px 9px;
+				border-radius: 18px;
+			}
+
+			.overlay-badge {
+				margin-bottom: 6px;
+				padding: 4px 8px;
+				font-size: 8px;
 			}
 
 			.overlay-card h2 {
-				font-size: 17px;
+				font-size: 15.5px;
 			}
 
 			.overlay-card p {
-				font-size: 11.5px;
-				margin-bottom: 8px;
+				font-size: 10.5px;
+				line-height: 1.36;
+				margin-bottom: 7px;
 			}
 
 			.game-btn {
-				padding: 7px 11px;
-				font-size: 11px;
+				padding: 6px 10px;
+				font-size: 10.5px;
 			}
 
 			.tips {
-				font-size: 9.5px;
+				font-size: 9px;
 			}
 		}
 
@@ -667,7 +693,7 @@
 			</div>
 
 			<div class="canvas-wrap">
-				<canvas id="gameCanvas" width="1240" height="560"></canvas>
+				<canvas id="gameCanvas" width="960" height="320"></canvas>
 
 				<div class="overlay" id="startOverlay">
 					<div class="overlay-card overlay-card--start">
@@ -746,14 +772,14 @@
 			state: 'ready',
 			width: canvas.width,
 			height: canvas.height,
-			groundY: 430,
-			speed: 6,
-			baseSpeed: 6,
-			gravity: 0.86,
-			jumpForce: -19.2,
+			groundY: 245,
+			speed: 4.4,
+			baseSpeed: 4.4,
+			gravity: 0.62,
+			jumpForce: -12.8,
 			score: 0,
 			frame: 0,
-			nextObstacleIn: 90,
+			nextObstacleIn: 88,
 			obstacles: [],
 			clouds: [],
 			particles: [],
@@ -761,10 +787,10 @@
 		};
 
 		const cat = {
-			x: 150,
-			y: game.groundY - 92,
-			width: 94,
-			height: 92,
+			x: 82,
+			y: game.groundY - 54,
+			width: 56,
+			height: 54,
 			vy: 0,
 			jumping: false,
 			squash: 1
@@ -779,7 +805,7 @@
 			game.speed = game.baseSpeed;
 			game.score = 0;
 			game.frame = 0;
-			game.nextObstacleIn = 76;
+			game.nextObstacleIn = 78;
 			game.obstacles = [];
 			game.clouds = [];
 			game.particles = [];
@@ -793,10 +819,10 @@
 			for (let i = 0; i < 4; i++) {
 				game.clouds.push({
 					x: random(0, game.width),
-					y: random(56, 180),
-					size: random(36, 68),
-					speed: random(0.18, 0.42),
-					alpha: random(0.22, 0.40)
+					y: random(38, 116),
+					size: random(22, 42),
+					speed: random(0.12, 0.30),
+					alpha: random(0.24, 0.40)
 				});
 			}
 
@@ -821,14 +847,14 @@
 				cat.jumping = true;
 				cat.squash = 0.92;
 
-				for (let i = 0; i < 10; i++) {
+				for (let i = 0; i < 8; i++) {
 					game.particles.push({
-						x: cat.x + 20 + random(-8, 8),
-						y: game.groundY - 8,
-						vx: random(-1.8, 1.2),
-						vy: random(-2.8, -0.8),
-						life: random(18, 32),
-						size: random(2, 4)
+						x: cat.x + 18 + random(-6, 6),
+						y: game.groundY - 5,
+						vx: random(-1.4, 1.0),
+						vy: random(-2.2, -0.7),
+						life: random(16, 26),
+						size: random(1.5, 3)
 					});
 				}
 			}
@@ -841,18 +867,18 @@
 				game.obstacles.push({
 					type,
 					x: game.width + 30,
-					y: game.groundY - 82,
-					width: 122,
-					height: 82,
+					y: game.groundY - 44,
+					width: 66,
+					height: 44,
 					label: 'Ticket'
 				});
 			} else {
 				game.obstacles.push({
 					type,
 					x: game.width + 30,
-					y: game.groundY - 142,
-					width: 88,
-					height: 142,
+					y: game.groundY - 78,
+					width: 46,
+					height: 78,
 					label: 'Alert'
 				});
 			}
@@ -860,11 +886,11 @@
 
 		function createSpeedLine() {
 			game.speedLines.push({
-				x: game.width + random(0, 120),
-				y: random(70, game.groundY - 50),
-				length: random(36, 98),
-				alpha: random(0.10, 0.22),
-				speed: random(10, 18)
+				x: game.width + random(0, 80),
+				y: random(50, game.groundY - 35),
+				length: random(28, 70),
+				alpha: random(0.08, 0.18),
+				speed: random(8, 14)
 			});
 		}
 
@@ -873,11 +899,11 @@
 
 			game.frame++;
 			game.score += 1;
-			game.speed = game.baseSpeed + Math.min(4.6, game.score / 850);
+			game.speed = game.baseSpeed + Math.min(3.2, game.score / 900);
 
 			scoreEl.textContent = Math.floor(game.score / 5);
 
-			if (game.frame % 7 === 0) {
+			if (game.frame % 8 === 0) {
 				createSpeedLine();
 			}
 
@@ -895,23 +921,23 @@
 
 			if (game.nextObstacleIn <= 0) {
 				createObstacle();
-				game.nextObstacleIn = random(88, 144) - Math.min(38, game.score / 78);
+				game.nextObstacleIn = random(86, 142) - Math.min(34, game.score / 80);
 			}
 
 			game.obstacles.forEach((obstacle) => {
 				obstacle.x -= game.speed;
 			});
 
-			game.obstacles = game.obstacles.filter((obstacle) => obstacle.x + obstacle.width > -80);
+			game.obstacles = game.obstacles.filter((obstacle) => obstacle.x + obstacle.width > -60);
 
 			game.clouds.forEach((cloud) => {
 				cloud.x -= cloud.speed;
 
-				if (cloud.x < -90) {
-					cloud.x = game.width + random(40, 180);
-					cloud.y = random(56, 180);
-					cloud.size = random(36, 68);
-					cloud.alpha = random(0.22, 0.40);
+				if (cloud.x < -80) {
+					cloud.x = game.width + random(40, 160);
+					cloud.y = random(38, 116);
+					cloud.size = random(22, 42);
+					cloud.alpha = random(0.24, 0.40);
 				}
 			});
 
@@ -936,18 +962,18 @@
 
 		function checkCollision() {
 			const catBox = {
-				x: cat.x + 16,
-				y: cat.y + 14,
-				width: cat.width - 30,
-				height: cat.height - 22
+				x: cat.x + 9,
+				y: cat.y + 8,
+				width: cat.width - 18,
+				height: cat.height - 12
 			};
 
 			for (const obstacle of game.obstacles) {
 				const obsBox = {
-					x: obstacle.x + 12,
-					y: obstacle.y + 10,
-					width: obstacle.width - 24,
-					height: obstacle.height - 16
+					x: obstacle.x + 7,
+					y: obstacle.y + 6,
+					width: obstacle.width - 14,
+					height: obstacle.height - 10
 				};
 
 				const hit =
@@ -997,9 +1023,9 @@
 			ctx.clearRect(0, 0, game.width, game.height);
 
 			const sky = ctx.createLinearGradient(0, 0, 0, game.height);
-			sky.addColorStop(0, 'rgba(255, 255, 255, 0.03)');
-			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.02)');
-			sky.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+			sky.addColorStop(0, 'rgba(255, 255, 255, 0.02)');
+			sky.addColorStop(0.62, 'rgba(233, 236, 240, 0.01)');
+			sky.addColorStop(1, 'rgba(255, 255, 255, 0.02)');
 			ctx.fillStyle = sky;
 			ctx.fillRect(0, 0, game.width, game.height);
 
@@ -1019,17 +1045,17 @@
 
 			ctx.save();
 			ctx.strokeStyle = 'rgba(111, 127, 159, 0.26)';
-			ctx.lineWidth = 4;
+			ctx.lineWidth = 3;
 			ctx.beginPath();
-			ctx.moveTo(48, game.groundY + 2);
-			ctx.lineTo(game.width - 48, game.groundY + 2);
+			ctx.moveTo(36, game.groundY + 2);
+			ctx.lineTo(game.width - 36, game.groundY + 2);
 			ctx.stroke();
 
 			ctx.strokeStyle = 'rgba(255, 255, 255, 0.56)';
 			ctx.lineWidth = 1;
 			ctx.beginPath();
-			ctx.moveTo(48, game.groundY + 7);
-			ctx.lineTo(game.width - 48, game.groundY + 7);
+			ctx.moveTo(36, game.groundY + 6);
+			ctx.lineTo(game.width - 36, game.groundY + 6);
 			ctx.stroke();
 			ctx.restore();
 		}
@@ -1039,7 +1065,7 @@
 				ctx.save();
 				ctx.globalAlpha = line.alpha;
 				ctx.strokeStyle = 'rgba(111, 127, 159, 0.42)';
-				ctx.lineWidth = 2;
+				ctx.lineWidth = 1.5;
 				ctx.beginPath();
 				ctx.moveTo(line.x, line.y);
 				ctx.lineTo(line.x + line.length, line.y);
@@ -1049,7 +1075,7 @@
 		}
 
 		function drawCat() {
-			const runBounce = game.state === 'running' && !cat.jumping ? Math.sin(game.frame * 0.24) * 3 : 0;
+			const runBounce = game.state === 'running' && !cat.jumping ? Math.sin(game.frame * 0.24) * 2 : 0;
 			const x = cat.x;
 			const y = cat.y + runBounce;
 
@@ -1060,63 +1086,63 @@
 
 			ctx.fillStyle = 'rgba(45, 48, 54, 0.12)';
 			ctx.beginPath();
-			ctx.ellipse(x + 48, game.groundY + 12, 46, 11, 0, 0, Math.PI * 2);
+			ctx.ellipse(x + 28, game.groundY + 7, 28, 7, 0, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.fillStyle = '#d9b08c';
 			ctx.beginPath();
-			ctx.ellipse(x + 44, y + 54, 40, 28, 0, 0, Math.PI * 2);
+			ctx.ellipse(x + 26, y + 31, 24, 17, 0, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.fillStyle = '#e7c19d';
 			ctx.beginPath();
-			ctx.arc(x + 60, y + 28, 27, 0, Math.PI * 2);
+			ctx.arc(x + 36, y + 16, 16, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.beginPath();
-			ctx.moveTo(x + 42, y + 14);
-			ctx.lineTo(x + 52, y - 10);
-			ctx.lineTo(x + 61, y + 16);
+			ctx.moveTo(x + 25, y + 8);
+			ctx.lineTo(x + 31, y - 6);
+			ctx.lineTo(x + 37, y + 9);
 			ctx.fill();
 
 			ctx.beginPath();
-			ctx.moveTo(x + 64, y + 13);
-			ctx.lineTo(x + 77, y - 8);
-			ctx.lineTo(x + 83, y + 18);
+			ctx.moveTo(x + 39, y + 8);
+			ctx.lineTo(x + 47, y - 5);
+			ctx.lineTo(x + 50, y + 10);
 			ctx.fill();
 
 			ctx.fillStyle = '#8f6f5b';
 			ctx.beginPath();
-			ctx.arc(x + 51, y + 28, 3, 0, Math.PI * 2);
-			ctx.arc(x + 69, y + 28, 3, 0, Math.PI * 2);
+			ctx.arc(x + 31, y + 16, 2, 0, Math.PI * 2);
+			ctx.arc(x + 42, y + 16, 2, 0, Math.PI * 2);
 			ctx.fill();
 
 			ctx.strokeStyle = '#8f6f5b';
-			ctx.lineWidth = 2.5;
+			ctx.lineWidth = 1.8;
 			ctx.beginPath();
-			ctx.arc(x + 61, y + 36, 7, 0.12, Math.PI - 0.12);
+			ctx.arc(x + 36, y + 22, 4.5, 0.12, Math.PI - 0.12);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#d9b08c';
-			ctx.lineWidth = 10;
+			ctx.lineWidth = 6;
 			ctx.lineCap = 'round';
 			ctx.beginPath();
-			ctx.moveTo(x + 14, y + 52);
-			ctx.quadraticCurveTo(x - 24, y + 24, x + 8, y + 12);
+			ctx.moveTo(x + 8, y + 30);
+			ctx.quadraticCurveTo(x - 14, y + 14, x + 4, y + 8);
 			ctx.stroke();
 
 			ctx.strokeStyle = '#8f6f5b';
-			ctx.lineWidth = 3.5;
+			ctx.lineWidth = 2.2;
 			ctx.beginPath();
-			ctx.moveTo(x + 30, y + 26);
-			ctx.lineTo(x + 20, y + 21);
-			ctx.moveTo(x + 39, y + 19);
-			ctx.lineTo(x + 32, y + 11);
+			ctx.moveTo(x + 18, y + 15);
+			ctx.lineTo(x + 12, y + 12);
+			ctx.moveTo(x + 24, y + 11);
+			ctx.lineTo(x + 20, y + 6);
 			ctx.stroke();
 
 			ctx.fillStyle = '#c99976';
-			ctx.fillRect(x + 30, y + 74, 10, 18);
-			ctx.fillRect(x + 62, y + 74, 10, 18);
+			ctx.fillRect(x + 18, y + 44, 6, 11);
+			ctx.fillRect(x + 37, y + 44, 6, 11);
 
 			ctx.restore();
 		}
@@ -1125,22 +1151,22 @@
 			const x = obstacle.x;
 			const y = obstacle.y;
 
-			drawRoundedRect(x, y, obstacle.width, 26, 10, '#b9a999');
+			drawRoundedRect(x, y, obstacle.width, 15, 6, '#b9a999');
 
 			ctx.fillStyle = '#8d7f72';
-			ctx.fillRect(x + 18, y + 26, 11, obstacle.height - 26);
-			ctx.fillRect(x + obstacle.width - 29, y + 26, 11, obstacle.height - 26);
+			ctx.fillRect(x + 10, y + 15, 6, obstacle.height - 15);
+			ctx.fillRect(x + obstacle.width - 16, y + 15, 6, obstacle.height - 15);
 
 			ctx.fillStyle = 'rgba(255, 255, 255, 0.40)';
-			ctx.fillRect(x + 14, y + 8, obstacle.width - 28, 4);
+			ctx.fillRect(x + 8, y + 5, obstacle.width - 16, 2.5);
 
 			ctx.fillStyle = '#6f7f9f';
-			ctx.font = '900 14px Nunito Sans';
-			ctx.fillText(obstacle.label, x + 34, y - 12);
+			ctx.font = '900 10px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 18, y - 7);
 
 			ctx.strokeStyle = 'rgba(83, 98, 125, 0.34)';
-			ctx.lineWidth = 2.5;
-			ctx.strokeRect(x + 32, y + 36, 36, 26);
+			ctx.lineWidth = 1.6;
+			ctx.strokeRect(x + 18, y + 22, 20, 14);
 		}
 
 		function drawCatTree(obstacle) {
@@ -1148,20 +1174,20 @@
 			const y = obstacle.y;
 
 			ctx.fillStyle = '#9d8b7d';
-			ctx.fillRect(x + 38, y + 28, 13, obstacle.height - 28);
+			ctx.fillRect(x + 20, y + 16, 7, obstacle.height - 16);
 
-			drawRoundedRect(x + 10, y + 22, 68, 22, 10, '#b9a999');
-			drawRoundedRect(x, y + 70, 88, 22, 10, '#c7b8aa');
-			drawRoundedRect(x + 16, y + 118, 66, 22, 10, '#b9a999');
+			drawRoundedRect(x + 5, y + 12, 36, 12, 6, '#b9a999');
+			drawRoundedRect(x, y + 38, 46, 12, 6, '#c7b8aa');
+			drawRoundedRect(x + 8, y + 64, 34, 12, 6, '#b9a999');
 
 			ctx.fillStyle = 'rgba(255, 255, 255, 0.38)';
-			ctx.fillRect(x + 16, y + 28, 50, 4);
-			ctx.fillRect(x + 12, y + 76, 62, 4);
-			ctx.fillRect(x + 22, y + 124, 42, 4);
+			ctx.fillRect(x + 8, y + 16, 26, 2.4);
+			ctx.fillRect(x + 6, y + 42, 32, 2.4);
+			ctx.fillRect(x + 12, y + 68, 22, 2.4);
 
 			ctx.fillStyle = '#6f7f9f';
-			ctx.font = '900 14px Nunito Sans';
-			ctx.fillText(obstacle.label, x + 14, y - 12);
+			ctx.font = '900 10px Nunito Sans';
+			ctx.fillText(obstacle.label, x + 7, y - 7);
 		}
 
 		function drawObstacles() {
@@ -1177,7 +1203,7 @@
 		function drawParticles() {
 			game.particles.forEach((particle) => {
 				ctx.save();
-				ctx.globalAlpha = Math.max(0, particle.life / 30);
+				ctx.globalAlpha = Math.max(0, particle.life / 28);
 				ctx.fillStyle = 'rgba(111, 127, 159, 0.34)';
 				ctx.beginPath();
 				ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
@@ -1191,8 +1217,8 @@
 
 			ctx.save();
 			ctx.fillStyle = 'rgba(69, 81, 102, 0.56)';
-			ctx.font = '900 14px Nunito Sans';
-			ctx.fillText('Uptime growing...', 52, 56);
+			ctx.font = '900 12px Nunito Sans';
+			ctx.fillText('Uptime growing...', 38, 34);
 			ctx.restore();
 		}
 
