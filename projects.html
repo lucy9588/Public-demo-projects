@@ -47,8 +47,8 @@
 			z-index: 0;
 			pointer-events: none;
 			background:
-				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.48), transparent 24%),
-				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.18), transparent 30%),
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.46), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.16), transparent 30%),
 				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.12), transparent 38%);
 			animation: backgroundFloat 24s ease-in-out infinite;
 		}
@@ -106,14 +106,14 @@
 			z-index: 2;
 			max-width: 1120px;
 			margin: 0 auto;
-			padding: 56px 28px 86px;
+			padding: 52px 28px 86px;
 		}
 
 		.nav {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin-bottom: 74px;
+			margin-bottom: 60px;
 		}
 
 		.nav-title {
@@ -155,24 +155,24 @@
 		.hero {
 			position: relative;
 			display: grid;
-			grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.58fr);
+			grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
 			gap: 52px;
 			align-items: end;
-			margin-bottom: 72px;
+			margin-bottom: 58px;
 		}
 
 		.hero::before {
 			content: "";
 			position: absolute;
-			width: 430px;
-			height: 430px;
-			top: -170px;
-			left: -150px;
+			width: 400px;
+			height: 400px;
+			top: -150px;
+			left: -130px;
 			z-index: -1;
 			background:
 				radial-gradient(
 					circle,
-					rgba(255, 255, 255, 0.62),
+					rgba(255, 255, 255, 0.58),
 					rgba(124, 141, 181, 0.12) 44%,
 					transparent 74%
 				);
@@ -183,7 +183,7 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 10px;
-			margin-bottom: 18px;
+			margin-bottom: 16px;
 			color: var(--primary-dark);
 			font-size: 12px;
 			font-weight: 900;
@@ -200,14 +200,14 @@
 		}
 
 		.hero h1 {
-			max-width: 720px;
-			font-size: clamp(48px, 8vw, 92px);
-			line-height: 0.92;
+			max-width: 760px;
+			font-size: clamp(38px, 6vw, 68px);
+			line-height: 0.98;
 			font-weight: 900;
-			letter-spacing: -0.08em;
+			letter-spacing: -0.065em;
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.54),
-				0 18px 48px rgba(40, 43, 48, 0.14);
+				0 16px 42px rgba(40, 43, 48, 0.13);
 		}
 
 		.hero-copy {
@@ -250,16 +250,12 @@
 		.project-item {
 			position: relative;
 			display: grid;
-			grid-template-columns: 90px minmax(0, 1fr) 58px;
-			gap: 24px;
+			grid-template-columns: 82px minmax(0, 1fr);
+			gap: 26px;
 			align-items: start;
-			padding: 34px 0;
+			padding: 36px 0;
 			color: inherit;
-			text-decoration: none;
 			border-top: 1px solid var(--line);
-			transition:
-				transform 0.28s ease,
-				border-color 0.28s ease;
 		}
 
 		.project-item:last-child {
@@ -275,46 +271,32 @@
 			background:
 				linear-gradient(
 					135deg,
-					rgba(255, 255, 255, 0.40),
-					rgba(255, 255, 255, 0.12)
+					rgba(255, 255, 255, 0.32),
+					rgba(255, 255, 255, 0.10)
 				);
-			border: 1px solid rgba(255, 255, 255, 0.34);
-			backdrop-filter: blur(14px);
-			-webkit-backdrop-filter: blur(14px);
+			border: 1px solid rgba(255, 255, 255, 0.28);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
 			box-shadow:
-				0 20px 50px rgba(34, 38, 45, 0.08),
-				inset 0 1px 0 rgba(255, 255, 255, 0.38);
-			opacity: 0;
-			transform: scale(0.985);
+				0 18px 44px rgba(34, 38, 45, 0.06),
+				inset 0 1px 0 rgba(255, 255, 255, 0.34);
+			opacity: 0.72;
 			transition:
 				opacity 0.28s ease,
 				transform 0.28s ease;
 		}
 
-		.project-item:hover {
-			transform: translateX(8px);
-			border-color: var(--line-strong);
-		}
-
 		.project-item:hover::before {
 			opacity: 1;
-			transform: scale(1);
+			transform: scale(1.01);
 		}
 
 		.project-number {
-			color: rgba(83, 98, 125, 0.48);
-			font-size: 38px;
+			color: rgba(83, 98, 125, 0.44);
+			font-size: 32px;
 			line-height: 1;
 			font-weight: 900;
 			letter-spacing: -0.06em;
-			transition:
-				color 0.28s ease,
-				transform 0.28s ease;
-		}
-
-		.project-item:hover .project-number {
-			color: rgba(83, 98, 125, 0.84);
-			transform: translateY(-4px);
 		}
 
 		.project-type {
@@ -328,11 +310,11 @@
 
 		.project-main h2 {
 			max-width: 740px;
-			margin-bottom: 20px;
-			font-size: clamp(25px, 3.2vw, 42px);
-			line-height: 1.02;
+			margin-bottom: 18px;
+			font-size: clamp(24px, 2.8vw, 34px);
+			line-height: 1.06;
 			font-weight: 900;
-			letter-spacing: -0.055em;
+			letter-spacing: -0.045em;
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.48),
 				0 14px 34px rgba(34, 38, 45, 0.10);
@@ -343,10 +325,6 @@
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 18px;
 			margin-top: 10px;
-		}
-
-		.case-block {
-			min-height: 132px;
 		}
 
 		.case-block h3 {
@@ -364,6 +342,33 @@
 			font-weight: 720;
 			line-height: 1.68;
 			letter-spacing: -0.004em;
+		}
+
+		.workflow-line {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 18px;
+		}
+
+		.workflow-line span {
+			display: inline-flex;
+			align-items: center;
+			padding: 7px 11px;
+			border-radius: 999px;
+			color: #445066;
+			background: rgba(255, 255, 255, 0.34);
+			border: 1px solid rgba(255, 255, 255, 0.46);
+			font-size: 11px;
+			font-weight: 900;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+		}
+
+		.workflow-line span:not(:last-child)::after {
+			content: "→";
+			margin-left: 8px;
+			color: rgba(83, 98, 125, 0.54);
 		}
 
 		.tags {
@@ -386,34 +391,6 @@
 			letter-spacing: -0.005em;
 			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
-		}
-
-		.project-arrow {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 44px;
-			height: 44px;
-			margin-left: auto;
-			border-radius: 50%;
-			color: #4f5d76;
-			background: rgba(255, 255, 255, 0.30);
-			border: 1px solid rgba(255, 255, 255, 0.48);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			font-size: 20px;
-			font-weight: 900;
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.36),
-				0 10px 24px rgba(34, 38, 45, 0.06);
-			transition:
-				transform 0.28s ease,
-				background 0.28s ease;
-		}
-
-		.project-item:hover .project-arrow {
-			transform: translate(4px, -4px);
-			background: rgba(255, 255, 255, 0.52);
 		}
 
 		.footer-note {
@@ -454,9 +431,6 @@
 		.footer-link:hover {
 			transform: translateY(-2px);
 			filter: brightness(1.03);
-			box-shadow:
-				0 16px 34px rgba(102, 119, 155, 0.28),
-				inset 0 1px 0 rgba(255, 255, 255, 0.28);
 		}
 
 		.fade {
@@ -477,10 +451,6 @@
 				grid-template-columns: 1fr;
 				gap: 12px;
 			}
-
-			.case-block {
-				min-height: auto;
-			}
 		}
 
 		@media (max-width: 820px) {
@@ -493,33 +463,23 @@
 			}
 
 			.nav {
-				margin-bottom: 58px;
+				margin-bottom: 54px;
 			}
 
 			.hero {
 				grid-template-columns: 1fr;
 				gap: 24px;
-				margin-bottom: 54px;
+				margin-bottom: 48px;
 			}
 
 			.project-item {
-				grid-template-columns: 58px minmax(0, 1fr) 42px;
+				grid-template-columns: 58px minmax(0, 1fr);
 				gap: 16px;
-				padding: 30px 0;
+				padding: 32px 0;
 			}
 
 			.project-number {
 				font-size: 28px;
-			}
-
-			.project-main h2 {
-				font-size: clamp(24px, 8vw, 34px);
-			}
-
-			.project-arrow {
-				width: 38px;
-				height: 38px;
-				font-size: 17px;
 			}
 
 			.footer-note {
@@ -537,7 +497,7 @@
 				align-items: flex-start;
 				flex-direction: column;
 				gap: 14px;
-				margin-bottom: 52px;
+				margin-bottom: 48px;
 			}
 
 			.nav-links {
@@ -545,7 +505,7 @@
 			}
 
 			.hero h1 {
-				font-size: clamp(42px, 15vw, 64px);
+				font-size: clamp(36px, 13vw, 58px);
 			}
 
 			.hero-copy {
@@ -555,7 +515,7 @@
 			.project-item {
 				grid-template-columns: 1fr;
 				gap: 10px;
-				padding: 28px 0;
+				padding: 30px 0;
 			}
 
 			.project-item::before {
@@ -563,26 +523,8 @@
 				border-radius: 22px;
 			}
 
-			.project-item:hover {
-				transform: translateX(0);
-			}
-
 			.project-number {
 				font-size: 24px;
-			}
-
-			.project-arrow {
-				position: absolute;
-				top: 28px;
-				right: 0;
-			}
-
-			.project-main {
-				padding-right: 48px;
-			}
-
-			.tags {
-				padding-right: 0;
 			}
 		}
 
@@ -597,10 +539,7 @@
 
 			.fade,
 			.nav-link,
-			.project-item,
 			.project-item::before,
-			.project-number,
-			.project-arrow,
 			.footer-link {
 				transition: none;
 			}
@@ -647,7 +586,7 @@
 
 		<section class="project-list fade" aria-label="Project case studies">
 
-			<a class="project-item" href="projects/project-01.html">
+			<article class="project-item">
 				<div class="project-number">01</div>
 
 				<div class="project-main">
@@ -679,6 +618,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Request</span>
+						<span>Validate</span>
+						<span>Execute</span>
+						<span>Log</span>
+						<span>Feedback</span>
+					</div>
+
 					<div class="tags">
 						<span>Workflow Design</span>
 						<span>Automation Strategy</span>
@@ -686,11 +633,9 @@
 						<span>Platform Thinking</span>
 					</div>
 				</div>
+			</article>
 
-				<div class="project-arrow">↗</div>
-			</a>
-
-			<a class="project-item" href="projects/project-02.html">
+			<article class="project-item">
 				<div class="project-number">02</div>
 
 				<div class="project-main">
@@ -722,6 +667,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Trigger</span>
+						<span>Identify Target</span>
+						<span>Collect Logs</span>
+						<span>Package</span>
+						<span>Handoff</span>
+					</div>
+
 					<div class="tags">
 						<span>Incident Triage</span>
 						<span>Evidence Collection</span>
@@ -729,11 +682,9 @@
 						<span>Reliability</span>
 					</div>
 				</div>
+			</article>
 
-				<div class="project-arrow">↗</div>
-			</a>
-
-			<a class="project-item" href="projects/project-03.html">
+			<article class="project-item">
 				<div class="project-number">03</div>
 
 				<div class="project-main">
@@ -765,6 +716,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Detect</span>
+						<span>Prioritize</span>
+						<span>Assign Owner</span>
+						<span>Remediate</span>
+						<span>Verify</span>
+					</div>
+
 					<div class="tags">
 						<span>Risk Workflow</span>
 						<span>Traceability</span>
@@ -772,11 +731,9 @@
 						<span>Operational Governance</span>
 					</div>
 				</div>
+			</article>
 
-				<div class="project-arrow">↗</div>
-			</a>
-
-			<a class="project-item" href="projects/project-04.html">
+			<article class="project-item">
 				<div class="project-number">04</div>
 
 				<div class="project-main">
@@ -808,6 +765,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Prepare</span>
+						<span>Validate</span>
+						<span>Execute</span>
+						<span>Confirm</span>
+						<span>Rollback Awareness</span>
+					</div>
+
 					<div class="tags">
 						<span>Change Safety</span>
 						<span>Lifecycle Thinking</span>
@@ -815,11 +780,9 @@
 						<span>Repeatability</span>
 					</div>
 				</div>
+			</article>
 
-				<div class="project-arrow">↗</div>
-			</a>
-
-			<a class="project-item" href="devops-runner.html">
+			<article class="project-item">
 				<div class="project-number">05</div>
 
 				<div class="project-main">
@@ -852,6 +815,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Concept</span>
+						<span>Canvas Logic</span>
+						<span>Interaction</span>
+						<span>Responsive Tuning</span>
+						<span>Polish</span>
+					</div>
+
 					<div class="tags">
 						<span>Creative Coding</span>
 						<span>Canvas</span>
@@ -859,11 +830,9 @@
 						<span>Portfolio Storytelling</span>
 					</div>
 				</div>
+			</article>
 
-				<div class="project-arrow">↗</div>
-			</a>
-
-			<a class="project-item" href="projects/project-06.html">
+			<article class="project-item">
 				<div class="project-number">06</div>
 
 				<div class="project-main">
@@ -895,6 +864,14 @@
 						</div>
 					</div>
 
+					<div class="workflow-line">
+						<span>Structure</span>
+						<span>Visual System</span>
+						<span>Pages</span>
+						<span>Interaction</span>
+						<span>Publish</span>
+					</div>
+
 					<div class="tags">
 						<span>Information Architecture</span>
 						<span>Visual System</span>
@@ -902,9 +879,7 @@
 						<span>Personal Branding</span>
 					</div>
 				</div>
-
-				<div class="project-arrow">↗</div>
-			</a>
+			</article>
 
 		</section>
 
