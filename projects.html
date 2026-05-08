@@ -396,7 +396,244 @@
 			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 		}
+        .project-detail {
+            margin-top: 24px;
+            border-top: 1px solid rgba(111, 127, 159, 0.18);
+            padding-top: 18px;
+        }
 
+        .project-detail summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            list-style: none;
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        .project-detail summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .detail-icon {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.42);
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            box-shadow:
+                0 8px 18px rgba(34, 38, 45, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.46);
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .project-detail[open] .detail-icon {
+            transform: rotate(45deg);
+            background: rgba(255, 255, 255, 0.62);
+        }
+
+        .detail-content {
+            margin-top: 22px;
+            display: grid;
+            gap: 26px;
+        }
+
+        .detail-section {
+            padding: 22px;
+            border-radius: 26px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.34),
+                    rgba(255, 255, 255, 0.12)
+                );
+            border: 1px solid rgba(255, 255, 255, 0.36);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow:
+                0 16px 38px rgba(34, 38, 45, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        }
+
+        .detail-section h3 {
+            margin-bottom: 12px;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(20px, 2.4vw, 30px);
+            line-height: 1.08;
+            font-weight: 600;
+            letter-spacing: -0.035em;
+            color: #30382f;
+        }
+
+        .detail-section p {
+            color: var(--subtext);
+            font-size: 13.8px;
+            font-weight: 720;
+            line-height: 1.75;
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .flow-node {
+            flex: 1 1 150px;
+            min-width: 150px;
+            padding: 15px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            box-shadow:
+                0 10px 22px rgba(34, 38, 45, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        }
+
+        .flow-node small {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.78;
+        }
+
+        .flow-node strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .flow-node span {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1.55;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(83, 98, 125, 0.56);
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .flow-blue {
+            background: #dff3fb;
+            border-color: #9ed7e6;
+            color: #2a6171;
+        }
+
+        .flow-pink {
+            background: #f9e5e7;
+            border-color: #e4b9bf;
+            color: #8d545a;
+        }
+
+        .flow-green {
+            background: #e5f2e8;
+            border-color: #b8d7bf;
+            color: #4c7555;
+        }
+
+        .flow-sand {
+            background: #f6efda;
+            border-color: #e0d1a2;
+            color: #7b6a3b;
+        }
+
+        .flow-purple {
+            background: #ece9fb;
+            border-color: #c8c0ee;
+            color: #625497;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .detail-note {
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.34);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+        }
+
+        .detail-note h4 {
+            margin-bottom: 8px;
+            color: #3f4858;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .detail-note p {
+            font-size: 13px;
+            line-height: 1.68;
+        }
+
+        .detail-outcome {
+            margin-top: 18px;
+            padding: 18px 20px;
+            border-radius: 22px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(223, 243, 251, 0.78),
+                    rgba(229, 242, 232, 0.72)
+                );
+            border: 1px solid rgba(255, 255, 255, 0.52);
+        }
+
+        .detail-outcome h4 {
+            margin-bottom: 8px;
+            color: #35555d;
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .detail-outcome ul {
+            padding-left: 18px;
+            color: #4d6158;
+            font-size: 13.5px;
+            font-weight: 750;
+            line-height: 1.75;
+        }
+
+        @media (max-width: 760px) {
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 		.footer-note {
 			display: flex;
 			justify-content: space-between;
@@ -640,57 +877,406 @@
 						<span>Operational Control</span>
 						<span>Platform Thinking</span>
 					</div>
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+                            <section class="detail-section">
+                                <h3>Detailed flow coming next</h3>
+                                <p>
+                                    This section can be expanded into a full case study with functional flow,
+                                    technical flow, workflow decisions, and project outcome.
+                                </p>
+                            </section>
+                        </div>
+                    </details>
 				</div>
 			</article>
 
 			<article class="project-item">
-				<div class="project-number">02</div>
+                <div class="project-number">02</div>
 
-				<div class="project-main">
-					<div class="project-type">Case Study</div>
-					<h2>Diagnostic Log Collection Automation</h2>
+                <div class="project-main">
+                    <div class="project-type">Case Study</div>
+                    <h2>Diagnostic Log Collection & Secure Vendor Upload Automation</h2>
 
-					<div class="case-grid">
-						<div class="case-block">
-							<h3>Question</h3>
-							<p>
-								What slows teams down during incident triage, and how can evidence collection
-								become less dependent on individual memory?
-							</p>
-						</div>
+                    <div class="case-grid">
+                        <div class="case-block">
+                            <h3>Question</h3>
+                            <p>
+                                How can diagnostic logs be collected, transferred, and uploaded to a vendor through
+                                a repeatable and controlled workflow instead of relying on manual handoffs?
+                            </p>
+                        </div>
 
-						<div class="case-block">
-							<h3>Approach</h3>
-							<p>
-								I treat diagnostic collection as a repeatable pattern: identify targets, collect
-								relevant logs, package evidence, and simplify handoff.
-							</p>
-						</div>
+                        <div class="case-block">
+                            <h3>Approach</h3>
+                            <p>
+                                I designed the workflow as an end-to-end automation chain: user input, API trigger,
+                                log collection, staging transfer, credential handling, network routing, and vendor upload.
+                            </p>
+                        </div>
 
-						<div class="case-block">
-							<h3>Demonstrates</h3>
-							<p>
-								Incident empathy, reliability thinking, and designing tools for high-pressure situations.
-							</p>
-						</div>
-					</div>
+                        <div class="case-block">
+                            <h3>Demonstrates</h3>
+                            <p>
+                                End-to-end ownership, automation design, secure transfer thinking, API orchestration,
+                                and production release capability.
+                            </p>
+                        </div>
+                    </div>
 
-					<div class="workflow-line">
-						<span>Trigger</span>
-						<span>Identify Target</span>
-						<span>Collect Logs</span>
-						<span>Package</span>
-						<span>Handoff</span>
-					</div>
+                    <div class="workflow-line">
+                        <span>Input</span>
+                        <span>API Trigger</span>
+                        <span>Collect Logs</span>
+                        <span>Transfer</span>
+                        <span>Upload</span>
+                    </div>
 
-					<div class="tags">
-						<span>Incident Triage</span>
-						<span>Evidence Collection</span>
-						<span>Runbook Thinking</span>
-						<span>Reliability</span>
-					</div>
-				</div>
-			</article>
+                    <div class="tags">
+                        <span>End-to-End Design</span>
+                        <span>FastAPI</span>
+                        <span>AAP / AWX</span>
+                        <span>Ansible</span>
+                        <span>Secure Transfer</span>
+                        <span>Vendor Upload</span>
+                    </div>
+
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+
+                            <section class="detail-section">
+                                <h3>Project context</h3>
+                                <p>
+                                    This project automated the full process of generating diagnostic logs, transferring
+                                    them through a controlled staging path, and uploading the final package to a vendor
+                                    destination. I owned the work from design, testing, validation, and release, instead
+                                    of only implementing one isolated script.
+                                </p>
+
+                                <div class="detail-grid">
+                                    <div class="detail-note">
+                                        <h4>My Role</h4>
+                                        <p>
+                                            I designed the workflow, built and tested the automation path, validated network
+                                            connectivity, coordinated dependencies, and supported production release.
+                                        </p>
+                                    </div>
+
+                                    <div class="detail-note">
+                                        <h4>Core Problem</h4>
+                                        <p>
+                                            The previous process depended on manual log gathering, manual transfer handling,
+                                            credential coordination, and multiple handoff points.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <h3>Functional flow</h3>
+                                <p>
+                                    The functional flow describes the business execution sequence from user request to
+                                    final vendor upload. The key design goal was to make the process predictable,
+                                    repeatable, and easier to operate.
+                                </p>
+
+                                <div class="flow-diagram">
+                                    <div class="flow-node flow-blue">
+                                        <small>Step 01</small>
+                                        <strong>User Input</strong>
+                                        <span>
+                                            User provides product, operation, location, host, and required parameters.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-purple">
+                                        <small>Step 02</small>
+                                        <strong>Automation Trigger</strong>
+                                        <span>
+                                            The automation platform receives the request and starts the selected template.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-green">
+                                        <small>Step 03</small>
+                                        <strong>Log Collection</strong>
+                                        <span>
+                                            Target diagnostics are collected from the relevant runtime environment.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-sand">
+                                        <small>Step 04</small>
+                                        <strong>Staging Transfer</strong>
+                                        <span>
+                                            The generated package is transferred to a staging host through a controlled path.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-pink">
+                                        <small>Step 05</small>
+                                        <strong>Vendor Upload</strong>
+                                        <span>
+                                            The package is uploaded to the vendor endpoint using the approved outbound route.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="detail-grid">
+                                    <div class="detail-note">
+                                        <h4>Design Point</h4>
+                                        <p>
+                                            I separated the workflow into clear stages so each step could be validated,
+                                            tested, and troubleshot independently.
+                                        </p>
+                                    </div>
+
+                                    <div class="detail-note">
+                                        <h4>Operational Value</h4>
+                                        <p>
+                                            The process became easier to repeat, easier to audit, and less dependent on
+                                            individual memory or manual coordination.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <h3>Code flow</h3>
+                                <p>
+                                    The code flow connects the input layer, backend API, automation middleware, and
+                                    execution template. This layer turns a user request into a controlled automation run.
+                                </p>
+
+                                <div class="flow-diagram">
+                                    <div class="flow-node flow-blue">
+                                        <small>Input Layer</small>
+                                        <strong>Form / Request Body</strong>
+                                        <span>
+                                            Collects structured inputs such as vendor, product, operation, host, and parameters.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-blue">
+                                        <small>API Layer</small>
+                                        <strong>FastAPI Endpoint</strong>
+                                        <span>
+                                            Receives the request and normalizes the payload for the automation service.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-purple">
+                                        <small>Service Layer</small>
+                                        <strong>Middleware Logic</strong>
+                                        <span>
+                                            Resolves the correct execution path, template, and runtime inputs.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-sand">
+                                        <small>Execution Layer</small>
+                                        <strong>AAP / Ansible</strong>
+                                        <span>
+                                            Runs log collection, file preparation, transfer, and upload tasks.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-green">
+                                        <small>Output Layer</small>
+                                        <strong>Execution Result</strong>
+                                        <span>
+                                            Returns run status, generated files, transfer result, and upload completion output.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="detail-grid">
+                                    <div class="detail-note">
+                                        <h4>What I Designed</h4>
+                                        <p>
+                                            I mapped user inputs to backend request structure, defined execution parameters,
+                                            and aligned the API behavior with the automation template.
+                                        </p>
+                                    </div>
+
+                                    <div class="detail-note">
+                                        <h4>Why It Matters</h4>
+                                        <p>
+                                            This made the process repeatable. The same input model leads to the same
+                                            execution path, reducing inconsistent manual operation.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <h3>Network flow</h3>
+                                <p>
+                                    The network flow shows how the collected log package moves from the source environment
+                                    to the staging server and then to the vendor endpoint through the approved connectivity path.
+                                </p>
+
+                                <div class="flow-diagram">
+                                    <div class="flow-node flow-green">
+                                        <small>Source</small>
+                                        <strong>Linux Host</strong>
+                                        <span>
+                                            The diagnostic logs originate from the target runtime host.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-green">
+                                        <small>Internal Transfer</small>
+                                        <strong>Staging Server</strong>
+                                        <span>
+                                            The generated archive is placed on the staging server for controlled onward transfer.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-sand">
+                                        <small>Control Point</small>
+                                        <strong>Firewall / Infra Rule</strong>
+                                        <span>
+                                            Connectivity is restricted by approved source, destination, and port rules.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-purple">
+                                        <small>Outbound Route</small>
+                                        <strong>Proxy Rule</strong>
+                                        <span>
+                                            The upload exits through a managed proxy path for the vendor transfer.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-arrow">→</div>
+
+                                    <div class="flow-node flow-pink">
+                                        <small>Destination</small>
+                                        <strong>Vendor SFTP</strong>
+                                        <span>
+                                            The final diagnostic package is delivered to the external vendor endpoint.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="detail-grid">
+                                    <div class="detail-note">
+                                        <h4>Network Consideration</h4>
+                                        <p>
+                                            The upload path had to respect enterprise connectivity rules, staging design,
+                                            outbound proxy routing, and secure credential handling.
+                                        </p>
+                                    </div>
+
+                                    <div class="detail-note">
+                                        <h4>My Validation Work</h4>
+                                        <p>
+                                            I tested the transfer chain, validated the staging behavior, checked the outbound
+                                            route, and confirmed the final upload behavior before release.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <h3>Supporting components</h3>
+                                <p>
+                                    The solution involved multiple supporting systems. The important design challenge was
+                                    coordinating them into one clean execution path.
+                                </p>
+
+                                <div class="flow-diagram">
+                                    <div class="flow-node flow-purple">
+                                        <small>Orchestration</small>
+                                        <strong>AAP / AWX</strong>
+                                        <span>
+                                            Triggers and controls the automation run.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-node flow-blue">
+                                        <small>Input Source</small>
+                                        <strong>Inventory / Parameter Service</strong>
+                                        <span>
+                                            Provides target host and runtime metadata.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-node flow-sand">
+                                        <small>Security</small>
+                                        <strong>Credential Services</strong>
+                                        <span>
+                                            Provides temporary credentials and upload secrets.
+                                        </span>
+                                    </div>
+
+                                    <div class="flow-node flow-green">
+                                        <small>Visibility</small>
+                                        <strong>Execution Insight</strong>
+                                        <span>
+                                            Captures execution status and operational evidence.
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="detail-section">
+                                <h3>Outcome</h3>
+                                <p>
+                                    The project converted a multi-step manual operation into a repeatable automated workflow.
+                                    It also demonstrated my ability to connect process design, code orchestration, network
+                                    constraints, secure transfer, testing, and release ownership.
+                                </p>
+
+                                <div class="detail-outcome">
+                                    <h4>Result highlights</h4>
+                                    <ul>
+                                        <li>Designed the full functional workflow from request to vendor upload.</li>
+                                        <li>Built and tested the code path connecting API input with automation execution.</li>
+                                        <li>Validated the staging, firewall, proxy, and final upload route.</li>
+                                        <li>Reduced manual handoffs and improved repeatability.</li>
+                                        <li>Owned the project from design and testing through production release.</li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                        </div>
+                    </details>
+                </div>
+            </article>
 
 			<article class="project-item">
 				<div class="project-number">03</div>
@@ -738,6 +1324,22 @@
 						<span>Ownership</span>
 						<span>Operational Governance</span>
 					</div>
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+                            <section class="detail-section">
+                                <h3>Detailed flow coming next</h3>
+                                <p>
+                                    This section can be expanded into a full case study with functional flow,
+                                    technical flow, workflow decisions, and project outcome.
+                                </p>
+                            </section>
+                        </div>
+                    </details>
 				</div>
 			</article>
 
@@ -787,6 +1389,22 @@
 						<span>Validation</span>
 						<span>Repeatability</span>
 					</div>
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+                            <section class="detail-section">
+                                <h3>Detailed flow coming next</h3>
+                                <p>
+                                    This section can be expanded into a full case study with functional flow,
+                                    technical flow, workflow decisions, and project outcome.
+                                </p>
+                            </section>
+                        </div>
+                    </details>
 				</div>
 			</article>
 
@@ -837,6 +1455,22 @@
 						<span>Interaction Design</span>
 						<span>Portfolio Storytelling</span>
 					</div>
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+                            <section class="detail-section">
+                                <h3>Detailed flow coming next</h3>
+                                <p>
+                                    This section can be expanded into a full case study with functional flow,
+                                    technical flow, workflow decisions, and project outcome.
+                                </p>
+                            </section>
+                        </div>
+                    </details>
 				</div>
 			</article>
 
@@ -886,6 +1520,22 @@
 						<span>Responsive Design</span>
 						<span>Personal Branding</span>
 					</div>
+                    <details class="project-detail">
+                        <summary>
+                            <span class="detail-icon">+</span>
+                            <span>View detailed flow</span>
+                        </summary>
+
+                        <div class="detail-content">
+                            <section class="detail-section">
+                                <h3>Detailed flow coming next</h3>
+                                <p>
+                                    This section can be expanded into a full case study with functional flow,
+                                    technical flow, workflow decisions, and project outcome.
+                                </p>
+                            </section>
+                        </div>
+                    </details>
 				</div>
 			</article>
 
