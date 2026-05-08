@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>About Me</title>
+	<title>About Me | Hui Luo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 	<style>
 		:root {
-			--text: #26282c;
-			--subtext: #59616d;
-			--muted: #7b818b;
+			--text: #272a2f;
+			--subtext: #626973;
+			--muted: #8a9099;
 			--primary: #6f7f9f;
-			--accent: #7c8db5;
-			--tag-bg: rgba(255, 255, 255, 0.28);
-			--tag-border: rgba(255, 255, 255, 0.38);
-			--tag-text: #455166;
+			--primary-dark: #53627d;
+			--glass: rgba(255, 255, 255, 0.34);
+			--glass-strong: rgba(255, 255, 255, 0.56);
+			--line: rgba(111, 127, 159, 0.22);
+			--shadow: rgba(34, 38, 45, 0.12);
 		}
 
 		* {
@@ -34,9 +35,6 @@
 			overflow-x: hidden;
 			color: var(--text);
 			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: 14px;
-			line-height: 1.66;
-
 			background-image: url('assets/css/images/bg_aboutme.jpg');
 			background-size: cover;
 			background-position: center;
@@ -49,12 +47,10 @@
 			inset: -25%;
 			z-index: 0;
 			pointer-events: none;
-
 			background:
-				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.58), transparent 24%),
-				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.22), transparent 30%),
-				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.18), transparent 38%);
-
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.48), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.16), transparent 30%),
+				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.12), transparent 38%);
 			animation: backgroundFloat 24s ease-in-out infinite;
 		}
 
@@ -64,13 +60,12 @@
 			inset: 0;
 			z-index: 0;
 			pointer-events: none;
-
 			background:
 				linear-gradient(
 					180deg,
-					rgba(255, 255, 255, 0.12) 0%,
-					rgba(255, 255, 255, 0.04) 42%,
-					rgba(255, 255, 255, 0.16) 100%
+					rgba(255, 255, 255, 0.08) 0%,
+					rgba(255, 255, 255, 0.02) 48%,
+					rgba(255, 255, 255, 0.12) 100%
 				);
 		}
 
@@ -80,7 +75,7 @@
 			}
 
 			50% {
-				transform: translate3d(-2.4%, -1.8%, 0) scale(1.04);
+				transform: translate3d(-2.3%, -1.6%, 0) scale(1.04);
 			}
 
 			100% {
@@ -95,15 +90,13 @@
 			border-radius: 50%;
 			pointer-events: none;
 			z-index: 1;
-
 			background:
 				radial-gradient(
 					circle,
-					rgba(255, 255, 255, 0.38),
-					rgba(255, 255, 255, 0.12) 36%,
+					rgba(255, 255, 255, 0.34),
+					rgba(255, 255, 255, 0.10) 36%,
 					transparent 68%
 				);
-
 			transform: translate(-50%, -50%);
 			mix-blend-mode: soft-light;
 			transition: opacity 0.25s ease;
@@ -112,376 +105,398 @@
 		.page {
 			position: relative;
 			z-index: 2;
-			max-width: 1040px;
+			max-width: 1080px;
 			margin: 0 auto;
-			padding: 58px 34px 92px;
+			padding: 56px 28px 86px;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 74px;
+		}
+
+		.nav-title {
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 10px 22px rgba(34, 38, 45, 0.10);
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 18px;
+		}
+
+		.nav-link {
+			color: #30343a;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 850;
+			letter-spacing: -0.01em;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.46),
+				0 12px 28px rgba(34, 38, 45, 0.10);
+			transition:
+				color 0.25s ease,
+				transform 0.25s ease;
+		}
+
+		.nav-link:hover {
+			color: var(--primary);
+			transform: translateY(-2px);
 		}
 
 		.hero {
 			position: relative;
-			text-align: center;
-			padding: 8px 0 50px;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 180px;
+			gap: 52px;
+			align-items: end;
+			margin-bottom: 76px;
 		}
 
 		.hero::before {
 			content: "";
 			position: absolute;
-			width: 360px;
-			height: 360px;
-			top: -120px;
-			left: 50%;
+			width: 430px;
+			height: 430px;
+			top: -170px;
+			left: -150px;
 			z-index: -1;
-
 			background:
 				radial-gradient(
 					circle,
-					rgba(255, 255, 255, 0.86),
-					rgba(124, 141, 181, 0.18) 42%,
-					transparent 72%
+					rgba(255, 255, 255, 0.62),
+					rgba(124, 141, 181, 0.12) 44%,
+					transparent 74%
 				);
-
-			filter: blur(12px);
-			transform: translateX(-50%);
+			filter: blur(14px);
 		}
 
-		.avatar-link {
-			display: inline-block;
-			border-radius: 50%;
-			transition:
-				transform 0.28s ease,
-				filter 0.28s ease;
-		}
-
-		.avatar-link:hover {
-			transform: translateY(-4px) scale(1.04);
-			filter: brightness(1.04);
-		}
-
-		.avatar {
-			width: 82px;
-			height: 82px;
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
 			margin-bottom: 18px;
-			border-radius: 50%;
-			object-fit: cover;
+			color: var(--primary-dark);
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+		}
 
-			border: 2px solid rgba(255, 255, 255, 0.74);
-			box-shadow:
-				0 16px 36px rgba(34, 38, 45, 0.16),
-				0 0 0 6px rgba(255, 255, 255, 0.16);
+		.eyebrow::before {
+			content: "";
+			width: 34px;
+			height: 1px;
+			background: var(--primary);
+			opacity: 0.65;
 		}
 
 		.hero h1 {
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: clamp(34px, 4.4vw, 48px);
-			line-height: 0.98;
-			font-weight: 700;
-			letter-spacing: -0.065em;
-
+			max-width: 780px;
+			font-size: clamp(48px, 8vw, 96px);
+			line-height: 0.92;
+			font-weight: 900;
+			letter-spacing: -0.08em;
 			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.55),
-				0 18px 42px rgba(40, 43, 48, 0.2);
+				0 1px 0 rgba(255, 255, 255, 0.54),
+				0 18px 48px rgba(40, 43, 48, 0.14);
 		}
 
-		.hero p {
-			margin-top: 12px;
+		.hero-copy {
+			max-width: 760px;
+			margin-top: 26px;
 			color: var(--subtext);
-			font-size: 13.5px;
-			font-weight: 700;
-			letter-spacing: 0.015em;
+			font-size: 15px;
+			font-weight: 720;
+			line-height: 1.82;
+			letter-spacing: -0.006em;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.36),
+				0 10px 24px rgba(34, 38, 45, 0.08);
 		}
 
-		section {
-			margin-bottom: 54px;
+		.avatar-link {
+			position: relative;
+			display: block;
+			width: 148px;
+			height: 148px;
+			margin-left: auto;
+			border-radius: 50%;
+			text-decoration: none;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.68);
+			background: rgba(255, 255, 255, 0.22);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			box-shadow:
+				0 20px 48px rgba(34, 38, 45, 0.12),
+				inset 0 1px 0 rgba(255, 255, 255, 0.52);
+			transition:
+				transform 0.3s ease,
+				box-shadow 0.3s ease;
+		}
+
+		.avatar-link:hover {
+			transform: translateY(-6px) scale(1.02);
+			box-shadow:
+				0 28px 64px rgba(34, 38, 45, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.58);
+		}
+
+		.avatar-link img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+		}
+
+		.avatar-link::after {
+			content: "Gallery";
+			position: absolute;
+			left: 50%;
+			bottom: 14px;
+			transform: translateX(-50%);
+			padding: 5px 10px;
+			border-radius: 999px;
+			color: #ffffff;
+			background: rgba(83, 98, 125, 0.58);
+			font-size: 10px;
+			font-weight: 900;
+			letter-spacing: 0.06em;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+		}
+
+		.section {
+			margin-top: 64px;
+		}
+
+		.section-header {
+			display: grid;
+			grid-template-columns: 180px minmax(0, 1fr);
+			gap: 34px;
+			align-items: start;
+			margin-bottom: 28px;
+		}
+
+		.section-label {
+			color: var(--primary-dark);
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
 		}
 
 		.section-title {
-			margin-bottom: 18px;
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: 27px;
-			line-height: 1.05;
-			font-weight: 650;
-			letter-spacing: -0.055em;
-
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.55),
-				0 14px 32px rgba(40, 43, 48, 0.13);
-		}
-
-		.mirror-text {
-			position: relative;
-			max-width: 960px;
-			color: #2f3339;
-			font-size: 14.5px;
-			font-weight: 600;
-			line-height: 1.72;
-			letter-spacing: -0.006em;
-
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.46),
-				0 14px 32px rgba(34, 38, 45, 0.16);
-
-			transition:
-				transform 0.35s ease,
-				text-shadow 0.35s ease,
-				color 0.35s ease;
-		}
-
-		.mirror-text::before {
-			content: "";
-			position: absolute;
-			inset: -16px -20px;
-			z-index: -1;
-			border-radius: 22px;
-
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.22),
-					rgba(255, 255, 255, 0.06) 42%,
-					rgba(255, 255, 255, 0.18)
-				);
-
-			backdrop-filter: blur(4px);
-			-webkit-backdrop-filter: blur(4px);
-			opacity: 0.54;
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.38),
-				0 18px 42px rgba(40, 43, 48, 0.06);
-		}
-
-		.mirror-text::after {
-			content: "";
-			position: absolute;
-			top: -10px;
-			left: -18px;
-			width: 44%;
-			height: 1px;
-			z-index: -1;
-
-			background:
-				linear-gradient(
-					90deg,
-					transparent,
-					rgba(255, 255, 255, 0.72),
-					transparent
-				);
-
-			opacity: 0.66;
-		}
-
-		.mirror-text:hover {
-			color: #24272c;
-			transform: translateY(-3px);
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.6),
-				0 22px 46px rgba(34, 38, 45, 0.22);
-		}
-
-		.experience-list {
-			display: grid;
-			gap: 48px;
-		}
-
-		.experience-item {
-			display: grid;
-			grid-template-columns: 170px minmax(0, 1fr);
-			gap: 42px;
-			align-items: start;
-		}
-
-		.exp-date {
-			padding-top: 4px;
-			color: var(--muted);
-			font-size: 11.5px;
-			font-weight: 800;
-			letter-spacing: 0.075em;
-			text-transform: uppercase;
-
+			max-width: 760px;
+			font-size: clamp(28px, 4vw, 48px);
+			line-height: 1.02;
+			font-weight: 900;
+			letter-spacing: -0.06em;
 			text-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.48),
-				0 10px 22px rgba(34, 38, 45, 0.12);
+				0 14px 34px rgba(34, 38, 45, 0.10);
 		}
 
-		.exp-content {
+		.text-block {
+			display: grid;
+			grid-template-columns: 180px minmax(0, 1fr);
+			gap: 34px;
+			padding: 20px 0 0;
+		}
+
+		.text-block p {
+			max-width: 760px;
+			color: var(--subtext);
+			font-size: 15px;
+			font-weight: 720;
+			line-height: 1.82;
+			letter-spacing: -0.006em;
+		}
+
+		.principles {
+			display: grid;
+			gap: 18px;
+		}
+
+		.principle {
 			position: relative;
-			transition: transform 0.35s ease;
+			display: grid;
+			grid-template-columns: 72px minmax(0, 1fr);
+			gap: 26px;
+			padding: 26px 0;
+			border-top: 1px solid var(--line);
 		}
 
-		.exp-content::before {
+		.principle:last-child {
+			border-bottom: 1px solid var(--line);
+		}
+
+		.principle::before {
 			content: "";
 			position: absolute;
-			inset: -18px -22px;
+			inset: 8px -18px;
 			z-index: -1;
-			border-radius: 24px;
-
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.20),
-					rgba(255, 255, 255, 0.04) 55%,
-					rgba(255, 255, 255, 0.16)
-				);
-
-			backdrop-filter: blur(3px);
-			-webkit-backdrop-filter: blur(3px);
-			opacity: 0;
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.36),
-				0 20px 45px rgba(34, 38, 45, 0.06);
-
-			transition: opacity 0.35s ease;
-		}
-
-		.exp-content:hover {
-			transform: translateY(-4px);
-		}
-
-		.exp-content:hover::before {
-			opacity: 1;
-		}
-
-		.exp-role {
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: 19px;
-			line-height: 1.18;
-			font-weight: 650;
-			letter-spacing: -0.04em;
-
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.5),
-				0 14px 34px rgba(34, 38, 45, 0.15);
-		}
-
-		.exp-company {
-			color: var(--primary);
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: 15px;
-			font-weight: 800;
-			letter-spacing: -0.018em;
-		}
-
-		.exp-desc {
-			margin-top: 11px;
-			max-width: 800px;
-			color: var(--subtext);
-			font-size: 13.7px;
-			line-height: 1.68;
-			font-weight: 650;
-			letter-spacing: -0.006em;
-
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.42),
-				0 12px 30px rgba(34, 38, 45, 0.12);
-		}
-
-		.tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 9px;
-			margin-top: 16px;
-		}
-
-		.tag {
-			position: relative;
-			padding: 6px 12px;
-			border-radius: 999px;
-			overflow: hidden;
-
-			color: var(--tag-text);
+			border-radius: 26px;
 			background:
 				linear-gradient(
 					135deg,
 					rgba(255, 255, 255, 0.38),
-					rgba(255, 255, 255, 0.16)
+					rgba(255, 255, 255, 0.10)
 				);
-
-			border: 1px solid var(--tag-border);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
-
-			font-size: 11.5px;
-			font-weight: 800;
-			line-height: 1;
-			letter-spacing: -0.012em;
-
+			border: 1px solid rgba(255, 255, 255, 0.32);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.52),
-				0 10px 22px rgba(34, 38, 45, 0.07);
+				0 18px 44px rgba(34, 38, 45, 0.07),
+				inset 0 1px 0 rgba(255, 255, 255, 0.36);
+			opacity: 0;
+			transform: scale(0.986);
+			transition:
+				opacity 0.28s ease,
+				transform 0.28s ease;
+		}
 
+		.principle:hover::before {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		.principle-number {
+			color: rgba(83, 98, 125, 0.48);
+			font-size: 30px;
+			line-height: 1;
+			font-weight: 900;
+			letter-spacing: -0.06em;
+		}
+
+		.principle h3 {
+			margin-bottom: 9px;
+			font-size: 21px;
+			line-height: 1.18;
+			font-weight: 900;
+			letter-spacing: -0.04em;
+		}
+
+		.principle p {
+			max-width: 720px;
+			color: var(--subtext);
+			font-size: 14px;
+			font-weight: 720;
+			line-height: 1.72;
+		}
+
+		.focus-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.focus-item {
+			position: relative;
+			padding: 22px;
+			border-radius: 28px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.38),
+					rgba(255, 255, 255, 0.12)
+				);
+			border: 1px solid rgba(255, 255, 255, 0.38);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			box-shadow:
+				0 18px 44px rgba(34, 38, 45, 0.07),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+			transition:
+				transform 0.28s ease,
+				box-shadow 0.28s ease;
+		}
+
+		.focus-item:hover {
+			transform: translateY(-6px);
+			box-shadow:
+				0 26px 58px rgba(34, 38, 45, 0.11),
+				inset 0 1px 0 rgba(255, 255, 255, 0.44);
+		}
+
+		.focus-item h3 {
+			margin-bottom: 10px;
+			font-size: 18px;
+			font-weight: 900;
+			letter-spacing: -0.035em;
+		}
+
+		.focus-item p {
+			color: var(--subtext);
+			font-size: 13.5px;
+			font-weight: 720;
+			line-height: 1.65;
+		}
+
+		.cta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-top: 34px;
+		}
+
+		.cta {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			padding: 10px 16px;
+			border-radius: 999px;
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: -0.01em;
 			transition:
 				transform 0.25s ease,
 				box-shadow 0.25s ease,
-				background 0.25s ease;
+				background 0.25s ease,
+				filter 0.25s ease;
 		}
 
-		.tag::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background:
-				linear-gradient(
-					120deg,
-					transparent 0%,
-					rgba(255, 255, 255, 0.45) 42%,
-					transparent 72%
-				);
-
-			opacity: 0;
-			transform: translateX(-70%);
-			transition:
-				opacity 0.25s ease,
-				transform 0.45s ease;
-		}
-
-		.tag:hover {
-			transform: translateY(-2px);
+		.cta-primary {
+			color: #ffffff;
+			background: linear-gradient(135deg, #7c8db5, #66779b);
 			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.66),
-				0 14px 28px rgba(34, 38, 45, 0.10);
+				0 12px 26px rgba(102, 119, 155, 0.22),
+				inset 0 1px 0 rgba(255, 255, 255, 0.24);
 		}
 
-		.tag:hover::after {
-			opacity: 1;
-			transform: translateX(70%);
+		.cta-secondary {
+			color: #53627d;
+			background: rgba(255, 255, 255, 0.48);
+			border: 1px solid rgba(255, 255, 255, 0.58);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			box-shadow:
+				0 10px 22px rgba(34, 38, 45, 0.06),
+				inset 0 1px 0 rgba(255, 255, 255, 0.48);
 		}
 
-		.resume-link {
-			display: inline-flex;
-			align-items: center;
-			gap: 7px;
-			margin-top: 12px;
-
-			color: #2f343b;
-			text-decoration: none;
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			font-size: 18px;
-			font-weight: 650;
-			letter-spacing: -0.035em;
-
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.5),
-				0 12px 28px rgba(34, 38, 45, 0.14);
-
-			transition:
-				color 0.25s ease,
-				transform 0.25s ease,
-				text-shadow 0.25s ease;
-		}
-
-		.resume-link:hover {
-			color: var(--primary);
-			transform: translateX(4px);
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.65),
-				0 18px 38px rgba(34, 38, 45, 0.2);
+		.cta:hover {
+			transform: translateY(-2px);
+			filter: brightness(1.03);
 		}
 
 		.fade {
 			opacity: 0;
 			transform: translateY(22px);
 			transition:
-				opacity 0.8s ease,
-				transform 0.8s ease;
+				opacity 0.85s ease,
+				transform 0.85s ease;
 		}
 
 		.fade.show {
@@ -489,43 +504,76 @@
 			transform: translateY(0);
 		}
 
-		@media (max-width: 760px) {
+		@media (max-width: 820px) {
 			body {
 				background-attachment: scroll;
 			}
 
 			.page {
-				padding: 48px 22px 76px;
+				padding: 44px 20px 76px;
+			}
+
+			.nav {
+				margin-bottom: 58px;
 			}
 
 			.hero {
-				padding-bottom: 44px;
-			}
-
-			section {
-				margin-bottom: 46px;
-			}
-
-			.experience-item {
 				grid-template-columns: 1fr;
-				gap: 10px;
+				gap: 28px;
+				margin-bottom: 60px;
 			}
 
-			.exp-date {
-				font-size: 11px;
+			.avatar-link {
+				margin-left: 0;
 			}
 
-			.exp-role {
-				font-size: 18px;
+			.section-header,
+			.text-block {
+				grid-template-columns: 1fr;
+				gap: 16px;
 			}
 
-			.exp-desc {
-				font-size: 13.4px;
+			.focus-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.page {
+				padding: 38px 16px 68px;
 			}
 
-			.mirror-text::before,
-			.exp-content::before {
-				inset: -14px -14px;
+			.nav {
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 14px;
+				margin-bottom: 52px;
+			}
+
+			.nav-links {
+				gap: 14px;
+			}
+
+			.hero h1 {
+				font-size: clamp(42px, 15vw, 64px);
+			}
+
+			.hero-copy,
+			.text-block p {
+				font-size: 13.8px;
+			}
+
+			.principle {
+				grid-template-columns: 1fr;
+				gap: 12px;
+			}
+
+			.principle::before {
+				inset: 8px -10px;
+			}
+
+			.principle-number {
+				font-size: 24px;
 			}
 		}
 
@@ -539,11 +587,11 @@
 			}
 
 			.fade,
-			.exp-content,
-			.mirror-text,
-			.tag,
-			.tag::after,
-			.resume-link {
+			.nav-link,
+			.principle::before,
+			.focus-item,
+			.cta,
+			.avatar-link {
 				transition: none;
 			}
 		}
@@ -556,136 +604,159 @@
 
 	<main class="page">
 
+		<nav class="nav fade">
+			<div class="nav-title">About</div>
+
+			<div class="nav-links">
+				<a class="nav-link" href="index.html">Home</a>
+				<a class="nav-link" href="projects.html">Projects</a>
+				<a class="nav-link" href="gallery.html">Gallery</a>
+			</div>
+		</nav>
+
 		<header class="hero fade">
-			<a class="avatar-link" href="gallery.html" aria-label="View Hui Luo's life gallery">
-				<img src="assets/css/images/hero.jpg" class="avatar" alt="Hui Luo profile photo">
+			<div>
+				<div class="eyebrow">Hui Luo</div>
+				<h1>I build clarity around complex systems.</h1>
+
+				<p class="hero-copy">
+					My work sits between infrastructure, automation, data, and operational reliability.
+					I am interested in the moments where repeated manual work, unclear ownership, and
+					fragmented tooling can be redesigned into cleaner systems.
+				</p>
+			</div>
+
+			<a class="avatar-link" href="gallery.html" aria-label="Open life gallery">
+				<img src="assets/css/images/hero.jpg" alt="Hui Luo profile photo">
 			</a>
-			<h1>Hui Luo</h1>
-			<p>Platform Engineering · Infrastructure Automation · DevOps</p>
 		</header>
 
-		<section class="fade" id="about">
-			<p class="mirror-text">
-				Platform Engineering professional with hands-on experience in middleware, mainframe, and enterprise infrastructure automation. Currently expanding expertise in Linux, cloud, Kubernetes, and modern DevOps practices, with a focus on building reliable automation products and self-service capabilities that reduce manual effort, improve platform resilience, and create measurable business value.
-			</p>
+		<section class="section fade">
+			<div class="section-header">
+				<div class="section-label">What I care about</div>
+				<h2 class="section-title">Automation is not only about scripts. It starts with understanding the workflow.</h2>
+			</div>
+
+			<div class="text-block">
+				<div></div>
+				<p>
+					I like to look at operational problems as systems: where work begins, where it slows down,
+					which steps need validation, where ownership becomes unclear, and what information people
+					need when they are under pressure. Good automation should not hide complexity blindly. It
+					should make the right parts repeatable, visible, and easier to trust.
+				</p>
+			</div>
 		</section>
 
-		<section class="fade" id="experience">
-			<h2 class="section-title">Experience</h2>
+		<section class="section fade">
+			<div class="section-header">
+				<div class="section-label">Working principles</div>
+				<h2 class="section-title">The way I approach messy technical and operational problems.</h2>
+			</div>
 
-			<div class="experience-list">
+			<div class="principles">
 
-				<article class="experience-item">
-					<div class="exp-date">Feb 2024 — Present</div>
-					<div class="exp-content">
-						<h3 class="exp-role">
-							Infrastructure Automation · <span class="exp-company">HSBC</span>
-						</h3>
-						<p class="exp-desc">
-							Own automation and reliability improvement for enterprise middleware products, delivering self-service provisioning, diagnostic log collection, vulnerability remediation, and server lifecycle workflows that reduce manual operations, shorten CVE exposure, and improve platform resilience.
+				<article class="principle">
+					<div class="principle-number">01</div>
+					<div>
+						<h3>Make manual work visible before automating it.</h3>
+						<p>
+							I prefer to understand where effort is spent, where handoffs fail, and which steps
+							actually need automation before jumping into implementation.
 						</p>
-						<div class="tags">
-							<span class="tag">Ansible</span>
-							<span class="tag">Python</span>
-							<span class="tag">Shell/Bash</span>
-							<span class="tag">Jenkins</span>
-							<span class="tag">Docker</span>
-							<span class="tag">Vault</span>
-							<span class="tag">Splunk</span>
-							<span class="tag">REST APIs</span>
-						</div>
 					</div>
 				</article>
 
-				<article class="experience-item">
-					<div class="exp-date">Aug 2021 — Feb 2024</div>
-					<div class="exp-content">
-						<h3 class="exp-role">
-							System Automation Specialist · <span class="exp-company">HSBC</span>
-						</h3>
-						<p class="exp-desc">
-							Managed and enhanced enterprise automation platforms for IBM i and IBM Z, building mainframe automation workflows for IPL, disaster recovery, event handling, batch procedures, monitoring, and operational reliability improvements across global environments.
+				<article class="principle">
+					<div class="principle-number">02</div>
+					<div>
+						<h3>Build repeatable workflows, not one-time fixes.</h3>
+						<p>
+							A useful workflow should be understandable and reusable by others. I care about
+							consistency, validation, and operational confidence more than quick one-off patches.
 						</p>
-						<div class="tags">
-							<span class="tag">Automation Point</span>
-							<span class="tag">OPS/MVS</span>
-							<span class="tag">IBM Z</span>
-							<span class="tag">IBM i</span>
-							<span class="tag">CICS</span>
-							<span class="tag">MQ</span>
-							<span class="tag">DB2</span>
-							<span class="tag">JES2</span>
-						</div>
 					</div>
 				</article>
 
-				<article class="experience-item">
-					<div class="exp-date">Aug 2018 — Aug 2021</div>
-					<div class="exp-content">
-						<h3 class="exp-role">
-							Infrastructure Operations · <span class="exp-company">HSBC</span>
-						</h3>
-						<p class="exp-desc">
-							Supported production operations across IBM i and IBM Z platforms, covering workload migration, batch scheduling, monitoring, incident handling, SLA reporting, runbook standardization, and global handover improvements for stable enterprise service delivery.
+				<article class="principle">
+					<div class="principle-number">03</div>
+					<div>
+						<h3>Keep operational context close to action.</h3>
+						<p>
+							Logs, ownership, runbooks, validation steps, and feedback should be easy to access
+							when incidents or changes happen. Context should not be scattered across too many places.
 						</p>
-						<div class="tags">
-							<span class="tag">Control-M</span>
-							<span class="tag">CA7</span>
-							<span class="tag">TWS</span>
-							<span class="tag">BES Console</span>
-							<span class="tag">CA Service Desk</span>
-							<span class="tag">SLA</span>
-							<span class="tag">MTTR</span>
-						</div>
 					</div>
 				</article>
 
-				<article class="experience-item">
-					<div class="exp-date">Mar 2016 — Aug 2018</div>
-					<div class="exp-content">
-						<h3 class="exp-role">
-							System Operations Analyst · <span class="exp-company">IBM</span>
-						</h3>
-						<p class="exp-desc">
-							Monitored production alerts and batch workloads across mainframe and AS400 environments, supporting IPL procedures, job scheduling, JCL validation, first-level troubleshooting, escalation coordination, and production stability.
+				<article class="principle">
+					<div class="principle-number">04</div>
+					<div>
+						<h3>Design tools that reduce friction under pressure.</h3>
+						<p>
+							Good internal tools should help people feel clearer, faster, and more confident.
+							The best technical solution is often the one that makes the next step obvious.
 						</p>
-						<div class="tags">
-							<span class="tag">Mainframe</span>
-							<span class="tag">AS400</span>
-							<span class="tag">Control-M</span>
-							<span class="tag">CA7</span>
-							<span class="tag">TWS</span>
-							<span class="tag">ISPF</span>
-							<span class="tag">JCL</span>
-						</div>
-					</div>
-				</article>
-
-				<article class="experience-item">
-					<div class="exp-date">Jun 2015 — Mar 2016</div>
-					<div class="exp-content">
-						<h3 class="exp-role">
-							Associate Software Engineering · <span class="exp-company">Accenture</span>
-						</h3>
-						<p class="exp-desc">
-							Participated in the full waterfall software development lifecycle for an insurance policy inputting system, covering requirements, technical design, coding, testing, deployment, maintenance, defect resolution, and back-end banking system integration.
-						</p>
-						<div class="tags">
-							<span class="tag">Informix-4GL</span>
-							<span class="tag">SQL</span>
-							<span class="tag">SDLC</span>
-							<span class="tag">System Testing</span>
-							<span class="tag">Deployment</span>
-							<span class="tag">Code Review</span>
-						</div>
 					</div>
 				</article>
 
 			</div>
+		</section>
 
-			<a class="resume-link" href="assets/css/files/resume.pdf" target="_blank" rel="noopener noreferrer">
-				View Full Résumé ↗
-			</a>
+		<section class="section fade">
+			<div class="section-header">
+				<div class="section-label">Current focus</div>
+				<h2 class="section-title">Where I am shaping my portfolio and career direction.</h2>
+			</div>
+
+			<div class="focus-grid">
+				<article class="focus-item">
+					<h3>Platform Engineering</h3>
+					<p>
+						Designing internal systems and workflows that make infrastructure work easier to request,
+						execute, observe, and improve.
+					</p>
+				</article>
+
+				<article class="focus-item">
+					<h3>Infrastructure Automation</h3>
+					<p>
+						Turning repetitive operational work into controlled, validated, and reusable automation patterns.
+					</p>
+				</article>
+
+				<article class="focus-item">
+					<h3>Operational Tooling</h3>
+					<p>
+						Creating small tools, dashboards, and workflows that reduce ambiguity during incidents,
+						changes, and routine operations.
+					</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="section fade">
+			<div class="section-header">
+				<div class="section-label">Beyond work</div>
+				<h2 class="section-title">Systems thinking and visual observation are connected for me.</h2>
+			</div>
+
+			<div class="text-block">
+				<div></div>
+				<div>
+					<p>
+						Outside technical work, I pay attention to visual structure, photography, travel memories,
+						and quiet details in everyday life. This portfolio reflects both sides: the way I think
+						through systems, and the way I notice atmosphere, rhythm, and balance.
+					</p>
+
+					<div class="cta-row">
+						<a class="cta cta-primary" href="projects.html">View Projects</a>
+						<a class="cta cta-secondary" href="gallery.html">Open Gallery</a>
+						<a class="cta cta-secondary" href="index.html">Back Home</a>
+					</div>
+				</div>
+			</div>
 		</section>
 
 	</main>
@@ -715,7 +786,7 @@
 				}
 			});
 		}, {
-			threshold: 0.16
+			threshold: 0.12
 		});
 
 		faders.forEach((element) => observer.observe(element));

@@ -16,8 +16,6 @@
 			--primary-dark: #53627d;
 			--line: rgba(111, 127, 159, 0.22);
 			--line-strong: rgba(111, 127, 159, 0.34);
-			--glass: rgba(255, 255, 255, 0.34);
-			--glass-strong: rgba(255, 255, 255, 0.58);
 			--shadow: rgba(34, 38, 45, 0.12);
 		}
 
@@ -215,7 +213,7 @@
 		.hero-copy {
 			color: var(--subtext);
 			font-size: 14.5px;
-			font-weight: 700;
+			font-weight: 720;
 			line-height: 1.72;
 			letter-spacing: -0.008em;
 			text-shadow:
@@ -320,7 +318,7 @@
 		}
 
 		.project-type {
-			margin-bottom: 9px;
+			margin-bottom: 12px;
 			color: var(--primary-dark);
 			font-size: 11px;
 			font-weight: 900;
@@ -330,7 +328,7 @@
 
 		.project-main h2 {
 			max-width: 740px;
-			margin-bottom: 12px;
+			margin-bottom: 20px;
 			font-size: clamp(25px, 3.2vw, 42px);
 			line-height: 1.02;
 			font-weight: 900;
@@ -340,28 +338,39 @@
 				0 14px 34px rgba(34, 38, 45, 0.10);
 		}
 
-		.project-main p {
-			max-width: 700px;
-			color: var(--subtext);
-			font-size: 14px;
-			font-weight: 700;
-			line-height: 1.72;
-			letter-spacing: -0.004em;
+		.case-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+			margin-top: 10px;
 		}
 
-		.project-impact {
-			margin-top: 14px;
-			color: #3e4654;
-			font-size: 13px;
-			font-weight: 850;
-			line-height: 1.55;
+		.case-block {
+			min-height: 132px;
+		}
+
+		.case-block h3 {
+			margin-bottom: 8px;
+			color: #3f4858;
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.11em;
+			text-transform: uppercase;
+		}
+
+		.case-block p {
+			color: var(--subtext);
+			font-size: 13.5px;
+			font-weight: 720;
+			line-height: 1.68;
+			letter-spacing: -0.004em;
 		}
 
 		.tags {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 8px;
-			margin-top: 18px;
+			margin-top: 20px;
 		}
 
 		.tags span {
@@ -463,6 +472,17 @@
 			transform: translateY(0);
 		}
 
+		@media (max-width: 920px) {
+			.case-grid {
+				grid-template-columns: 1fr;
+				gap: 12px;
+			}
+
+			.case-block {
+				min-height: auto;
+			}
+		}
+
 		@media (max-width: 820px) {
 			body {
 				background-attachment: scroll;
@@ -494,10 +514,6 @@
 
 			.project-main h2 {
 				font-size: clamp(24px, 8vw, 34px);
-			}
-
-			.project-main p {
-				font-size: 13.5px;
 			}
 
 			.project-arrow {
@@ -581,7 +597,6 @@
 
 			.fade,
 			.nav-link,
-			.back-link,
 			.project-item,
 			.project-item::before,
 			.project-number,
@@ -612,20 +627,20 @@
 		<header class="hero fade">
 			<div>
 				<div class="eyebrow">Projects</div>
-				<h1>Systems, automation, and operational tooling.</h1>
+				<h1>Case studies in workflow thinking and operational clarity.</h1>
 			</div>
 
 			<div>
 				<p class="hero-copy">
-					A curated collection of work across platform engineering, infrastructure automation,
-					incident response, and small interactive tools. Each project focuses on reducing manual
-					effort, improving reliability, or making technical workflows easier to use.
+					These projects are not meant to repeat my resume. They show how I frame problems,
+					structure workflows, and think about systems that reduce manual effort, improve
+					reliability, or make technical work easier to understand.
 				</p>
 
 				<div class="hero-meta">
-					<span class="meta-pill">Platform Engineering</span>
-					<span class="meta-pill">Automation</span>
-					<span class="meta-pill">Reliability</span>
+					<span class="meta-pill">Problem Framing</span>
+					<span class="meta-pill">Workflow Design</span>
+					<span class="meta-pill">Systems Thinking</span>
 				</div>
 			</div>
 		</header>
@@ -636,21 +651,39 @@
 				<div class="project-number">01</div>
 
 				<div class="project-main">
-					<div class="project-type">Featured Case Study</div>
+					<div class="project-type">Case Study</div>
 					<h2>Infrastructure Automation Platform</h2>
-					<p>
-						A self-service automation layer for enterprise middleware operations, designed to standardize
-						repetitive infrastructure tasks and reduce manual operational handoffs.
-					</p>
-					<div class="project-impact">
-						Focus: provisioning workflow, execution consistency, auditability, and operational resilience.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								How can repeated infrastructure operations become safer, more predictable,
+								and easier to request?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								I look at the workflow as a system: intake, validation, controlled execution,
+								feedback, logging, and ownership.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Platform thinking, automation strategy, operational control, and workflow standardization.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>Ansible</span>
-						<span>Python</span>
-						<span>Jenkins</span>
-						<span>REST APIs</span>
-						<span>Vault</span>
+						<span>Workflow Design</span>
+						<span>Automation Strategy</span>
+						<span>Operational Control</span>
+						<span>Platform Thinking</span>
 					</div>
 				</div>
 
@@ -661,21 +694,39 @@
 				<div class="project-number">02</div>
 
 				<div class="project-main">
-					<div class="project-type">Automation Workflow</div>
+					<div class="project-type">Case Study</div>
 					<h2>Diagnostic Log Collection Automation</h2>
-					<p>
-						An automated workflow for collecting diagnostic evidence during incident triage, helping teams
-						package logs and reduce time spent on repetitive server-side checks.
-					</p>
-					<div class="project-impact">
-						Focus: faster incident response, standardized evidence collection, and cleaner handoff.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								What slows teams down during incident triage, and how can evidence collection
+								become less dependent on individual memory?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								I treat diagnostic collection as a repeatable pattern: identify targets, collect
+								relevant logs, package evidence, and simplify handoff.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Incident empathy, reliability thinking, and designing tools for high-pressure situations.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>Shell</span>
-						<span>Python</span>
-						<span>Linux</span>
-						<span>Middleware</span>
 						<span>Incident Triage</span>
+						<span>Evidence Collection</span>
+						<span>Runbook Thinking</span>
+						<span>Reliability</span>
 					</div>
 				</div>
 
@@ -686,21 +737,39 @@
 				<div class="project-number">03</div>
 
 				<div class="project-main">
-					<div class="project-type">Security Operations</div>
+					<div class="project-type">Case Study</div>
 					<h2>CVE Remediation Workflow</h2>
-					<p>
-						A structured remediation workflow to track vulnerability exposure, coordinate ownership,
-						validate fixes, and improve visibility across technical and operational stakeholders.
-					</p>
-					<div class="project-impact">
-						Focus: remediation traceability, risk reduction, ownership clarity, and reporting discipline.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								How can vulnerability remediation become more traceable without creating
+								unnecessary reporting overhead?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								This case focuses on ownership, prioritization, validation, and status visibility
+								rather than only the technical patching step.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Risk-aware operations, stakeholder coordination, and structured follow-through.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>CVE</span>
-						<span>Patch Management</span>
-						<span>Risk Tracking</span>
-						<span>Reporting</span>
-						<span>Operations</span>
+						<span>Risk Workflow</span>
+						<span>Traceability</span>
+						<span>Ownership</span>
+						<span>Operational Governance</span>
 					</div>
 				</div>
 
@@ -711,20 +780,39 @@
 				<div class="project-number">04</div>
 
 				<div class="project-main">
-					<div class="project-type">Platform Operations</div>
+					<div class="project-type">Case Study</div>
 					<h2>Server Lifecycle Automation</h2>
-					<p>
-						A workflow-oriented approach to server lifecycle tasks, covering repeatable execution patterns
-						for preparation, validation, operational checks, and post-change confirmation.
-					</p>
-					<div class="project-impact">
-						Focus: repeatable change execution, reduced manual variance, and cleaner operational control.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								Which parts of server lifecycle work should be automated, and which parts
+								still need human checkpoints?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								I examine lifecycle work as a sequence of preparation, validation, execution,
+								verification, and rollback awareness.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Systems thinking, change safety, repeatable operational design, and validation discipline.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>Linux</span>
-						<span>Automation</span>
-						<span>Change Management</span>
+						<span>Change Safety</span>
+						<span>Lifecycle Thinking</span>
 						<span>Validation</span>
+						<span>Repeatability</span>
 					</div>
 				</div>
 
@@ -735,21 +823,40 @@
 				<div class="project-number">05</div>
 
 				<div class="project-main">
-					<div class="project-type">Interactive Web Tool</div>
+					<div class="project-type">Interactive Tool</div>
 					<h2>DevOps Runner</h2>
-					<p>
-						A lightweight browser game built as part of this personal portfolio, using canvas-based
-						interaction to turn operational concepts into a playful visual experience.
-					</p>
-					<div class="project-impact">
-						Focus: interaction design, frontend implementation, responsive behavior, and personal branding.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								Can a small browser game make operational reliability feel more tangible
+								and memorable?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								This project turns alerts, uptime, incidents, and recovery into a lightweight
+								canvas-based interactive metaphor.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Creative technical communication, interaction design, responsive behavior,
+								and portfolio storytelling.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>HTML</span>
-						<span>CSS</span>
-						<span>JavaScript</span>
+						<span>Creative Coding</span>
 						<span>Canvas</span>
-						<span>Responsive UI</span>
+						<span>Interaction Design</span>
+						<span>Portfolio Storytelling</span>
 					</div>
 				</div>
 
@@ -762,19 +869,37 @@
 				<div class="project-main">
 					<div class="project-type">Portfolio System</div>
 					<h2>Personal Portfolio Website</h2>
-					<p>
-						A multi-page GitHub Pages portfolio designed to present professional experience, selected
-						projects, technical notes, life gallery, and interactive experiments in one cohesive system.
-					</p>
-					<div class="project-impact">
-						Focus: information architecture, visual consistency, responsive design, and career positioning.
+
+					<div class="case-grid">
+						<div class="case-block">
+							<h3>Question</h3>
+							<p>
+								How can a personal portfolio present professional credibility without losing
+								individual design taste?
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Approach</h3>
+							<p>
+								I structured the site as a multi-page system where each page serves a different
+								hiring signal: profile, projects, knowledge, gallery, and interactive tools.
+							</p>
+						</div>
+
+						<div class="case-block">
+							<h3>Demonstrates</h3>
+							<p>
+								Information architecture, visual consistency, responsive design, and career positioning.
+							</p>
+						</div>
 					</div>
+
 					<div class="tags">
-						<span>GitHub Pages</span>
-						<span>HTML</span>
-						<span>CSS</span>
-						<span>UX Design</span>
-						<span>Portfolio</span>
+						<span>Information Architecture</span>
+						<span>Visual System</span>
+						<span>Responsive Design</span>
+						<span>Personal Branding</span>
 					</div>
 				</div>
 
@@ -785,8 +910,8 @@
 
 		<footer class="footer-note fade">
 			<p>
-				More detailed case studies can be added over time as separate project pages under the
-				<code>projects/</code> folder.
+				Each project is framed as a thinking artifact: what problem it explores, how the workflow is structured,
+				and what kind of capability it demonstrates beyond a resume bullet point.
 			</p>
 
 			<a class="footer-link" href="https://github.com/lucy9588" target="_blank" rel="nofollow noopener noreferrer">
