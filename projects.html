@@ -396,6 +396,253 @@
 			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 		}
+
+		.projects-board {
+			display: grid;
+			grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.35fr);
+			gap: 34px;
+			align-items: start;
+		}
+
+		.project-menu {
+			position: sticky;
+			top: 28px;
+			display: grid;
+			gap: 14px;
+		}
+
+		.project-summary {
+			width: 100%;
+			position: relative;
+			display: grid;
+			grid-template-columns: 46px minmax(0, 1fr);
+			gap: 16px;
+			padding: 20px;
+			text-align: left;
+			color: inherit;
+			cursor: pointer;
+			border: 1px solid rgba(255, 255, 255, 0.34);
+			border-radius: 26px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.32),
+					rgba(255, 255, 255, 0.12)
+				);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			box-shadow:
+				0 16px 36px rgba(34, 38, 45, 0.06),
+				inset 0 1px 0 rgba(255, 255, 255, 0.34);
+			transition:
+				transform 0.25s ease,
+				box-shadow 0.25s ease,
+				border-color 0.25s ease,
+				background 0.25s ease;
+		}
+
+		.project-summary:hover {
+			transform: translateY(-3px);
+			box-shadow:
+				0 22px 46px rgba(34, 38, 45, 0.09),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+		}
+
+		.project-summary.active {
+			border-color: rgba(124, 141, 181, 0.58);
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.52),
+					rgba(235, 240, 248, 0.26)
+				);
+			box-shadow:
+				0 24px 54px rgba(102, 119, 155, 0.16),
+				inset 0 1px 0 rgba(255, 255, 255, 0.46);
+		}
+
+		.summary-number {
+			color: rgba(96, 117, 101, 0.52);
+			font-size: 28px;
+			line-height: 1;
+			font-weight: 900;
+			letter-spacing: -0.06em;
+		}
+
+		.summary-content h2 {
+			margin-bottom: 8px;
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: 22px;
+			line-height: 1.08;
+			font-weight: 600;
+			letter-spacing: -0.035em;
+			color: #30382f;
+		}
+
+		.summary-type {
+			margin-bottom: 8px;
+			color: var(--primary-dark);
+			font-size: 10.5px;
+			font-weight: 900;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.summary-content p {
+			color: var(--subtext);
+			font-size: 13px;
+			font-weight: 720;
+			line-height: 1.6;
+		}
+
+		.summary-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 7px;
+			margin-top: 12px;
+		}
+
+		.summary-tags span {
+			display: inline-flex;
+			align-items: center;
+			padding: 5px 8px;
+			border-radius: 999px;
+			color: #515b6d;
+			background: rgba(255, 255, 255, 0.34);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			font-size: 10.5px;
+			font-weight: 900;
+		}
+
+		.project-detail-panel {
+			position: sticky;
+			top: 28px;
+			max-height: calc(100vh - 56px);
+			overflow: auto;
+			padding: 24px;
+			border-radius: 32px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.42),
+					rgba(255, 255, 255, 0.16)
+				);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			box-shadow:
+				0 24px 58px rgba(34, 38, 45, 0.09),
+				inset 0 1px 0 rgba(255, 255, 255, 0.42);
+		}
+
+		.project-detail-panel::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		.project-detail-panel::-webkit-scrollbar-thumb {
+			border-radius: 999px;
+			background: rgba(111, 127, 159, 0.26);
+		}
+
+		.detail-panel-kicker {
+			margin-bottom: 12px;
+			color: var(--primary-dark);
+			font-size: 11px;
+			font-weight: 900;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+		}
+
+		.detail-panel-title {
+			margin-bottom: 16px;
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: clamp(28px, 3.4vw, 44px);
+			line-height: 1.04;
+			font-weight: 600;
+			letter-spacing: -0.04em;
+			color: #30382f;
+		}
+
+		.detail-panel-desc {
+			margin-top: 18px;
+			color: var(--subtext);
+			font-size: 14px;
+			font-weight: 720;
+			line-height: 1.75;
+		}
+
+		.detail-panel-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 18px 0 20px;
+		}
+
+		.detail-panel-tags span {
+			display: inline-flex;
+			align-items: center;
+			padding: 6px 10px;
+			border-radius: 999px;
+			color: #515b6d;
+			background: rgba(255, 255, 255, 0.34);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			font-size: 11px;
+			font-weight: 900;
+		}
+
+		.detail-panel-hint {
+			margin-top: 14px;
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 800;
+			line-height: 1.6;
+			text-align: center;
+		}
+
+		@media (max-width: 920px) {
+			.projects-board {
+				grid-template-columns: 1fr;
+				gap: 24px;
+			}
+
+			.project-menu,
+			.project-detail-panel {
+				position: static;
+				max-height: none;
+			}
+
+			.project-menu {
+				gap: 12px;
+			}
+
+			.project-summary {
+				padding: 18px;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.project-summary {
+				grid-template-columns: 1fr;
+				gap: 10px;
+			}
+
+			.summary-number {
+				font-size: 24px;
+			}
+
+			.summary-content h2 {
+				font-size: 20px;
+			}
+
+			.project-detail-panel {
+				padding: 18px;
+				border-radius: 26px;
+			}
+
+			.detail-panel-title {
+				font-size: clamp(26px, 10vw, 38px);
+			}
+		}
         .project-detail {
             margin-top: 24px;
             border-top: 1px solid rgba(111, 127, 159, 0.18);
@@ -932,328 +1179,113 @@
 			</div>
 		</header>
 
-		<section class="project-list fade" aria-label="Project case studies">
+<section class="projects-board fade" aria-label="Project case studies">
 
-			<article class="project-item">
-				<div class="project-number">01</div>
+	<div class="project-menu" aria-label="Project list">
 
-				<div class="project-main">
-					<div class="project-type">Case Study</div>
-					<h2>Azul Java Provision Automation</h2>
-
-					<div class="case-grid">
-						<div class="case-block">
-							<h3>Question</h3>
-							<p>
-								How can Java provisioning become faster, safer, and more consistent across target servers
-								without relying on repeated manual installation steps?
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Approach</h3>
-							<p>
-								I designed a request-driven automation workflow that validates inputs, resolves package
-								and inventory details, triggers provisioning, configures the runtime environment, and verifies
-								the final installation.
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Demonstrates</h3>
-							<p>
-								Provisioning automation, input validation, platform orchestration, environment configuration,
-								installation verification, and operational consistency.
-							</p>
-						</div>
-					</div>
-
-					<div class="workflow-line">
-						<span>User Request</span>
-						<span>Validate</span>
-						<span>Resolve Package</span>
-						<span>Trigger Automation</span>
-						<span>Install</span>
-						<span>Verify</span>
-						<span>Return Result</span>
-					</div>
-
-					<div class="tags">
-						<span>Java Provisioning</span>
-						<span>Azul Java</span>
-						<span>FastAPI</span>
-						<span>Jenkins / AAP</span>
-						<span>Ansible</span>
-						<span>Target Server</span>
-					</div>
-
-					<details class="project-detail">
-						<summary>
-							<span class="detail-icon">+</span>
-							<span>View project flow</span>
-						</summary>
-
-						<div class="detail-content compact-detail">
-							<figure class="project-flow-image">
-								<a href="assets/css/images/projects/project01-flow.jpg" target="_blank" rel="noopener">
-									<img src="assets/css/images/projects/project01-flow.jpg" alt="Project 01 Azul Java provision automation workflow">
-								</a>
-								<figcaption>
-									Self-designed workflow for request-driven Azul Java provisioning, covering user input,
-									platform validation, automation execution, target server installation, and result feedback.
-								</figcaption>
-							</figure>
-
-							<p class="compact-description">
-								This project automates Azul Java provisioning across target servers through a controlled
-								request and execution workflow. The process starts with a user request containing the target
-								server, environment, Java version, and installation type. The platform then validates required
-								fields, checks server and environment eligibility, resolves the package source and runtime
-								inventory, and triggers the provisioning automation through Jenkins / AAP. On the target server,
-								the workflow installs Azul Java, configures environment settings such as JAVA_HOME, profile,
-								alternatives, or symlinks, and verifies the installation by checking the expected Java version.
-								The final result is returned with success or failure output, making Java provisioning more
-								standardized, auditable, and consistent across environments.
-							</p>
-						</div>
-					</details>
+		<button class="project-summary active" type="button" data-project="project01">
+			<div class="summary-number">01</div>
+			<div class="summary-content">
+				<div class="summary-type">Case Study</div>
+				<h2>Azul Java Provision Automation</h2>
+				<p>
+					Request-driven Java provisioning workflow for target servers, from input validation
+					to verified installation.
+				</p>
+				<div class="summary-tags">
+					<span>Azul Java</span>
+					<span>Provisioning</span>
+					<span>Ansible</span>
 				</div>
-			</article>
+			</div>
+		</button>
 
-			<article class="project-item">
-                <div class="project-number">02</div>
-
-                <div class="project-main">
-                    <div class="project-type">Case Study</div>
-                    <h2>Diagnostic Log Collection & Secure Vendor Upload Automation</h2>
-
-                    <div class="case-grid">
-                        <div class="case-block">
-                            <h3>Question</h3>
-                            <p>
-                                How can diagnostic logs be collected, transferred, and uploaded to a vendor through
-                                a repeatable and controlled workflow instead of relying on manual handoffs?
-                            </p>
-                        </div>
-
-                        <div class="case-block">
-                            <h3>Approach</h3>
-                            <p>
-                                I designed the workflow as an end-to-end automation chain: user input, API trigger,
-                                log collection, staging transfer, credential handling, network routing, and vendor upload.
-                            </p>
-                        </div>
-
-                        <div class="case-block">
-                            <h3>Demonstrates</h3>
-                            <p>
-                                End-to-end ownership, automation design, secure transfer thinking, API orchestration,
-                                and production release capability.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="workflow-line">
-                        <span>Input</span>
-                        <span>API Trigger</span>
-                        <span>Collect Logs</span>
-                        <span>Transfer</span>
-                        <span>Upload</span>
-                    </div>
-
-                    <div class="tags">
-                        <span>End-to-End Design</span>
-                        <span>FastAPI</span>
-                        <span>AAP / AWX</span>
-                        <span>Ansible</span>
-                        <span>Secure Transfer</span>
-                        <span>Vendor Upload</span>
-                    </div>
-
-                    <details class="project-detail">
-                        <summary>
-                            <span class="detail-icon">+</span>
-                            <span>View project flow</span>
-                        </summary>
-
-                        <div class="detail-content compact-detail">
-                            <figure class="project-flow-image">
-                                <a href="assets/css/images/projects/project02-flow.jpg" target="_blank" rel="noopener">
-                                    <img src="assets/css/images/projects/project02-flow.jpg" alt="Project 02 log collection and secure vendor upload workflow">
-                                </a>
-                                <figcaption>
-                                    Self-designed workflow covering functional execution, automation code path, and secure network transfer.
-                                </figcaption>
-                            </figure>
-
-                            <p class="compact-description">
-                                This project automated the end-to-end process of diagnostic log generation, controlled staging transfer,
-                                and secure vendor upload. I designed, tested, and released the workflow across three layers:
-                                the functional process, the API / automation code flow, and the network transfer path.
-                            </p>
-                        </div>
-                    </details>
-                </div>
-            </article>
-
-			<article class="project-item">
-				<div class="project-number">03</div>
-
-				<div class="project-main">
-					<div class="project-type">Case Study</div>
-					<h2>CVE Remediation Workflow</h2>
-
-					<div class="case-grid">
-						<div class="case-block">
-							<h3>Question</h3>
-							<p>
-								How can vulnerability remediation become more traceable without creating
-								unnecessary reporting overhead?
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Approach</h3>
-							<p>
-								This case focuses on ownership, prioritization, validation, and status visibility
-								rather than only the technical patching step.
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Demonstrates</h3>
-							<p>
-								Risk-aware operations, stakeholder coordination, and structured follow-through.
-							</p>
-						</div>
-					</div>
-
-					<div class="workflow-line">
-						<span>Detect</span>
-						<span>Prioritize</span>
-						<span>Assign Owner</span>
-						<span>Remediate</span>
-						<span>Verify</span>
-					</div>
-
-					<div class="tags">
-						<span>Workflow Redesign</span>
-						<span>Pipeline Optimization</span>
-						<span>CVE Remediation</span>
-						<span>Nexus</span>
-						<span>Release Automation</span>
-					</div>
-                    <details class="project-detail">
-						<summary>
-							<span class="detail-icon">+</span>
-							<span>View project flow</span>
-						</summary>
-
-						<div class="detail-content compact-detail">
-							<figure class="project-flow-image">
-								<a href="assets/css/images/projects/project03-flow.jpg" target="_blank" rel="noopener">
-									<img src="assets/css/images/projects/project03-flow.jpg" alt="Project 03 Ubuntu base image refresh workflow">
-								</a>
-								<figcaption>
-									Self-designed workflow comparing the previous and new Ubuntu base image refresh process,
-									with an added pipeline stage view for prerelease and release execution.
-								</figcaption>
-							</figure>
-
-							<p class="compact-description">
-								This project redesigned the Ubuntu base image refresh workflow for CVE remediation. The diagram
-								shows the before-and-after process clearly: in the previous workflow, image refresh depended on
-								manual cyberflow scanning, prerelease handling, CR approval, and release execution, which added
-								significant delay. In the new workflow, I streamlined the process into a scheduled Monday refresh
-								pipeline, reducing manual intervention and making vulnerability remediation more continuous and
-								predictable. The lower pipeline stage view highlights the key execution steps across prerelease
-								and release, including image resolution, scan comparison, build and test, promotion, verification,
-								and notification. This project demonstrates my ability to improve engineering workflows through
-								process simplification, automation design, and release pipeline optimization.
-							</p>
-						</div>
-					</details>
+		<button class="project-summary" type="button" data-project="project02">
+			<div class="summary-number">02</div>
+			<div class="summary-content">
+				<div class="summary-type">Case Study</div>
+				<h2>Diagnostic Log Collection & Secure Upload</h2>
+				<p>
+					End-to-end automation for diagnostic log generation, controlled transfer, and vendor upload.
+				</p>
+				<div class="summary-tags">
+					<span>FastAPI</span>
+					<span>AAP / AWX</span>
+					<span>SFTP</span>
 				</div>
-			</article>
+			</div>
+		</button>
 
-			<article class="project-item">
-				<div class="project-number">04</div>
-
-				<div class="project-main">
-					<div class="project-type">Case Study</div>
-					<h2>Server Lease Renewal Automation</h2>
-
-					<div class="case-grid">
-						<div class="case-block">
-							<h3>Question</h3>
-							<p>
-								Which parts of server lifecycle work should be automated, and which parts
-								still need human checkpoints?
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Approach</h3>
-							<p>
-								I examine lifecycle work as a sequence of preparation, validation, execution,
-								verification, and rollback awareness.
-							</p>
-						</div>
-
-						<div class="case-block">
-							<h3>Demonstrates</h3>
-							<p>
-								Systems thinking, change safety, repeatable operational design, and validation discipline.
-							</p>
-						</div>
-					</div>
-
-					<div class="workflow-line">
-						<span>Prepare</span>
-						<span>Validate</span>
-						<span>Execute</span>
-						<span>Confirm</span>
-						<span>Rollback Awareness</span>
-					</div>
-
-					<div class="tags">
-						<span>Change Safety</span>
-						<span>Lifecycle Thinking</span>
-						<span>Validation</span>
-						<span>Repeatability</span>
-					</div>
-					<details class="project-detail">
-					<summary>
-						<span class="detail-icon">+</span>
-						<span>View project flow</span>
-					</summary>
-
-					<div class="detail-content compact-detail">
-						<figure class="project-flow-image">
-							<a href="assets/css/images/projects/project04-flow.jpg" target="_blank" rel="noopener">
-								<img src="assets/css/images/projects/project04-flow.jpg" alt="Project 04 lease extend automation workflow">
-							</a>
-							<figcaption>
-								Self-designed workflow for DEV and UAT server lease checking, renewal, retry handling, verification, and final notification.
-							</figcaption>
-						</figure>
-
-						<p class="compact-description">
-							This project automated the lease checking and renewal process for DEV and UAT virtual machines.
-							The workflow validates server IDs, separates invalid inputs from eligible servers, calls the
-							getLease API to check current lease status, and handles the asynchronous API job through polling,
-							waiting, retrying, and fallback verification. If a server is eligible for renewal, the pipeline
-							calls the extend lease API, monitors the renewal job until completion, verifies that the new lease
-							time is later than the old lease, and then sends a final email notification. The design reduces
-							manual lease checking, prevents unnecessary API calls from invalid inputs, standardizes DEV and UAT
-							renewal behavior, improves failure visibility, and helps avoid testing interruption caused by
-							expired non-production servers.
-						</p>
-					</div>
-				</details>
+		<button class="project-summary" type="button" data-project="project03">
+			<div class="summary-number">03</div>
+			<div class="summary-content">
+				<div class="summary-type">Case Study</div>
+				<h2>Ubuntu Base Image CVE Remediation</h2>
+				<p>
+					Workflow redesign for base image refresh, CVE scan comparison, release pipeline,
+					and image promotion.
+				</p>
+				<div class="summary-tags">
+					<span>CVE</span>
+					<span>Jenkins</span>
+					<span>Nexus</span>
 				</div>
-			</article>
-		</section>
+			</div>
+		</button>
+
+		<button class="project-summary" type="button" data-project="project04">
+			<div class="summary-number">04</div>
+			<div class="summary-content">
+				<div class="summary-type">Case Study</div>
+				<h2>Server Lease Renewal Automation</h2>
+				<p>
+					Automated DEV and UAT server lease checking, renewal, retry handling,
+					verification, and notification.
+				</p>
+				<div class="summary-tags">
+					<span>Jenkins</span>
+					<span>API Polling</span>
+					<span>Lease Renewal</span>
+				</div>
+			</div>
+		</button>
+
+	</div>
+
+	<aside class="project-detail-panel" id="projectDetailPanel" aria-live="polite">
+		<div class="detail-panel-kicker" id="detailKicker">Project 01</div>
+		<h2 class="detail-panel-title" id="detailTitle">Azul Java Provision Automation</h2>
+
+		<div class="detail-panel-tags" id="detailTags"></div>
+
+		<figure class="project-flow-image">
+			<a id="detailImageLink" href="assets/css/images/projects/project01-flow.jpg" target="_blank" rel="noopener">
+				<img id="detailImage" src="assets/css/images/projects/project01-flow.jpg" alt="Project 01 Azul Java provision automation workflow">
+			</a>
+			<figcaption id="detailCaption">
+				Self-designed workflow for request-driven Azul Java provisioning, covering user input,
+				platform validation, automation execution, target server installation, and result feedback.
+			</figcaption>
+		</figure>
+
+		<p class="detail-panel-desc" id="detailDescription">
+			This project automates Azul Java provisioning across target servers through a controlled
+			request and execution workflow. The process starts with a user request containing the target
+			server, environment, Java version, and installation type. The platform then validates required
+			fields, checks server and environment eligibility, resolves the package source and runtime
+			inventory, and triggers the provisioning automation through Jenkins / AAP. On the target server,
+			the workflow installs Azul Java, configures environment settings such as JAVA_HOME, profile,
+			alternatives, or symlinks, and verifies the installation by checking the expected Java version.
+			The final result is returned with success or failure output, making Java provisioning more
+			standardized, auditable, and consistent across environments.
+		</p>
+
+		<div class="detail-panel-hint">
+			Click the image to open the full-size workflow.
+		</div>
+	</aside>
+
+</section>
 
 		<footer class="footer-note fade">
 			<p>
@@ -1297,6 +1329,119 @@
 		});
 
 		faders.forEach((element) => observer.observe(element));
+		const projectData = {
+	project01: {
+		kicker: 'Project 01',
+		title: 'Azul Java Provision Automation',
+		image: 'assets/css/images/projects/project01-flow.jpg',
+		alt: 'Project 01 Azul Java provision automation workflow',
+		caption: 'Self-designed workflow for request-driven Azul Java provisioning, covering user input, platform validation, automation execution, target server installation, and result feedback.',
+		tags: ['Java Provisioning', 'Azul Java', 'FastAPI', 'Jenkins / AAP', 'Ansible', 'Target Server'],
+		description: `This project automates Azul Java provisioning across target servers through a controlled
+		request and execution workflow. The process starts with a user request containing the target
+		server, environment, Java version, and installation type. The platform then validates required
+		fields, checks server and environment eligibility, resolves the package source and runtime
+		inventory, and triggers the provisioning automation through Jenkins / AAP. On the target server,
+		the workflow installs Azul Java, configures environment settings such as JAVA_HOME, profile,
+		alternatives, or symlinks, and verifies the installation by checking the expected Java version.
+		The final result is returned with success or failure output, making Java provisioning more
+		standardized, auditable, and consistent across environments.`
+	},
+
+	project02: {
+		kicker: 'Project 02',
+		title: 'Diagnostic Log Collection & Secure Vendor Upload Automation',
+		image: 'assets/css/images/projects/project02-flow.jpg',
+		alt: 'Project 02 log collection and secure vendor upload workflow',
+		caption: 'Self-designed workflow covering functional execution, automation code path, and secure network transfer.',
+		tags: ['End-to-End Design', 'FastAPI', 'AAP / AWX', 'Ansible', 'Secure Transfer', 'Vendor Upload'],
+		description: `This project automated the end-to-end process of diagnostic log generation, controlled staging transfer,
+		and secure vendor upload. I designed, tested, and released the workflow across three layers:
+		the functional process, the API / automation code flow, and the network transfer path.`
+	},
+
+	project03: {
+		kicker: 'Project 03',
+		title: 'Ubuntu Base Image CVE Remediation Workflow',
+		image: 'assets/css/images/projects/project03-flow.jpg',
+		alt: 'Project 03 Ubuntu base image refresh workflow',
+		caption: 'Self-designed workflow comparing the previous and new Ubuntu base image refresh process, with an added pipeline stage view for prerelease and release execution.',
+		tags: ['Workflow Redesign', 'Pipeline Optimization', 'CVE Remediation', 'Nexus', 'Release Automation'],
+		description: `This project redesigned the Ubuntu base image refresh workflow for CVE remediation. The diagram
+		shows the before-and-after process clearly: in the previous workflow, image refresh depended on
+		manual cyberflow scanning, prerelease handling, CR approval, and release execution, which added
+		significant delay. In the new workflow, I streamlined the process into a scheduled Monday refresh
+		pipeline, reducing manual intervention and making vulnerability remediation more continuous and
+		predictable. The lower pipeline stage view highlights the key execution steps across prerelease
+		and release, including image resolution, scan comparison, build and test, promotion, verification,
+		and notification.`
+	},
+
+	project04: {
+		kicker: 'Project 04',
+		title: 'Server Lease Renewal Automation',
+		image: 'assets/css/images/projects/project04-flow.jpg',
+		alt: 'Project 04 lease extend automation workflow',
+		caption: 'Self-designed workflow for DEV and UAT server lease checking, renewal, retry handling, verification, and final notification.',
+		tags: ['Jenkins Pipeline', 'Lease Automation', 'API Polling', 'Retry Handling', 'Fallback Verification'],
+		description: `This project automated the lease checking and renewal process for DEV and UAT virtual machines.
+		The workflow validates server IDs, separates invalid inputs from eligible servers, calls the
+		getLease API to check current lease status, and handles the asynchronous API job through polling,
+		waiting, retrying, and fallback verification. If a server is eligible for renewal, the pipeline
+		calls the extend lease API, monitors the renewal job until completion, verifies that the new lease
+		time is later than the old lease, and then sends a final email notification. The design reduces
+		manual lease checking, prevents unnecessary API calls from invalid inputs, standardizes DEV and UAT
+		renewal behavior, improves failure visibility, and helps avoid testing interruption caused by
+		expired non-production servers.`
+	}
+};
+
+const projectButtons = document.querySelectorAll('.project-summary');
+const detailPanel = document.getElementById('projectDetailPanel');
+const detailKicker = document.getElementById('detailKicker');
+const detailTitle = document.getElementById('detailTitle');
+const detailTags = document.getElementById('detailTags');
+const detailImage = document.getElementById('detailImage');
+const detailImageLink = document.getElementById('detailImageLink');
+const detailCaption = document.getElementById('detailCaption');
+const detailDescription = document.getElementById('detailDescription');
+
+function renderProject(projectKey, shouldScroll = false) {
+	const project = projectData[projectKey];
+
+	if (!project) return;
+
+	projectButtons.forEach((button) => {
+		button.classList.toggle('active', button.dataset.project === projectKey);
+	});
+
+	detailKicker.textContent = project.kicker;
+	detailTitle.textContent = project.title;
+	detailImage.src = project.image;
+	detailImage.alt = project.alt;
+	detailImageLink.href = project.image;
+	detailCaption.textContent = project.caption;
+	detailDescription.textContent = project.description;
+
+	detailTags.innerHTML = project.tags
+		.map((tag) => `<span>${tag}</span>`)
+		.join('');
+
+	if (shouldScroll && window.innerWidth <= 920) {
+		detailPanel.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+	}
+}
+
+projectButtons.forEach((button) => {
+	button.addEventListener('click', () => {
+		renderProject(button.dataset.project, true);
+	});
+});
+
+renderProject('project01');
 	</script>
 
 </body>
