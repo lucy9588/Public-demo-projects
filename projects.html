@@ -1105,7 +1105,7 @@
 
 				<div class="project-main">
 					<div class="project-type">Case Study</div>
-					<h2>Server Lifecycle Automation</h2>
+					<h2>Server Lease Renewal Automation</h2>
 
 					<div class="case-grid">
 						<div class="case-block">
@@ -1146,6 +1146,35 @@
 						<span>Validation</span>
 						<span>Repeatability</span>
 					</div>
+					<details class="project-detail">
+					<summary>
+						<span class="detail-icon">+</span>
+						<span>View project flow</span>
+					</summary>
+
+					<div class="detail-content compact-detail">
+						<figure class="project-flow-image">
+							<a href="assets/css/images/projects/project04-flow.jpg" target="_blank" rel="noopener">
+								<img src="assets/css/images/projects/project04-flow.jpg" alt="Project 04 lease extend automation workflow">
+							</a>
+							<figcaption>
+								Self-designed workflow for DEV and UAT server lease checking, renewal, retry handling, verification, and final notification.
+							</figcaption>
+						</figure>
+
+						<p class="compact-description">
+							This project automated the lease checking and renewal process for DEV and UAT virtual machines.
+							The workflow validates server IDs, separates invalid inputs from eligible servers, calls the
+							getLease API to check current lease status, and handles the asynchronous API job through polling,
+							waiting, retrying, and fallback verification. If a server is eligible for renewal, the pipeline
+							calls the extend lease API, monitors the renewal job until completion, verifies that the new lease
+							time is later than the old lease, and then sends a final email notification. The design reduces
+							manual lease checking, prevents unnecessary API calls from invalid inputs, standardizes DEV and UAT
+							renewal behavior, improves failure visibility, and helps avoid testing interruption caused by
+							expired non-production servers.
+						</p>
+					</div>
+				</details>
                     <details class="project-detail">
                         <summary>
                             <span class="detail-icon">+</span>
