@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Knowledge Canvas | Hui Luo</title>
+	<title>Knowledge Notebook | Hui Luo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 	<style>
 		:root {
-			--bg: #f4efe4;
-			--paper: #fffdf8;
-			--panel: #fbf7ef;
+			--bg: #f6f3eb;
+			--paper: #fffdf7;
+			--paper-soft: #fbf7ed;
 			--text: #2f312c;
-			--muted: #7a7d72;
-			--line: #ddd2bd;
-			--line-dark: #c8bca6;
+			--muted: #777b70;
+			--line: #e2d8c7;
+			--line-dark: #cfc2ab;
 			--primary: #6f7f9f;
 			--primary-dark: #52627f;
 			--green: #7d967f;
 			--clay: #c79b83;
-			--yellow: #f4df9b;
-			--blue: #dbeafa;
-			--pink: #f4d9dc;
-			--purple: #e6ddf6;
 			--danger: #b66a6a;
-			--shadow: rgba(57, 48, 32, 0.14);
+			--shadow: rgba(62, 54, 40, 0.10);
 		}
 
 		* {
@@ -39,8 +35,8 @@
 			color: var(--text);
 			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 			background:
-				linear-gradient(90deg, rgba(221, 210, 189, 0.36) 1px, transparent 1px),
-				linear-gradient(rgba(221, 210, 189, 0.36) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(226, 216, 199, 0.38) 1px, transparent 1px),
+				linear-gradient(rgba(226, 216, 199, 0.38) 1px, transparent 1px),
 				var(--bg);
 			background-size: 28px 28px;
 		}
@@ -61,12 +57,16 @@
 			position: sticky;
 			top: 0;
 			height: 100vh;
-			padding: 26px 18px;
-			background: rgba(255, 253, 248, 0.88);
+			padding: 28px 20px;
+			background: rgba(255, 253, 247, 0.84);
 			border-right: 1px solid var(--line);
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
 			overflow-y: auto;
+		}
+
+		.brand {
+			margin-bottom: 28px;
 		}
 
 		.brand-label {
@@ -80,9 +80,9 @@
 
 		.brand h1 {
 			font-size: 25px;
-			line-height: 1.08;
+			line-height: 1.1;
 			font-weight: 800;
-			letter-spacing: -0.055em;
+			letter-spacing: -0.05em;
 		}
 
 		.brand p {
@@ -92,11 +92,11 @@
 			line-height: 1.55;
 		}
 
-		.side-section {
+		.sidebar-section {
 			margin-top: 24px;
 		}
 
-		.side-title {
+		.sidebar-title {
 			margin-bottom: 10px;
 			color: var(--muted);
 			font-size: 11px;
@@ -105,18 +105,24 @@
 			text-transform: uppercase;
 		}
 
+		.tool-grid {
+			display: grid;
+			gap: 9px;
+		}
+
 		.btn {
 			border: 0;
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			gap: 7px;
-			min-height: 36px;
-			padding: 8px 11px;
+			gap: 8px;
+			min-height: 38px;
+			padding: 9px 12px;
 			border-radius: 12px;
-			font-size: 12.5px;
-			font-weight: 750;
+			font-size: 13px;
+			font-weight: 700;
+			text-decoration: none;
 			transition:
 				transform 0.18s ease,
 				box-shadow 0.18s ease,
@@ -144,7 +150,7 @@
 		}
 
 		.btn-soft:hover {
-			box-shadow: 0 8px 18px rgba(57, 48, 32, 0.08);
+			box-shadow: 0 8px 18px var(--shadow);
 		}
 
 		.btn-danger {
@@ -159,17 +165,12 @@
 			font-size: 12px;
 		}
 
-		.tool-grid {
-			display: grid;
-			gap: 8px;
-		}
-
-		.index-list {
+		.nav-list {
 			display: grid;
 			gap: 6px;
 		}
 
-		.index-item {
+		.nav-item {
 			width: 100%;
 			border: 1px solid transparent;
 			background: transparent;
@@ -186,16 +187,16 @@
 			font-weight: 650;
 		}
 
-		.index-item:hover,
-		.index-item.active {
+		.nav-item:hover,
+		.nav-item.active {
 			background: var(--paper);
 			border-color: var(--line);
 		}
 
-		.index-item span {
+		.nav-item span {
 			color: var(--muted);
 			font-size: 11px;
-			font-weight: 750;
+			font-weight: 700;
 		}
 
 		.hint {
@@ -210,7 +211,7 @@
 		}
 
 		.main {
-			padding: 30px 30px 72px;
+			padding: 34px 34px 80px;
 		}
 
 		.topbar {
@@ -218,8 +219,8 @@
 			justify-content: space-between;
 			align-items: center;
 			gap: 20px;
-			max-width: 1220px;
-			margin: 0 auto 18px;
+			max-width: 1120px;
+			margin: 0 auto 24px;
 		}
 
 		.breadcrumbs {
@@ -240,25 +241,25 @@
 			gap: 8px;
 		}
 
-		.workspace {
-			max-width: 1220px;
+		.notebook {
+			max-width: 1120px;
 			margin: 0 auto;
 			background: var(--paper);
 			border: 1px solid var(--line);
 			border-radius: 28px;
-			box-shadow: 0 24px 70px rgba(57, 48, 32, 0.10);
+			box-shadow: 0 24px 70px var(--shadow);
 			overflow: hidden;
 		}
 
-		.workspace-cover {
+		.notebook-cover {
 			position: relative;
-			padding: 28px 32px 24px;
+			padding: 34px 36px 28px;
 			background:
-				linear-gradient(135deg, rgba(255, 253, 248, 0.98), rgba(248, 242, 231, 0.98));
+				linear-gradient(135deg, rgba(255, 253, 247, 0.96), rgba(248, 242, 231, 0.96));
 			border-bottom: 1px solid var(--line);
 		}
 
-		.workspace-cover::before {
+		.notebook-cover::before {
 			content: "";
 			position: absolute;
 			left: 0;
@@ -268,69 +269,93 @@
 			background: linear-gradient(180deg, var(--primary), var(--green), var(--clay));
 		}
 
-		.workspace-title {
+		.notebook-title {
 			width: 100%;
 			border: 0;
 			outline: none;
 			background: transparent;
 			color: var(--text);
-			font-size: clamp(28px, 4.5vw, 48px);
+			font-size: clamp(28px, 5vw, 52px);
 			line-height: 1.05;
 			font-weight: 800;
 			letter-spacing: -0.06em;
 		}
 
-		.workspace-subtitle {
+		.notebook-subtitle {
 			width: 100%;
-			margin-top: 10px;
+			margin-top: 12px;
 			border: 0;
 			outline: none;
 			background: transparent;
 			color: var(--muted);
-			font-size: 14px;
+			font-size: 15px;
 			font-weight: 500;
 			line-height: 1.6;
 			resize: vertical;
-			min-height: 44px;
+			min-height: 48px;
 		}
 
 		.meta-row {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
-			margin-top: 16px;
+			margin-top: 18px;
 		}
 
 		.meta-pill {
 			display: inline-flex;
 			align-items: center;
+			gap: 6px;
 			padding: 7px 10px;
 			border-radius: 999px;
-			background: var(--panel);
+			background: var(--paper-soft);
 			border: 1px solid var(--line);
 			color: var(--muted);
 			font-size: 12px;
 			font-weight: 700;
 		}
 
-		.module-area {
-			padding: 22px 28px 32px;
+		.modules {
+			padding: 26px 36px 36px;
+			display: grid;
+			gap: 18px;
 		}
 
 		.module {
-			display: none;
+			border: 1px solid var(--line);
+			border-radius: 22px;
+			background: #ffffff;
+			overflow: hidden;
+			box-shadow: 0 8px 24px rgba(62, 54, 40, 0.04);
 		}
 
-		.module.active {
-			display: block;
+		.module.dragging {
+			opacity: 0.45;
 		}
 
 		.module-header {
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			gap: 16px;
-			align-items: start;
-			margin-bottom: 16px;
+			grid-template-columns: 34px minmax(0, 1fr) auto;
+			gap: 14px;
+			align-items: center;
+			padding: 16px 18px;
+			background:
+				linear-gradient(135deg, rgba(250, 247, 239, 0.95), rgba(255, 255, 255, 0.95));
+			border-bottom: 1px solid var(--line);
+		}
+
+		.drag-handle {
+			width: 34px;
+			height: 34px;
+			border-radius: 10px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--muted);
+			background: var(--paper-soft);
+			border: 1px solid var(--line);
+			cursor: grab;
+			font-weight: 800;
 		}
 
 		.module-title-input {
@@ -339,316 +364,178 @@
 			outline: none;
 			background: transparent;
 			color: var(--text);
-			font-size: 24px;
+			font-size: 20px;
 			font-weight: 800;
-			letter-spacing: -0.04em;
-		}
-
-		.module-desc-input {
-			width: 100%;
-			margin-top: 6px;
-			border: 0;
-			outline: none;
-			background: transparent;
-			color: var(--muted);
-			font-size: 13px;
-			line-height: 1.55;
-			resize: vertical;
-			min-height: 34px;
+			letter-spacing: -0.03em;
 		}
 
 		.module-actions {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: flex-end;
-			gap: 7px;
+			gap: 6px;
 		}
 
-		.canvas-toolbar {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-			padding: 10px;
-			border-radius: 16px;
-			background: var(--panel);
+		.module-body {
+			padding: 18px;
+			display: grid;
+			gap: 14px;
+		}
+
+		.module.collapsed .module-body {
+			display: none;
+		}
+
+		.module-tags {
+			width: 100%;
 			border: 1px solid var(--line);
-			margin-bottom: 14px;
-		}
-
-		.canvas-shell {
-			position: relative;
-			height: 680px;
-			border-radius: 22px;
-			border: 1px solid var(--line);
-			background:
-				linear-gradient(90deg, rgba(200, 188, 166, 0.26) 1px, transparent 1px),
-				linear-gradient(rgba(200, 188, 166, 0.26) 1px, transparent 1px),
-				#fffdf8;
-			background-size: 24px 24px;
-			overflow: auto;
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-		}
-
-		.canvas {
-			position: relative;
-			width: 1600px;
-			height: 1000px;
-			transform-origin: 0 0;
-		}
-
-		.canvas-element {
-			position: absolute;
-			min-width: 80px;
-			min-height: 48px;
-			border-radius: 14px;
-			border: 1px solid var(--line-dark);
-			background: #ffffff;
-			box-shadow: 0 10px 24px rgba(57, 48, 32, 0.10);
-			user-select: none;
-		}
-
-		.canvas-element.selected {
-			outline: 3px solid rgba(111, 127, 159, 0.30);
-			outline-offset: 2px;
-		}
-
-		.el-head {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 8px;
-			height: 28px;
-			padding: 5px 8px;
-			border-bottom: 1px solid rgba(200, 188, 166, 0.55);
-			color: var(--muted);
-			font-size: 10px;
-			font-weight: 800;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			cursor: grab;
-		}
-
-		.el-head:active {
-			cursor: grabbing;
-		}
-
-		.el-body {
-			padding: 10px;
-		}
-
-		.el-body [contenteditable="true"] {
 			outline: none;
-			cursor: text;
-			user-select: text;
-		}
-
-		.el-menu {
-			display: flex;
-			gap: 4px;
-		}
-
-		.el-btn {
-			border: 0;
-			cursor: pointer;
-			width: 20px;
-			height: 20px;
-			border-radius: 6px;
-			background: rgba(255, 255, 255, 0.7);
+			border-radius: 12px;
+			padding: 10px 12px;
+			background: var(--paper-soft);
 			color: var(--muted);
-			font-size: 12px;
-			font-weight: 800;
-		}
-
-		.el-btn:hover {
-			color: var(--danger);
-			background: #fff2f2;
-		}
-
-		.resize-handle {
-			position: absolute;
-			right: 4px;
-			bottom: 4px;
-			width: 12px;
-			height: 12px;
-			border-radius: 4px;
-			background: rgba(111, 127, 159, 0.45);
-			cursor: nwse-resize;
-		}
-
-		.text-box {
-			background: #ffffff;
-		}
-
-		.sticky-note {
-			background: #fff3bc;
-			border-color: #dec66b;
-		}
-
-		.process-box {
-			background: var(--blue);
-			border-color: #9bbfe6;
-		}
-
-		.decision-box {
-			background: var(--purple);
-			border-color: #b8a7da;
-			border-radius: 28px;
-		}
-
-		.code-note {
-			background: #292c33;
-			border-color: #292c33;
-			color: #f7f0df;
-		}
-
-		.code-note .el-head {
-			color: #d4c9b4;
-			border-bottom-color: rgba(255, 255, 255, 0.16);
-		}
-
-		.code-note .el-btn {
-			background: rgba(255, 255, 255, 0.12);
-			color: #f7f0df;
-		}
-
-		.code-note pre {
-			white-space: pre-wrap;
-			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-			font-size: 12px;
-			line-height: 1.55;
-		}
-
-		.element-text {
-			font-size: 14px;
-			line-height: 1.55;
+			font-size: 13px;
 			font-weight: 600;
 		}
 
-		.image-card img {
-			display: block;
-			max-width: 100%;
-			max-height: 100%;
-			object-fit: contain;
-			border-radius: 10px;
-			background: var(--panel);
+		.module-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 320px;
+			gap: 18px;
+			align-items: start;
 		}
 
-		.image-url,
-		.link-url {
+		.notes-area {
+			display: grid;
+			gap: 12px;
+		}
+
+		.notes-editor {
 			width: 100%;
+			min-height: 220px;
 			border: 1px solid var(--line);
-			border-radius: 10px;
-			padding: 8px 9px;
 			outline: none;
-			background: var(--panel);
+			border-radius: 16px;
+			padding: 16px;
+			background:
+				linear-gradient(#ffffff 31px, rgba(228, 220, 203, 0.48) 32px);
+			background-size: 100% 32px;
 			color: var(--text);
-			font-size: 12px;
-			margin-bottom: 8px;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 32px;
+			resize: vertical;
 		}
 
-		.link-card a {
-			display: block;
-			padding: 10px;
-			border-radius: 12px;
-			background: #f2eadc;
-			border: 1px solid var(--line);
-			color: var(--primary-dark);
-			text-decoration: none;
-			font-size: 13px;
+		.resource-grid {
+			display: grid;
+			gap: 10px;
+		}
+
+		.resource-field {
+			display: grid;
+			gap: 6px;
+		}
+
+		.resource-field label {
+			color: var(--muted);
+			font-size: 11px;
 			font-weight: 800;
-			word-break: break-word;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
 		}
 
-		.table-card table {
+		.resource-field input {
 			width: 100%;
-			border-collapse: collapse;
-			font-size: 12px;
+			border: 1px solid var(--line);
+			outline: none;
+			border-radius: 12px;
+			padding: 10px 12px;
+			background: var(--paper-soft);
+			color: var(--text);
+			font-size: 13px;
+			font-weight: 600;
+		}
+
+		.preview-card {
+			padding: 14px;
+			border-radius: 18px;
+			background: var(--paper-soft);
+			border: 1px solid var(--line);
+		}
+
+		.preview-title {
+			margin-bottom: 10px;
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.preview-card img {
+			width: 100%;
+			max-height: 260px;
+			object-fit: contain;
+			display: block;
+			border-radius: 12px;
+			border: 1px solid var(--line);
 			background: #ffffff;
 		}
 
-		.table-card th,
-		.table-card td {
-			border: 1px solid var(--line-dark);
-			padding: 7px;
-			min-width: 80px;
-		}
-
-		.table-card th {
-			background: #f1eadc;
-			font-weight: 800;
-		}
-
-		.table-card td[contenteditable="true"],
-		.table-card th[contenteditable="true"] {
-			outline: none;
-		}
-
-		.connector {
-			background: transparent;
-			border: 0;
-			box-shadow: none;
-			min-height: 8px;
-			height: 8px;
-			transform-origin: left center;
-		}
-
-		.connector-line {
-			height: 3px;
-			background: var(--primary);
-			border-radius: 999px;
-			position: relative;
-			top: 2px;
-		}
-
-		.connector-line::after {
-			content: "";
-			position: absolute;
-			right: -1px;
-			top: 50%;
-			transform: translateY(-50%) rotate(45deg);
-			width: 8px;
-			height: 8px;
-			border-top: 3px solid var(--primary);
-			border-right: 3px solid var(--primary);
-		}
-
-		.empty-canvas {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			color: var(--muted);
+		.empty-preview {
+			padding: 38px 14px;
 			text-align: center;
-			pointer-events: none;
+			border-radius: 12px;
+			border: 1px dashed var(--line-dark);
+			color: var(--muted);
+			background: #ffffff;
+			font-size: 13px;
+			line-height: 1.55;
 		}
 
-		.empty-canvas h2 {
+		.link-row {
+			display: grid;
+			gap: 8px;
+		}
+
+		.open-link {
+			width: 100%;
+		}
+
+		.empty-state {
+			padding: 42px 20px;
+			text-align: center;
+			border: 1px dashed var(--line-dark);
+			border-radius: 22px;
+			color: var(--muted);
+			background: var(--paper-soft);
+		}
+
+		.empty-state h2 {
 			margin-bottom: 8px;
 			color: var(--text);
 			font-size: 22px;
 			font-weight: 800;
-			letter-spacing: -0.04em;
-		}
-
-		.empty-canvas p {
-			font-size: 13px;
-			line-height: 1.55;
+			letter-spacing: -0.03em;
 		}
 
 		.footer-note {
-			max-width: 1220px;
-			margin: 16px auto 0;
+			max-width: 1120px;
+			margin: 18px auto 0;
 			color: var(--muted);
 			font-size: 12px;
 			line-height: 1.6;
 			text-align: center;
 		}
 
-		.hidden {
-			display: none !important;
+		@media (max-width: 960px) {
+			.module-grid {
+				grid-template-columns: 1fr;
+			}
 		}
 
-		@media (max-width: 920px) {
+		@media (max-width: 900px) {
 			.app {
 				grid-template-columns: 1fr;
 			}
@@ -660,33 +547,67 @@
 				border-bottom: 1px solid var(--line);
 			}
 
-			.main {
-				padding: 22px 16px 60px;
+			.sidebar-section.index-section {
+				display: none;
 			}
 
-			.topbar,
-			.module-header {
+			.main {
+				padding: 24px 18px 64px;
+			}
+
+			.topbar {
 				flex-direction: column;
 				align-items: flex-start;
 			}
 
-			.module-header {
-				display: grid;
-				grid-template-columns: 1fr;
-			}
-
-			.module-actions {
+			.top-actions {
 				justify-content: flex-start;
 			}
 
-			.workspace-cover,
-			.module-area {
-				padding-left: 20px;
-				padding-right: 20px;
+			.notebook-cover,
+			.modules {
+				padding-left: 22px;
+				padding-right: 22px;
 			}
 
-			.canvas-shell {
-				height: 600px;
+			.module-header {
+				grid-template-columns: 34px minmax(0, 1fr);
+			}
+
+			.module-actions {
+				grid-column: 1 / -1;
+				justify-content: flex-start;
+			}
+		}
+
+		@media print {
+			body {
+				background: #ffffff;
+			}
+
+			.sidebar,
+			.topbar,
+			.module-actions,
+			.drag-handle,
+			.footer-note {
+				display: none !important;
+			}
+
+			.app {
+				display: block;
+			}
+
+			.main {
+				padding: 0;
+			}
+
+			.notebook {
+				box-shadow: none;
+				border: 0;
+			}
+
+			.module {
+				break-inside: avoid;
 			}
 		}
 	</style>
@@ -696,32 +617,30 @@
 	<div class="app">
 		<aside class="sidebar">
 			<div class="brand">
-				<div class="brand-label">Canvas Notebook</div>
-				<h1>Knowledge Canvas</h1>
+				<div class="brand-label">Knowledge Notebook</div>
+				<h1>Notes & Diagrams</h1>
 				<p>
-					Each module is a Gliffy-style canvas. Add shapes, notes, tables, images,
-					links, and connectors freely.
+					A simple notebook index for daily notes and diagram resources. Diagrams are edited outside this page and linked here.
 				</p>
 			</div>
 
-			<div class="side-section">
-				<div class="side-title">Notebook Tools</div>
+			<div class="sidebar-section">
+				<div class="sidebar-title">Notebook Tools</div>
 				<div class="tool-grid">
-					<button class="btn btn-primary" id="addModuleBtn">＋ Add Canvas Module</button>
-					<button class="btn btn-soft" id="duplicateModuleBtn">Duplicate Current</button>
+					<button class="btn btn-primary" id="addModuleBtn">＋ Add Module</button>
 					<button class="btn btn-soft" id="exportBtn">Export JSON</button>
 					<button class="btn btn-soft" id="printBtn">Print / Save PDF</button>
-					<button class="btn btn-danger" id="resetBtn">Reset</button>
+					<button class="btn btn-danger" id="resetBtn">Reset Notebook</button>
 				</div>
 			</div>
 
-			<div class="side-section">
-				<div class="side-title">Canvas Modules</div>
-				<div class="index-list" id="moduleIndex"></div>
+			<div class="sidebar-section index-section">
+				<div class="sidebar-title">Module Index</div>
+				<nav class="nav-list" id="moduleIndex"></nav>
 			</div>
 
 			<div class="hint">
-				All content is saved in this browser automatically. Use Export JSON before clearing browser data.
+				Workflow: create diagrams in diagrams.net / draw.io, export PNG or SVG into your repo, then paste the image path and diagram file link here.
 			</div>
 		</aside>
 
@@ -730,541 +649,298 @@
 				<div class="breadcrumbs">
 					<a href="index.html">Home</a>
 					&nbsp;/&nbsp;
-					<span>Knowledge Canvas</span>
+					<span>Knowledge Notebook</span>
 				</div>
 
 				<div class="top-actions">
-					<button class="btn btn-soft btn-small" id="zoomOutBtn">− Zoom</button>
-					<button class="btn btn-soft btn-small" id="zoomResetBtn">100%</button>
-					<button class="btn btn-soft btn-small" id="zoomInBtn">＋ Zoom</button>
+					<button class="btn btn-soft btn-small" id="collapseAllBtn">Collapse All</button>
+					<button class="btn btn-soft btn-small" id="expandAllBtn">Expand All</button>
 				</div>
 			</div>
 
-			<section class="workspace">
-				<header class="workspace-cover">
-					<input class="workspace-title" id="workspaceTitle" value="My Knowledge Canvas" aria-label="Workspace title">
-					<textarea class="workspace-subtitle" id="workspaceSubtitle" aria-label="Workspace description">A personal canvas notebook for learning notes, diagrams, tables, images, and resources.</textarea>
+			<section class="notebook">
+				<header class="notebook-cover">
+					<input class="notebook-title" id="notebookTitle" value="My Knowledge Notebook" aria-label="Notebook title">
+					<textarea class="notebook-subtitle" id="notebookSubtitle" aria-label="Notebook description">Daily notes, troubleshooting patterns, diagram previews, and external resources.</textarea>
 
 					<div class="meta-row">
 						<span class="meta-pill">Auto saved</span>
-						<span class="meta-pill">Gliffy-style modules</span>
-						<span class="meta-pill">Drag & resize</span>
+						<span class="meta-pill">Diagram previews</span>
+						<span class="meta-pill">External links</span>
+						<span class="meta-pill">Repository friendly</span>
 						<span class="meta-pill" id="lastSaved">Not saved yet</span>
 					</div>
 				</header>
 
-				<div class="module-area" id="moduleArea"></div>
+				<div class="modules" id="modules"></div>
 			</section>
 
 			<p class="footer-note">
-				Tip: drag the header of each shape to move it. Drag the small square at the bottom-right to resize it.
+				Suggested repo path: <strong>assets/css/images/knowledge/</strong> for preview images and <strong>assets/css/files/knowledge/</strong> for .drawio files.
 			</p>
 		</main>
 	</div>
 
 	<script>
-		const STORAGE_KEY = 'huiKnowledgeGliffyCanvasV1';
+		const STORAGE_KEY = 'huiKnowledgeNotebookSchemeC';
+
+		function createId() {
+			return 'module-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+		}
 
 		const defaultData = {
-			title: 'My Knowledge Canvas',
-			subtitle: 'A personal canvas notebook for learning notes, diagrams, tables, images, and resources.',
-			activeModuleId: null,
-			zoom: 1,
-			modules: []
+			title: 'My Knowledge Notebook',
+			subtitle: 'Daily notes, troubleshooting patterns, diagram previews, and external resources.',
+			modules: [
+				{
+					id: createId(),
+					title: 'Quick Notes',
+					tags: 'daily, scratchpad, ideas',
+					notes: 'Use this module as a scratchpad.\n\n- Write down quick learning notes.\n- Add a diagram preview path after exporting an image from diagrams.net.\n- Add a .drawio or external resource link for future editing.',
+					previewImage: '',
+					diagramFile: '',
+					externalLink: '',
+					collapsed: false
+				},
+				{
+					id: createId(),
+					title: 'Linux & Operations',
+					tags: 'linux, shell, troubleshooting',
+					notes: 'Useful commands, server checks, filesystem cleanup, process investigation, and operational patterns.\n\nExample topics:\n- Disk usage checks\n- Process and port investigation\n- Service precheck and postcheck\n- Log collection checklist',
+					previewImage: 'assets/css/images/knowledge/linux-ops-preview.png',
+					diagramFile: 'assets/css/files/knowledge/linux-ops.drawio',
+					externalLink: 'https://app.diagrams.net/',
+					collapsed: false
+				}
+			]
 		};
 
 		let notebook = loadNotebook();
-		let dragState = null;
-		let resizeState = null;
-		let selectedElementId = null;
+		let draggedModuleId = null;
 
-		const workspaceTitle = document.getElementById('workspaceTitle');
-		const workspaceSubtitle = document.getElementById('workspaceSubtitle');
-		const moduleArea = document.getElementById('moduleArea');
-		const moduleIndex = document.getElementById('moduleIndex');
-		const lastSaved = document.getElementById('lastSaved');
-
-		function createId(prefix = 'id') {
-			return prefix + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
-		}
+		const notebookTitle = document.getElementById('notebookTitle');
+		const notebookSubtitle = document.getElementById('notebookSubtitle');
+		const modulesEl = document.getElementById('modules');
+		const moduleIndexEl = document.getElementById('moduleIndex');
+		const lastSavedEl = document.getElementById('lastSaved');
 
 		function loadNotebook() {
 			try {
 				const saved = localStorage.getItem(STORAGE_KEY);
-				const data = saved ? JSON.parse(saved) : structuredClone(defaultData);
-
-				if (!data.modules || !data.modules.length) {
-					const first = createDefaultModule('Quick Learning Canvas');
-					data.modules = [first];
-					data.activeModuleId = first.id;
-				}
-
-				if (!data.activeModuleId) {
-					data.activeModuleId = data.modules[0].id;
-				}
-
-				if (!data.zoom) data.zoom = 1;
-
-				return data;
+				if (!saved) return structuredClone(defaultData);
+				return JSON.parse(saved);
 			} catch (error) {
-				console.warn('Failed to load notebook:', error);
-				const data = structuredClone(defaultData);
-				const first = createDefaultModule('Quick Learning Canvas');
-				data.modules = [first];
-				data.activeModuleId = first.id;
-				data.zoom = 1;
-				return data;
+				console.warn('Failed to load notebook. Using default data.', error);
+				return structuredClone(defaultData);
 			}
 		}
 
-		function createDefaultModule(title) {
-			return {
-				id: createId('module'),
-				title,
-				description: 'Use this canvas to collect notes, diagrams, tables, images, and links.',
-				elements: [
-					{
-						id: createId('el'),
-						type: 'sticky',
-						x: 80,
-						y: 80,
-						w: 260,
-						h: 150,
-						text: 'Today I learned:\\n- Add notes here\\n- Drag items around\\n- Use this like a small Gliffy board'
-					},
-					{
-						id: createId('el'),
-						type: 'process',
-						x: 420,
-						y: 90,
-						w: 230,
-						h: 110,
-						text: 'Learning Topic'
-					},
-					{
-						id: createId('el'),
-						type: 'connector',
-						x: 340,
-						y: 140,
-						w: 90,
-						h: 8,
-						text: ''
-					}
-				]
-			};
-		}
-
 		function saveNotebook() {
-			notebook.title = workspaceTitle.value;
-			notebook.subtitle = workspaceSubtitle.value;
+			notebook.title = notebookTitle.value;
+			notebook.subtitle = notebookSubtitle.value;
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(notebook));
-			lastSaved.textContent = 'Saved ' + new Date().toLocaleTimeString();
+			lastSavedEl.textContent = 'Saved ' + new Date().toLocaleTimeString();
 			renderIndex();
-		}
-
-		function getActiveModule() {
-			return notebook.modules.find((module) => module.id === notebook.activeModuleId) || notebook.modules[0];
 		}
 
 		function render() {
-			workspaceTitle.value = notebook.title;
-			workspaceSubtitle.value = notebook.subtitle;
+			notebookTitle.value = notebook.title;
+			notebookSubtitle.value = notebook.subtitle;
+
+			if (!notebook.modules.length) {
+				modulesEl.innerHTML = `
+					<div class="empty-state">
+						<h2>No modules yet</h2>
+						<p>Click “Add Module” to create your first notebook section.</p>
+					</div>
+				`;
+				renderIndex();
+				return;
+			}
+
+			modulesEl.innerHTML = notebook.modules.map((module, index) => `
+				<article
+					class="module ${module.collapsed ? 'collapsed' : ''}"
+					id="${module.id}"
+					draggable="true"
+					data-id="${module.id}"
+				>
+					<header class="module-header">
+						<div class="drag-handle" title="Drag to reorder">⋮⋮</div>
+
+						<input
+							class="module-title-input"
+							value="${escapeHtml(module.title)}"
+							aria-label="Module title"
+							data-action="title"
+							data-id="${module.id}"
+						>
+
+						<div class="module-actions">
+							<button class="btn btn-soft btn-small" data-action="toggle" data-id="${module.id}">
+								${module.collapsed ? 'Expand' : 'Collapse'}
+							</button>
+							<button class="btn btn-soft btn-small" data-action="up" data-id="${module.id}" ${index === 0 ? 'disabled' : ''}>↑</button>
+							<button class="btn btn-soft btn-small" data-action="down" data-id="${module.id}" ${index === notebook.modules.length - 1 ? 'disabled' : ''}>↓</button>
+							<button class="btn btn-danger btn-small" data-action="delete" data-id="${module.id}">Delete</button>
+						</div>
+					</header>
+
+					<div class="module-body">
+						<input
+							class="module-tags"
+							value="${escapeHtml(module.tags || '')}"
+							placeholder="Tags, separated by commas"
+							data-action="tags"
+							data-id="${module.id}"
+						>
+
+						<div class="module-grid">
+							<div class="notes-area">
+								<textarea
+									class="notes-editor"
+									placeholder="Write notes, learning points, troubleshooting steps, or reflections here..."
+									data-action="notes"
+									data-id="${module.id}"
+								>${escapeHtml(module.notes || '')}</textarea>
+
+								<div class="resource-grid">
+									<div class="resource-field">
+										<label>Diagram Preview Image</label>
+										<input
+											value="${escapeHtml(module.previewImage || '')}"
+											placeholder="assets/css/images/knowledge/example-preview.png"
+											data-action="previewImage"
+											data-id="${module.id}"
+										>
+									</div>
+
+									<div class="resource-field">
+										<label>Diagram Source File / Draw.io Link</label>
+										<input
+											value="${escapeHtml(module.diagramFile || '')}"
+											placeholder="assets/css/files/knowledge/example.drawio or https://..."
+											data-action="diagramFile"
+											data-id="${module.id}"
+										>
+									</div>
+
+									<div class="resource-field">
+										<label>External Reference</label>
+										<input
+											value="${escapeHtml(module.externalLink || '')}"
+											placeholder="https://..."
+											data-action="externalLink"
+											data-id="${module.id}"
+										>
+									</div>
+								</div>
+							</div>
+
+							<aside class="preview-card">
+								<div class="preview-title">Diagram Preview</div>
+
+								${module.previewImage
+									? `<a href="${escapeAttribute(module.previewImage)}" target="_blank" rel="noopener">
+											<img src="${escapeAttribute(module.previewImage)}" alt="${escapeAttribute(module.title)} preview">
+										</a>`
+									: `<div class="empty-preview">
+											No preview image yet.<br>
+											Export a PNG/SVG from diagrams.net and paste the path.
+										</div>`
+								}
+
+								<div class="link-row" style="margin-top: 12px;">
+									${module.diagramFile
+										? `<a class="btn btn-primary open-link" href="${escapeAttribute(module.diagramFile)}" target="_blank" rel="noopener">Open Diagram File</a>`
+										: `<button class="btn btn-soft open-link" disabled>No Diagram File</button>`
+									}
+
+									${module.externalLink
+										? `<a class="btn btn-soft open-link" href="${escapeAttribute(module.externalLink)}" target="_blank" rel="noopener">Open External Resource</a>`
+										: `<button class="btn btn-soft open-link" disabled>No External Resource</button>`
+									}
+								</div>
+							</aside>
+						</div>
+					</div>
+				</article>
+			`).join('');
 
 			renderIndex();
-			renderActiveModule();
 		}
 
 		function renderIndex() {
-			moduleIndex.innerHTML = notebook.modules.map((module, index) => `
-				<button class="index-item ${module.id === notebook.activeModuleId ? 'active' : ''}" data-module-id="${module.id}">
-					${escapeHtml(module.title || 'Untitled Canvas')}
+			if (!notebook.modules.length) {
+				moduleIndexEl.innerHTML = '';
+				return;
+			}
+
+			moduleIndexEl.innerHTML = notebook.modules.map((module, index) => `
+				<button class="nav-item" type="button" data-scroll="${module.id}">
+					${escapeHtml(module.title || 'Untitled')}
 					<span>${String(index + 1).padStart(2, '0')}</span>
 				</button>
 			`).join('');
 		}
 
-		function renderActiveModule() {
-			const module = getActiveModule();
-
-			if (!module) {
-				moduleArea.innerHTML = '';
-				return;
-			}
-
-			moduleArea.innerHTML = `
-				<section class="module active" data-module="${module.id}">
-					<div class="module-header">
-						<div>
-							<input class="module-title-input" value="${escapeAttribute(module.title)}" data-module-title="${module.id}" aria-label="Module title">
-							<textarea class="module-desc-input" data-module-desc="${module.id}" aria-label="Module description">${escapeHtml(module.description || '')}</textarea>
-						</div>
-
-						<div class="module-actions">
-							<button class="btn btn-soft btn-small" data-action="move-module-up">↑ Module</button>
-							<button class="btn btn-soft btn-small" data-action="move-module-down">↓ Module</button>
-							<button class="btn btn-danger btn-small" data-action="delete-module">Delete Module</button>
-						</div>
-					</div>
-
-					<div class="canvas-toolbar">
-						<button class="btn btn-soft btn-small" data-add="text">Text Box</button>
-						<button class="btn btn-soft btn-small" data-add="sticky">Sticky Note</button>
-						<button class="btn btn-soft btn-small" data-add="process">Process Box</button>
-						<button class="btn btn-soft btn-small" data-add="decision">Decision</button>
-						<button class="btn btn-soft btn-small" data-add="table">Table</button>
-						<button class="btn btn-soft btn-small" data-add="image">Image</button>
-						<button class="btn btn-soft btn-small" data-add="link">Link Card</button>
-						<button class="btn btn-soft btn-small" data-add="connector">Connector</button>
-						<button class="btn btn-soft btn-small" data-add="code">Code Note</button>
-					</div>
-
-					<div class="canvas-shell" id="canvasShell">
-						<div class="canvas" id="canvas" style="transform: scale(${notebook.zoom});">
-							${module.elements.length ? module.elements.map(renderElement).join('') : renderEmptyCanvas()}
-						</div>
-					</div>
-				</section>
-			`;
-		}
-
-		function renderEmptyCanvas() {
-			return `
-				<div class="empty-canvas">
-					<h2>Empty canvas</h2>
-					<p>Add a text box, table, image, link, or connector from the toolbar.</p>
-				</div>
-			`;
-		}
-
-		function renderElement(element) {
-			const selected = element.id === selectedElementId ? 'selected' : '';
-			const baseStyle = `left:${element.x}px; top:${element.y}px; width:${element.w}px; height:${element.h}px;`;
-
-			if (element.type === 'connector') {
-				return `
-					<div class="canvas-element connector ${selected}" data-element="${element.id}" style="${baseStyle}">
-						<div class="connector-line"></div>
-						<div class="resize-handle" data-resize="${element.id}"></div>
-					</div>
-				`;
-			}
-
-			const typeLabel = getTypeLabel(element.type);
-
-			return `
-				<div class="canvas-element ${getTypeClass(element.type)} ${selected}" data-element="${element.id}" style="${baseStyle}">
-					<div class="el-head" data-drag="${element.id}">
-						<span>${typeLabel}</span>
-						<div class="el-menu">
-							<button class="el-btn" data-duplicate="${element.id}" title="Duplicate">⧉</button>
-							<button class="el-btn" data-delete="${element.id}" title="Delete">×</button>
-						</div>
-					</div>
-
-					<div class="el-body">
-						${renderElementBody(element)}
-					</div>
-
-					<div class="resize-handle" data-resize="${element.id}"></div>
-				</div>
-			`;
-		}
-
-		function renderElementBody(element) {
-			if (element.type === 'text' || element.type === 'sticky' || element.type === 'process' || element.type === 'decision') {
-				return `
-					<div class="element-text" contenteditable="true" data-edit-text="${element.id}">
-						${escapeHtml(element.text || 'Write here...').replaceAll('\\n', '<br>')}
-					</div>
-				`;
-			}
-
-			if (element.type === 'code') {
-				return `
-					<pre contenteditable="true" data-edit-text="${element.id}">${escapeHtml(element.text || '# Write code or command notes here')}</pre>
-				`;
-			}
-
-			if (element.type === 'image') {
-				return `
-					<input class="image-url" value="${escapeAttribute(element.url || '')}" placeholder="Image URL or local path" data-edit-url="${element.id}">
-					${element.url ? `<img src="${escapeAttribute(element.url)}" alt="Canvas image">` : `<div class="element-text">Paste an image URL above.</div>`}
-				`;
-			}
-
-			if (element.type === 'link') {
-				return `
-					<input class="link-url" value="${escapeAttribute(element.title || '')}" placeholder="Link title" data-edit-link-title="${element.id}">
-					<input class="link-url" value="${escapeAttribute(element.url || '')}" placeholder="https://..." data-edit-url="${element.id}">
-					${element.url ? `<a href="${escapeAttribute(element.url)}" target="_blank" rel="noopener">${escapeHtml(element.title || element.url)}</a>` : `<div class="element-text">Paste a URL above.</div>`}
-				`;
-			}
-
-			if (element.type === 'table') {
-				const rows = element.rows || [
-					['Topic', 'Notes', 'Status'],
-					['Example', 'Write here', 'Draft']
-				];
-
-				return `
-					<table>
-						<tbody>
-							${rows.map((row, rowIndex) => `
-								<tr>
-									${row.map((cell, cellIndex) => {
-										const tag = rowIndex === 0 ? 'th' : 'td';
-										return `
-											<${tag}
-												contenteditable="true"
-												data-edit-cell="${element.id}"
-												data-row="${rowIndex}"
-												data-cell="${cellIndex}"
-											>${escapeHtml(cell)}</${tag}>
-										`;
-									}).join('')}
-								</tr>
-							`).join('')}
-						</tbody>
-					</table>
-				`;
-			}
-
-			return `<div class="element-text">Unsupported element</div>`;
-		}
-
-		function getTypeLabel(type) {
-			const labels = {
-				text: 'Text',
-				sticky: 'Sticky',
-				process: 'Process',
-				decision: 'Decision',
-				table: 'Table',
-				image: 'Image',
-				link: 'Link',
-				connector: 'Connector',
-				code: 'Code'
-			};
-
-			return labels[type] || 'Element';
-		}
-
-		function getTypeClass(type) {
-			const classes = {
-				text: 'text-box',
-				sticky: 'sticky-note',
-				process: 'process-box',
-				decision: 'decision-box',
-				table: 'table-card',
-				image: 'image-card',
-				link: 'link-card',
-				code: 'code-note'
-			};
-
-			return classes[type] || 'text-box';
-		}
-
 		function addModule() {
-			const module = createDefaultModule('New Canvas Module');
-			notebook.modules.push(module);
-			notebook.activeModuleId = module.id;
+			notebook.modules.push({
+				id: createId(),
+				title: 'Untitled Knowledge Module',
+				tags: '',
+				notes: '',
+				previewImage: '',
+				diagramFile: '',
+				externalLink: '',
+				collapsed: false
+			});
+
 			saveNotebook();
 			render();
+
+			setTimeout(() => {
+				const latest = notebook.modules[notebook.modules.length - 1];
+				document.getElementById(latest.id)?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center'
+				});
+			}, 50);
 		}
 
-		function duplicateCurrentModule() {
-			const current = getActiveModule();
-			if (!current) return;
+		function deleteModule(id) {
+			const module = notebook.modules.find((item) => item.id === id);
+			if (!module) return;
 
-			const copy = structuredClone(current);
-			copy.id = createId('module');
-			copy.title = current.title + ' Copy';
-			copy.elements = copy.elements.map((element) => ({
-				...element,
-				id: createId('el'),
-				x: element.x + 30,
-				y: element.y + 30
-			}));
-
-			notebook.modules.push(copy);
-			notebook.activeModuleId = copy.id;
-			saveNotebook();
-			render();
-		}
-
-		function deleteCurrentModule() {
-			const current = getActiveModule();
-			if (!current) return;
-
-			if (notebook.modules.length === 1) {
-				alert('At least one canvas module is required.');
-				return;
-			}
-
-			const confirmed = confirm(`Delete canvas module "${current.title}"?`);
+			const confirmed = confirm(`Delete module "${module.title || 'Untitled'}"?`);
 			if (!confirmed) return;
 
-			notebook.modules = notebook.modules.filter((module) => module.id !== current.id);
-			notebook.activeModuleId = notebook.modules[0].id;
+			notebook.modules = notebook.modules.filter((item) => item.id !== id);
 			saveNotebook();
 			render();
 		}
 
-		function moveCurrentModule(direction) {
-			const index = notebook.modules.findIndex((module) => module.id === notebook.activeModuleId);
+		function moveModule(id, direction) {
+			const index = notebook.modules.findIndex((item) => item.id === id);
 			if (index < 0) return;
 
 			const targetIndex = direction === 'up' ? index - 1 : index + 1;
 			if (targetIndex < 0 || targetIndex >= notebook.modules.length) return;
 
-			const [module] = notebook.modules.splice(index, 1);
-			notebook.modules.splice(targetIndex, 0, module);
+			const [item] = notebook.modules.splice(index, 1);
+			notebook.modules.splice(targetIndex, 0, item);
 
 			saveNotebook();
 			render();
 		}
 
-		function addElement(type) {
-			const module = getActiveModule();
+		function toggleModule(id) {
+			const module = notebook.modules.find((item) => item.id === id);
 			if (!module) return;
 
-			const element = {
-				id: createId('el'),
-				type,
-				x: 100 + module.elements.length * 24,
-				y: 100 + module.elements.length * 24,
-				w: 240,
-				h: 130,
-				text: 'Write here...'
-			};
-
-			if (type === 'sticky') {
-				element.w = 260;
-				element.h = 150;
-				element.text = 'New sticky note';
-			}
-
-			if (type === 'process') {
-				element.w = 230;
-				element.h = 110;
-				element.text = 'Process step';
-			}
-
-			if (type === 'decision') {
-				element.w = 220;
-				element.h = 120;
-				element.text = 'Decision?';
-			}
-
-			if (type === 'table') {
-				element.w = 380;
-				element.h = 180;
-				element.rows = [
-					['Topic', 'Notes', 'Status'],
-					['Example', 'Write details', 'Draft'],
-					['Example', 'Write details', 'Done']
-				];
-			}
-
-			if (type === 'image') {
-				element.w = 340;
-				element.h = 260;
-				element.url = '';
-			}
-
-			if (type === 'link') {
-				element.w = 320;
-				element.h = 150;
-				element.title = 'Useful resource';
-				element.url = '';
-			}
-
-			if (type === 'connector') {
-				element.w = 160;
-				element.h = 8;
-				element.text = '';
-			}
-
-			if (type === 'code') {
-				element.w = 360;
-				element.h = 220;
-				element.text = '# Write code or command notes here';
-			}
-
-			module.elements.push(element);
-			selectedElementId = element.id;
+			module.collapsed = !module.collapsed;
 			saveNotebook();
-			renderActiveModule();
-		}
-
-		function getElement(id) {
-			const module = getActiveModule();
-			return module?.elements.find((element) => element.id === id);
-		}
-
-		function deleteElement(id) {
-			const module = getActiveModule();
-			if (!module) return;
-
-			module.elements = module.elements.filter((element) => element.id !== id);
-			selectedElementId = null;
-			saveNotebook();
-			renderActiveModule();
-		}
-
-		function duplicateElement(id) {
-			const module = getActiveModule();
-			const element = getElement(id);
-			if (!module || !element) return;
-
-			const copy = structuredClone(element);
-			copy.id = createId('el');
-			copy.x += 28;
-			copy.y += 28;
-
-			module.elements.push(copy);
-			selectedElementId = copy.id;
-			saveNotebook();
-			renderActiveModule();
-		}
-
-		function updateElementText(id, value) {
-			const element = getElement(id);
-			if (!element) return;
-
-			element.text = value.replaceAll('<br>', '\\n').replace(/<[^>]*>/g, '');
-			saveNotebook();
-		}
-
-		function updateElementUrl(id, value) {
-			const element = getElement(id);
-			if (!element) return;
-
-			element.url = value;
-			saveNotebook();
-			renderActiveModule();
-		}
-
-		function updateElementLinkTitle(id, value) {
-			const element = getElement(id);
-			if (!element) return;
-
-			element.title = value;
-			saveNotebook();
-			renderActiveModule();
-		}
-
-		function updateTableCell(id, row, cell, value) {
-			const element = getElement(id);
-			if (!element || !element.rows) return;
-
-			element.rows[Number(row)][Number(cell)] = value;
-			saveNotebook();
-		}
-
-		function zoom(delta) {
-			notebook.zoom = Math.min(1.5, Math.max(0.65, notebook.zoom + delta));
-			saveNotebook();
-			renderActiveModule();
+			render();
 		}
 
 		function exportJson() {
@@ -1277,20 +953,19 @@
 			const url = URL.createObjectURL(blob);
 			const link = document.createElement('a');
 			link.href = url;
-			link.download = 'knowledge-canvas.json';
+			link.download = 'knowledge-notebook.json';
 			link.click();
 			URL.revokeObjectURL(url);
 		}
 
 		function resetNotebook() {
-			const confirmed = confirm('Reset all canvas modules? This will overwrite current local notes.');
+			const confirmed = confirm('Reset the notebook to the default version? This will overwrite the current local notes.');
 			if (!confirmed) return;
 
-			localStorage.removeItem(STORAGE_KEY);
-			notebook = loadNotebook();
-			selectedElementId = null;
+			notebook = structuredClone(defaultData);
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(notebook));
 			render();
-			saveNotebook();
+			lastSavedEl.textContent = 'Reset complete';
 		}
 
 		function escapeHtml(value) {
@@ -1307,193 +982,101 @@
 		}
 
 		document.getElementById('addModuleBtn').addEventListener('click', addModule);
-		document.getElementById('duplicateModuleBtn').addEventListener('click', duplicateCurrentModule);
 		document.getElementById('exportBtn').addEventListener('click', exportJson);
 		document.getElementById('printBtn').addEventListener('click', () => window.print());
 		document.getElementById('resetBtn').addEventListener('click', resetNotebook);
 
-		document.getElementById('zoomOutBtn').addEventListener('click', () => zoom(-0.1));
-		document.getElementById('zoomInBtn').addEventListener('click', () => zoom(0.1));
-		document.getElementById('zoomResetBtn').addEventListener('click', () => {
-			notebook.zoom = 1;
-			saveNotebook();
-			renderActiveModule();
-		});
-
-		workspaceTitle.addEventListener('input', saveNotebook);
-		workspaceSubtitle.addEventListener('input', saveNotebook);
-
-		moduleIndex.addEventListener('click', (event) => {
-			const item = event.target.closest('.index-item');
-			if (!item) return;
-
-			notebook.activeModuleId = item.dataset.moduleId;
-			selectedElementId = null;
+		document.getElementById('collapseAllBtn').addEventListener('click', () => {
+			notebook.modules.forEach((module) => module.collapsed = true);
 			saveNotebook();
 			render();
 		});
 
-		moduleArea.addEventListener('input', (event) => {
-			const titleInput = event.target.closest('[data-module-title]');
-			if (titleInput) {
-				const module = getActiveModule();
-				module.title = titleInput.value;
-				saveNotebook();
-				renderIndex();
-				return;
-			}
+		document.getElementById('expandAllBtn').addEventListener('click', () => {
+			notebook.modules.forEach((module) => module.collapsed = false);
+			saveNotebook();
+			render();
+		});
 
-			const descInput = event.target.closest('[data-module-desc]');
-			if (descInput) {
-				const module = getActiveModule();
-				module.description = descInput.value;
-				saveNotebook();
-				return;
-			}
+		notebookTitle.addEventListener('input', saveNotebook);
+		notebookSubtitle.addEventListener('input', saveNotebook);
 
-			const textEditor = event.target.closest('[data-edit-text]');
-			if (textEditor) {
-				updateElementText(textEditor.dataset.editText, textEditor.innerHTML);
-				return;
-			}
+		modulesEl.addEventListener('input', (event) => {
+			const action = event.target.dataset.action;
+			const id = event.target.dataset.id;
+			const module = notebook.modules.find((item) => item.id === id);
 
-			const urlInput = event.target.closest('[data-edit-url]');
-			if (urlInput) {
-				updateElementUrl(urlInput.dataset.editUrl, urlInput.value);
-				return;
-			}
+			if (!module) return;
 
-			const titleLink = event.target.closest('[data-edit-link-title]');
-			if (titleLink) {
-				updateElementLinkTitle(titleLink.dataset.editLinkTitle, titleLink.value);
-				return;
-			}
+			if (action === 'title') module.title = event.target.value;
+			if (action === 'tags') module.tags = event.target.value;
+			if (action === 'notes') module.notes = event.target.value;
+			if (action === 'previewImage') module.previewImage = event.target.value.trim();
+			if (action === 'diagramFile') module.diagramFile = event.target.value.trim();
+			if (action === 'externalLink') module.externalLink = event.target.value.trim();
 
-			const cell = event.target.closest('[data-edit-cell]');
-			if (cell) {
-				updateTableCell(cell.dataset.editCell, cell.dataset.row, cell.dataset.cell, cell.textContent);
+			saveNotebook();
+
+			if (['previewImage', 'diagramFile', 'externalLink', 'title'].includes(action)) {
+				render();
 			}
 		});
 
-		moduleArea.addEventListener('click', (event) => {
-			const addButton = event.target.closest('[data-add]');
-			if (addButton) {
-				addElement(addButton.dataset.add);
-				return;
-			}
+		modulesEl.addEventListener('click', (event) => {
+			const button = event.target.closest('button');
+			if (!button) return;
 
-			const deleteButton = event.target.closest('[data-delete]');
-			if (deleteButton) {
-				deleteElement(deleteButton.dataset.delete);
-				return;
-			}
+			const action = button.dataset.action;
+			const id = button.dataset.id;
 
-			const duplicateButton = event.target.closest('[data-duplicate]');
-			if (duplicateButton) {
-				duplicateElement(duplicateButton.dataset.duplicate);
-				return;
-			}
-
-			const actionButton = event.target.closest('[data-action]');
-			if (actionButton) {
-				if (actionButton.dataset.action === 'delete-module') deleteCurrentModule();
-				if (actionButton.dataset.action === 'move-module-up') moveCurrentModule('up');
-				if (actionButton.dataset.action === 'move-module-down') moveCurrentModule('down');
-				return;
-			}
-
-			const element = event.target.closest('.canvas-element');
-			if (element) {
-				selectedElementId = element.dataset.element;
-				renderActiveModule();
-			} else if (event.target.closest('.canvas-shell')) {
-				selectedElementId = null;
-				renderActiveModule();
-			}
+			if (action === 'toggle') toggleModule(id);
+			if (action === 'up') moveModule(id, 'up');
+			if (action === 'down') moveModule(id, 'down');
+			if (action === 'delete') deleteModule(id);
 		});
 
-		moduleArea.addEventListener('mousedown', (event) => {
-			const dragHandle = event.target.closest('[data-drag]');
-			const resizeHandle = event.target.closest('[data-resize]');
+		moduleIndexEl.addEventListener('click', (event) => {
+			const item = event.target.closest('[data-scroll]');
+			if (!item) return;
 
-			if (dragHandle) {
-				const id = dragHandle.dataset.drag;
-				const element = getElement(id);
-				if (!element) return;
-
-				selectedElementId = id;
-
-				dragState = {
-					id,
-					startX: event.clientX,
-					startY: event.clientY,
-					origX: element.x,
-					origY: element.y
-				};
-
-				event.preventDefault();
-				return;
-			}
-
-			if (resizeHandle) {
-				const id = resizeHandle.dataset.resize;
-				const element = getElement(id);
-				if (!element) return;
-
-				selectedElementId = id;
-
-				resizeState = {
-					id,
-					startX: event.clientX,
-					startY: event.clientY,
-					origW: element.w,
-					origH: element.h
-				};
-
-				event.preventDefault();
-			}
+			document.getElementById(item.dataset.scroll)?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
 		});
 
-		document.addEventListener('mousemove', (event) => {
-			if (dragState) {
-				const element = getElement(dragState.id);
-				if (!element) return;
+		modulesEl.addEventListener('dragstart', (event) => {
+			const moduleEl = event.target.closest('.module');
+			if (!moduleEl) return;
 
-				const scale = notebook.zoom || 1;
-				element.x = Math.max(0, dragState.origX + (event.clientX - dragState.startX) / scale);
-				element.y = Math.max(0, dragState.origY + (event.clientY - dragState.startY) / scale);
-
-				updateElementPositionInDom(element);
-				saveNotebook();
-			}
-
-			if (resizeState) {
-				const element = getElement(resizeState.id);
-				if (!element) return;
-
-				const scale = notebook.zoom || 1;
-				element.w = Math.max(80, resizeState.origW + (event.clientX - resizeState.startX) / scale);
-				element.h = Math.max(8, resizeState.origH + (event.clientY - resizeState.startY) / scale);
-
-				updateElementPositionInDom(element);
-				saveNotebook();
-			}
+			draggedModuleId = moduleEl.dataset.id;
+			moduleEl.classList.add('dragging');
+			event.dataTransfer.effectAllowed = 'move';
 		});
 
-		document.addEventListener('mouseup', () => {
-			dragState = null;
-			resizeState = null;
+		modulesEl.addEventListener('dragend', (event) => {
+			const moduleEl = event.target.closest('.module');
+			if (moduleEl) moduleEl.classList.remove('dragging');
+			draggedModuleId = null;
 		});
 
-		function updateElementPositionInDom(element) {
-			const el = document.querySelector(`[data-element="${element.id}"]`);
-			if (!el) return;
+		modulesEl.addEventListener('dragover', (event) => {
+			event.preventDefault();
 
-			el.style.left = element.x + 'px';
-			el.style.top = element.y + 'px';
-			el.style.width = element.w + 'px';
-			el.style.height = element.h + 'px';
-		}
+			const target = event.target.closest('.module');
+			if (!target || !draggedModuleId || target.dataset.id === draggedModuleId) return;
+
+			const draggedIndex = notebook.modules.findIndex((item) => item.id === draggedModuleId);
+			const targetIndex = notebook.modules.findIndex((item) => item.id === target.dataset.id);
+
+			if (draggedIndex < 0 || targetIndex < 0) return;
+
+			const [dragged] = notebook.modules.splice(draggedIndex, 1);
+			notebook.modules.splice(targetIndex, 0, dragged);
+
+			saveNotebook();
+			render();
+		});
 
 		render();
 		saveNotebook();
