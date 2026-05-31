@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Knowledge Base | Hui Luo</title>
+	<title>Knowledge Notebook | Hui Luo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 	<style>
 		:root {
-			--text: #272a2f;
-			--subtext: #626973;
-			--muted: #8a9099;
+			--bg: #f6f3eb;
+			--paper: #fffdf7;
+			--paper-soft: #fbf7ed;
+			--text: #2f312c;
+			--muted: #7a7d72;
+			--line: #e4dccb;
+			--line-dark: #d2c7b2;
 			--primary: #6f7f9f;
-			--primary-dark: #53627d;
-			--sage: #8fa394;
-			--sage-dark: #607565;
-			--cream: #f7f3ec;
-			--line: rgba(111, 127, 159, 0.22);
-			--line-strong: rgba(111, 127, 159, 0.34);
-			--shadow: rgba(34, 38, 45, 0.12);
+			--primary-dark: #52627f;
+			--green: #7d967f;
+			--clay: #c79b83;
+			--danger: #b66a6a;
+			--shadow: rgba(62, 54, 40, 0.10);
 		}
 
 		* {
@@ -28,1204 +30,1044 @@
 			box-sizing: border-box;
 		}
 
-		html {
-			scroll-behavior: smooth;
-		}
-
 		body {
 			min-height: 100vh;
-			overflow-x: hidden;
 			color: var(--text);
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-			background-image:
-				linear-gradient(
-					120deg,
-					rgba(247, 243, 236, 0.18),
-					rgba(230, 238, 228, 0.12)
-				),
-				url('assets/css/images/bg_aboutme.jpg');
-			background-size: cover;
-			background-position: center;
-			background-attachment: fixed;
-		}
-
-		body::before {
-			content: "";
-			position: fixed;
-			inset: -25%;
-			z-index: 0;
-			pointer-events: none;
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 			background:
-				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.46), transparent 24%),
-				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.16), transparent 30%),
-				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.12), transparent 38%);
-			animation: backgroundFloat 24s ease-in-out infinite;
+				linear-gradient(90deg, rgba(228, 220, 203, 0.35) 1px, transparent 1px),
+				linear-gradient(rgba(228, 220, 203, 0.35) 1px, transparent 1px),
+				var(--bg);
+			background-size: 28px 28px;
 		}
 
-		body::after {
-			content: "";
-			position: fixed;
-			inset: 0;
-			z-index: 0;
-			pointer-events: none;
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255, 255, 255, 0.08) 0%,
-					rgba(255, 255, 255, 0.02) 48%,
-					rgba(255, 255, 255, 0.12) 100%
-				);
-		}
-
-		@keyframes backgroundFloat {
-			0% {
-				transform: translate3d(0, 0, 0) scale(1);
-			}
-
-			50% {
-				transform: translate3d(-2.3%, -1.6%, 0) scale(1.04);
-			}
-
-			100% {
-				transform: translate3d(0, 0, 0) scale(1);
-			}
-		}
-
-		.cursor-light {
-			position: fixed;
-			width: 420px;
-			height: 420px;
-			border-radius: 50%;
-			pointer-events: none;
-			z-index: 1;
-			background:
-				radial-gradient(
-					circle,
-					rgba(255, 255, 255, 0.34),
-					rgba(255, 255, 255, 0.10) 36%,
-					transparent 68%
-				);
-			transform: translate(-50%, -50%);
-			mix-blend-mode: soft-light;
-			transition: opacity 0.25s ease;
-		}
-
-		.page {
-			position: relative;
-			z-index: 2;
-			max-width: 1120px;
-			margin: 0 auto;
-			padding: 52px 28px 86px;
-		}
-
-		.nav {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 60px;
-		}
-
-		.nav-title {
-			color: var(--muted);
-			font-size: 12px;
-			font-weight: 900;
-			letter-spacing: 0.12em;
-			text-transform: uppercase;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.42),
-				0 10px 22px rgba(34, 38, 45, 0.10);
-		}
-
-		.nav-links {
-			display: flex;
-			align-items: center;
-			gap: 18px;
-		}
-
-		.nav-link {
-			color: #30343a;
-			text-decoration: none;
-			font-size: 13px;
-			font-weight: 850;
-			letter-spacing: -0.01em;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.46),
-				0 12px 28px rgba(34, 38, 45, 0.10);
-			transition:
-				color 0.25s ease,
-				transform 0.25s ease;
-		}
-
-		.nav-link:hover {
-			color: var(--primary);
-			transform: translateY(-2px);
-		}
-
-		.hero {
-			position: relative;
+		.app {
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) minmax(260px, 0.56fr);
-			gap: 52px;
-			align-items: end;
-			margin-bottom: 54px;
+			grid-template-columns: 280px minmax(0, 1fr);
+			min-height: 100vh;
 		}
-
-		.hero::before {
-			content: "";
-			position: absolute;
-			width: 400px;
-			height: 400px;
-			top: -150px;
-			left: -130px;
-			z-index: -1;
-			background:
-				radial-gradient(
-					circle,
-					rgba(255, 255, 255, 0.58),
-					rgba(124, 141, 181, 0.12) 44%,
-					transparent 74%
-				);
-			filter: blur(14px);
-		}
-
-		.eyebrow {
-			display: inline-flex;
-			align-items: center;
-			gap: 10px;
-			margin-bottom: 16px;
-			color: var(--primary-dark);
-			font-size: 12px;
-			font-weight: 900;
-			letter-spacing: 0.14em;
-			text-transform: uppercase;
-		}
-
-		.eyebrow::before {
-			content: "";
-			width: 34px;
-			height: 1px;
-			background: var(--primary);
-			opacity: 0.65;
-		}
-
-		.hero h1 {
-			max-width: 760px;
-			font-family: 'Fraunces', Georgia, serif;
-			font-size: clamp(38px, 6vw, 68px);
-			line-height: 1.02;
-			font-weight: 650;
-			letter-spacing: -0.045em;
-			color: #30382f;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.50),
-				0 18px 44px rgba(54, 64, 55, 0.10);
-		}
-
-		.hero-copy {
-			color: var(--subtext);
-			font-size: 14.5px;
-			font-weight: 720;
-			line-height: 1.72;
-			letter-spacing: -0.008em;
-			text-shadow:
-				0 1px 0 rgba(255, 255, 255, 0.36),
-				0 10px 24px rgba(34, 38, 45, 0.08);
-		}
-
-		.hero-meta {
-			margin-top: 18px;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 9px;
-		}
-
-        .notebook-header {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 28px;
-            margin-bottom: 34px;
-            padding: 22px 0 18px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .notebook-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            color: var(--primary-dark);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .notebook-label::before {
-            content: "";
-            width: 28px;
-            height: 1px;
-            background: var(--primary);
-            opacity: 0.65;
-        }
-
-        .notebook-header h1 {
-            margin-bottom: 8px;
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: clamp(28px, 4vw, 42px);
-            line-height: 1.08;
-            font-weight: 600;
-            letter-spacing: -0.035em;
-            color: #30382f;
-            text-shadow:
-                0 1px 0 rgba(255, 255, 255, 0.46),
-                0 12px 28px rgba(54, 64, 55, 0.08);
-        }
-
-        .notebook-header p {
-            max-width: 680px;
-            color: var(--subtext);
-            font-size: 14px;
-            font-weight: 720;
-            line-height: 1.7;
-        }
-
-        .notebook-status {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 8px;
-            min-width: 220px;
-        }
-
-        .notebook-status span {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 10px;
-            border-radius: 999px;
-            color: #515b6d;
-            background: rgba(255, 255, 255, 0.30);
-            border: 1px solid rgba(255, 255, 255, 0.42);
-            font-size: 11px;
-            font-weight: 900;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-		.meta-pill {
-			padding: 7px 11px;
-			border-radius: 999px;
-			color: #445066;
-			background: rgba(255, 255, 255, 0.28);
-			border: 1px solid rgba(255, 255, 255, 0.48);
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			font-size: 11px;
-			font-weight: 900;
-			box-shadow:
-				inset 0 1px 0 rgba(255, 255, 255, 0.36),
-				0 8px 20px rgba(34, 38, 45, 0.05);
-		}
-
-		.knowledge-layout {
-            display: grid;
-            grid-template-columns: 240px minmax(0, 1fr);
-            gap: 28px;
-            align-items: start;
-        }
 
 		.sidebar {
 			position: sticky;
-			top: 28px;
-			padding: 22px;
-			border-radius: 28px;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.36),
-					rgba(255, 255, 255, 0.13)
-				);
-			border: 1px solid rgba(255, 255, 255, 0.42);
-			backdrop-filter: blur(14px);
-			-webkit-backdrop-filter: blur(14px);
-			box-shadow:
-				0 18px 44px rgba(34, 38, 45, 0.07),
-				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+			top: 0;
+			height: 100vh;
+			padding: 28px 20px;
+			background: rgba(255, 253, 247, 0.78);
+			border-right: 1px solid var(--line);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			overflow-y: auto;
 		}
 
-		.sidebar h2 {
-			margin-bottom: 14px;
-			font-family: 'Fraunces', Georgia, serif;
-			font-size: 24px;
-			line-height: 1.08;
-			font-weight: 600;
-			letter-spacing: -0.035em;
-			color: #30382f;
+		.brand {
+			margin-bottom: 28px;
 		}
 
-		.sidebar p {
-			margin-bottom: 18px;
-			color: var(--subtext);
+		.brand-label {
+			margin-bottom: 8px;
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.brand h1 {
+			font-size: 25px;
+			line-height: 1.1;
+			font-weight: 800;
+			letter-spacing: -0.05em;
+		}
+
+		.brand p {
+			margin-top: 10px;
+			color: var(--muted);
 			font-size: 13px;
-			font-weight: 720;
-			line-height: 1.65;
+			line-height: 1.55;
 		}
 
-		.sidebar-list {
+		.sidebar-section {
+			margin-top: 24px;
+		}
+
+		.sidebar-title {
+			margin-bottom: 10px;
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.tool-grid {
 			display: grid;
 			gap: 9px;
 		}
 
-		.sidebar-list a {
+		.btn {
+			border: 0;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			min-height: 38px;
+			padding: 9px 12px;
+			border-radius: 12px;
+			font-size: 13px;
+			font-weight: 700;
+			transition:
+				transform 0.18s ease,
+				box-shadow 0.18s ease,
+				background 0.18s ease;
+		}
+
+		.btn:hover {
+			transform: translateY(-1px);
+		}
+
+		.btn-primary {
+			color: #ffffff;
+			background: var(--primary);
+			box-shadow: 0 8px 18px rgba(82, 98, 127, 0.20);
+		}
+
+		.btn-primary:hover {
+			background: var(--primary-dark);
+		}
+
+		.btn-soft {
+			color: var(--text);
+			background: var(--paper);
+			border: 1px solid var(--line);
+		}
+
+		.btn-soft:hover {
+			box-shadow: 0 8px 18px var(--shadow);
+		}
+
+		.btn-danger {
+			color: #ffffff;
+			background: var(--danger);
+		}
+
+		.btn-small {
+			min-height: 30px;
+			padding: 6px 9px;
+			border-radius: 9px;
+			font-size: 12px;
+		}
+
+		.nav-list {
+			display: grid;
+			gap: 6px;
+		}
+
+		.nav-item {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			gap: 10px;
-			padding: 9px 11px;
-			border-radius: 999px;
-			color: #455066;
-			background: rgba(255, 255, 255, 0.28);
-			border: 1px solid rgba(255, 255, 255, 0.38);
+			padding: 9px 10px;
+			border-radius: 10px;
+			color: var(--text);
 			text-decoration: none;
+			font-size: 13px;
+			font-weight: 650;
+			background: transparent;
+			border: 1px solid transparent;
+			transition:
+				background 0.18s ease,
+				border-color 0.18s ease;
+		}
+
+		.nav-item:hover {
+			background: var(--paper);
+			border-color: var(--line);
+		}
+
+		.nav-item span {
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 700;
+		}
+
+		.hint {
+			margin-top: 16px;
+			padding: 12px;
+			border-radius: 14px;
+			background: #f1eadc;
+			border: 1px dashed var(--line-dark);
+			color: var(--muted);
 			font-size: 12px;
-			font-weight: 900;
-			transition:
-				transform 0.25s ease,
-				background 0.25s ease,
-				color 0.25s ease;
+			line-height: 1.55;
 		}
 
-		.sidebar-list a:hover {
-			transform: translateX(4px);
-			background: rgba(255, 255, 255, 0.48);
-			color: var(--primary-dark);
+		.main {
+			padding: 34px 34px 80px;
 		}
 
-		.knowledge-stack {
-			display: grid;
-			gap: 18px;
-		}
-
-		.knowledge-module {
-			position: relative;
-			border-radius: 30px;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(255, 255, 255, 0.38),
-					rgba(255, 255, 255, 0.13)
-				);
-			border: 1px solid rgba(255, 255, 255, 0.42);
-			backdrop-filter: blur(14px);
-			-webkit-backdrop-filter: blur(14px);
-			box-shadow:
-				0 18px 44px rgba(34, 38, 45, 0.07),
-				inset 0 1px 0 rgba(255, 255, 255, 0.38);
-			overflow: hidden;
-			transition:
-				transform 0.28s ease,
-				box-shadow 0.28s ease;
-		}
-
-		.knowledge-module:hover {
-			transform: translateY(-3px);
-			box-shadow:
-				0 24px 56px rgba(34, 38, 45, 0.10),
-				inset 0 1px 0 rgba(255, 255, 255, 0.44);
-		}
-
-		.knowledge-module summary {
-			display: grid;
-			grid-template-columns: 56px minmax(0, 1fr) 34px;
-			gap: 18px;
+		.topbar {
+			display: flex;
+			justify-content: space-between;
 			align-items: center;
-			padding: 24px;
-			cursor: pointer;
-			list-style: none;
-			user-select: none;
+			gap: 20px;
+			max-width: 1080px;
+			margin: 0 auto 24px;
 		}
 
-		.knowledge-module summary::-webkit-details-marker {
-			display: none;
+		.breadcrumbs {
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 650;
 		}
 
-		.module-number {
-			color: rgba(96, 117, 101, 0.48);
-			font-size: 30px;
-			line-height: 1;
-			font-weight: 900;
+		.top-actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			gap: 8px;
+		}
+
+		.notebook {
+			max-width: 1080px;
+			margin: 0 auto;
+			background: var(--paper);
+			border: 1px solid var(--line);
+			border-radius: 28px;
+			box-shadow: 0 24px 70px var(--shadow);
+			overflow: hidden;
+		}
+
+		.notebook-cover {
+			position: relative;
+			padding: 34px 36px 28px;
+			background:
+				linear-gradient(135deg, rgba(255, 253, 247, 0.96), rgba(248, 242, 231, 0.96));
+			border-bottom: 1px solid var(--line);
+		}
+
+		.notebook-cover::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 8px;
+			background: linear-gradient(180deg, var(--primary), var(--green), var(--clay));
+		}
+
+		.notebook-title {
+			width: 100%;
+			border: 0;
+			outline: none;
+			background: transparent;
+			color: var(--text);
+			font-size: clamp(28px, 5vw, 52px);
+			line-height: 1.05;
+			font-weight: 800;
 			letter-spacing: -0.06em;
 		}
 
-		.module-title {
+		.notebook-subtitle {
+			width: 100%;
+			margin-top: 12px;
+			border: 0;
+			outline: none;
+			background: transparent;
+			color: var(--muted);
+			font-size: 15px;
+			font-weight: 500;
+			line-height: 1.6;
+			resize: vertical;
+			min-height: 48px;
+		}
+
+		.meta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 18px;
+		}
+
+		.meta-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 7px 10px;
+			border-radius: 999px;
+			background: var(--paper-soft);
+			border: 1px solid var(--line);
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 700;
+		}
+
+		.modules {
+			padding: 26px 36px 36px;
 			display: grid;
-			gap: 8px;
+			gap: 18px;
 		}
 
-		.module-title h2 {
-			font-family: 'Fraunces', Georgia, serif;
-			font-size: clamp(24px, 2.8vw, 34px);
-			line-height: 1.08;
-			font-weight: 600;
-			letter-spacing: -0.035em;
-			color: #30382f;
+		.module {
+			border: 1px solid var(--line);
+			border-radius: 22px;
+			background: #ffffff;
+			overflow: hidden;
+			box-shadow: 0 8px 24px rgba(62, 54, 40, 0.04);
 		}
 
-		.module-title p {
-			max-width: 700px;
-			color: var(--subtext);
-			font-size: 13.5px;
-			font-weight: 720;
-			line-height: 1.62;
+		.module.dragging {
+			opacity: 0.45;
 		}
 
-		.module-icon {
+		.module-header {
+			display: grid;
+			grid-template-columns: 34px minmax(0, 1fr) auto;
+			gap: 14px;
+			align-items: center;
+			padding: 16px 18px;
+			background:
+				linear-gradient(135deg, rgba(250, 247, 239, 0.95), rgba(255, 255, 255, 0.95));
+			border-bottom: 1px solid var(--line);
+		}
+
+		.drag-handle {
 			width: 34px;
 			height: 34px;
+			border-radius: 10px;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			border-radius: 50%;
-			color: #ffffff;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(124, 141, 181, 0.96),
-					rgba(102, 119, 155, 0.96)
-				);
-			border: 1px solid rgba(255, 255, 255, 0.62);
-			box-shadow:
-				0 10px 22px rgba(102, 119, 155, 0.22),
-				inset 0 1px 0 rgba(255, 255, 255, 0.32);
-			font-weight: 900;
-			transition:
-				transform 0.25s ease,
-				background 0.25s ease;
+			color: var(--muted);
+			background: var(--paper-soft);
+			border: 1px solid var(--line);
+			cursor: grab;
+			font-weight: 800;
 		}
 
-		.knowledge-module[open] .module-icon {
-			transform: rotate(45deg);
-			background:
-				linear-gradient(
-					135deg,
-					rgba(143, 163, 148, 0.96),
-					rgba(96, 117, 101, 0.96)
-				);
+		.drag-handle:active {
+			cursor: grabbing;
 		}
 
-		.module-content {
-			padding: 0 24px 26px 98px;
+		.module-title-input {
+			width: 100%;
+			border: 0;
+			outline: none;
+			background: transparent;
+			color: var(--text);
+			font-size: 20px;
+			font-weight: 800;
+			letter-spacing: -0.03em;
 		}
 
-		.note-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 16px;
-			margin-top: 10px;
-		}
-
-		.note-card {
-			padding: 18px;
-			border-radius: 22px;
-			background: rgba(255, 255, 255, 0.30);
-			border: 1px solid rgba(255, 255, 255, 0.42);
-			box-shadow:
-				0 12px 28px rgba(34, 38, 45, 0.05),
-				inset 0 1px 0 rgba(255, 255, 255, 0.34);
-		}
-
-		.note-card h3 {
-			margin-bottom: 8px;
-			color: #3f4858;
-			font-size: 13px;
-			font-weight: 900;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-		}
-
-		.note-card p {
-			color: var(--subtext);
-			font-size: 13.5px;
-			font-weight: 720;
-			line-height: 1.7;
-		}
-
-		.note-card ul {
-			padding-left: 18px;
-			color: var(--subtext);
-			font-size: 13.5px;
-			font-weight: 720;
-			line-height: 1.75;
-		}
-
-		.note-card li + li {
-			margin-top: 4px;
-		}
-
-		.note-tags {
+		.module-actions {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 8px;
-			margin-top: 18px;
+			justify-content: flex-end;
+			gap: 6px;
 		}
 
-		.note-tags span {
-			display: inline-flex;
-			align-items: center;
-			padding: 6px 10px;
-			border-radius: 999px;
-			color: #515b6d;
-			background: rgba(255, 255, 255, 0.34);
-			border: 1px solid rgba(255, 255, 255, 0.42);
-			font-size: 11px;
-			font-weight: 900;
-		}
-
-		.add-note {
-			margin-top: 18px;
-			padding: 16px 18px;
-			border-radius: 22px;
-			background:
-				linear-gradient(
-					135deg,
-					rgba(223, 243, 251, 0.60),
-					rgba(229, 242, 232, 0.56)
-				);
-			border: 1px dashed rgba(111, 127, 159, 0.36);
-			color: #4d6158;
-			font-size: 13px;
-			font-weight: 800;
-			line-height: 1.65;
-		}
-
-		.template-block {
-			margin-top: 18px;
+		.module-body {
 			padding: 18px;
-			border-radius: 22px;
-			background: rgba(255, 255, 255, 0.26);
-			border: 1px solid rgba(255, 255, 255, 0.38);
+			display: grid;
+			gap: 14px;
 		}
 
-		.template-block h3 {
-			margin-bottom: 10px;
-			color: #3f4858;
+		.module.collapsed .module-body {
+			display: none;
+		}
+
+		.module-tags {
+			width: 100%;
+			border: 1px solid var(--line);
+			outline: none;
+			border-radius: 12px;
+			padding: 10px 12px;
+			background: var(--paper-soft);
+			color: var(--muted);
 			font-size: 13px;
-			font-weight: 900;
+			font-weight: 600;
+		}
+
+		.editor {
+			width: 100%;
+			min-height: 160px;
+			border: 1px solid var(--line);
+			outline: none;
+			border-radius: 14px;
+			padding: 14px 15px;
+			background:
+				linear-gradient(#ffffff 31px, rgba(228, 220, 203, 0.58) 32px);
+			background-size: 100% 32px;
+			color: var(--text);
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 32px;
+			resize: vertical;
+		}
+
+		.resource-panel {
+			display: grid;
+			gap: 10px;
+			padding: 14px;
+			border-radius: 16px;
+			background: var(--paper-soft);
+			border: 1px solid var(--line);
+		}
+
+		.resource-title {
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 800;
 			letter-spacing: 0.08em;
 			text-transform: uppercase;
 		}
 
-		.template-block pre {
-			overflow-x: auto;
-			white-space: pre-wrap;
-			color: #515b6d;
-			font-size: 12.5px;
-			font-weight: 750;
-			line-height: 1.7;
-			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+		.resource-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr auto;
+			gap: 8px;
 		}
 
-		.fade {
-			opacity: 0;
-			transform: translateY(22px);
-			transition:
-				opacity 0.85s ease,
-				transform 0.85s ease;
+		.resource-row input {
+			min-width: 0;
+			border: 1px solid var(--line);
+			outline: none;
+			border-radius: 10px;
+			padding: 9px 10px;
+			color: var(--text);
+			background: #ffffff;
+			font-size: 13px;
+			font-weight: 600;
 		}
 
-		.fade.show {
-			opacity: 1;
-			transform: translateY(0);
+		.resources {
+			display: grid;
+			gap: 10px;
 		}
 
-		@media (max-width: 920px) {
-			body {
-				background-attachment: scroll;
-			}
+		.resource-card {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 12px;
+			align-items: start;
+			padding: 12px;
+			border-radius: 14px;
+			background: #ffffff;
+			border: 1px solid var(--line);
+		}
 
-			.page {
-				padding: 44px 20px 76px;
-			}
+		.resource-card a {
+			color: var(--primary-dark);
+			font-size: 13px;
+			font-weight: 800;
+			text-decoration: none;
+			word-break: break-word;
+		}
 
-			.hero {
+		.resource-card a:hover {
+			text-decoration: underline;
+		}
+
+		.resource-card img {
+			width: 100%;
+			max-height: 260px;
+			object-fit: contain;
+			border-radius: 12px;
+			border: 1px solid var(--line);
+			background: var(--paper-soft);
+			margin-top: 8px;
+		}
+
+		.empty-state {
+			padding: 42px 20px;
+			text-align: center;
+			border: 1px dashed var(--line-dark);
+			border-radius: 22px;
+			color: var(--muted);
+			background: var(--paper-soft);
+		}
+
+		.empty-state h2 {
+			margin-bottom: 8px;
+			color: var(--text);
+			font-size: 22px;
+			font-weight: 800;
+			letter-spacing: -0.03em;
+		}
+
+		.empty-state p {
+			font-size: 14px;
+			line-height: 1.6;
+		}
+
+		.footer-note {
+			max-width: 1080px;
+			margin: 18px auto 0;
+			color: var(--muted);
+			font-size: 12px;
+			line-height: 1.6;
+			text-align: center;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		@media (max-width: 900px) {
+			.app {
 				grid-template-columns: 1fr;
-				gap: 24px;
-				margin-bottom: 48px;
-			}
-
-			.knowledge-layout {
-				grid-template-columns: 1fr;
-				gap: 24px;
 			}
 
 			.sidebar {
 				position: static;
+				height: auto;
+				border-right: 0;
+				border-bottom: 1px solid var(--line);
 			}
 
-			.note-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.module-content {
-				padding-left: 24px;
-			}
-		}
-
-		@media (max-width: 560px) {
-            .notebook-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-                margin-bottom: 28px;
-            }
-
-            .notebook-header h1 {
-                font-size: clamp(28px, 10vw, 38px);
-            }
-
-            .notebook-status {
-                justify-content: flex-start;
-                min-width: 0;
-            }
-			.page {
-				padding: 38px 16px 68px;
-			}
-
-			.nav {
-				align-items: flex-start;
-				flex-direction: column;
-				gap: 14px;
-				margin-bottom: 48px;
-			}
-
-			.nav-links {
-				gap: 14px;
-				flex-wrap: wrap;
-			}
-
-			.hero h1 {
-				font-size: clamp(36px, 13vw, 58px);
-			}
-
-			.hero-copy {
-				font-size: 13.5px;
-			}
-
-			.knowledge-module summary {
-				grid-template-columns: 1fr 34px;
-				gap: 12px;
-				padding: 22px;
-			}
-
-			.module-number {
-				grid-column: 1 / -1;
-				font-size: 24px;
-			}
-
-			.module-title h2 {
-				font-size: 24px;
-			}
-
-			.module-content {
-				padding: 0 22px 24px;
-			}
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			body::before {
-				animation: none;
-			}
-
-			.cursor-light {
+			.sidebar-section.index-section {
 				display: none;
 			}
 
-			.fade,
-			.nav-link,
-			.sidebar-list a,
-			.knowledge-module,
-			.module-icon {
-				transition: none;
+			.main {
+				padding: 24px 18px 64px;
+			}
+
+			.topbar {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.top-actions {
+				justify-content: flex-start;
+			}
+
+			.notebook-cover,
+			.modules {
+				padding-left: 22px;
+				padding-right: 22px;
+			}
+
+			.resource-row {
+				grid-template-columns: 1fr;
+			}
+
+			.module-header {
+				grid-template-columns: 34px minmax(0, 1fr);
+			}
+
+			.module-actions {
+				grid-column: 1 / -1;
+				justify-content: flex-start;
+			}
+		}
+
+		@media print {
+			body {
+				background: #ffffff;
+			}
+
+			.sidebar,
+			.topbar,
+			.resource-panel,
+			.module-actions,
+			.drag-handle,
+			.footer-note {
+				display: none !important;
+			}
+
+			.app {
+				display: block;
+			}
+
+			.main {
+				padding: 0;
+			}
+
+			.notebook {
+				box-shadow: none;
+				border: 0;
+			}
+
+			.module {
+				break-inside: avoid;
 			}
 		}
 	</style>
 </head>
 
 <body>
-
-	<div class="cursor-light" id="cursorLight"></div>
-
-	<main class="page">
-
-		<nav class="nav fade">
-			<div class="nav-title">Knowledge Base</div>
-
-			<div class="nav-links">
-				<a class="nav-link" href="index.html">Home</a>
-				<a class="nav-link" href="aboutme.html">About</a>
-				<a class="nav-link" href="projects.html">Projects</a>
-				<a class="nav-link" href="devops-runner.html">Runner</a>
+	<div class="app">
+		<aside class="sidebar">
+			<div class="brand">
+				<div class="brand-label">Personal Notebook</div>
+				<h1>Knowledge Notes</h1>
+				<p>
+					A private-style notebook page for daily learning, technical thoughts, images,
+					links, and reusable references.
+				</p>
 			</div>
-		</nav>
 
-		<header class="notebook-header fade">
-            <div>
-                <div class="notebook-label">Personal Notebook</div>
-                <h1>Knowledge Base</h1>
-                <p>
-                    A flexible space for daily learning notes, troubleshooting patterns, technical reflections,
-                    and reusable operational knowledge.
-                </p>
-            </div>
-
-            <div class="notebook-status">
-                <span>Editable</span>
-                <span>Living Notes</span>
-            </div>
-        </header>
-
-		<section class="knowledge-layout fade">
-
-			<aside class="sidebar">
-				<h2>Notebook Index</h2>
-                <p>
-                    A simple index for daily notes. Add, rename, duplicate, or reorder modules as your learning archive grows.
-                </p>
-                <a href="#quick-notes">Quick Notes <span>✦</span></a>
-				<div class="sidebar-list">
-					<a href="#linux">Linux <span>01</span></a>
-					<a href="#automation">Automation <span>02</span></a>
-					<a href="#devops">DevOps <span>03</span></a>
-					<a href="#middleware">Middleware <span>04</span></a>
-					<a href="#observability">Observability <span>05</span></a>
-					<a href="#security">Security <span>06</span></a>
-					<a href="#template">Template <span>+</span></a>
+			<div class="sidebar-section">
+				<div class="sidebar-title">Notebook Tools</div>
+				<div class="tool-grid">
+					<button class="btn btn-primary" id="addModuleBtn">＋ Add Module</button>
+					<button class="btn btn-soft" id="exportBtn">Export JSON</button>
+					<button class="btn btn-soft" id="printBtn">Print / Save PDF</button>
+					<button class="btn btn-danger" id="resetBtn">Reset Notebook</button>
 				</div>
-			</aside>
-
-			<div class="knowledge-stack">
-                <details class="knowledge-module" id="quick-notes" open>
-                    <summary>
-                        <div class="module-number">✦</div>
-                        <div class="module-title">
-                            <h2>Quick Notes</h2>
-                            <p>
-                                Temporary thoughts, small findings, and things worth organizing later.
-                            </p>
-                        </div>
-                        <div class="module-icon">+</div>
-                    </summary>
-
-                    <div class="module-content">
-                        <div class="note-grid">
-                            <article class="note-card">
-                                <h3>Today I learned</h3>
-                                <ul>
-                                    <li>Add a short learning note here.</li>
-                                    <li>Record why it matters and where it can be reused.</li>
-                                    <li>Move mature notes into a specific knowledge module later.</li>
-                                </ul>
-                            </article>
-
-                            <article class="note-card">
-                                <h3>To organize later</h3>
-                                <p>
-                                    Use this space as a scratchpad before turning notes into structured topics.
-                                </p>
-                            </article>
-                        </div>
-
-                        <div class="note-tags">
-                            <span>Scratchpad</span>
-                            <span>Daily Notes</span>
-                            <span>Ideas</span>
-                        </div>
-                    </div>
-                </details>
-				<details class="knowledge-module" id="linux" open>
-					<summary>
-						<div class="module-number">01</div>
-						<div class="module-title">
-							<h2>Linux & Server Operations</h2>
-							<p>
-								Commands, server checks, filesystem handling, process investigation,
-								and daily operational patterns.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>Process, port, and service checks</li>
-									<li>Disk usage and filesystem cleanup</li>
-									<li>Permission and ownership troubleshooting</li>
-									<li>Server precheck and postcheck routines</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									I use Linux notes as operational memory: commands are useful, but the real
-									value is recording when to use them, what risk they carry, and how to verify
-									the result after execution.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>Linux</span>
-							<span>Shell</span>
-							<span>Precheck</span>
-							<span>Postcheck</span>
-							<span>Operations</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: add a “server health checklist” covering CPU, memory, disk,
-							process, ports, certificates, and logs.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="automation">
-					<summary>
-						<div class="module-number">02</div>
-						<div class="module-title">
-							<h2>Automation Patterns</h2>
-							<p>
-								Reusable patterns for turning manual tasks into controlled, validated,
-								and repeatable workflows.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>Input validation before execution</li>
-									<li>Retry and fallback design</li>
-									<li>Idempotency and safe re-runs</li>
-									<li>Job status tracking and notification</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									Good automation should make the process easier to trust. I usually think in
-									stages: request, validate, execute, verify, report, and recover.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>Ansible</span>
-							<span>Python</span>
-							<span>Jenkins</span>
-							<span>API</span>
-							<span>Workflow Design</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: add examples of retry logic, polling logic, and asynchronous
-							job handling from project work.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="devops">
-					<summary>
-						<div class="module-number">03</div>
-						<div class="module-title">
-							<h2>DevOps & CI/CD</h2>
-							<p>
-								Notes on Jenkins pipelines, release stages, build flow, approval gates,
-								and deployment reliability.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>Pipeline stage design</li>
-									<li>Build, test, release, and rollback awareness</li>
-									<li>Approval gates and change control</li>
-									<li>Artifact promotion and version tracking</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									A pipeline is not only a sequence of jobs. It is also a communication structure:
-									people need to know what is being changed, where it is, and how to verify it.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>Jenkins</span>
-							<span>Pipeline</span>
-							<span>Release</span>
-							<span>Testing</span>
-							<span>Change Safety</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: document a standard pipeline checklist: parameters, stages,
-							error handling, notification, and post-release verification.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="middleware">
-					<summary>
-						<div class="module-number">04</div>
-						<div class="module-title">
-							<h2>Middleware & Runtime Platforms</h2>
-							<p>
-								Knowledge around application runtimes, product operations, patching,
-								configuration, and lifecycle management.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>WebSphere / Tomcat / Apache operations</li>
-									<li>Runtime installation and configuration</li>
-									<li>Stop, start, backup, fallback, and cleanup</li>
-									<li>Patch precheck and postcheck routines</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									Middleware work often sits between application teams, infrastructure,
-									and operations. Clear documentation and repeatable procedures are as
-									important as commands.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>WebSphere</span>
-							<span>Tomcat</span>
-							<span>Apache</span>
-							<span>Runtime</span>
-							<span>Lifecycle</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: add runtime-specific troubleshooting cards for startup failures,
-							port conflicts, logs, certificates, and config changes.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="observability">
-					<summary>
-						<div class="module-number">05</div>
-						<div class="module-title">
-							<h2>Observability & Troubleshooting</h2>
-							<p>
-								Log search, correlation IDs, monitoring signals, evidence collection,
-								and incident diagnosis patterns.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>Splunk query habits and index selection</li>
-									<li>Correlation ID based tracing</li>
-									<li>AppDynamics API and runtime signal review</li>
-									<li>Evidence packaging for incident handoff</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									Good troubleshooting is not only about finding logs. It is about creating a
-									clear timeline: what happened, where it happened, what changed, and what
-									evidence supports the conclusion.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>Splunk</span>
-							<span>AppDynamics</span>
-							<span>Logs</span>
-							<span>Correlation ID</span>
-							<span>Incident Triage</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: add a reusable incident evidence template with timeline,
-							symptom, scope, logs, owner, and next action.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="security">
-					<summary>
-						<div class="module-number">06</div>
-						<div class="module-title">
-							<h2>Security, Certificates & Vulnerability Work</h2>
-							<p>
-								Certificate renewal, CVE remediation, access control, secrets handling,
-								and operational governance notes.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="note-grid">
-							<article class="note-card">
-								<h3>Key Topics</h3>
-								<ul>
-									<li>Certificate lifecycle and renewal checks</li>
-									<li>CVE scan review and remediation workflow</li>
-									<li>Vault / credential handling concepts</li>
-									<li>Security approval and evidence tracking</li>
-								</ul>
-							</article>
-
-							<article class="note-card">
-								<h3>Personal Notes</h3>
-								<p>
-									Security work becomes easier to manage when ownership, priority,
-									evidence, validation, and closure criteria are visible from the start.
-								</p>
-							</article>
-						</div>
-
-						<div class="note-tags">
-							<span>CVE</span>
-							<span>Certificates</span>
-							<span>Vault</span>
-							<span>Risk</span>
-							<span>Governance</span>
-						</div>
-
-						<div class="add-note">
-							Future note idea: add a CVE remediation checklist including detect, prioritize,
-							owner, fix, verify, report, and close.
-						</div>
-					</div>
-				</details>
-
-				<details class="knowledge-module" id="template">
-					<summary>
-						<div class="module-number">+</div>
-						<div class="module-title">
-							<h2>Reusable Note Template</h2>
-							<p>
-								Copy this module when adding a new knowledge category or learning note.
-							</p>
-						</div>
-						<div class="module-icon">+</div>
-					</summary>
-
-					<div class="module-content">
-						<div class="template-block">
-							<h3>Module template</h3>
-							<pre>&lt;details class="knowledge-module" id="new-topic"&gt;
-	&lt;summary&gt;
-		&lt;div class="module-number"&gt;07&lt;/div&gt;
-		&lt;div class="module-title"&gt;
-			&lt;h2&gt;New Knowledge Topic&lt;/h2&gt;
-			&lt;p&gt;Short description of this topic.&lt;/p&gt;
-		&lt;/div&gt;
-		&lt;div class="module-icon"&gt;+&lt;/div&gt;
-	&lt;/summary&gt;
-
-	&lt;div class="module-content"&gt;
-		&lt;div class="note-grid"&gt;
-			&lt;article class="note-card"&gt;
-				&lt;h3&gt;Key Topics&lt;/h3&gt;
-				&lt;ul&gt;
-					&lt;li&gt;Topic point one&lt;/li&gt;
-					&lt;li&gt;Topic point two&lt;/li&gt;
-				&lt;/ul&gt;
-			&lt;/article&gt;
-
-			&lt;article class="note-card"&gt;
-				&lt;h3&gt;Personal Notes&lt;/h3&gt;
-				&lt;p&gt;Write your reflection here.&lt;/p&gt;
-			&lt;/article&gt;
-		&lt;/div&gt;
-
-		&lt;div class="note-tags"&gt;
-			&lt;span&gt;Tag One&lt;/span&gt;
-			&lt;span&gt;Tag Two&lt;/span&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/details&gt;</pre>
-						</div>
-					</div>
-				</details>
-
 			</div>
-		</section>
 
-	</main>
+			<div class="sidebar-section index-section">
+				<div class="sidebar-title">Module Index</div>
+				<nav class="nav-list" id="moduleIndex"></nav>
+			</div>
+
+			<div class="hint">
+				Content is saved in this browser automatically. Use Export JSON regularly if the notes are important.
+			</div>
+		</aside>
+
+		<main class="main">
+			<div class="topbar">
+				<div class="breadcrumbs">
+					<a href="index.html" style="color: inherit; text-decoration: none;">Home</a>
+					&nbsp;/&nbsp;
+					<span>Knowledge Notebook</span>
+				</div>
+
+				<div class="top-actions">
+					<button class="btn btn-soft btn-small" id="collapseAllBtn">Collapse All</button>
+					<button class="btn btn-soft btn-small" id="expandAllBtn">Expand All</button>
+				</div>
+			</div>
+
+			<section class="notebook">
+				<header class="notebook-cover">
+					<input class="notebook-title" id="notebookTitle" value="My Knowledge Notebook" aria-label="Notebook title">
+					<textarea class="notebook-subtitle" id="notebookSubtitle" aria-label="Notebook description">Daily learning notes, troubleshooting patterns, technical reflections, and useful resources.</textarea>
+
+					<div class="meta-row">
+						<span class="meta-pill">Auto saved</span>
+						<span class="meta-pill">Editable modules</span>
+						<span class="meta-pill">Images & links supported</span>
+						<span class="meta-pill" id="lastSaved">Not saved yet</span>
+					</div>
+				</header>
+
+				<div class="modules" id="modules"></div>
+			</section>
+
+			<p class="footer-note">
+				This is a single-file notebook. Add it as <strong>knowledge.html</strong> in your GitHub Pages root.
+			</p>
+		</main>
+	</div>
 
 	<script>
-		const light = document.getElementById('cursorLight');
+		const STORAGE_KEY = 'huiKnowledgeNotebookV1';
 
-		document.addEventListener('mousemove', (event) => {
-			light.style.left = event.clientX + 'px';
-			light.style.top = event.clientY + 'px';
-		});
-
-		document.addEventListener('mouseleave', () => {
-			light.style.opacity = '0';
-		});
-
-		document.addEventListener('mouseenter', () => {
-			light.style.opacity = '1';
-		});
-
-		const faders = document.querySelectorAll('.fade');
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('show');
+		const defaultData = {
+			title: 'My Knowledge Notebook',
+			subtitle: 'Daily learning notes, troubleshooting patterns, technical reflections, and useful resources.',
+			modules: [
+				{
+					id: createId(),
+					title: 'Quick Notes',
+					tags: 'daily, scratchpad, ideas',
+					content: 'Today I learned:\n\n- Write a small note here.\n- Add links or images below.\n- Move mature notes into a structured topic later.',
+					collapsed: false,
+					resources: []
+				},
+				{
+					id: createId(),
+					title: 'Linux & Operations',
+					tags: 'linux, shell, troubleshooting',
+					content: 'Useful commands, server checks, filesystem cleanup, process investigation, and operational patterns.\n\nNotes:\n- Add command snippets here.\n- Record when to use them.\n- Record how to verify the result.',
+					collapsed: false,
+					resources: []
+				},
+				{
+					id: createId(),
+					title: 'Automation Patterns',
+					tags: 'ansible, python, jenkins, workflow',
+					content: 'Reusable automation patterns:\n\n- Request → Validate → Execute → Verify → Notify\n- Retry and fallback logic\n- Idempotent execution\n- Asynchronous job polling',
+					collapsed: false,
+					resources: []
 				}
+			]
+		};
+
+		let notebook = loadNotebook();
+		let draggedModuleId = null;
+
+		const notebookTitle = document.getElementById('notebookTitle');
+		const notebookSubtitle = document.getElementById('notebookSubtitle');
+		const modulesEl = document.getElementById('modules');
+		const moduleIndexEl = document.getElementById('moduleIndex');
+		const lastSavedEl = document.getElementById('lastSaved');
+
+		function createId() {
+			return 'module-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+		}
+
+		function loadNotebook() {
+			try {
+				const saved = localStorage.getItem(STORAGE_KEY);
+				if (!saved) return structuredClone(defaultData);
+				return JSON.parse(saved);
+			} catch (error) {
+				console.warn('Failed to load notebook. Using default data.', error);
+				return structuredClone(defaultData);
+			}
+		}
+
+		function saveNotebook() {
+			notebook.title = notebookTitle.value;
+			notebook.subtitle = notebookSubtitle.value;
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(notebook));
+			lastSavedEl.textContent = 'Saved ' + new Date().toLocaleTimeString();
+			renderIndex();
+		}
+
+		function render() {
+			notebookTitle.value = notebook.title;
+			notebookSubtitle.value = notebook.subtitle;
+
+			if (!notebook.modules.length) {
+				modulesEl.innerHTML = `
+					<div class="empty-state">
+						<h2>No modules yet</h2>
+						<p>Click “Add Module” to create your first notebook section.</p>
+					</div>
+				`;
+				renderIndex();
+				return;
+			}
+
+			modulesEl.innerHTML = notebook.modules.map((module, index) => `
+				<article
+					class="module ${module.collapsed ? 'collapsed' : ''}"
+					id="${module.id}"
+					draggable="true"
+					data-id="${module.id}"
+				>
+					<header class="module-header">
+						<div class="drag-handle" title="Drag to reorder">⋮⋮</div>
+
+						<input
+							class="module-title-input"
+							value="${escapeHtml(module.title)}"
+							aria-label="Module title"
+							data-action="title"
+							data-id="${module.id}"
+						>
+
+						<div class="module-actions">
+							<button class="btn btn-soft btn-small" data-action="toggle" data-id="${module.id}">
+								${module.collapsed ? 'Expand' : 'Collapse'}
+							</button>
+							<button class="btn btn-soft btn-small" data-action="up" data-id="${module.id}" ${index === 0 ? 'disabled' : ''}>↑</button>
+							<button class="btn btn-soft btn-small" data-action="down" data-id="${module.id}" ${index === notebook.modules.length - 1 ? 'disabled' : ''}>↓</button>
+							<button class="btn btn-danger btn-small" data-action="delete" data-id="${module.id}">Delete</button>
+						</div>
+					</header>
+
+					<div class="module-body">
+						<input
+							class="module-tags"
+							value="${escapeHtml(module.tags)}"
+							placeholder="Tags, separated by commas"
+							data-action="tags"
+							data-id="${module.id}"
+						>
+
+						<textarea
+							class="editor"
+							placeholder="Write your notes here..."
+							data-action="content"
+							data-id="${module.id}"
+						>${escapeHtml(module.content)}</textarea>
+
+						<div class="resource-panel">
+							<div class="resource-title">External Resources</div>
+
+							<div class="resource-row">
+								<input placeholder="Resource title" data-resource-title="${module.id}">
+								<input placeholder="URL: https://... image or link" data-resource-url="${module.id}">
+								<button class="btn btn-primary btn-small" data-action="add-resource" data-id="${module.id}">Add</button>
+							</div>
+
+							<div class="resources">
+								${renderResources(module)}
+							</div>
+						</div>
+					</div>
+				</article>
+			`).join('');
+
+			renderIndex();
+		}
+
+		function renderResources(module) {
+			if (!module.resources || !module.resources.length) {
+				return '<div class="hint" style="margin-top: 0;">No resources yet. Add a useful link or image URL above.</div>';
+			}
+
+			return module.resources.map((resource, index) => {
+				const isImage = /\.(png|jpg|jpeg|gif|webp|svg)(\?.*)?$/i.test(resource.url);
+
+				return `
+					<div class="resource-card">
+						<div>
+							<a href="${escapeAttribute(resource.url)}" target="_blank" rel="noopener">
+								${escapeHtml(resource.title || resource.url)}
+							</a>
+							${isImage ? `<img src="${escapeAttribute(resource.url)}" alt="${escapeAttribute(resource.title || 'Notebook image')}">` : ''}
+						</div>
+
+						<button class="btn btn-danger btn-small" data-action="delete-resource" data-id="${module.id}" data-index="${index}">
+							Remove
+						</button>
+					</div>
+				`;
+			}).join('');
+		}
+
+		function renderIndex() {
+			if (!notebook.modules.length) {
+				moduleIndexEl.innerHTML = '';
+				return;
+			}
+
+			moduleIndexEl.innerHTML = notebook.modules.map((module, index) => `
+				<a class="nav-item" href="#${module.id}">
+					${escapeHtml(module.title || 'Untitled')}
+					<span>${String(index + 1).padStart(2, '0')}</span>
+				</a>
+			`).join('');
+		}
+
+		function addModule() {
+			notebook.modules.push({
+				id: createId(),
+				title: 'Untitled Note Module',
+				tags: '',
+				content: '',
+				collapsed: false,
+				resources: []
 			});
-		}, {
-			threshold: 0.12
+
+			saveNotebook();
+			render();
+
+			setTimeout(() => {
+				const latest = notebook.modules[notebook.modules.length - 1];
+				document.getElementById(latest.id)?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center'
+				});
+			}, 50);
+		}
+
+		function deleteModule(id) {
+			const module = notebook.modules.find((item) => item.id === id);
+			if (!module) return;
+
+			const confirmed = confirm(`Delete module "${module.title || 'Untitled'}"?`);
+			if (!confirmed) return;
+
+			notebook.modules = notebook.modules.filter((item) => item.id !== id);
+			saveNotebook();
+			render();
+		}
+
+		function moveModule(id, direction) {
+			const index = notebook.modules.findIndex((item) => item.id === id);
+			if (index < 0) return;
+
+			const targetIndex = direction === 'up' ? index - 1 : index + 1;
+			if (targetIndex < 0 || targetIndex >= notebook.modules.length) return;
+
+			const [item] = notebook.modules.splice(index, 1);
+			notebook.modules.splice(targetIndex, 0, item);
+
+			saveNotebook();
+			render();
+		}
+
+		function toggleModule(id) {
+			const module = notebook.modules.find((item) => item.id === id);
+			if (!module) return;
+
+			module.collapsed = !module.collapsed;
+			saveNotebook();
+			render();
+		}
+
+		function addResource(id) {
+			const module = notebook.modules.find((item) => item.id === id);
+			if (!module) return;
+
+			const titleInput = document.querySelector(`[data-resource-title="${id}"]`);
+			const urlInput = document.querySelector(`[data-resource-url="${id}"]`);
+
+			const title = titleInput.value.trim();
+			const url = urlInput.value.trim();
+
+			if (!url) {
+				alert('Please enter a URL.');
+				return;
+			}
+
+			if (!/^https?:\/\//i.test(url) && !/^assets\//i.test(url) && !/^\.\//i.test(url)) {
+				alert('Please use a full URL starting with https:// or a local path like assets/...');
+				return;
+			}
+
+			module.resources ||= [];
+			module.resources.push({
+				title: title || url,
+				url
+			});
+
+			saveNotebook();
+			render();
+		}
+
+		function deleteResource(id, index) {
+			const module = notebook.modules.find((item) => item.id === id);
+			if (!module || !module.resources) return;
+
+			module.resources.splice(index, 1);
+			saveNotebook();
+			render();
+		}
+
+		function exportJson() {
+			saveNotebook();
+
+			const blob = new Blob([JSON.stringify(notebook, null, 2)], {
+				type: 'application/json'
+			});
+
+			const url = URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = url;
+			link.download = 'knowledge-notebook.json';
+			link.click();
+			URL.revokeObjectURL(url);
+		}
+
+		function resetNotebook() {
+			const confirmed = confirm('Reset the notebook to the default version? This will overwrite the current local notes.');
+			if (!confirmed) return;
+
+			notebook = structuredClone(defaultData);
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(notebook));
+			render();
+			lastSavedEl.textContent = 'Reset complete';
+		}
+
+		function escapeHtml(value) {
+			return String(value ?? '')
+				.replaceAll('&', '&amp;')
+				.replaceAll('<', '&lt;')
+				.replaceAll('>', '&gt;')
+				.replaceAll('"', '&quot;')
+				.replaceAll("'", '&#039;');
+		}
+
+		function escapeAttribute(value) {
+			return escapeHtml(value).replaceAll('`', '&#096;');
+		}
+
+		document.getElementById('addModuleBtn').addEventListener('click', addModule);
+		document.getElementById('exportBtn').addEventListener('click', exportJson);
+		document.getElementById('printBtn').addEventListener('click', () => window.print());
+		document.getElementById('resetBtn').addEventListener('click', resetNotebook);
+
+		document.getElementById('collapseAllBtn').addEventListener('click', () => {
+			notebook.modules.forEach((module) => module.collapsed = true);
+			saveNotebook();
+			render();
 		});
 
-		faders.forEach((element) => observer.observe(element));
-	</script>
+		document.getElementById('expandAllBtn').addEventListener('click', () => {
+			notebook.modules.forEach((module) => module.collapsed = false);
+			saveNotebook();
+			render();
+		});
 
+		notebookTitle.addEventListener('input', saveNotebook);
+		notebookSubtitle.addEventListener('input', saveNotebook);
+
+		modulesEl.addEventListener('input', (event) => {
+			const action = event.target.dataset.action;
+			const id = event.target.dataset.id;
+			const module = notebook.modules.find((item) => item.id === id);
+
+			if (!module) return;
+
+			if (action === 'title') module.title = event.target.value;
+			if (action === 'tags') module.tags = event.target.value;
+			if (action === 'content') module.content = event.target.value;
+
+			saveNotebook();
+		});
+
+		modulesEl.addEventListener('click', (event) => {
+			const button = event.target.closest('button');
+			if (!button) return;
+
+			const action = button.dataset.action;
+			const id = button.dataset.id;
+
+			if (action === 'toggle') toggleModule(id);
+			if (action === 'up') moveModule(id, 'up');
+			if (action === 'down') moveModule(id, 'down');
+			if (action === 'delete') deleteModule(id);
+			if (action === 'add-resource') addResource(id);
+			if (action === 'delete-resource') deleteResource(id, Number(button.dataset.index));
+		});
+
+		modulesEl.addEventListener('dragstart', (event) => {
+			const moduleEl = event.target.closest('.module');
+			if (!moduleEl) return;
+
+			draggedModuleId = moduleEl.dataset.id;
+			moduleEl.classList.add('dragging');
+			event.dataTransfer.effectAllowed = 'move';
+		});
+
+		modulesEl.addEventListener('dragend', (event) => {
+			const moduleEl = event.target.closest('.module');
+			if (moduleEl) moduleEl.classList.remove('dragging');
+			draggedModuleId = null;
+		});
+
+		modulesEl.addEventListener('dragover', (event) => {
+			event.preventDefault();
+
+			const target = event.target.closest('.module');
+			if (!target || !draggedModuleId || target.dataset.id === draggedModuleId) return;
+
+			const draggedIndex = notebook.modules.findIndex((item) => item.id === draggedModuleId);
+			const targetIndex = notebook.modules.findIndex((item) => item.id === target.dataset.id);
+
+			if (draggedIndex < 0 || targetIndex < 0) return;
+
+			const [dragged] = notebook.modules.splice(draggedIndex, 1);
+			notebook.modules.splice(targetIndex, 0, dragged);
+
+			saveNotebook();
+			render();
+		});
+
+		render();
+		saveNotebook();
+	</script>
 </body>
 </html>
