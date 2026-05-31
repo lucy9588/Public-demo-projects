@@ -239,6 +239,80 @@
 			gap: 9px;
 		}
 
+        .notebook-header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 28px;
+            margin-bottom: 34px;
+            padding: 22px 0 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .notebook-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .notebook-label::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--primary);
+            opacity: 0.65;
+        }
+
+        .notebook-header h1 {
+            margin-bottom: 8px;
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.08;
+            font-weight: 600;
+            letter-spacing: -0.035em;
+            color: #30382f;
+            text-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.46),
+                0 12px 28px rgba(54, 64, 55, 0.08);
+        }
+
+        .notebook-header p {
+            max-width: 680px;
+            color: var(--subtext);
+            font-size: 14px;
+            font-weight: 720;
+            line-height: 1.7;
+        }
+
+        .notebook-status {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+            min-width: 220px;
+        }
+
+        .notebook-status span {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 999px;
+            color: #515b6d;
+            background: rgba(255, 255, 255, 0.30);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            font-size: 11px;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
 		.meta-pill {
 			padding: 7px 11px;
 			border-radius: 999px;
@@ -255,11 +329,11 @@
 		}
 
 		.knowledge-layout {
-			display: grid;
-			grid-template-columns: 260px minmax(0, 1fr);
-			gap: 34px;
-			align-items: start;
-		}
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
 
 		.sidebar {
 			position: sticky;
@@ -599,6 +673,21 @@
 		}
 
 		@media (max-width: 560px) {
+            .notebook-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 28px;
+            }
+
+            .notebook-header h1 {
+                font-size: clamp(28px, 10vw, 38px);
+            }
+
+            .notebook-status {
+                justify-content: flex-start;
+                min-width: 0;
+            }
 			.page {
 				padding: 38px 16px 68px;
 			}
@@ -680,36 +769,30 @@
 			</div>
 		</nav>
 
-		<header class="hero fade">
-			<div>
-				<div class="eyebrow">Learning Notes</div>
-				<h1>A living knowledge base for systems, automation, and operations.</h1>
-			</div>
+		<header class="notebook-header fade">
+            <div>
+                <div class="notebook-label">Personal Notebook</div>
+                <h1>Knowledge Base</h1>
+                <p>
+                    A flexible space for daily learning notes, troubleshooting patterns, technical reflections,
+                    and reusable operational knowledge.
+                </p>
+            </div>
 
-			<div>
-				<p class="hero-copy">
-					This page collects my learning notes, technical reflections, troubleshooting patterns,
-					and reusable knowledge from daily work. It is designed as a living skill library rather
-					than a static resume section.
-				</p>
-
-				<div class="hero-meta">
-					<span class="meta-pill">Learning Notes</span>
-					<span class="meta-pill">Skill Library</span>
-					<span class="meta-pill">Reusable Patterns</span>
-				</div>
-			</div>
-		</header>
+            <div class="notebook-status">
+                <span>Editable</span>
+                <span>Living Notes</span>
+            </div>
+        </header>
 
 		<section class="knowledge-layout fade">
 
 			<aside class="sidebar">
-				<h2>Index</h2>
-				<p>
-					Use this page as a lightweight technical notebook. Each module can be expanded,
-					edited, duplicated, or reordered as your knowledge base grows.
-				</p>
-
+				<h2>Notebook Index</h2>
+                <p>
+                    A simple index for daily notes. Add, rename, duplicate, or reorder modules as your learning archive grows.
+                </p>
+                <a href="#quick-notes">Quick Notes <span>✦</span></a>
 				<div class="sidebar-list">
 					<a href="#linux">Linux <span>01</span></a>
 					<a href="#automation">Automation <span>02</span></a>
@@ -722,7 +805,44 @@
 			</aside>
 
 			<div class="knowledge-stack">
+                <details class="knowledge-module" id="quick-notes" open>
+                    <summary>
+                        <div class="module-number">✦</div>
+                        <div class="module-title">
+                            <h2>Quick Notes</h2>
+                            <p>
+                                Temporary thoughts, small findings, and things worth organizing later.
+                            </p>
+                        </div>
+                        <div class="module-icon">+</div>
+                    </summary>
 
+                    <div class="module-content">
+                        <div class="note-grid">
+                            <article class="note-card">
+                                <h3>Today I learned</h3>
+                                <ul>
+                                    <li>Add a short learning note here.</li>
+                                    <li>Record why it matters and where it can be reused.</li>
+                                    <li>Move mature notes into a specific knowledge module later.</li>
+                                </ul>
+                            </article>
+
+                            <article class="note-card">
+                                <h3>To organize later</h3>
+                                <p>
+                                    Use this space as a scratchpad before turning notes into structured topics.
+                                </p>
+                            </article>
+                        </div>
+
+                        <div class="note-tags">
+                            <span>Scratchpad</span>
+                            <span>Daily Notes</span>
+                            <span>Ideas</span>
+                        </div>
+                    </div>
+                </details>
 				<details class="knowledge-module" id="linux" open>
 					<summary>
 						<div class="module-number">01</div>
