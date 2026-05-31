@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Knowledge Base | Hui Luo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+	<style>
+		:root {
+			--text: #272a2f;
+			--subtext: #626973;
+			--muted: #8a9099;
+			--primary: #6f7f9f;
+			--primary-dark: #53627d;
+			--sage: #8fa394;
+			--sage-dark: #607565;
+			--cream: #f7f3ec;
+			--line: rgba(111, 127, 159, 0.22);
+			--line-strong: rgba(111, 127, 159, 0.34);
+			--shadow: rgba(34, 38, 45, 0.12);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			min-height: 100vh;
+			overflow-x: hidden;
+			color: var(--text);
+			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+			background-image:
+				linear-gradient(
+					120deg,
+					rgba(247, 243, 236, 0.18),
+					rgba(230, 238, 228, 0.12)
+				),
+				url('assets/css/images/bg_aboutme.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: -25%;
+			z-index: 0;
+			pointer-events: none;
+			background:
+				radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.46), transparent 24%),
+				radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.16), transparent 30%),
+				radial-gradient(circle at 78% 74%, rgba(124, 141, 181, 0.12), transparent 38%);
+			animation: backgroundFloat 24s ease-in-out infinite;
+		}
+
+		body::after {
+			content: "";
+			position: fixed;
+			inset: 0;
+			z-index: 0;
+			pointer-events: none;
+			background:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.08) 0%,
+					rgba(255, 255, 255, 0.02) 48%,
+					rgba(255, 255, 255, 0.12) 100%
+				);
+		}
+
+		@keyframes backgroundFloat {
+			0% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+
+			50% {
+				transform: translate3d(-2.3%, -1.6%, 0) scale(1.04);
+			}
+
+			100% {
+				transform: translate3d(0, 0, 0) scale(1);
+			}
+		}
+
+		.cursor-light {
+			position: fixed;
+			width: 420px;
+			height: 420px;
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 1;
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.34),
+					rgba(255, 255, 255, 0.10) 36%,
+					transparent 68%
+				);
+			transform: translate(-50%, -50%);
+			mix-blend-mode: soft-light;
+			transition: opacity 0.25s ease;
+		}
+
+		.page {
+			position: relative;
+			z-index: 2;
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 52px 28px 86px;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 60px;
+		}
+
+		.nav-title {
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.42),
+				0 10px 22px rgba(34, 38, 45, 0.10);
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 18px;
+		}
+
+		.nav-link {
+			color: #30343a;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 850;
+			letter-spacing: -0.01em;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.46),
+				0 12px 28px rgba(34, 38, 45, 0.10);
+			transition:
+				color 0.25s ease,
+				transform 0.25s ease;
+		}
+
+		.nav-link:hover {
+			color: var(--primary);
+			transform: translateY(-2px);
+		}
+
+		.hero {
+			position: relative;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(260px, 0.56fr);
+			gap: 52px;
+			align-items: end;
+			margin-bottom: 54px;
+		}
+
+		.hero::before {
+			content: "";
+			position: absolute;
+			width: 400px;
+			height: 400px;
+			top: -150px;
+			left: -130px;
+			z-index: -1;
+			background:
+				radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.58),
+					rgba(124, 141, 181, 0.12) 44%,
+					transparent 74%
+				);
+			filter: blur(14px);
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			margin-bottom: 16px;
+			color: var(--primary-dark);
+			font-size: 12px;
+			font-weight: 900;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow::before {
+			content: "";
+			width: 34px;
+			height: 1px;
+			background: var(--primary);
+			opacity: 0.65;
+		}
+
+		.hero h1 {
+			max-width: 760px;
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: clamp(38px, 6vw, 68px);
+			line-height: 1.02;
+			font-weight: 650;
+			letter-spacing: -0.045em;
+			color: #30382f;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.50),
+				0 18px 44px rgba(54, 64, 55, 0.10);
+		}
+
+		.hero-copy {
+			color: var(--subtext);
+			font-size: 14.5px;
+			font-weight: 720;
+			line-height: 1.72;
+			letter-spacing: -0.008em;
+			text-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.36),
+				0 10px 24px rgba(34, 38, 45, 0.08);
+		}
+
+		.hero-meta {
+			margin-top: 18px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 9px;
+		}
+
+		.meta-pill {
+			padding: 7px 11px;
+			border-radius: 999px;
+			color: #445066;
+			background: rgba(255, 255, 255, 0.28);
+			border: 1px solid rgba(255, 255, 255, 0.48);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			font-size: 11px;
+			font-weight: 900;
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.36),
+				0 8px 20px rgba(34, 38, 45, 0.05);
+		}
+
+		.knowledge-layout {
+			display: grid;
+			grid-template-columns: 260px minmax(0, 1fr);
+			gap: 34px;
+			align-items: start;
+		}
+
+		.sidebar {
+			position: sticky;
+			top: 28px;
+			padding: 22px;
+			border-radius: 28px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.36),
+					rgba(255, 255, 255, 0.13)
+				);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			box-shadow:
+				0 18px 44px rgba(34, 38, 45, 0.07),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+		}
+
+		.sidebar h2 {
+			margin-bottom: 14px;
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: 24px;
+			line-height: 1.08;
+			font-weight: 600;
+			letter-spacing: -0.035em;
+			color: #30382f;
+		}
+
+		.sidebar p {
+			margin-bottom: 18px;
+			color: var(--subtext);
+			font-size: 13px;
+			font-weight: 720;
+			line-height: 1.65;
+		}
+
+		.sidebar-list {
+			display: grid;
+			gap: 9px;
+		}
+
+		.sidebar-list a {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10px;
+			padding: 9px 11px;
+			border-radius: 999px;
+			color: #455066;
+			background: rgba(255, 255, 255, 0.28);
+			border: 1px solid rgba(255, 255, 255, 0.38);
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: 900;
+			transition:
+				transform 0.25s ease,
+				background 0.25s ease,
+				color 0.25s ease;
+		}
+
+		.sidebar-list a:hover {
+			transform: translateX(4px);
+			background: rgba(255, 255, 255, 0.48);
+			color: var(--primary-dark);
+		}
+
+		.knowledge-stack {
+			display: grid;
+			gap: 18px;
+		}
+
+		.knowledge-module {
+			position: relative;
+			border-radius: 30px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(255, 255, 255, 0.38),
+					rgba(255, 255, 255, 0.13)
+				);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			box-shadow:
+				0 18px 44px rgba(34, 38, 45, 0.07),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+			overflow: hidden;
+			transition:
+				transform 0.28s ease,
+				box-shadow 0.28s ease;
+		}
+
+		.knowledge-module:hover {
+			transform: translateY(-3px);
+			box-shadow:
+				0 24px 56px rgba(34, 38, 45, 0.10),
+				inset 0 1px 0 rgba(255, 255, 255, 0.44);
+		}
+
+		.knowledge-module summary {
+			display: grid;
+			grid-template-columns: 56px minmax(0, 1fr) 34px;
+			gap: 18px;
+			align-items: center;
+			padding: 24px;
+			cursor: pointer;
+			list-style: none;
+			user-select: none;
+		}
+
+		.knowledge-module summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.module-number {
+			color: rgba(96, 117, 101, 0.48);
+			font-size: 30px;
+			line-height: 1;
+			font-weight: 900;
+			letter-spacing: -0.06em;
+		}
+
+		.module-title {
+			display: grid;
+			gap: 8px;
+		}
+
+		.module-title h2 {
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: clamp(24px, 2.8vw, 34px);
+			line-height: 1.08;
+			font-weight: 600;
+			letter-spacing: -0.035em;
+			color: #30382f;
+		}
+
+		.module-title p {
+			max-width: 700px;
+			color: var(--subtext);
+			font-size: 13.5px;
+			font-weight: 720;
+			line-height: 1.62;
+		}
+
+		.module-icon {
+			width: 34px;
+			height: 34px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			color: #ffffff;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(124, 141, 181, 0.96),
+					rgba(102, 119, 155, 0.96)
+				);
+			border: 1px solid rgba(255, 255, 255, 0.62);
+			box-shadow:
+				0 10px 22px rgba(102, 119, 155, 0.22),
+				inset 0 1px 0 rgba(255, 255, 255, 0.32);
+			font-weight: 900;
+			transition:
+				transform 0.25s ease,
+				background 0.25s ease;
+		}
+
+		.knowledge-module[open] .module-icon {
+			transform: rotate(45deg);
+			background:
+				linear-gradient(
+					135deg,
+					rgba(143, 163, 148, 0.96),
+					rgba(96, 117, 101, 0.96)
+				);
+		}
+
+		.module-content {
+			padding: 0 24px 26px 98px;
+		}
+
+		.note-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16px;
+			margin-top: 10px;
+		}
+
+		.note-card {
+			padding: 18px;
+			border-radius: 22px;
+			background: rgba(255, 255, 255, 0.30);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			box-shadow:
+				0 12px 28px rgba(34, 38, 45, 0.05),
+				inset 0 1px 0 rgba(255, 255, 255, 0.34);
+		}
+
+		.note-card h3 {
+			margin-bottom: 8px;
+			color: #3f4858;
+			font-size: 13px;
+			font-weight: 900;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.note-card p {
+			color: var(--subtext);
+			font-size: 13.5px;
+			font-weight: 720;
+			line-height: 1.7;
+		}
+
+		.note-card ul {
+			padding-left: 18px;
+			color: var(--subtext);
+			font-size: 13.5px;
+			font-weight: 720;
+			line-height: 1.75;
+		}
+
+		.note-card li + li {
+			margin-top: 4px;
+		}
+
+		.note-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 18px;
+		}
+
+		.note-tags span {
+			display: inline-flex;
+			align-items: center;
+			padding: 6px 10px;
+			border-radius: 999px;
+			color: #515b6d;
+			background: rgba(255, 255, 255, 0.34);
+			border: 1px solid rgba(255, 255, 255, 0.42);
+			font-size: 11px;
+			font-weight: 900;
+		}
+
+		.add-note {
+			margin-top: 18px;
+			padding: 16px 18px;
+			border-radius: 22px;
+			background:
+				linear-gradient(
+					135deg,
+					rgba(223, 243, 251, 0.60),
+					rgba(229, 242, 232, 0.56)
+				);
+			border: 1px dashed rgba(111, 127, 159, 0.36);
+			color: #4d6158;
+			font-size: 13px;
+			font-weight: 800;
+			line-height: 1.65;
+		}
+
+		.template-block {
+			margin-top: 18px;
+			padding: 18px;
+			border-radius: 22px;
+			background: rgba(255, 255, 255, 0.26);
+			border: 1px solid rgba(255, 255, 255, 0.38);
+		}
+
+		.template-block h3 {
+			margin-bottom: 10px;
+			color: #3f4858;
+			font-size: 13px;
+			font-weight: 900;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.template-block pre {
+			overflow-x: auto;
+			white-space: pre-wrap;
+			color: #515b6d;
+			font-size: 12.5px;
+			font-weight: 750;
+			line-height: 1.7;
+			font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+		}
+
+		.fade {
+			opacity: 0;
+			transform: translateY(22px);
+			transition:
+				opacity 0.85s ease,
+				transform 0.85s ease;
+		}
+
+		.fade.show {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		@media (max-width: 920px) {
+			body {
+				background-attachment: scroll;
+			}
+
+			.page {
+				padding: 44px 20px 76px;
+			}
+
+			.hero {
+				grid-template-columns: 1fr;
+				gap: 24px;
+				margin-bottom: 48px;
+			}
+
+			.knowledge-layout {
+				grid-template-columns: 1fr;
+				gap: 24px;
+			}
+
+			.sidebar {
+				position: static;
+			}
+
+			.note-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.module-content {
+				padding-left: 24px;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.page {
+				padding: 38px 16px 68px;
+			}
+
+			.nav {
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 14px;
+				margin-bottom: 48px;
+			}
+
+			.nav-links {
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+
+			.hero h1 {
+				font-size: clamp(36px, 13vw, 58px);
+			}
+
+			.hero-copy {
+				font-size: 13.5px;
+			}
+
+			.knowledge-module summary {
+				grid-template-columns: 1fr 34px;
+				gap: 12px;
+				padding: 22px;
+			}
+
+			.module-number {
+				grid-column: 1 / -1;
+				font-size: 24px;
+			}
+
+			.module-title h2 {
+				font-size: 24px;
+			}
+
+			.module-content {
+				padding: 0 22px 24px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			body::before {
+				animation: none;
+			}
+
+			.cursor-light {
+				display: none;
+			}
+
+			.fade,
+			.nav-link,
+			.sidebar-list a,
+			.knowledge-module,
+			.module-icon {
+				transition: none;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="cursor-light" id="cursorLight"></div>
+
+	<main class="page">
+
+		<nav class="nav fade">
+			<div class="nav-title">Knowledge Base</div>
+
+			<div class="nav-links">
+				<a class="nav-link" href="index.html">Home</a>
+				<a class="nav-link" href="aboutme.html">About</a>
+				<a class="nav-link" href="projects.html">Projects</a>
+				<a class="nav-link" href="devops-runner.html">Runner</a>
+			</div>
+		</nav>
+
+		<header class="hero fade">
+			<div>
+				<div class="eyebrow">Learning Notes</div>
+				<h1>A living knowledge base for systems, automation, and operations.</h1>
+			</div>
+
+			<div>
+				<p class="hero-copy">
+					This page collects my learning notes, technical reflections, troubleshooting patterns,
+					and reusable knowledge from daily work. It is designed as a living skill library rather
+					than a static resume section.
+				</p>
+
+				<div class="hero-meta">
+					<span class="meta-pill">Learning Notes</span>
+					<span class="meta-pill">Skill Library</span>
+					<span class="meta-pill">Reusable Patterns</span>
+				</div>
+			</div>
+		</header>
+
+		<section class="knowledge-layout fade">
+
+			<aside class="sidebar">
+				<h2>Index</h2>
+				<p>
+					Use this page as a lightweight technical notebook. Each module can be expanded,
+					edited, duplicated, or reordered as your knowledge base grows.
+				</p>
+
+				<div class="sidebar-list">
+					<a href="#linux">Linux <span>01</span></a>
+					<a href="#automation">Automation <span>02</span></a>
+					<a href="#devops">DevOps <span>03</span></a>
+					<a href="#middleware">Middleware <span>04</span></a>
+					<a href="#observability">Observability <span>05</span></a>
+					<a href="#security">Security <span>06</span></a>
+					<a href="#template">Template <span>+</span></a>
+				</div>
+			</aside>
+
+			<div class="knowledge-stack">
+
+				<details class="knowledge-module" id="linux" open>
+					<summary>
+						<div class="module-number">01</div>
+						<div class="module-title">
+							<h2>Linux & Server Operations</h2>
+							<p>
+								Commands, server checks, filesystem handling, process investigation,
+								and daily operational patterns.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>Process, port, and service checks</li>
+									<li>Disk usage and filesystem cleanup</li>
+									<li>Permission and ownership troubleshooting</li>
+									<li>Server precheck and postcheck routines</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									I use Linux notes as operational memory: commands are useful, but the real
+									value is recording when to use them, what risk they carry, and how to verify
+									the result after execution.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>Linux</span>
+							<span>Shell</span>
+							<span>Precheck</span>
+							<span>Postcheck</span>
+							<span>Operations</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: add a “server health checklist” covering CPU, memory, disk,
+							process, ports, certificates, and logs.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="automation">
+					<summary>
+						<div class="module-number">02</div>
+						<div class="module-title">
+							<h2>Automation Patterns</h2>
+							<p>
+								Reusable patterns for turning manual tasks into controlled, validated,
+								and repeatable workflows.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>Input validation before execution</li>
+									<li>Retry and fallback design</li>
+									<li>Idempotency and safe re-runs</li>
+									<li>Job status tracking and notification</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									Good automation should make the process easier to trust. I usually think in
+									stages: request, validate, execute, verify, report, and recover.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>Ansible</span>
+							<span>Python</span>
+							<span>Jenkins</span>
+							<span>API</span>
+							<span>Workflow Design</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: add examples of retry logic, polling logic, and asynchronous
+							job handling from project work.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="devops">
+					<summary>
+						<div class="module-number">03</div>
+						<div class="module-title">
+							<h2>DevOps & CI/CD</h2>
+							<p>
+								Notes on Jenkins pipelines, release stages, build flow, approval gates,
+								and deployment reliability.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>Pipeline stage design</li>
+									<li>Build, test, release, and rollback awareness</li>
+									<li>Approval gates and change control</li>
+									<li>Artifact promotion and version tracking</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									A pipeline is not only a sequence of jobs. It is also a communication structure:
+									people need to know what is being changed, where it is, and how to verify it.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>Jenkins</span>
+							<span>Pipeline</span>
+							<span>Release</span>
+							<span>Testing</span>
+							<span>Change Safety</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: document a standard pipeline checklist: parameters, stages,
+							error handling, notification, and post-release verification.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="middleware">
+					<summary>
+						<div class="module-number">04</div>
+						<div class="module-title">
+							<h2>Middleware & Runtime Platforms</h2>
+							<p>
+								Knowledge around application runtimes, product operations, patching,
+								configuration, and lifecycle management.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>WebSphere / Tomcat / Apache operations</li>
+									<li>Runtime installation and configuration</li>
+									<li>Stop, start, backup, fallback, and cleanup</li>
+									<li>Patch precheck and postcheck routines</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									Middleware work often sits between application teams, infrastructure,
+									and operations. Clear documentation and repeatable procedures are as
+									important as commands.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>WebSphere</span>
+							<span>Tomcat</span>
+							<span>Apache</span>
+							<span>Runtime</span>
+							<span>Lifecycle</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: add runtime-specific troubleshooting cards for startup failures,
+							port conflicts, logs, certificates, and config changes.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="observability">
+					<summary>
+						<div class="module-number">05</div>
+						<div class="module-title">
+							<h2>Observability & Troubleshooting</h2>
+							<p>
+								Log search, correlation IDs, monitoring signals, evidence collection,
+								and incident diagnosis patterns.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>Splunk query habits and index selection</li>
+									<li>Correlation ID based tracing</li>
+									<li>AppDynamics API and runtime signal review</li>
+									<li>Evidence packaging for incident handoff</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									Good troubleshooting is not only about finding logs. It is about creating a
+									clear timeline: what happened, where it happened, what changed, and what
+									evidence supports the conclusion.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>Splunk</span>
+							<span>AppDynamics</span>
+							<span>Logs</span>
+							<span>Correlation ID</span>
+							<span>Incident Triage</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: add a reusable incident evidence template with timeline,
+							symptom, scope, logs, owner, and next action.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="security">
+					<summary>
+						<div class="module-number">06</div>
+						<div class="module-title">
+							<h2>Security, Certificates & Vulnerability Work</h2>
+							<p>
+								Certificate renewal, CVE remediation, access control, secrets handling,
+								and operational governance notes.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="note-grid">
+							<article class="note-card">
+								<h3>Key Topics</h3>
+								<ul>
+									<li>Certificate lifecycle and renewal checks</li>
+									<li>CVE scan review and remediation workflow</li>
+									<li>Vault / credential handling concepts</li>
+									<li>Security approval and evidence tracking</li>
+								</ul>
+							</article>
+
+							<article class="note-card">
+								<h3>Personal Notes</h3>
+								<p>
+									Security work becomes easier to manage when ownership, priority,
+									evidence, validation, and closure criteria are visible from the start.
+								</p>
+							</article>
+						</div>
+
+						<div class="note-tags">
+							<span>CVE</span>
+							<span>Certificates</span>
+							<span>Vault</span>
+							<span>Risk</span>
+							<span>Governance</span>
+						</div>
+
+						<div class="add-note">
+							Future note idea: add a CVE remediation checklist including detect, prioritize,
+							owner, fix, verify, report, and close.
+						</div>
+					</div>
+				</details>
+
+				<details class="knowledge-module" id="template">
+					<summary>
+						<div class="module-number">+</div>
+						<div class="module-title">
+							<h2>Reusable Note Template</h2>
+							<p>
+								Copy this module when adding a new knowledge category or learning note.
+							</p>
+						</div>
+						<div class="module-icon">+</div>
+					</summary>
+
+					<div class="module-content">
+						<div class="template-block">
+							<h3>Module template</h3>
+							<pre>&lt;details class="knowledge-module" id="new-topic"&gt;
+	&lt;summary&gt;
+		&lt;div class="module-number"&gt;07&lt;/div&gt;
+		&lt;div class="module-title"&gt;
+			&lt;h2&gt;New Knowledge Topic&lt;/h2&gt;
+			&lt;p&gt;Short description of this topic.&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="module-icon"&gt;+&lt;/div&gt;
+	&lt;/summary&gt;
+
+	&lt;div class="module-content"&gt;
+		&lt;div class="note-grid"&gt;
+			&lt;article class="note-card"&gt;
+				&lt;h3&gt;Key Topics&lt;/h3&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Topic point one&lt;/li&gt;
+					&lt;li&gt;Topic point two&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/article&gt;
+
+			&lt;article class="note-card"&gt;
+				&lt;h3&gt;Personal Notes&lt;/h3&gt;
+				&lt;p&gt;Write your reflection here.&lt;/p&gt;
+			&lt;/article&gt;
+		&lt;/div&gt;
+
+		&lt;div class="note-tags"&gt;
+			&lt;span&gt;Tag One&lt;/span&gt;
+			&lt;span&gt;Tag Two&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/details&gt;</pre>
+						</div>
+					</div>
+				</details>
+
+			</div>
+		</section>
+
+	</main>
+
+	<script>
+		const light = document.getElementById('cursorLight');
+
+		document.addEventListener('mousemove', (event) => {
+			light.style.left = event.clientX + 'px';
+			light.style.top = event.clientY + 'px';
+		});
+
+		document.addEventListener('mouseleave', () => {
+			light.style.opacity = '0';
+		});
+
+		document.addEventListener('mouseenter', () => {
+			light.style.opacity = '1';
+		});
+
+		const faders = document.querySelectorAll('.fade');
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				}
+			});
+		}, {
+			threshold: 0.12
+		});
+
+		faders.forEach((element) => observer.observe(element));
+	</script>
+
+</body>
+</html>
